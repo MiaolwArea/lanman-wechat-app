@@ -13,7 +13,7 @@
   <view class="container">
     <!-- <text class="hot-goods">热门商品</text> -->
     <view class="goods-list">
-      <view class="list-item fzr15" wx:for="{{ hotGoods }}" wx:for-index="idx" wx:for-item="obj" wx:key="id">
+      <view class="list-item fzr15" wx:for="{{ hotGoods }}" wx:for-index="idx" wx:for-item="obj" wx:key="obj.id">
         <navigator url="../goodsDetial/goodsDetial?id={{ obj.id }}">
           <image mode="widthFix" src="{{ obj.img_url }}"></image>
           <view class="info">

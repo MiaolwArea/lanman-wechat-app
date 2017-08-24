@@ -1,28 +1,3 @@
 {
-  "tabBar": {
-    "color": "#000",
-    "selectedColor": "#fff",
-    "borderStyle": "white",
-    "backgroundColor": "#4c4c4c",
-    "list": [
-      {
-        "iconPath": "assets/images/tabBar/home.png",
-        "selectedIconPath": "assets/images/tabBar/home01.png",
-        "pagePath": "pages/index/index",
-        "text": "首页"
-      },
-      {
-        "iconPath": "assets/images/tabBar/shoppingCart.png",
-        "selectedIconPath": "assets/images/tabBar/shoppingCart01.png",
-        "pagePath": "pages/shoppingCart/shoppingCart",
-        "text": "购物车"
-      },
-      {
-        "iconPath": "assets/images/tabBar/user.png",
-        "selectedIconPath": "assets/images/tabBar/user01.png",
-        "pagePath": "pages/user/user",
-        "text": "我的"
-      }
-    ]
-  }
+  "navigationBarTitleText": "商品详情"
 }

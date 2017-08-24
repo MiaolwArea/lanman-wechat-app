@@ -1,10 +1,70 @@
-<!--index.wxml-->
-<view class="container">
-  <view  bindtap="bindViewTap" class="userinfo">
-    <image class="userinfo-avatar" src="{{userInfo.avatarUrl}}" background-size="cover"></image>
-    <text class="userinfo-nickname">{{userInfo.nickName}}</text>
+<!--shoppingCart.wxml-->
+<view class="shopping-cart">
+  <navigator class="adress-choose p30 flex" url="">
+    <view class="info-l">
+      <view class="name-phone mb-20">
+        <text class="user-name">{{ username }}</text><text class="phone otw">{{ phone }}</text>
+      </view>
+      <view class="adress">
+        <text>{{ adressInfo }}</text>
+      </view>
+    </view>
+    <view class="info-r arrow pr"></view>
+  </navigator>
+  <view class="line-cut"></view>
+  <view class="goods-list">
+    <view class="list-item">
+      <navigator class="adress-choose p30 flex" url="">
+        <image class="goods-pic" mode="widthFix" src="http://image.lanman.cn/2017/05/18/82d2a6304ee79df861941deb61e3b0a5.jpg"></image>
+        <view class="order-goods-info col-8">
+          <view>LANMAN #104 巧克力初心系列-摩洛哥王妃</view>
+          <view class="tar padding-5">¥129</view>
+          <view class="order-goods-num flex">
+            <view class="num flex">
+                <view>数量：</view>
+                <view class="box" bindtap="minusNum">-</view>
+                <view class="box">2</view>
+                <view class="box" bindtap="plusNum">+</view>   
+            </view>
+            <view class="del-btn">
+              <image class="del-icon" mode="widthFix" src="../../assets/images/icon/delete.png"></image>
+            </view>
+          </view>
+        </view>
+      </navigator>
+    </view>
   </view>
-  <view class="usermotto">
-    <text class="user-motto">{{motto}}</text>
+  <view class="line-cut"></view>
+  <view class="order-info">
+    <view class="order-item flex p30">
+        <view class="color-white">商品金额</view>
+        <view>¥129</view>
+    </view>
+    <view class="order-item flex p30">
+        <view class="color-white">抵用金额</view>
+        <view>¥0</view>
+    </view>
+    <view class="order-item flex p30">
+        <view class="color-white">运费</view>
+        <view>免运费</view>
+    </view>
+    <view class="order-item p30">
+        <view class="color-white">我要留言</view>
+        <textarea class="remark"></textarea>
+    </view>
+    <view class="order-item tar p30">
+        <view class="fzr16">实付¥129</view>
+    </view>
+  </view>
+  <view class="footer">
+    <view class="pay-btn-box">
+      <view class="pay-btn tac fzr16 color-white">微信支付</view>
+    </view>
+    <view class="lanman-footer-logo">
+      <image mode="widthFix" src="http://image.lanman.cn/2016/m.lanman.cn/images/my/lanman-footer-logo.png"></image>
+    </view>
+    <view class="contact-tel tac">
+      <text>全球服务联系电话：400－700－0825</text>    
+    </view>
   </view>
 </view>

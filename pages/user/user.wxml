@@ -1,7 +1,25 @@
-<!--index.wxml-->
-<view class="container">
-  <view  bindtap="bindViewTap" class="userinfo">
-    <image class="userinfo-avatar" src="{{userInfo.avatarUrl}}" background-size="cover"></image>
-    <text class="userinfo-nickname">{{userInfo.nickName}}</text>
+<!--user.wxml-->
+<view class="user">
+  <view class="about-me flex p30 mb-20">
+    <view class="member-photo">
+        <image src="{{ userInfo.avatarUrl }}"></image>
+    </view>
+    <view class="member-info">
+        <view>{{ userInfo.nickName }}</view>
+    </view>
+  </view>
+  <view class="menu-list">
+    <view class="list-item p30">
+      <navigator url="url">
+        <text class="menu-name">我的订单</text>
+        <view class="arrow pr"></view>
+      </navigator>
+    </view>
+    <view class="list-item p30">
+      <navigator url="url">
+        <text class="menu-name">我的地址</text>
+        <view class="arrow pr"></view>
+      </navigator>
+    </view>
   </view>
 </view>

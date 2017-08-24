@@ -15,6 +15,7 @@ page{ font-size: 28rpx; }
 
 .color-gray{ color: #ccc; }
 .color-black{ color: #000; }
+.color-white{ color: #fff; }
 
 .fw{ font-weight: bold; }
 
@@ -34,6 +35,11 @@ page{ font-size: 28rpx; }
 .show{ display: block; }
 .hide{ display: none; }
 .inline-block{ display: inline-block; }
+.otw{
+  overflow: hidden;
+  text-overflow:ellipsis;
+  white-space: nowrap;
+}
 /* 公共样式  */
 image{
   width: 100%;
@@ -70,4 +76,18 @@ image{
   width: 100%;
   height: 20rpx;
   background-color: #333;
+}
+.arrow:after, .arrow:before {
+  border: 15rpx solid transparent;
+  border-left: 15rpx solid #000;
+  width: 0;
+  height: 0;
+  position: absolute;
+  top: -18rpx;
+  right: -18rpx;
+  content: ' '
+}
+.arrow:before {
+  border-left-color: #a3a3a3;
+  right: -22rpx;
 }

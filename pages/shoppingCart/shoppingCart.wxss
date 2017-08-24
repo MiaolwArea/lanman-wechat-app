@@ -1,21 +1,42 @@
-/**index.wxss**/
-.userinfo {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
+/**shoppingCart.wxss**/
+page{ background-color: #333; }
+.shopping-cart{ min-height: 100%;background-color: #000;color: #a3a3a3; }
+.name-phone .user-name{ margin-right: 20rpx; }
+
+.list-item .adress-choose .goods-pic{
+  width: 130rpx;
+  margin-right: 20rpx;
+}
+.order-goods-num .box{
+  width: 50rpx;
+  height: 50rpx;
+  text-align: center;
+  line-height: 50rpx;
+  border: 1px solid #a3a3a3;
+}
+.list-item .del-icon{
+  width: 40rpx;
+  margin: 15rpx 10rpx 0;
 }
 
-.userinfo-avatar {
-  width: 128rpx;
-  height: 128rpx;
-  margin: 20rpx;
-  border-radius: 50%;
+.order-item{
+  border-bottom: 1px solid #3c3c3c;
+}
+.order-item .remark{
+  width: 100%;
+  margin-top: 30rpx;
+  background-color: #3c3c3c;
+  height: 120rpx;
 }
 
-.userinfo-nickname {
-  color: #aaa;
+.footer{ background-color: #333; }
+.pay-btn-box{
+  padding: 40rpx 20rpx;
 }
-
-.usermotto {
-  margin-top: 200px;
+.pay-btn-box .pay-btn{
+  height: 90rpx;
+  line-height: 90rpx;
+  background-color: #000;
 }
+.lanman-footer-logo{ width: 300rpx;margin: 0 auto; }
+.footer .contact-tel{ padding: 20rpx; }
