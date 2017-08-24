@@ -1,0 +1,72 @@
+<!--goodsDetial.wxml-->
+<view class="goods-detial page pb100">
+  <view class="exhibition">
+    <swiper indicator-dots="true" current="{{ currentTab }}" bindchange="changeIndex">
+      <block wx:for="{{ goodsDetial.img_url }}" wx:key="id">
+        <swiper-item>
+          <image class="slide-image" mode="widthFix" src="{{ item.url }}" height="300" />
+        </swiper-item>
+      </block>
+    </swiper>
+    <view class="type p30 fzr14">
+      <text class="title inline-block">色号</text>
+      <view class="type-info-list inline-block col-8">
+        <block wx:for="{{ goodsDetial.img_url }}" wx:key="id">
+          <view class="list-item inline-block {{ currentTab == index ? 'on' : '' }}" data-index="{{ index }}" bindtap="swichSwiper">{{ item.type }}</view>
+        </block>
+      </view>
+    </view>
+  </view>
+  <view class="line-cut"></view>
+  <view class="explain p30">
+    <view class="title fzr18 mb-20">{{ goodsDetial.title }}</view>
+    <view class="info mb-20 color-gray">{{ goodsDetial.explain }}</view>
+    <view class="pirce fw">¥{{ goodsDetial.pirce }}</view>
+  </view>
+  <view class="line-cut"></view>
+  <view class="server flex">
+    <view class="dlot"></view>
+    <text class="server-title">七天无理由退换　全场包邮　安全检测</text>
+    <view class="dlot"></view>
+  </view>
+  <view class="line-cut"></view>
+  <view class="tab-nav flex tac">
+    <view class="tab col-5 {{ isTabOn1 }}" data-index="1" bindtap="swichTab">商品详情</view>
+    <view class="tab col-5 {{ isTabOn2 }}" data-index="2" bindtap="swichTab">用户评价</view>
+  </view>
+  <view class="container">
+    <view class="introduce hide fz0 {{ isTabOn1 }}" bindtouchstart="infoTouchStart">
+      <block wx:for="{{ goodsDetial.information }}" wx:key="item">
+      <image mode="widthFix" src="{{ item }}" />
+      </block>
+    </view>
+    <view class="comment hide {{ isTabOn2 }}">
+      <block wx:for="{{ goodsDetial.comment_list }}" wx:key="item.id">
+      <view class="list-item p30 color-gray">
+        <view class="user-info flex">
+          <view class="user flex">
+            <image class="user-img" mode="widthFix" src="{{ item.avatar }}"></image>
+            <view class="name-and-star">
+              <view class="name">{{ item.user_name }}</view>
+              <view class="star-list">
+                <view class="list-item inline-block" wx:for="{{ item.star }}">1</view>
+              </view>
+            </view>
+          </view>
+          <view class="add-date">{{ item.date }}</view>
+        </view>
+        <view class="content">{{ item.content }}</view>
+      </view>
+      </block>
+    </view>
+  </view>
+  <view class="footer flex">
+    <navigator class="shopping-cart flex" url="../shoppingCart/shoppingCart" open-type="switchTab">
+      <image class="img" mode="widthFix" src="../../assets/images/tabBar/shoppingCart.png"></image>
+      <text class="red-dlot"></text>
+      <view class="color-black">购物车</view>
+    </navigator>
+    <view class="add-cart btn tac fzr18">加入购物车</view>
+    <view class="join-order btn tac fzr18">立即购买</view>
+  </view>
+</view>

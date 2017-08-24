@@ -1,0 +1,73 @@
+/**goodsDetial.wxss**/
+.goods-detial{ background-color: #000; color: #fff; }
+swiper {
+  height: 750rpx;
+  width: 100%;
+}
+.type .title{
+  width: 80rpx;
+  vertical-align: top;
+  margin-top: 20rpx;
+}
+.type-info-list .list-item{
+  padding: 20rpx;
+  border: 1px solid #ccc;
+  color: #ccc;
+  margin: auto 20rpx 20rpx auto;
+  border-radius: 5rpx;
+}
+.goods-detial .server{ justify-content: center;padding: 20rpx 0; }
+.server .server-title{ margin: auto 20rpx; }
+.tab-nav .tab{
+  padding: 30rpx 0;
+  color: #ccc;
+}
+.tab-nav .tab.on{
+  border-bottom: 1px solid #fff;
+  color: #fff;
+}
+
+.introduce.on, .comment.on{ display: block; }
+.type-info-list .list-item.on{
+  color: #fff;
+  background-color: #ccc;
+}
+.list-item{ border-bottom: 1px solid #4a4a4a; }
+.user-info{ margin-bottom: 20rpx; }
+.user-img{ width: 70rpx;border-radius: 50%;margin-right: 20rpx; }
+.name-and-star .name{ margin-bottom: 10rpx; }
+
+.footer{
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 100rpx;
+  background-color: #4c4c4c;
+}
+.shopping-cart{
+  width: 100rpx;
+  height: 100%;
+  font-size: 24rpx;
+  flex-direction: column;
+  justify-content: center;
+  background-color: #fff;
+  padding: 0 1rpx;
+}
+.shopping-cart .img{
+  width: 45%;
+  height: 45%;
+  margin-bottom: 5rpx;
+}
+.footer .btn{
+  width: 325rpx;
+  height: 100%;
+  line-height: 3;
+}
+.footer .add-cart{
+  background-color: #ccc;
+}
+.footer .join-order{
+  background-color: #000;
+  color: #fff;
+}

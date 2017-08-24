@@ -1,0 +1,73 @@
+/**app.wxss**/
+page{ font-size: 28rpx; }
+.tac{ text-align: center; }
+.tar{ text-align: right; }
+.tal{ text-align: left; }
+.col-1{ width: .99%; }
+.col-2{ width: 19.99%; }
+.col-3{ width: 29.99%; }
+.col-4{ width: 39.99%; }
+.col-5{ width: 49.99%; }
+.col-6{ width: 59.99%; }
+.col-7{ width: 69.99%; }
+.col-8{ width: 79.99%; }
+.col-9{ width: 89.99%; }
+
+.color-gray{ color: #ccc; }
+.color-black{ color: #000; }
+
+.fw{ font-weight: bold; }
+
+.fz0{ font-size: 0px; }
+.fzr14{ font-size: 28rpx }
+.fzr15{ font-size: 30rpx }
+.fzr16{ font-size: 32rpx }
+.fzr18{ font-size: 36rpx }
+
+.p30{ padding: 30rpx; }
+.pb100{ padding-bottom: 100rpx; }
+.mb-20{ margin-bottom: 20rpx; }
+.mlr20{margin: auto 20rpx;}
+
+.pr{ position: relative; }
+.pa{ position: absolute; }
+.show{ display: block; }
+.hide{ display: none; }
+.inline-block{ display: inline-block; }
+/* 公共样式  */
+image{
+  width: 100%;
+}
+.flex{
+  display: flex;
+	display: -webkit-flex;
+	align-items: center;
+	justify-content: space-between;
+}
+.line{
+  background-color: #ccc;
+  width: 200rpx;
+  height: 2rpx;
+}
+.dlot{
+  width: 15rpx;
+  height: 15rpx;
+  border-radius: 50%;
+  background-color: #ccc;
+}
+.red-dlot{
+  position: absolute;
+  left: 62rpx;
+  top: 6rpx;
+  width: 20rpx;
+  height: 20rpx;
+  border-radius: 50%;
+  background-color: red;
+  font-size: 20rpx;
+  display: block;
+}
+.line-cut{
+  width: 100%;
+  height: 20rpx;
+  background-color: #333;
+}

@@ -1,0 +1,48 @@
+<!--index.wxml-->
+<view class="page">
+  <view class="header">
+    <view class="logo">
+      <image mode="widthFix" src="http://image.lanman.cn/2016/m.lanman.cn/images/index/slogn.png"></image>
+    </view>
+    <view class="{{ moveSearch == 'true' ? 'search move-search': 'search' }}">
+      <view class="search-b">
+        <input class="search-input tac fzr16" placeholder="请输入商品名称" />
+      </view>
+    </view>
+  </view>
+  <view class="container">
+    <!-- <text class="hot-goods">热门商品</text> -->
+    <view class="goods-list">
+      <view class="list-item fzr15" wx:for="{{ hotGoods }}" wx:for-index="idx" wx:for-item="obj" wx:key="id">
+        <navigator url="../goodsDetial/goodsDetial?id={{ obj.id }}">
+          <image mode="widthFix" src="{{ obj.img_url }}"></image>
+          <view class="info">
+            <view class="title mb-20">
+              {{ obj.title }}
+            </view>
+            <view class="list-buy flex">
+              <view class="info-goods col-6">
+                <view class="pirce mb-20">
+                  <text class="now-pirce">¥{{ obj.pirce_new }}</text>
+                  <text class="old-pirce">¥{{ obj.pirce_old }}</text>
+                </view>
+                <view class="order-num flex col-9">
+                  <text class="col-2">已售</text>
+                  <progress class="col-8" activeColor="#000" percent="{{ obj.sale_percentage }}" show-info />
+                </view>
+              </view>
+              <view class="buy-btn-box col-4 tar">
+                <button class="buy-btn fzr16">立即购买</button>
+              </view>
+            </view>
+          </view>
+        </navigator>
+      </view>
+      <view hidden="{{ noMore }}" class="no-more fzr14 flex">
+        <view class="line"></view>
+        <view class="mlr20">无更多商品</view>
+        <view class="line"></view>
+      </view>
+    </view>
+  </view>
+</view>

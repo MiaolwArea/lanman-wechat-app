@@ -1,0 +1,52 @@
+/**index.wxss**/
+.header{
+  min-height: 152px;
+}
+.search{
+  background-color: #000;
+  padding: 20rpx 30rpx;
+}
+.search-b{
+  border-radius: 40rpx;
+  border: 1rpx solid #000;
+  background-color: #fff;
+  padding: 10rpx 20rpx;
+}
+.move-search{
+  position: fixed;
+  top: 0;
+  left:0;
+  right: 0;
+  z-index: 99;
+}
+
+.goods-list{
+  padding: 20rpx 30rpx;
+}
+.list-item{
+  margin: 25rpx 0;
+  box-shadow: 0rpx 0rpx 20rpx #ccc;
+}
+.list-item .info{
+  padding: 20rpx;
+}
+.list-item .now-pirce{
+  color: red;
+  margin-right: 20rpx;
+}
+.list-item .old-pirce{
+  text-decoration: line-through;
+  color: #ccc;
+  font-size: 24rpx;
+}
+.order-num progress{
+  padding-right: 10rpx; 
+}
+.buy-btn{
+  width: 200rpx;
+}
+
+.no-more{
+  color: #ccc;
+  justify-content: center;
+}
