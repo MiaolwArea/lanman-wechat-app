@@ -1,7 +1,10 @@
 //app.js
+let API = require('./utils/api');
+
 App({
   onLaunch: function() {
     this.getUserInfo();
+    this.ApiConfig = API;
   },
 
   getUserInfo: function(cb) {

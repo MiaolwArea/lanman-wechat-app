@@ -1,6 +1,6 @@
 /**shoppingCart.wxss**/
 page{ background-color: #333; }
-.shopping-cart{ min-height: 100%;background-color: #000;color: #a3a3a3; }
+.shopping-cart{ background-color: #000;color: #a3a3a3; }
 .name-phone .user-name{ margin-right: 20rpx; }
 
 .list-item .adress-choose .goods-pic{
@@ -14,6 +14,10 @@ page{ background-color: #333; }
   line-height: 50rpx;
   border: 1px solid #a3a3a3;
 }
+.order-goods-num .box:nth-of-type(3){
+  border-left: 0;
+  border-right: 0;
+}
 .list-item .del-icon{
   width: 40rpx;
   margin: 15rpx 10rpx 0;
@@ -23,10 +27,11 @@ page{ background-color: #333; }
   border-bottom: 1px solid #3c3c3c;
 }
 .order-item .remark{
-  width: 100%;
+  width: calc(100% - 40rpx);
   margin-top: 30rpx;
   background-color: #3c3c3c;
   height: 120rpx;
+  padding: 20rpx;
 }
 
 .footer{ background-color: #333; }

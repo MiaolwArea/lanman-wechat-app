@@ -1,6 +1,7 @@
 //user.js
 //获取应用实例
 var app = getApp()
+
 Page({
   data: {
     userInfo: {}
@@ -10,7 +11,6 @@ Page({
     
   },
   onLoad: function () {
-    console.log(app.globalData.userInfo)
     if (app.globalData.userInfo) {
       this.setData({
         userInfo: app.globalData.userInfo

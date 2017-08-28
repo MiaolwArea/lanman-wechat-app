@@ -1,6 +1,6 @@
 <!--shoppingCart.wxml-->
 <view class="shopping-cart">
-  <navigator class="adress-choose p30 flex" url="">
+  <navigator class="adress-choose p30 flex" url="../user/adress/adress">
     <view class="info-l">
       <view class="name-phone mb-20">
         <text class="user-name">{{ username }}</text><text class="phone otw">{{ phone }}</text>
@@ -14,7 +14,7 @@
   <view class="line-cut"></view>
   <view class="goods-list">
     <view class="list-item">
-      <navigator class="adress-choose p30 flex" url="">
+      <navigator class="adress-choose p30 flex" url="../goodsDetial/goodsDetial">
         <image class="goods-pic" mode="widthFix" src="http://image.lanman.cn/2017/05/18/82d2a6304ee79df861941deb61e3b0a5.jpg"></image>
         <view class="order-goods-info col-8">
           <view>LANMAN #104 巧克力初心系列-摩洛哥王妃</view>

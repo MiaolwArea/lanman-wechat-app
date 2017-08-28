@@ -18,6 +18,7 @@ page{ font-size: 28rpx; }
 .color-white{ color: #fff; }
 
 .fw{ font-weight: bold; }
+.fl{ float: left; }
 
 .fz0{ font-size: 0px; }
 .fzr14{ font-size: 28rpx }
@@ -90,4 +91,7 @@ image{
 .arrow:before {
   border-left-color: #a3a3a3;
   right: -22rpx;
+}
+radio{
+  transform:scale(.6);
 }

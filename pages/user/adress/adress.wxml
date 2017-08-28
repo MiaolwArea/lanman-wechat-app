@@ -1,0 +1,85 @@
+<!--adress.wxml-->
+<view class="adress">
+  <!-- 地址列表 -->
+  <view class="manage" hidden="{{ isEdit }}">
+    <view class="address-list">
+      <radio-group class="radio-group" bindchange="radioChange">
+        <view class="goods-item p30" wx:for="{{ adress }}" wx:key="item.id">
+          <view class="receive-info mb-20">
+              <view class="receive mb-20 fzr16">
+                  <text class="name">{{ item.user_name }}</text>
+                  <text class="phone">{{ item.phone }}</text>
+              </view>
+              <view class="receive-address mb-20">
+                  <text class="address-info">{{ item.adress_info }}</text>
+              </view>    
+          </view>
+          <view class="address-operate flex">
+            <view class="set-default flex">
+              <radio value="{{ item.id }}" id="radio{{ index }}" checked="{{ item.isDefault }}" color="#a3a3a3" />
+              <label class="color-white" for="radio{{ index }}">{{ item.isDefault ? '默认地址' : '设为默认地址' }}</label>
+            </view>
+            <view class="control flex color-white">
+              <label class="btn edit" data-id="{{ item.id }}" bindtap="editAdress">编辑</label>
+              <label class="btn del" data-id="{{ item.id }}" bindtap="delAdress">删除</label>
+            </view>
+          </view>
+        </view>
+      </radio-group>
+    </view>
+    <view class="add-adress p30" bindtap="editAdress">
+      <view class="add-btn tac color-white">新增收货地址</view>
+    </view>
+  </view>
+  <!-- 编辑添加地址 -->
+  <view class="edit-adress" hidden="{{ !isEdit }}">
+    <form class="address-list p30" bindsubmit="formSubmit" bindreset="formReset">
+      <view class="address-item flex">
+          <label class="fzr16 color-white">收货人</label>
+          <input class="consignee" type="text" placeholder="必填" />
+      </view>
+      <view class="address-item flex">
+          <label class="fzr16 color-white">联系电话</label>
+          <input class="consignee" type="text" placeholder="必填" />
+      </view>
+      <view class="address-item flex">
+          <label class="fzr16 color-white">邮政编码</label>
+          <input class="consignee" type="text" placeholder="选填" />
+      </view>
+      <view class="address-item flex">
+          <label class="fzr16 color-white">所在城市</label>
+          <input class="consignee" type="text" />
+      </view>
+      <view class="address-item flex">
+          <label class="fzr16 color-white">详细地址</label>
+          <input class="consignee" type="text" placeholder="必填" />
+      </view>
+      <view class="btn-area">
+        <button class="submit fzr16" formType="submit">保存</button>
+      </view>
+    </form> 
+  </view>
+  <!-- 弹窗 -->
+  <view class="alert-tip">
+    <view class="fx-bg"></view>
+    <view class="box tac">
+      <!-- <picker-view style=" height: 200px;" value="{{value}}" bindchange="bindChange">
+        <picker-view-column>
+          <view wx:for="{{city01}}" style="color:#000;line-height: 50px">{{item}}</view>
+        </picker-view-column>
+        <picker-view-column>
+          <view wx:for="{{city02}}" style="line-height: 50px">{{item}}</view>
+        </picker-view-column>
+        <picker-view-column>
+          <view wx:for="{{city03}}" style="line-height: 50px">{{item}}</view>
+        </picker-view-column>
+      </picker-view> -->
+      <picker mode="region" bindchange="bindChange" value="" custom-item="全部">
+        <view class="picker">
+          当前选择：{{region[0]}}，{{region[1]}}，{{region[2]}}
+        </view>
+      </picker>
+      <button class="btn-sure fzr16">确定</button>
+    </view>
+  </view>
+</view>

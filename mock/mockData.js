@@ -82,7 +82,26 @@ module.exports = {
       "content": "不错，我喜欢！",
       "replay": "谢谢您的好评！"
     }]
-  }
+  },
+  "adress": [{
+    "id": 1,
+    "user_name": "张三",
+    "phone": "18759262626",
+    "adress_info": "福建省厦门市软件园二期望海路69号",
+    "isDefault": 1
+  }, {
+    "id": 2,
+    "user_name": "张三1",
+    "phone": "18759262626",
+    "adress_info": "福建省厦门市软件园二期望海路69号",
+    "isDefault": 0
+  }, {
+    "id": 3,
+    "user_name": "张三2",
+    "phone": "18759262626",
+    "adress_info": "福建省厦门市软件园二期望海路69号",
+    "isDefault": 0
+  }]
 }
 
  

@@ -9,14 +9,14 @@
     </view>
   </view>
   <view class="menu-list">
-    <view class="list-item p30">
-      <navigator url="url">
+    <view class="list-item">
+      <navigator class="p30" url="url">
         <text class="menu-name">我的订单</text>
         <view class="arrow pr"></view>
       </navigator>
     </view>
-    <view class="list-item p30">
-      <navigator url="url">
+    <view class="list-item">
+      <navigator class="p30" url="../user/adress/adress">
         <text class="menu-name">我的地址</text>
         <view class="arrow pr"></view>
       </navigator>

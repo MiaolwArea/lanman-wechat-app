@@ -3,7 +3,8 @@
     "pages/index/index",
     "pages/shoppingCart/shoppingCart",
     "pages/user/user",
-    "pages/goodsDetial/goodsDetial"
+    "pages/goodsDetial/goodsDetial",
+    "pages/user/adress/adress"
   ],
   "window":{
     "backgroundTextStyle":"light",

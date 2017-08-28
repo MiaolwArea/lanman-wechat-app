@@ -1,7 +1,6 @@
 // goodsDetial.js
 //获取应用实例
 let app = getApp()
-let API = require('../../utils/api')
 
 // let countHeight = 0; // 图片总高度
 // let windowWidth = wx.getSystemInfoSync().windowWidth; // 屏宽
@@ -26,7 +25,7 @@ Page({
   onLoad: function (opt) {
     let _this = this;
     
-    API.ajax('goodsDetial', function (res) {
+    app.ApiConfig.ajax('goodsDetial', function (res) {
       if (res) {
         _this.setData({
           goodsDetial: res

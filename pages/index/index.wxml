@@ -28,7 +28,7 @@
                 </view>
                 <view class="order-num flex col-9">
                   <text class="col-2">已售</text>
-                  <progress class="col-8" activeColor="#000" percent="{{ obj.sale_percentage }}" show-info />
+                  <progress class="col-8" active activeColor="#000" percent="{{ obj.sale_percentage }}" show-info />
                 </view>
               </view>
               <view class="buy-btn-box col-4 tar">

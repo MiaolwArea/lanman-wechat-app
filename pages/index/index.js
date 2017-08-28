@@ -1,8 +1,6 @@
 //index.js
 //获取应用实例
 let app = getApp()
-let API = require('../../utils/api')
-
 
 Page({
   data: {
@@ -25,14 +23,14 @@ Page({
   },
   onLoad: function () {
     let _this = this;
-
+    
     _this.getHotGoods();
   },
   // 自定义事件
   getHotGoods: function () {
     let _this = this;
-
-    API.ajax('hotGoods', function (res) {
+    
+    app.ApiConfig.ajax('hotGoods', function (res) {
       if (res) {
         _this.setData({
           hotGoods: _this.data.hotGoods.concat(res)
