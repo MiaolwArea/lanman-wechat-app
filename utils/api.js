@@ -16,6 +16,7 @@ function ajax(data = '', fn, method = "get", header = {}) {
     });
   } else {
     // 模拟数据
+    data = data.split('?')[0];
     var res = Mock[data];
     fn(res);
   }

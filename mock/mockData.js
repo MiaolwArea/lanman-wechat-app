@@ -101,7 +101,18 @@ module.exports = {
     "phone": "18759262626",
     "adress_info": "福建省厦门市软件园二期望海路69号",
     "isDefault": 0
-  }]
+  }],
+  "getAdressInfo": {
+    "id": 2,
+    "user_name": "张三1",
+    "postal": "",
+    "phone": "18759262626",
+    "province": "福建省",
+    "city": "厦门市",
+    "district": "思明区",
+    "adress_info": "软件园二期望海路69号",
+    "isDefault": 0
+  }
 }
 
  

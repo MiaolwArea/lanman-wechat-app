@@ -36,50 +36,29 @@
     <form class="address-list p30" bindsubmit="formSubmit" bindreset="formReset">
       <view class="address-item flex">
           <label class="fzr16 color-white">收货人</label>
-          <input class="consignee" type="text" placeholder="必填" />
+          <input class="consignee" type="text" value="{{ adressInfo.user_name }}" placeholder="必填" />
       </view>
       <view class="address-item flex">
           <label class="fzr16 color-white">联系电话</label>
-          <input class="consignee" type="text" placeholder="必填" />
+          <input class="consignee" type="text" value="{{ adressInfo.phone }}" placeholder="必填" />
       </view>
       <view class="address-item flex">
           <label class="fzr16 color-white">邮政编码</label>
-          <input class="consignee" type="text" placeholder="选填" />
+          <input class="consignee" type="text" value="{{ adressInfo.postal }}" placeholder="选填" />
       </view>
       <view class="address-item flex">
           <label class="fzr16 color-white">所在城市</label>
-          <input class="consignee" type="text" />
+          <picker mode="region" bindchange="bindChange" value="{{ region }}" custom-item="{{ customItem }}">
+            <input class="picker consignee"  placeholder="点击选择" value="{{region[0]}}{{region[1]}}{{region[2]}}" disabled type="text" />
+          </picker>
       </view>
       <view class="address-item flex">
           <label class="fzr16 color-white">详细地址</label>
-          <input class="consignee" type="text" placeholder="必填" />
+          <input class="consignee" type="text" value="{{ adressInfo.adress_info }}" placeholder="必填" />
       </view>
       <view class="btn-area">
         <button class="submit fzr16" formType="submit">保存</button>
       </view>
     </form> 
-  </view>
-  <!-- 弹窗 -->
-  <view class="alert-tip">
-    <view class="fx-bg"></view>
-    <view class="box tac">
-      <!-- <picker-view style=" height: 200px;" value="{{value}}" bindchange="bindChange">
-        <picker-view-column>
-          <view wx:for="{{city01}}" style="color:#000;line-height: 50px">{{item}}</view>
-        </picker-view-column>
-        <picker-view-column>
-          <view wx:for="{{city02}}" style="line-height: 50px">{{item}}</view>
-        </picker-view-column>
-        <picker-view-column>
-          <view wx:for="{{city03}}" style="line-height: 50px">{{item}}</view>
-        </picker-view-column>
-      </picker-view> -->
-      <picker mode="region" bindchange="bindChange" value="" custom-item="全部">
-        <view class="picker">
-          当前选择：{{region[0]}}，{{region[1]}}，{{region[2]}}
-        </view>
-      </picker>
-      <button class="btn-sure fzr16">确定</button>
-    </view>
   </view>
 </view>

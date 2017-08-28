@@ -1,19 +1,15 @@
 //adress.js
 //获取应用实例
 let app = getApp()
-let city = require('../../../utils/city')
-let level1City = []
-  , level2City = []
-  , level3City = [];
 
 Page({
   data: {
+    customItem: "全部",
     userInfo: {},
     adress: [],
     isEdit: false,
-    city01: [],
-    city02: [],
-    city03: []
+    region: [],
+    adressInfo: {}
   },
   onLoad: function () {
     let _this = this;
@@ -31,8 +27,6 @@ Page({
         })
       }
     });
-    // 初始化选择器
-    _this._selectCity();
 
   },
   //事件处理函数
@@ -48,39 +42,36 @@ Page({
     //   }
     // });
   },
-  // 
-  editAdress() {
-    this.setData({
+  // 编辑地址详细信息
+  editAdress(e) {
+    let _this = this
+      , id = e.target.dataset.id || null;
+
+    if (id){
+      app.ApiConfig.ajax('getAdressInfo?id=' + e.target.dataset.id, function (res) {
+        if (res) {
+          _this.setData({
+            adressInfo: res,
+            region: [res.province, res.city, res.district]
+          })
+        }
+      })
+    }
+    _this.setData({
       isEdit: true
     })
   },
   bindChange(e) {
-    this._selectCity(e.detail.value[0], e.detail.value[1]);
-  },
-  _selectCity(level1 = '北京市', level2 = 0) {
-    let level1Index = 0, level2Index = 0;
-
-    if (this.data.city01.length != 0) {
-      level1Index = level1;
-      level1 = this.data.city01[level1];
-    } 
-    level2Index = level2;
-    if (level1City.length == 0){
-      Object.keys(city.city).forEach(itemid => {
-        let childStore = [];
-        level1City.push(itemid);
-        Object.keys(city.city[itemid]).forEach((itemid2, index) => {
-          childStore.push(itemid2);
-          level3City = city.city[itemid][itemid2];
-        })
-        level2City.push(childStore);
-      })
+    let cityAry = e.detail.value
+      , customItem = this.data.customItem;
+    
+    for (let i = 0; i < cityAry.length; i++) {
+      if (cityAry[i] == customItem){
+        cityAry[i] = '';
+      }
     }
-    level3City = city.city[level1][level2City[level1Index][level2Index]];
     this.setData({
-      city01: level1City,
-      city02: level2City[level1Index],
-      city03: level3City
+      region: cityAry
     })
   }
 })
