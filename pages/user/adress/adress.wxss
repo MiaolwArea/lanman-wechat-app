@@ -13,7 +13,11 @@ page{ background-color: #000;color: #fff; }
   width: 100%;
   background-color: #a3a3a3;
 }
-.address-item { justify-content: flex-start;padding: 30rpx; }
+.address-item {
+  justify-content: flex-start;
+  padding: 30rpx;
+  border-bottom: 1px solid #3c3c3c;
+}
 .address-item label{ width: 200rpx; }
 .address-item .consignee{ width: 500rpx; }
 

@@ -1,6 +1,7 @@
 //adress.js
 //获取应用实例
-let app = getApp()
+let app = getApp();
+let editId = null;
 
 Page({
   data: {
@@ -42,13 +43,29 @@ Page({
     //   }
     // });
   },
+  // 删除地址
+  delAdress(e) {
+    let dataset = e.target.dataset;
+
+    if (dataset.isdefault == 0){
+      // app.ApiConfig.ajax('delAdress', {
+      //   id: e.target.dataset.id
+      // }, function (res) {
+      //   if (res) {
+      //     alert('删除成功！')
+      //   }
+      // });
+    }else{
+      alert('默认地址不能删除！')
+    }
+  },
   // 编辑地址详细信息
   editAdress(e) {
-    let _this = this
-      , id = e.target.dataset.id || null;
+    let _this = this;
+    editId = e.target.dataset.id;
 
-    if (id){
-      app.ApiConfig.ajax('getAdressInfo?id=' + e.target.dataset.id, function (res) {
+    if (editId){
+      app.ApiConfig.ajax('getAdressInfo?id=' + editId, function (res) {
         if (res) {
           _this.setData({
             adressInfo: res,
@@ -61,6 +78,7 @@ Page({
       isEdit: true
     })
   },
+  // 地区选择
   bindChange(e) {
     let cityAry = e.detail.value
       , customItem = this.data.customItem;
@@ -73,5 +91,23 @@ Page({
     this.setData({
       region: cityAry
     })
+  },
+  // 保存
+  formSubmit(e){
+    let dataObj = e.detail.value
+      , region = this.data.region;
+
+    dataObj.province = region[0];
+    dataObj.city = region[1];
+    dataObj.district = region[2]; 
+    if (editId) {
+      dataObj.id = editId;
+    }
+    console.log(dataObj);
+    // app.ApiConfig.ajax('postAdressInfo', dataObj, function (res) {
+    //   if (res) {
+        
+    //   }
+    // })
   }
 })

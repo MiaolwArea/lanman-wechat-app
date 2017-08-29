@@ -21,7 +21,7 @@
             </view>
             <view class="control flex color-white">
               <label class="btn edit" data-id="{{ item.id }}" bindtap="editAdress">编辑</label>
-              <label class="btn del" data-id="{{ item.id }}" bindtap="delAdress">删除</label>
+              <label class="btn del" data-id="{{ item.id }}" data-isdefault="{{ item.isDefault }}" bindtap="delAdress">删除</label>
             </view>
           </view>
         </view>
@@ -33,18 +33,18 @@
   </view>
   <!-- 编辑添加地址 -->
   <view class="edit-adress" hidden="{{ !isEdit }}">
-    <form class="address-list p30" bindsubmit="formSubmit" bindreset="formReset">
+    <form class="address-list p30" bindsubmit="formSubmit">
       <view class="address-item flex">
           <label class="fzr16 color-white">收货人</label>
-          <input class="consignee" type="text" value="{{ adressInfo.user_name }}" placeholder="必填" />
+          <input class="consignee" name="user_name" type="text" value="{{ adressInfo.user_name }}" placeholder="必填" />
       </view>
       <view class="address-item flex">
           <label class="fzr16 color-white">联系电话</label>
-          <input class="consignee" type="text" value="{{ adressInfo.phone }}" placeholder="必填" />
+          <input class="consignee" name="phone" type="text" value="{{ adressInfo.phone }}" placeholder="必填" />
       </view>
       <view class="address-item flex">
           <label class="fzr16 color-white">邮政编码</label>
-          <input class="consignee" type="text" value="{{ adressInfo.postal }}" placeholder="选填" />
+          <input class="consignee" name="postal" type="text" value="{{ adressInfo.postal }}" placeholder="选填" />
       </view>
       <view class="address-item flex">
           <label class="fzr16 color-white">所在城市</label>
@@ -54,7 +54,7 @@
       </view>
       <view class="address-item flex">
           <label class="fzr16 color-white">详细地址</label>
-          <input class="consignee" type="text" value="{{ adressInfo.adress_info }}" placeholder="必填" />
+          <input class="consignee" name="adress_info" type="text" value="{{ adressInfo.adress_info }}" placeholder="必填" />
       </view>
       <view class="btn-area">
         <button class="submit fzr16" formType="submit">保存</button>
