@@ -21,7 +21,7 @@
             </view>
             <view class="control flex color-white">
               <label class="btn edit" data-id="{{ item.id }}" bindtap="editAdress">编辑</label>
-              <label class="btn del" data-id="{{ item.id }}" data-isdefault="{{ item.isDefault }}" bindtap="delAdress">删除</label>
+              <label class="btn" data-id="{{ item.id }}" data-isdefault="{{ item.isDefault }}" bindtap="delAdress">删除</label>
             </view>
           </view>
         </view>

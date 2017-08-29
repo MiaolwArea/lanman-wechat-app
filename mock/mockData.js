@@ -112,7 +112,36 @@ module.exports = {
     "district": "思明区",
     "adress_info": "软件园二期望海路69号",
     "isDefault": 0
-  }
+  },
+  "shoppingCart": {
+    "adress": {
+      "id": 1,
+      "user_name": "张三",
+      "phone": "18759262626",
+      "adress_info": "福建省厦门市软件园二期望海路69号",
+      "isDefault": 1
+    },
+    "goods_list": [{
+      "id": 1,
+      "title": "LANMAN #104 巧克力初心系列-摩洛哥王妃",
+      "img_url": "http://image.lanman.cn/2017/07/26/b15e6eb75f510cd095322006b1093a57.jpg",
+      "pirce": "129",
+      "num": 2
+    }, {
+      "id": 2,
+      "title": "LANMAN #104 巧克力初心系列-摩洛哥王妃02",
+      "img_url": "http://image.lanman.cn/2017/07/26/b15e6eb75f510cd095322006b1093a57.jpg",
+      "pirce": "129",
+      "num": 1
+    }]
+  },
+  "delGoods": [{
+    "id": 2,
+    "title": "LANMAN #104 巧克力初心系列-摩洛哥王妃02",
+    "img_url": "http://image.lanman.cn/2017/07/26/b15e6eb75f510cd095322006b1093a57.jpg",
+    "pirce": "129",
+    "num": 1
+  }]
 }
 
  

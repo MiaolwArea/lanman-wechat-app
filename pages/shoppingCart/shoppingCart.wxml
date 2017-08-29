@@ -13,36 +13,35 @@
   </navigator>
   <view class="line-cut"></view>
   <view class="goods-list">
-    <view class="list-item">
-      <navigator class="adress-choose p30 flex" url="../goodsDetial/goodsDetial">
-        <image class="goods-pic" mode="widthFix" src="http://image.lanman.cn/2017/05/18/82d2a6304ee79df861941deb61e3b0a5.jpg"></image>
+    <view class="list-item flex {{isTouchMove[index] ? 'touch-move-active' : ''}}" 
+      bindtouchstart="touchstart" bindtouchmove="touchmove" data-index="{{index}}" wx:for="{{ goodsList }}" wx:key="item.id">
+      <navigator class="adress-choose content p30 flex" hover-class="none" url="../goodsDetial/goodsDetial?id={{ item.id }}">
+        <image class="goods-pic" mode="widthFix" src="{{ item.img_url }}"></image>
         <view class="order-goods-info col-8">
-          <view>LANMAN #104 巧克力初心系列-摩洛哥王妃</view>
-          <view class="tar padding-5">¥129</view>
+          <view class="mb-20">{{ item.title }}</view>
           <view class="order-goods-num flex">
             <view class="num flex">
                 <view>数量：</view>
-                <view class="box" bindtap="minusNum">-</view>
-                <view class="box">2</view>
-                <view class="box" bindtap="plusNum">+</view>   
+                <view class="box" data-index="{{ index }}" catchtap="minusNum">-</view>
+                <view class="box">{{ item.num }}</view>
+                <view class="box" data-index="{{ index }}" catchtap="plusNum">+</view>   
             </view>
-            <view class="del-btn">
-              <image class="del-icon" mode="widthFix" src="../../assets/images/icon/delete.png"></image>
-            </view>
+            <view class="tar padding-5">¥{{ item.pirce }}</view>
           </view>
         </view>
       </navigator>
+      <view class="del tac" data-id="{{ item.id }}" catchtap="delGoods" data-index="{{index}}">删除</view>
     </view>
   </view>
   <view class="line-cut"></view>
   <view class="order-info">
     <view class="order-item flex p30">
         <view class="color-white">商品金额</view>
-        <view>¥129</view>
+        <view>¥{{ goodsPrice }}</view>
     </view>
     <view class="order-item flex p30">
         <view class="color-white">抵用金额</view>
-        <view>¥0</view>
+        <view>¥{{ discountPrice }}</view>
     </view>
     <view class="order-item flex p30">
         <view class="color-white">运费</view>
@@ -50,15 +49,15 @@
     </view>
     <view class="order-item p30">
         <view class="color-white">我要留言</view>
-        <textarea class="remark"></textarea>
+        <textarea class="remark" bindblur="bindTextAreaBlur"></textarea>
     </view>
     <view class="order-item tar p30">
-        <view class="fzr16">实付¥129</view>
+        <view class="fzr16">实付¥{{ finalPrice }}</view>
     </view>
   </view>
   <view class="footer">
     <view class="pay-btn-box">
-      <view class="pay-btn tac fzr16 color-white">微信支付</view>
+      <view class="pay-btn tac fzr16 color-white" bindtap="payWechat">微信支付</view>
     </view>
     <view class="lanman-footer-logo">
       <image mode="widthFix" src="http://image.lanman.cn/2016/m.lanman.cn/images/my/lanman-footer-logo.png"></image>

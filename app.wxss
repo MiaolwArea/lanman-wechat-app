@@ -95,3 +95,38 @@ image{
 radio{
   transform:scale(.6);
 }
+/* 删除滑动效果 */
+.touch-item {
+ font-size: 14px;
+ display: flex;
+ justify-content: space-between;
+ border-bottom:1px solid #ccc;
+ width: 100%;
+ overflow: hidden
+}
+.content {
+ -webkit-transition: all 0.4s;
+ transition: all 0.4s;
+ -webkit-transform: translateX(130rpx);
+ transform: translateX(130rpx);
+ margin-left: -130rpx;
+}
+.del {
+ background-color: #ccc;
+ width: 130rpx;
+ height: 150rpx;
+ color: #000;
+ display: flex;
+ flex-direction: column;
+ align-items: center;
+ justify-content: center;
+ -webkit-transform: translateX(130rpx);
+ transform: translateX(130rpx);
+ -webkit-transition: all 0.4s;
+ transition: all 0.4s;
+}
+.touch-move-active .content,
+.touch-move-active .del {
+ -webkit-transform: translateX(0);
+ transform: translateX(0);
+}

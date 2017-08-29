@@ -52,11 +52,19 @@ Page({
       //   id: e.target.dataset.id
       // }, function (res) {
       //   if (res) {
-      //     alert('删除成功！')
+      //     wx.showModal({
+      //       title: '',
+      //       content: '删除成功！',
+      //       showCancel: false
+      //     })
       //   }
       // });
     }else{
-      alert('默认地址不能删除！')
+      wx.showModal({
+        title: '',
+        content: '默认地址不能删除！',
+        showCancel: false
+      })
     }
   },
   // 编辑地址详细信息
