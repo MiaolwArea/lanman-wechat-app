@@ -70,6 +70,29 @@ Page({
       })
     }
   },
+  // 加入购物车 
+  addCart(e){
+    let _this = this
+      , goodsDetial = _this.data.goodsDetial
+      , id = e.target.dataset;
+
+    app.ApiConfig.ajax('addCart?id=' + id, function (res) {
+      if (res) {
+        goodsDetial.goodsNum++;
+        if (goodsDetial.goodsNum < 100) {
+          _this.setData({
+            goodsDetial: goodsDetial
+          })
+        }
+      }
+    });
+  },
+  buyNow(e){
+    this.addCart(e);
+    wx.switchTab({
+      url: '../shoppingCart/shoppingCart'
+    })
+  },
   // 懒加载图片
   // countHeight(e) {
   //   if(isOdd){

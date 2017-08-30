@@ -21,6 +21,7 @@ page{ font-size: 28rpx; }
 .fl{ float: left; }
 
 .fz0{ font-size: 0px; }
+.fzr12{ font-size: 24rpx }
 .fzr14{ font-size: 28rpx }
 .fzr15{ font-size: 30rpx }
 .fzr16{ font-size: 32rpx }
@@ -64,13 +65,14 @@ image{
 }
 .red-dlot{
   position: absolute;
-  left: 62rpx;
-  top: 6rpx;
-  width: 20rpx;
-  height: 20rpx;
+  left: 60rpx;
+  top: 3rpx;
+  width: 30rpx;
+  height: 30rpx;
   border-radius: 50%;
   background-color: red;
   font-size: 20rpx;
+  line-height: 30rpx;
   display: block;
 }
 .line-cut{

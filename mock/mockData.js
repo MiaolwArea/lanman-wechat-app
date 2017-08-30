@@ -23,6 +23,7 @@ module.exports = {
     "sale_percentage": 20
   }],
   "goodsDetial": {
+    "id": 1,
     "img_url": [{
       "id": 1,
       "url": "http://image.lanman.cn/2017/07/26/b15e6eb75f510cd095322006b1093a57.jpg",
@@ -43,6 +44,7 @@ module.exports = {
     "title": "LANMAN  烂熳口红润系列",
     "explain": "一抹水润，持久晶彩。含高级护肤品滋养成分，含水量高达68%的水润女王。",
     "pirce": "129.00",
+    "goodsNum": 3,
     "information": [
       "http://image.lanman.cn/2017/06/16/499cad6e28fb6414ccf5bee5301a5a56.jpg",
       "http://image.lanman.cn/2017/07/25/fe803a41efb6ec9eb973b367cbb91a63.jpg",
@@ -114,13 +116,7 @@ module.exports = {
     "isDefault": 0
   },
   "shoppingCart": {
-    "adress": {
-      "id": 1,
-      "user_name": "张三",
-      "phone": "18759262626",
-      "adress_info": "福建省厦门市软件园二期望海路69号",
-      "isDefault": 1
-    },
+    "adress": null,
     "goods_list": [{
       "id": 1,
       "title": "LANMAN #104 巧克力初心系列-摩洛哥王妃",
@@ -141,7 +137,10 @@ module.exports = {
     "img_url": "http://image.lanman.cn/2017/07/26/b15e6eb75f510cd095322006b1093a57.jpg",
     "pirce": "129",
     "num": 1
-  }]
+  }],
+  "addCart": {
+    "msg": "success"
+  }
 }
 
  

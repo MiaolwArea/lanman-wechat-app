@@ -63,10 +63,10 @@
   <view class="footer flex">
     <navigator class="shopping-cart flex" url="../shoppingCart/shoppingCart" open-type="switchTab">
       <image class="img" mode="widthFix" src="../../assets/images/tabBar/shoppingCart.png"></image>
-      <text class="red-dlot"></text>
+      <text class="red-dlot tac">{{ goodsDetial.goodsNum }}</text>
       <view class="color-black">购物车</view>
     </navigator>
-    <view class="add-cart btn tac fzr18">加入购物车</view>
-    <view class="join-order btn tac fzr18">立即购买</view>
+    <view class="add-cart btn tac fzr18" data-id="{{ goodsDetial.id }}" bindtap="addCart">加入购物车</view>
+    <view class="join-order btn tac fzr18" data-id="{{ goodsDetial.id }}" bindtap="buyNow">立即购买</view>
   </view>
 </view>
