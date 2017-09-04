@@ -1,6 +1,7 @@
 // goodsDetial.js
 //获取应用实例
 let app = getApp()
+import { pageAction } from '../../utils/util'
 
 // let countHeight = 0; // 图片总高度
 // let windowWidth = wx.getSystemInfoSync().windowWidth; // 屏宽
@@ -11,8 +12,7 @@ let app = getApp()
 // function countPixHeight(width, height){
 //   return Math.ceil(height / (width / windowWidth));
 // }
-
-Page({
+let pageConfig = {
   data: {
     goodsDetial: {},
     currentTab: 0,
@@ -24,7 +24,7 @@ Page({
   },
   onLoad: function (opt) {
     let _this = this;
-    
+
     app.ApiConfig.ajax('goodsDetial', function (res) {
       if (res) {
         _this.setData({
@@ -35,7 +35,7 @@ Page({
   },
   onPageScroll: function (e) {
     let _this = this;
-    
+
     // if (scrollTopHeight != null && e.scrollTop > (scrollTopHeight + countHeight - wx.getSystemInfoSync().windowHeight - 100)){
     //   _this.setData({
     //     lazyLoad: {
@@ -51,19 +51,19 @@ Page({
       currentTab: e.currentTarget.dataset.index
     })
   },
-  changeIndex(e){
+  changeIndex(e) {
     this.setData({
       currentTab: e.detail.current
     })
   },
   // 标签切换
-  swichTab(e){
-    if (e.currentTarget.dataset.index == 1){
+  swichTab(e) {
+    if (e.currentTarget.dataset.index == 1) {
       this.setData({
         isTabOn1: "on",
         isTabOn2: ""
       })
-    }else{
+    } else {
       this.setData({
         isTabOn1: "",
         isTabOn2: "on"
@@ -71,7 +71,7 @@ Page({
     }
   },
   // 加入购物车 
-  addCart(e){
+  addCart(e) {
     let _this = this
       , goodsDetial = _this.data.goodsDetial
       , id = e.target.dataset;
@@ -87,7 +87,7 @@ Page({
       }
     });
   },
-  buyNow(e){
+  buyNow(e) {
     this.addCart(e);
     wx.switchTab({
       url: '../shoppingCart/shoppingCart'
@@ -105,4 +105,12 @@ Page({
   //     scrollTopHeight = e.currentTarget.offsetTop;
   //   }
   // }
-})
+}
+// 合并公共配置
+pageConfig = {
+  ...pageConfig, ...pageAction({
+    url: '/pages/goodsDetial/goodsDetial'
+  })
+};
+
+Page(pageConfig)

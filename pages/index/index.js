@@ -1,8 +1,9 @@
 //index.js
 //获取应用实例
 let app = getApp()
+import { pageAction } from '../../utils/util'
 
-Page({
+let pageConfig = {
   data: {
     hotGoods: [],
     noMore: "false",
@@ -29,7 +30,7 @@ Page({
   // 自定义事件
   getHotGoods: function () {
     let _this = this;
-    
+
     app.ApiConfig.ajax('hotGoods', function (res) {
       if (res) {
         _this.setData({
@@ -43,4 +44,11 @@ Page({
       wx.hideLoading();
     });
   },
-})
+}
+
+// 合并公共配置
+pageConfig = {...pageConfig, ...pageAction({
+  url: '/pages/index/index'
+})};
+
+Page(pageConfig)

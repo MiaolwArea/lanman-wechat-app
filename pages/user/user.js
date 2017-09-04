@@ -2,13 +2,13 @@
 //获取应用实例
 var app = getApp()
 
-Page({
+let pageConfig = {
   data: {
     userInfo: {}
   },
   //事件处理函数
-  bindViewTap: function() {
-    
+  bindViewTap: function () {
+
   },
   onLoad: function () {
     if (app.globalData.userInfo) {
@@ -17,4 +17,6 @@ Page({
       })
     }
   }
-})
+}
+
+Page(pageConfig)

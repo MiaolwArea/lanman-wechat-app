@@ -2,7 +2,7 @@
 //获取应用实例
 var app = getApp()
 
-Page({
+let pageConfig = {
   data: {
     startX: 0,        // 手势X轴
     startY: 0,        // 手势Y轴
@@ -22,7 +22,7 @@ Page({
 
     app.ApiConfig.ajax('shoppingCart', function (res) {
       if (res) {
-        if (!res.adress){
+        if (!res.adress) {
           // 获取地址信息做为默认收货地址
           // TODO 先请求后台判断是否有默认地址，没有则Next
           wx.chooseAddress({
@@ -37,14 +37,14 @@ Page({
               }
             }
           })
-        }else{
+        } else {
           _this.setData({
             'username': res.adress.user_name,
             'phone': res.adress.phone,
             'adressInfo': res.adress.adress_info
           });
         }
-        for (let i = 0; i < res.goods_list.length; i++){
+        for (let i = 0; i < res.goods_list.length; i++) {
           isTouchMoveAry[i] = false;
         }
         _this.setData({
@@ -69,13 +69,13 @@ Page({
     })
   },
   // 数量加减
-  minusNum(e){
+  minusNum(e) {
     let index = e.target.dataset.index
       , _this = this
       , goodsList = _this.data.goodsList
       , num = --_this.data.goodsList[index].num;
 
-    if (num < 1){
+    if (num < 1) {
       num = 1;
     }
     // TODO更新到后台
@@ -85,7 +85,7 @@ Page({
     })
     _this._countPrice();
   },
-  plusNum(e){
+  plusNum(e) {
     let index = e.target.dataset.index
       , _this = this
       , goodsList = _this.data.goodsList;
@@ -98,7 +98,7 @@ Page({
     _this._countPrice();
   },
   // 删除商品
-  delGoods(e){
+  delGoods(e) {
     let id = e.target.dataset.id
       , _this = this
       , goodsList = _this.data.goodsList
@@ -146,9 +146,9 @@ Page({
       , touchMoveX = e.changedTouches[0].clientX  // 滑动变化坐标
       , touchMoveY = e.changedTouches[0].clientY  // 滑动变化坐标
       , angle = _this.angle({ X: startX, Y: startY }, { X: touchMoveX, Y: touchMoveY }) // 获取滑动角度
-      , isTouchMoveAry = _this.data.isTouchMove; 
+      , isTouchMoveAry = _this.data.isTouchMove;
 
-    for (let i = 0; i < isTouchMoveAry.length; i++){
+    for (let i = 0; i < isTouchMoveAry.length; i++) {
       isTouchMoveAry[i] = false;
       // 滑动超过30度角 return
       if (Math.abs(angle) > 30) return;
@@ -158,12 +158,12 @@ Page({
         else // 左滑
           isTouchMoveAry[i] = true
       }
-    } 
+    }
     // 更新数据
     _this.setData({
       isTouchMove: isTouchMoveAry
     })
-  }, 
+  },
   // 计算滑动角度
   angle: function (start, end) {
     var _X = end.X - start.X,
@@ -172,13 +172,13 @@ Page({
     return 360 * Math.atan(_Y / _X) / (2 * Math.PI);
   },
   // 计算金额
-  _countPrice(){
+  _countPrice() {
     let _this = this
       , goodsList = this.data.goodsList
       , goodsPrice = 0
       , finalPrice = 0;
 
-    for (let i = 0; i < goodsList.length; i++){
+    for (let i = 0; i < goodsList.length; i++) {
       goodsPrice += parseInt(goodsList[i].num) * parseFloat(goodsList[i].pirce)
     }
     finalPrice = goodsPrice - _this.data.discountPrice;
@@ -187,7 +187,7 @@ Page({
       finalPrice: finalPrice
     })
   },
-  bindTextAreaBlur(e){
+  bindTextAreaBlur(e) {
     this.setData({
       textAreaInfo: e.detail.value
     })
@@ -200,4 +200,6 @@ Page({
     })
     // TODO调用微信支付接口
   }
-})
+}
+
+Page(pageConfig)

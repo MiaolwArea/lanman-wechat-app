@@ -3,7 +3,7 @@
 let app = getApp();
 let editId = null;
 
-Page({
+let pageConfig = {
   data: {
     customItem: "全部",
     userInfo: {},
@@ -47,7 +47,7 @@ Page({
   delAdress(e) {
     let dataset = e.target.dataset;
 
-    if (dataset.isdefault == 0){
+    if (dataset.isdefault == 0) {
       // app.ApiConfig.ajax('delAdress', {
       //   id: e.target.dataset.id
       // }, function (res) {
@@ -59,7 +59,7 @@ Page({
       //     })
       //   }
       // });
-    }else{
+    } else {
       wx.showModal({
         title: '',
         content: '默认地址不能删除！',
@@ -72,7 +72,7 @@ Page({
     let _this = this;
     editId = e.target.dataset.id;
 
-    if (editId){
+    if (editId) {
       app.ApiConfig.ajax('getAdressInfo?id=' + editId, function (res) {
         if (res) {
           _this.setData({
@@ -90,9 +90,9 @@ Page({
   bindChange(e) {
     let cityAry = e.detail.value
       , customItem = this.data.customItem;
-    
+
     for (let i = 0; i < cityAry.length; i++) {
-      if (cityAry[i] == customItem){
+      if (cityAry[i] == customItem) {
         cityAry[i] = '';
       }
     }
@@ -101,21 +101,23 @@ Page({
     })
   },
   // 保存
-  formSubmit(e){
+  formSubmit(e) {
     let dataObj = e.detail.value
       , region = this.data.region;
 
     dataObj.province = region[0];
     dataObj.city = region[1];
-    dataObj.district = region[2]; 
+    dataObj.district = region[2];
     if (editId) {
       dataObj.id = editId;
     }
     console.log(dataObj);
     // app.ApiConfig.ajax('postAdressInfo', dataObj, function (res) {
     //   if (res) {
-        
+
     //   }
     // })
   }
-})
+}
+
+Page(pageConfig)
