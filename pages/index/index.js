@@ -3,6 +3,9 @@
 let app = getApp()
 import { pageAction } from '../../utils/util'
 
+// let goodsListUrl = '/wechatapp/goods/list' 
+let goodsListUrl = 'hotGoods' 
+
 let pageConfig = {
   data: {
     hotGoods: [],
@@ -31,10 +34,10 @@ let pageConfig = {
   getHotGoods: function () {
     let _this = this;
 
-    app.ApiConfig.ajax('hotGoods', function (res) {
-      if (res) {
+    app.ApiConfig.ajax(goodsListUrl, function (res) {
+      if (res.success) {
         _this.setData({
-          hotGoods: _this.data.hotGoods.concat(res)
+          hotGoods: _this.data.hotGoods.concat(res.data)
         })
       } else {
         _this.setData({

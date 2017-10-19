@@ -1,23 +1,46 @@
-let API_HOST = "";
+let API_HOST = "http://api.lanman.cn/";
 let DEBUG = true;
 
-var Mock = require('../mock/mockData.js')
+var Mock = require('../mock/mockData.js');
 
-function ajax(data = '', fn, method = "get", header = {}) {
+function ajax() {
+  if (typeof arguments[1] === 'function') {
+    Array.prototype.splice.call(arguments, 1, 0, {})
+  }
+  let url = arguments[0];
+  let data = arguments[1];
+  let fn = arguments[2];
+  let method = arguments[3] || 'get';
+  let header = arguments[4] || null;
+  
+  // 格式化POST数据
+  (function(){
+    Object.keys(data).forEach(item => {
+      if (typeof data[item] === 'object'){
+        data[item] = JSON.stringify(data[item])
+      }
+    });
+  })()
+  
   if (!DEBUG) {
     wx.request({
-      url: config.API_HOST + data,
+      url: API_HOST + url,
       method: method ? method : 'get',
-      data: {},
-      header: header ? header : { "Content-Type": "application/json" },
+      data: data,
+      header: { "Content-Type": "application/x-www-form-urlencoded" },
       success: function (res) {
-        fn(res);
+        fn(res.data);
       }
     });
   } else {
     // 模拟数据
-    data = data.split('?')[0];
-    var res = Mock[data];
+    url = url.split('?')[0];
+    let res = {
+      success: 1,
+      msg: "请求成功",
+      errno: 0,
+      data: Mock[url]
+    }
     fn(res);
   }
 }

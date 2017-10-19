@@ -2,6 +2,9 @@
 //获取应用实例
 var app = getApp()
 
+// let goodsDetialUrl = '/wechatapp/goods/list' 
+let shoppingCartUrl = 'shoppingCart' 
+
 let pageConfig = {
   data: {
     startX: 0,        // 手势X轴
@@ -20,9 +23,11 @@ let pageConfig = {
     let _this = this
       , isTouchMoveAry = [];
 
-    app.ApiConfig.ajax('shoppingCart', function (res) {
-      if (res) {
-        if (!res.adress) {
+    app.ApiConfig.ajax(shoppingCartUrl, function (res) {
+      if (res.success) {
+        let dataInfo = res.data;
+
+        if (!res.data.adress) {
           // 获取地址信息做为默认收货地址
           // TODO 先请求后台判断是否有默认地址，没有则Next
           wx.chooseAddress({
@@ -39,16 +44,16 @@ let pageConfig = {
           })
         } else {
           _this.setData({
-            'username': res.adress.user_name,
-            'phone': res.adress.phone,
-            'adressInfo': res.adress.adress_info
+            'username': dataInfo.adress.user_name,
+            'phone': dataInfo.adress.phone,
+            'adressInfo': dataInfo.adress.adress_info
           });
         }
-        for (let i = 0; i < res.goods_list.length; i++) {
+        for (let i = 0; i < dataInfo.goods_list.length; i++) {
           isTouchMoveAry[i] = false;
         }
         _this.setData({
-          'goodsList': res.goods_list,
+          'goodsList': dataInfo.goods_list,
           'isTouchMove': isTouchMoveAry
         });
         _this._countPrice();
@@ -199,6 +204,28 @@ let pageConfig = {
 
     })
     // TODO调用微信支付接口
+    wx.login({
+      success: function (res) {
+        if (res.code) {
+          //发起网络请求, 开发者服务器使用登录凭证 code 获取 openid
+          // wx.request({
+          //   url: 'https://yourwebsit/onLogin',
+          //   method: 'POST',
+          //   data: {
+          //     code: res.code
+          //   },
+          //   success: function (res) {
+          //     var openid = res.data.openid;
+          //   },
+          //   fail: function (err) {
+          //     console.log(err)
+          //   }
+          // })
+        } else {
+          console.log('获取用户登录态失败！' + res.errMsg)
+        }
+      }
+    });
   }
 }
 

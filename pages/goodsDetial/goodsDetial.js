@@ -3,6 +3,9 @@
 let app = getApp()
 import { pageAction } from '../../utils/util'
 
+// let goodsDetialUrl = '/wechatapp/goods/list' 
+let goodsDetialUrl = 'goodsDetial' 
+
 // let countHeight = 0; // 图片总高度
 // let windowWidth = wx.getSystemInfoSync().windowWidth; // 屏宽
 // let scrollTopHeight = null; // 图片块距离顶部高度
@@ -25,10 +28,10 @@ let pageConfig = {
   onLoad: function (opt) {
     let _this = this;
 
-    app.ApiConfig.ajax('goodsDetial', function (res) {
-      if (res) {
+    app.ApiConfig.ajax(goodsDetialUrl, function (res) {
+      if (res.success) {
         _this.setData({
-          goodsDetial: res
+          goodsDetial: res.data
         })
       }
     });
