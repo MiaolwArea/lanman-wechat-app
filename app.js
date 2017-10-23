@@ -23,7 +23,9 @@ App({
               API.ajax('/wechatapp/user/quicklogin', {
                 code: code,
                 userInfo: res.userInfo
-              }, function (res) {}, 'post')
+              }, function (res) {
+                that.globalData.sso = res.data.sso;
+              }, 'post')
 
               that.globalData.userInfo = res.userInfo
               typeof cb == "function" && cb(that.globalData.userInfo)
@@ -31,6 +33,7 @@ App({
           })
         }
       })
+      
       wx.getUserInfo({
         withCredentials: false,
         success: function (res) {
@@ -42,6 +45,8 @@ App({
   },
 
   globalData: {
-    userInfo: null
+    isDebug: false,
+    userInfo: null,
+    sso: ''
   }
 })

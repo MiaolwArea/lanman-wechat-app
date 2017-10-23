@@ -1,10 +1,15 @@
 // goodsDetial.js
 //获取应用实例
 let app = getApp()
-import { pageAction } from '../../utils/util'
+import { pageAction, appendParamForUrl } from '../../utils/util'
 
-// let goodsDetialUrl = '/wechatapp/goods/list' 
-let goodsDetialUrl = 'goodsDetial' 
+let url = {
+  goodsDetialUrl: app.globalData.isDebug ? 'goodsDetial' : '/wechatapp/goods/detail',
+  addCartUrl: app.globalData.isDebug ? 'addCart' : '/wechatapp/cart/add',
+  commentlist: app.globalData.isDebug ? 'commentlist' : '/wechatapp/goods/commentlist',
+};
+
+let bnGoodsID = 0; // 选中色号商品ID
 
 // let countHeight = 0; // 图片总高度
 // let windowWidth = wx.getSystemInfoSync().windowWidth; // 屏宽
@@ -21,18 +26,39 @@ let pageConfig = {
     currentTab: 0,
     isTabOn1: "on",
     isTabOn2: "",
+    cartNum: 0,
+    commentList: null
     // lazyLoad: {
     //   index: 3
     // }
   },
   onLoad: function (opt) {
-    let _this = this;
+    let _this = this, page = 1, count = 15;
 
-    app.ApiConfig.ajax(goodsDetialUrl, function (res) {
+    // 地址参数处理
+    appendParamForUrl(url, {
+      sso: app.globalData.sso
+    });
+    // 商品详情
+    app.ApiConfig.ajax(url.goodsDetialUrl + '&goods_id=' + opt.goods_id, function (res) {
+      let data = res.data;
+
       if (res.success) {
         _this.setData({
-          goodsDetial: res.data
-        })
+          goodsDetial: data,
+          cartNum: data.cart_goods_num
+        });
+        bnGoodsID = data.goods_colors[0].bn_goods_id;
+      }
+    });
+    // 用户评价
+    app.ApiConfig.ajax(url.commentlist + '&page=' + page + '&count=' + count + '&goods_id=' + opt.goods_id, function (res) {
+      let data = res.data;
+
+      if (res.success) {
+        _this.setData({
+          commentList: data
+        });
       }
     });
   },
@@ -52,7 +78,8 @@ let pageConfig = {
   swichSwiper(e) {
     this.setData({
       currentTab: e.currentTarget.dataset.index
-    })
+    });
+    bnGoodsID = e.target.dataset.goosid;
   },
   changeIndex(e) {
     this.setData({
@@ -76,19 +103,24 @@ let pageConfig = {
   // 加入购物车 
   addCart(e) {
     let _this = this
-      , goodsDetial = _this.data.goodsDetial
-      , id = e.target.dataset;
-
-    app.ApiConfig.ajax('addCart?id=' + id, function (res) {
-      if (res) {
-        goodsDetial.goodsNum++;
-        if (goodsDetial.goodsNum < 100) {
+      , cartNum = _this.data.cartNum;
+    
+    app.ApiConfig.ajax(url.addCartUrl, {
+      bn_goods_id: bnGoodsID
+    }, function (res) {
+      if (res.success) {
+        cartNum++;
+        if (cartNum < 100) {
           _this.setData({
-            goodsDetial: goodsDetial
+            cartNum: cartNum
+          })
+        }else{
+          _this.setData({
+            cartNum: 99
           })
         }
       }
-    });
+    }, 'POST');
   },
   buyNow(e) {
     this.addCart(e);

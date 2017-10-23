@@ -2,26 +2,26 @@
 <view class="goods-detial page pb100">
   <view class="exhibition">
     <swiper indicator-dots="true" current="{{ currentTab }}" bindchange="changeIndex">
-      <block wx:for="{{ goodsDetial.img_url }}" wx:key="id">
+      <block wx:for="{{ goodsDetial.outside_view }}" wx:key="index">
         <swiper-item>
-          <image class="slide-image" mode="widthFix" src="{{ item.url }}" height="300" />
+          <image class="slide-image" mode="widthFix" src="{{ item }}" height="300" />
         </swiper-item>
       </block>
     </swiper>
     <view class="type p30 fzr14">
       <text class="title inline-block">色号</text>
       <view class="type-info-list inline-block col-8">
-        <block wx:for="{{ goodsDetial.img_url }}" wx:key="id">
-          <view class="list-item inline-block {{ currentTab == index ? 'on' : '' }}" data-index="{{ index }}" bindtap="swichSwiper">{{ item.type }}</view>
+        <block wx:for="{{ goodsDetial.goods_colors }}" wx:key="id">
+          <view class="list-item inline-block {{ currentTab == index ? 'on' : '' }}" data-index="{{ index }}" data-goosid="{{ item.bn_goods_id }}" bindtap="swichSwiper">{{ item.color_name }}</view>
         </block>
       </view>
     </view>
   </view>
   <view class="line-cut"></view>
   <view class="explain p30">
-    <view class="title fzr18 mb-20">{{ goodsDetial.title }}</view>
-    <view class="info mb-20 color-gray">{{ goodsDetial.explain }}</view>
-    <view class="pirce fw">¥{{ goodsDetial.pirce }}</view>
+    <view class="title fzr18 mb-20">{{ goodsDetial.goods_name }}</view>
+    <view class="info mb-20 color-gray">{{ goodsDetial.simple_desc }}</view>
+    <view class="pirce fw">¥{{ goodsDetial.counter_price }}</view>
   </view>
   <view class="line-cut"></view>
   <view class="server flex">
@@ -36,24 +36,24 @@
   </view>
   <view class="container">
     <view class="introduce hide fz0 {{ isTabOn1 }}" bindtouchstart="infoTouchStart">
-      <block wx:for="{{ goodsDetial.information }}" wx:key="item">
+      <block wx:for="{{ goodsDetial.picture_desc }}" wx:key="index">
       <image mode="widthFix" src="{{ item }}" />
       </block>
     </view>
     <view class="comment hide {{ isTabOn2 }}">
-      <block wx:for="{{ goodsDetial.comment_list }}" wx:key="item.id">
+      <block wx:for="{{ commentList }}" wx:key="item.id">
       <view class="list-item p30 color-gray">
         <view class="user-info flex">
           <view class="user flex">
-            <image class="user-img" mode="widthFix" src="{{ item.avatar }}"></image>
+            <image class="user-img" mode="widthFix" src="{{ item.headimgurl }}"></image>
             <view class="name-and-star">
-              <view class="name">{{ item.user_name }}</view>
+              <view class="name">{{ item.nickname }}</view>
               <view class="star-list">
-                <view class="list-item inline-block" wx:for="{{ item.star }}">1</view>
+                <view class="list-item inline-block" wx:for="{{ item.star }}" wx:key="item.index">1</view>
               </view>
             </view>
           </view>
-          <view class="add-date">{{ item.date }}</view>
+          <view class="add-date">{{ item.add_time }}</view>
         </view>
         <view class="content">{{ item.content }}</view>
       </view>
@@ -63,10 +63,10 @@
   <view class="footer flex">
     <navigator class="shopping-cart flex" url="../shoppingCart/shoppingCart" open-type="switchTab">
       <image class="img" mode="widthFix" src="../../assets/images/tabBar/shoppingCart.png"></image>
-      <text class="red-dlot tac">{{ goodsDetial.goodsNum }}</text>
+      <text class="red-dlot tac">{{ cartNum }}</text>
       <view class="color-black">购物车</view>
     </navigator>
-    <view class="add-cart btn tac fzr18" data-id="{{ goodsDetial.id }}" bindtap="addCart">加入购物车</view>
-    <view class="join-order btn tac fzr18" data-id="{{ goodsDetial.id }}" bindtap="buyNow">立即购买</view>
+    <view class="add-cart btn tac fzr18" bindtap="addCart">加入购物车</view>
+    <view class="join-order btn tac fzr18" bindtap="buyNow">立即购买</view>
   </view>
 </view>

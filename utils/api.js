@@ -1,5 +1,5 @@
-let API_HOST = "http://api.lanman.cn/";
-let DEBUG = true;
+let API_HOST = "https://api.lanman.cn/";
+let DEBUG = false;
 
 var Mock = require('../mock/mockData.js');
 

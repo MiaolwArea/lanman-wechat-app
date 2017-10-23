@@ -2,8 +2,7 @@
 //获取应用实例
 var app = getApp()
 
-// let goodsDetialUrl = '/wechatapp/goods/list' 
-let shoppingCartUrl = 'shoppingCart' 
+let shoppingCartUrl = app.globalData.isDebug ? 'shoppingCart' : '/wechatapp/goods/list'
 
 let pageConfig = {
   data: {

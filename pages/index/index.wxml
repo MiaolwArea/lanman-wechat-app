@@ -6,29 +6,29 @@
     </view>
     <view class="{{ moveSearch == 'true' ? 'search move-search': 'search' }}">
       <view class="search-b">
-        <input class="search-input tac fzr16" placeholder="请输入商品名称" />
+        <input class="search-input tac fzr16" bindtap="searchInfo" placeholder="请输入商品名称" />
       </view>
     </view>
   </view>
   <view class="container">
     <!-- <text class="hot-goods">热门商品</text> -->
     <view class="goods-list">
-      <view class="list-item fzr15" wx:for="{{ hotGoods }}" wx:for-index="idx" wx:for-item="obj" wx:key="obj.id">
-        <navigator hover-class="none" url="../goodsDetial/goodsDetial?id={{ obj.id }}">
-          <image mode="widthFix" src="{{ obj.img_url }}"></image>
+      <view class="list-item fzr15" wx:for="{{ hotGoods }}" wx:for-index="idx" wx:for-item="obj" wx:key="obj.goods_id">
+        <navigator hover-class="none" url="../goodsDetial/goodsDetial?goods_id={{ obj.goods_id }}">
+          <image mode="widthFix" src="{{ obj.cover }}"></image>
           <view class="info">
             <view class="title mb-20">
-              {{ obj.title }}
+              {{ obj.goods_name }}
             </view>
             <view class="list-buy flex">
               <view class="info-goods col-6">
                 <view class="pirce mb-20">
-                  <text class="now-pirce">¥{{ obj.pirce_new }}</text>
-                  <text class="old-pirce">¥{{ obj.pirce_old }}</text>
+                  <text class="now-pirce">¥{{ obj.counter_price }}</text>
+                  <text class="old-pirce">¥{{ obj.shop_price }}</text>
                 </view>
                 <view class="order-num flex col-9">
-                  <text class="col-2">已售</text>
-                  <progress class="col-8" active activeColor="#000" percent="{{ obj.sale_percentage }}" show-info />
+                  <text class="col-2">已售{{ aaa }}</text>
+                  <progress class="col-8" active activeColor="#000" percent="{{ obj.sale_percentage || 20 }}" show-info />
                 </view>
               </view>
               <view class="buy-btn-box col-4 tar">

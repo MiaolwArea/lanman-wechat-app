@@ -22,3 +22,20 @@ export const pageAction = (data) => {
     }
   }
 }
+// 追加地址栏参数信息
+export const appendParamForUrl = (url, param) => {
+  Object.keys(url).forEach(attr => {
+    let count = 0;
+
+    Object.keys(param).forEach(item => {
+      if (count == 0){
+        url[attr] = `${url[attr]}?${item}=${param[item]}`;
+      }else{
+        url[attr] = `${url[attr]}&${item}=${param[item]}`;
+      }
+      count++;
+    });
+  });
+
+  return url;
+}
