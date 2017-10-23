@@ -1,7 +1,7 @@
 // goodsDetial.js
 //获取应用实例
 let app = getApp()
-import { pageAction, appendParamForUrl } from '../../utils/util'
+import { pageAction, appendParamForUrl, formatTime } from '../../utils/util'
 
 let url = {
   goodsDetialUrl: app.globalData.isDebug ? 'goodsDetial' : '/wechatapp/goods/detail',
@@ -56,6 +56,9 @@ let pageConfig = {
       let data = res.data;
 
       if (res.success) {
+        for(let i = 0; i < data.length; i++){
+          data[i].add_time = formatTime('1508681549');
+        };
         _this.setData({
           commentList: data
         });
