@@ -34,7 +34,7 @@ let pageConfig = {
   },
   onLoad: function (opt) {
     let _this = this, page = 1, count = 15;
-
+    
     // 地址参数处理
     appendParamForUrl(url, {
       sso: app.globalData.sso
