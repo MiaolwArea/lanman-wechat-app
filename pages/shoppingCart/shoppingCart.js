@@ -1,8 +1,7 @@
 //shoppingCart.js
 //获取应用实例
 var app = getApp()
-
-let shoppingCartUrl = app.globalData.isDebug ? 'shoppingCart' : '/wechatapp/goods/list'
+import { appendParamForUrl } from '../../utils/util'
 
 let pageConfig = {
   data: {
@@ -17,16 +16,29 @@ let pageConfig = {
     discountPrice: 0, // 抵用金额
     finalPrice: 0,    // 实付金额
     textAreaInfo: '', // 文本域内容
+  }, 
+  // 数据缓存区
+  store: {
+    url: {
+      shoppingCartUrl: app.globalData.isDebug ? 'shoppingCart' : '/wechatapp/cart/index',
+      delGoodsUrl: app.globalData.isDebug ? 'delGoods' : '/wechatapp/cart/del',
+      addAddressUrl: app.globalData.isDebug ? 'addAddress' : '/wechatapp/address/add',
+    }
   },
   onLoad: function () {
     let _this = this
       , isTouchMoveAry = [];
 
-    app.ApiConfig.ajax(shoppingCartUrl, function (res) {
+    // 地址参数处理
+    appendParamForUrl(_this.store['url'], {
+      sso: app.globalData.sso
+    });
+
+    app.ApiConfig.ajax(_this.store['url'].shoppingCartUrl, function (res) {
       if (res.success) {
         let dataInfo = res.data;
-
-        if (!res.data.adress) {
+        
+        if (!res.data.address) {
           // 获取地址信息做为默认收货地址
           // TODO 先请求后台判断是否有默认地址，没有则Next
           wx.chooseAddress({
@@ -35,17 +47,27 @@ let pageConfig = {
                 _this.setData({
                   'username': res.userName,
                   'phone': res.telNumber,
-                  'adressInfo': res.provinceName + res.cityName + res.countyName + res.detailInfo
+                  'addressInfo': res.provinceName + res.cityName + res.countyName + res.detailInfo
                 });
-                // TODO 同时存为默认地址到后台
+                // 同时存为默认地址到后台
+                app.ApiConfig.ajax(_this.store['url'].addAddressUrl, {
+                  city: res.cityName,
+                  province: res.provinceName,
+                  district: res.countyName,
+                  consignee: res.userName,
+                  address: res.detailInfo,
+                  mobile: res.telNumber
+                }, function (res) {
+                  
+                }, 'POST')
               }
             }
           })
         } else {
           _this.setData({
-            'username': dataInfo.adress.user_name,
-            'phone': dataInfo.adress.phone,
-            'adressInfo': dataInfo.adress.adress_info
+            'username': dataInfo.address.consignee,
+            'phone': dataInfo.address.mobile,
+            'addressInfo': dataInfo.address.province + dataInfo.address.city + dataInfo.address.district + dataInfo.address.address
           });
         }
         for (let i = 0; i < dataInfo.goods_list.length; i++) {
@@ -77,13 +99,13 @@ let pageConfig = {
     let index = e.target.dataset.index
       , _this = this
       , goodsList = _this.data.goodsList
-      , num = --_this.data.goodsList[index].num;
+      , num = --_this.data.goodsList[index].goods_num;
 
     if (num < 1) {
       num = 1;
     }
     // TODO更新到后台
-    goodsList[index].num = num;
+    goodsList[index].goods_num = num;
     _this.setData({
       "goodsList": goodsList
     })
@@ -94,7 +116,7 @@ let pageConfig = {
       , _this = this
       , goodsList = _this.data.goodsList;
 
-    goodsList[index].num = ++_this.data.goodsList[index].num;
+    goodsList[index].goods_num = ++_this.data.goodsList[index].goods_num;
     // TODO更新到后台
     _this.setData({
       "goodsList": goodsList
@@ -115,18 +137,24 @@ let pageConfig = {
       success: function (res) {
         if (res.confirm) {
           // TODO更新到后台
-          app.ApiConfig.ajax('delGoods', function (res) {
-            if (res) {
-              for (let i = 0; i < res.length; i++) {
+          app.ApiConfig.ajax(_this.store['url'].delGoodsUrl, {
+            bn_goods_id: id
+          }, function (res) {
+            if (res.success) {
+              for (let i = 0; i < goodsList.length; i++){
                 isTouchMoveAry[i] = false;
+                if (goodsList[i].bn_goods_id == id){
+                  goodsList.splice(i, 1);
+                  _this.setData({
+                    'goodsList': goodsList,
+                    'isTouchMove': isTouchMoveAry
+                  });
+                  break;
+                }
               }
-              _this.setData({
-                'goodsList': res,
-                'isTouchMove': isTouchMoveAry
-              });
               _this._countPrice();
             }
-          })
+          }, 'POST')
         } else if (res.cancel) {
           return;
         }
@@ -183,7 +211,7 @@ let pageConfig = {
       , finalPrice = 0;
 
     for (let i = 0; i < goodsList.length; i++) {
-      goodsPrice += parseInt(goodsList[i].num) * parseFloat(goodsList[i].pirce)
+      goodsPrice += parseInt(goodsList[i].goods_num) * parseFloat(goodsList[i].shop_price)
     }
     finalPrice = goodsPrice - _this.data.discountPrice;
     _this.setData({

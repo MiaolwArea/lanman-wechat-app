@@ -4,11 +4,11 @@
   <view class="manage" hidden="{{ isEdit }}">
     <view class="address-list">
       <radio-group class="radio-group" bindchange="radioChange">
-        <view class="goods-item p30" wx:for="{{ adress }}" wx:key="item.id">
+        <view class="goods-item p30" wx:for="{{ adress }}" wx:key="item.address_id">
           <view class="receive-info mb-20">
               <view class="receive mb-20 fzr16">
-                  <text class="name">{{ item.user_name }}</text>
-                  <text class="phone">{{ item.phone }}</text>
+                  <text class="name">{{ item.consignee }}</text>
+                  <text class="phone">{{ item.mobile }}</text>
               </view>
               <view class="receive-address mb-20">
                   <text class="address-info">{{ item.adress_info }}</text>
@@ -16,19 +16,20 @@
           </view>
           <view class="address-operate flex">
             <view class="set-default flex">
-              <radio value="{{ item.id }}" id="radio{{ index }}" checked="{{ item.isDefault }}" color="#a3a3a3" />
-              <label class="color-white" for="radio{{ index }}">{{ item.isDefault ? '默认地址' : '设为默认地址' }}</label>
+              <radio value="{{ item.address_id }}" id="radio{{ index }}" checked="{{ item.is_default }}" color="#a3a3a3" />
+              <label class="color-white" for="radio{{ index }}">{{ item.is_default ? '默认地址' : '设为默认地址' }}</label>
             </view>
             <view class="control flex color-white">
-              <label class="btn edit" data-id="{{ item.id }}" bindtap="editAdress">编辑</label>
-              <label class="btn" data-id="{{ item.id }}" data-isdefault="{{ item.isDefault }}" bindtap="delAdress">删除</label>
+              <label class="btn edit" data-id="{{ item.address_id }}" bindtap="editAdress">编辑</label>
+              <label class="btn" data-id="{{ item.address_id }}" data-isdefault="{{ item.is_default }}" bindtap="delAdress">删除</label>
             </view>
           </view>
         </view>
       </radio-group>
     </view>
-    <view class="add-adress p30" bindtap="editAdress">
-      <view class="add-btn tac color-white">新增收货地址</view>
+    <view class="add-adress flex">
+      <view class="add-btn tac p30 color-white" bindtap="importAdress">导入微信地址</view>
+      <view class="add-btn tac p30 color-white" bindtap="editAdress">新增收货地址</view>
     </view>
   </view>
   <!-- 编辑添加地址 -->

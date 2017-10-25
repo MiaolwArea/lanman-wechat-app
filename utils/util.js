@@ -24,6 +24,7 @@ export const pageAction = (data) => {
 }
 // 追加地址栏参数信息
 export const appendParamForUrl = (url, param) => {
+  
   Object.keys(url).forEach(attr => {
     let count = 0;
 
@@ -36,7 +37,6 @@ export const appendParamForUrl = (url, param) => {
       count++;
     });
   });
-
   return url;
 }
 // 格式化时间戳

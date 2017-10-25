@@ -12,7 +12,7 @@
       <text class="title inline-block">色号</text>
       <view class="type-info-list inline-block col-8">
         <block wx:for="{{ goodsDetial.goods_colors }}" wx:key="id">
-          <view class="list-item inline-block {{ currentTab == index ? 'on' : '' }}" data-index="{{ index }}" data-goosid="{{ item.bn_goods_id }}" bindtap="swichSwiper">{{ item.color_name }}</view>
+          <view class="list-item inline-block {{ currentTab == index ? 'on' : '' }}" data-index="{{ index }}" data-bngoosid="{{ item.bn_goods_id }}" bindtap="swichSwiper">{{ item.color_name }}</view>
         </block>
       </view>
     </view>
@@ -55,7 +55,7 @@
           </view>
           <view class="add-date">{{ item.add_time }}</view>
         </view>
-        <view class="content">{{ item.content }}</view>
+        <view class="comment-content">{{ item.content }}</view>
       </view>
       </block>
     </view>
@@ -67,6 +67,6 @@
       <view class="color-black">购物车</view>
     </navigator>
     <view class="add-cart btn tac fzr18" bindtap="addCart">加入购物车</view>
-    <view class="join-order btn tac fzr18" bindtap="buyNow">立即购买</view>
+    <view class="join-order btn tac fzr18" data-action="buyNow" bindtap="addCart">立即购买</view>
   </view>
 </view>

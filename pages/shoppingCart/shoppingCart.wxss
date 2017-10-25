@@ -4,7 +4,7 @@ page{ background-color: #333; }
 .name-phone .user-name{ margin-right: 20rpx; }
 
 .list-item{ overflow-x: hidden; }
-.list-item .adress-choose .goods-pic{
+.list-item .address-choose .goods-pic{
   width: 130rpx;
   margin-right: 20rpx;
 }

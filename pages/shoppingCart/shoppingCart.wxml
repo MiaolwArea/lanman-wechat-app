@@ -1,12 +1,12 @@
 <!--shoppingCart.wxml-->
 <view class="shopping-cart">
-  <navigator class="adress-choose p30 flex" url="../user/adress/adress">
+  <navigator class="address-choose p30 flex" url="../user/address/address">
     <view class="info-l">
       <view class="name-phone mb-20">
         <text class="user-name">{{ username }}</text><text class="phone otw">{{ phone }}</text>
       </view>
-      <view class="adress">
-        <text>{{ adressInfo }}</text>
+      <view class="address">
+        <text>{{ addressInfo }}</text>
       </view>
     </view>
     <view class="info-r arrow pr"></view>
@@ -14,23 +14,23 @@
   <view class="line-cut"></view>
   <view class="goods-list">
     <view class="list-item flex {{isTouchMove[index] ? 'touch-move-active' : ''}}" 
-      bindtouchstart="touchstart" bindtouchmove="touchmove" data-index="{{index}}" wx:for="{{ goodsList }}" wx:key="item.id">
-      <navigator class="adress-choose content p30 flex" hover-class="none" url="../goodsDetial/goodsDetial?id={{ item.id }}">
-        <image class="goods-pic" mode="widthFix" src="{{ item.img_url }}"></image>
+      bindtouchstart="touchstart" bindtouchmove="touchmove" data-index="{{index}}" wx:for="{{ goodsList }}" wx:key="item.bn_goods_id">
+      <navigator class="address-choose content p30 flex" hover-class="none" url="../goodsDetial/goodsDetial?goods_id={{ item.goods_id }}&bn_goods_id={{ item.bn_goods_id }}">
+        <image class="goods-pic" mode="widthFix" src="{{ item.outside_view }}"></image>
         <view class="order-goods-info col-8">
-          <view class="mb-20">{{ item.title }}</view>
+          <view class="mb-20">{{ item.goods_name }}</view>
           <view class="order-goods-num flex">
             <view class="num flex">
                 <view>数量：</view>
                 <view class="box" data-index="{{ index }}" catchtap="minusNum">-</view>
-                <view class="box">{{ item.num }}</view>
+                <view class="box">{{ item.goods_num }}</view>
                 <view class="box" data-index="{{ index }}" catchtap="plusNum">+</view>   
             </view>
-            <view class="tar padding-5">¥{{ item.pirce }}</view>
+            <view class="tar padding-5">¥{{ item.shop_price }}</view>
           </view>
         </view>
       </navigator>
-      <view class="del tac" data-id="{{ item.id }}" catchtap="delGoods" data-index="{{index}}">删除</view>
+      <view class="del tac" data-id="{{ item.bn_goods_id }}" catchtap="delGoods" data-index="{{index}}">删除</view>
     </view>
   </view>
   <view class="line-cut"></view>

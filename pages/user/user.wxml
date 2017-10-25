@@ -16,7 +16,7 @@
       </navigator>
     </view>
     <view class="list-item">
-      <navigator class="p30" url="../user/adress/adress">
+      <navigator class="p30" url="../user/address/address">
         <text class="menu-name">我的地址</text>
         <view class="arrow pr"></view>
       </navigator>

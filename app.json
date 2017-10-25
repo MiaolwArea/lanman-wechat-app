@@ -4,13 +4,14 @@
     "pages/shoppingCart/shoppingCart",
     "pages/user/user",
     "pages/goodsDetial/goodsDetial",
-    "pages/user/adress/adress"
+    "pages/user/address/address"
   ],
   "window":{
     "backgroundTextStyle":"light",
     "navigationBarBackgroundColor": "#000",
     "navigationBarTitleText": "LANMAN 烂熳口红",
-    "navigationBarTextStyle":"white"
+    "navigationBarTextStyle":"white",
+    "onReachBottomDistance": 100
   },
   "tabBar": {
     "color": "#000",

@@ -112,6 +112,7 @@ radio{
  -webkit-transform: translateX(130rpx);
  transform: translateX(130rpx);
  margin-left: -130rpx;
+ width: 100%;
 }
 .del {
  background-color: #ccc;

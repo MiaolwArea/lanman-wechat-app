@@ -13,6 +13,12 @@ page{ background-color: #000;color: #fff; }
   width: 100%;
   background-color: #a3a3a3;
 }
+.add-adress .add-btn{
+  width: 50%;
+}
+.add-adress .add-btn:first-child{
+  border-right: 1px solid #777;
+}
 .address-item {
   justify-content: flex-start;
   padding: 30rpx;

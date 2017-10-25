@@ -3,7 +3,6 @@
 let app = getApp()
 import { pageAction } from '../../utils/util'
 
-let goodsListUrl = app.globalData.isDebug ? 'hotGoods' : '/wechatapp/goods/list' 
 // 私有属性
 let page = 1,
     count = 5,
@@ -15,6 +14,12 @@ let pageConfig = {
     noMore: "false",
     moveSearch: "false",
     aaa: ''
+  },
+  // 数据缓存区
+  store: {
+    url: {
+      goodsListUrl: app.globalData.isDebug ? 'hotGoods' : '/wechatapp/goods/list' 
+    }
   },
   onReachBottom: function () {
     wx.showLoading({
@@ -38,7 +43,7 @@ let pageConfig = {
   getHotGoods: function () {
     let _this = this;
 
-    app.ApiConfig.ajax(goodsListUrl + '?page=' + page + '&count=' + count + '&search=' + search, function (res) {
+    app.ApiConfig.ajax(_this.store['url'].goodsListUrl + '?page=' + page + '&count=' + count + '&search=' + search, function (res) {
       if (res.success) {
         _this.setData({
           hotGoods: _this.data.hotGoods.concat(res.data)
