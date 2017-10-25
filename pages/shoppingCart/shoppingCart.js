@@ -20,8 +20,11 @@ let pageConfig = {
   // 数据缓存区
   store: {
     url: {
+      // 购物车详情
       shoppingCartUrl: app.globalData.isDebug ? 'shoppingCart' : '/wechatapp/cart/index',
+      // 删除商品
       delGoodsUrl: app.globalData.isDebug ? 'delGoods' : '/wechatapp/cart/del',
+      // 添加默认地址
       addAddressUrl: app.globalData.isDebug ? 'addAddress' : '/wechatapp/address/add',
     }
   },

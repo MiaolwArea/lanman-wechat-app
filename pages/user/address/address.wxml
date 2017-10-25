@@ -1,17 +1,17 @@
-<!--adress.wxml-->
-<view class="adress">
+<!--address.wxml-->
+<view class="address">
   <!-- 地址列表 -->
   <view class="manage" hidden="{{ isEdit }}">
     <view class="address-list">
       <radio-group class="radio-group" bindchange="radioChange">
-        <view class="goods-item p30" wx:for="{{ adress }}" wx:key="item.address_id">
+        <view class="goods-item p30" wx:for="{{ address }}" wx:key="item.address_id">
           <view class="receive-info mb-20">
               <view class="receive mb-20 fzr16">
                   <text class="name">{{ item.consignee }}</text>
                   <text class="phone">{{ item.mobile }}</text>
               </view>
               <view class="receive-address mb-20">
-                  <text class="address-info">{{ item.adress_info }}</text>
+                  <text class="address-info">{{ item.province + item.city + item.district + item.address }}</text>
               </view>    
           </view>
           <view class="address-operate flex">
@@ -20,32 +20,32 @@
               <label class="color-white" for="radio{{ index }}">{{ item.is_default ? '默认地址' : '设为默认地址' }}</label>
             </view>
             <view class="control flex color-white">
-              <label class="btn edit" data-id="{{ item.address_id }}" bindtap="editAdress">编辑</label>
-              <label class="btn" data-id="{{ item.address_id }}" data-isdefault="{{ item.is_default }}" bindtap="delAdress">删除</label>
+              <label class="btn edit" data-id="{{ item.address_id }}" bindtap="editAddress">编辑</label>
+              <label class="btn" data-id="{{ item.address_id }}" data-isdefault="{{ item.is_default }}" bindtap="delAddress">删除</label>
             </view>
           </view>
         </view>
       </radio-group>
     </view>
-    <view class="add-adress flex">
-      <view class="add-btn tac p30 color-white" bindtap="importAdress">导入微信地址</view>
-      <view class="add-btn tac p30 color-white" bindtap="editAdress">新增收货地址</view>
+    <view class="add-address flex">
+      <view class="add-btn tac p30 color-white" bindtap="importAddress">导入微信地址</view>
+      <view class="add-btn tac p30 color-white" bindtap="editAddress">新增收货地址</view>
     </view>
   </view>
   <!-- 编辑添加地址 -->
-  <view class="edit-adress" hidden="{{ !isEdit }}">
+  <view class="edit-address" hidden="{{ !isEdit }}">
     <form class="address-list p30" bindsubmit="formSubmit">
       <view class="address-item flex">
           <label class="fzr16 color-white">收货人</label>
-          <input class="consignee" name="user_name" type="text" value="{{ adressInfo.user_name }}" placeholder="必填" />
+          <input class="consignee" name="user_name" type="text" value="{{ addressInfo.user_name }}" placeholder="必填" />
       </view>
       <view class="address-item flex">
           <label class="fzr16 color-white">联系电话</label>
-          <input class="consignee" name="phone" type="text" value="{{ adressInfo.phone }}" placeholder="必填" />
+          <input class="consignee" name="phone" type="text" value="{{ addressInfo.phone }}" placeholder="必填" />
       </view>
       <view class="address-item flex">
           <label class="fzr16 color-white">邮政编码</label>
-          <input class="consignee" name="postal" type="text" value="{{ adressInfo.postal }}" placeholder="选填" />
+          <input class="consignee" name="postal" type="text" value="{{ addressInfo.postal }}" placeholder="选填" />
       </view>
       <view class="address-item flex">
           <label class="fzr16 color-white">所在城市</label>
@@ -55,7 +55,7 @@
       </view>
       <view class="address-item flex">
           <label class="fzr16 color-white">详细地址</label>
-          <input class="consignee" name="adress_info" type="text" value="{{ adressInfo.adress_info }}" placeholder="必填" />
+          <input class="consignee" name="address_info" type="text" value="{{ addressInfo.address_info }}" placeholder="必填" />
       </view>
       <view class="btn-area">
         <button class="submit fzr16" formType="submit">保存</button>

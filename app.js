@@ -1,10 +1,12 @@
 //app.js
 let API = require('./utils/api');
+import { delElm } from './utils/util';
 
 App({
   onLaunch: function() {
     this.getUserInfo();
     this.ApiConfig = API;
+    this.delElm = delElm;
   },
 
   getUserInfo: function(cb) {

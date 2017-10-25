@@ -69,3 +69,27 @@ export const formatTime = (time, format = 'yyyy-MM-dd') => {
 
   return format;
 }
+// json型数组删除指定元素
+export const delElm = (pos, ary) => {
+  if(typeof pos === 'object'){
+    let key = null
+      , val = null
+      , index = 0;
+
+    for (var item in pos){
+      key = item;
+      val = pos[item];
+    }
+    for (let i = 0; i < ary.length; i++) {
+      if (ary[i].key == val){
+        index = i;
+        break;
+      }
+    }
+    ary.splice(index, 1);
+    return ary;
+  } else if (typeof pos === 'number') {
+    ary.splice(pos, 1);
+    return ary;
+  }
+}

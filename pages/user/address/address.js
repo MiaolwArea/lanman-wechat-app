@@ -2,7 +2,6 @@
 //获取应用实例
 let app = getApp();
 import { appendParamForUrl } from '../../../utils/util'
-let editId = null;
 
 let pageConfig = {
   data: {
@@ -16,14 +15,23 @@ let pageConfig = {
   // 数据缓存区
   store: {
     url: {
-      addressUrl: app.globalData.isDebug ? 'address' : '/wechatapp/address/list',
+      // 地址列表
+      addressListUrl: app.globalData.isDebug ? 'address' : '/wechatapp/address/list',
+      // 删除地址
       delAddressUrl: app.globalData.isDebug ? 'delAddress' : '/wechatapp/address/del',
+      // 编辑地址
       editAddressUrl: app.globalData.isDebug ? 'editAddress' : '/wechatapp/address/edit',
-    }
+      // 添加地址
+      addAddressUrl: app.globalData.isDebug ? 'addAddress' : '/wechatapp/address/add',
+      // 设置默认地址
+      setDefaultAddressUrl: app.globalData.isDebug ? 'setAddress' : '/wechatapp/address/default'
+    },
+    // 编辑地址ID
+    editId: null
   },
   onLoad: function () {
     let _this = this;
-
+    
     if (app.globalData.userInfo) {
       _this.setData({
         userInfo: app.globalData.userInfo
@@ -34,44 +42,58 @@ let pageConfig = {
       sso: app.globalData.sso
     });
     // 获取初始化数据 
-    app.ApiConfig.ajax(_this.store['url'].addressUrl, function (res) {
+    app.ApiConfig.ajax(_this.store['url'].addressListUrl, function (res) {
       if (res.success) {
         _this.setData({
           address: res.data
         })
       }
     });
-
   },
-  //事件处理函数
+  // 事件处理函数
   // 设置默认地址
   radioChange(e) {
-    // app.ApiConfig.ajax('setAddress', {
-    //   id: e.detail.value
-    // }, function (res) {
-    //   if (res) {
-    //     _this.setData({
-    //       address: res
-    //     })
-    //   }
-    // });
+    let _this = this
+      , address = _this.data.address;
+
+    app.ApiConfig.ajax(_this.store['url'].setDefaultAddressUrl, {
+      address_id: e.detail.value
+    }, function (res) {
+      if (res.success) {
+        for (let i = 0; i < address.length; i++){
+          if (parseInt(address[i].address_id) == e.detail.value){
+            address[i].is_default = 1;
+          }else{
+            address[i].is_default = 0;
+          }
+        }
+        _this.setData({
+          address: address
+        })
+      }
+    }, 'POST');
   },
   // 删除地址
   delAddress(e) {
-    let dataset = e.target.dataset;
+    let _this = this
+      , dataset = e.target.dataset
+      , address = _this.data.address;
 
     if (dataset.isdefault == 0) {
-      // app.ApiConfig.ajax('delAddress', {
-      //   id: e.target.dataset.id
-      // }, function (res) {
-      //   if (res) {
-      //     wx.showModal({
-      //       title: '',
-      //       content: '删除成功！',
-      //       showCancel: false
-      //     })
-      //   }
-      // });
+      app.ApiConfig.ajax(_this.store['url'].delAddressUrl, {
+        address_id: e.target.dataset.id
+      }, function (res) {
+        if (res.success) {
+          _this.setData({
+            address: app.delElm({ address_id: e.target.dataset.id }, address)
+          })
+          wx.showToast({
+            title: '成功',
+            icon: 'success',
+            duration: 1000
+          })
+        }
+      }, 'POST');
     } else {
       wx.showModal({
         title: '',
@@ -83,10 +105,10 @@ let pageConfig = {
   // 编辑地址详细信息
   editAddress(e) {
     let _this = this;
-    editId = e.target.dataset.id;
+    _this.store['editId'] = e.target.dataset.id;
 
-    if (editId) {
-      app.ApiConfig.ajax('getAddressInfo?id=' + editId, function (res) {
+    if (_this.store['editId']) {
+      app.ApiConfig.ajax('getAddressInfo?id=' + _this.store['editId'], function (res) {
         if (res) {
           _this.setData({
             addressInfo: res,
@@ -101,7 +123,8 @@ let pageConfig = {
   },
   // 导入微信地址
   importAddress(e){
-    let wechatAddress = [];
+    let wechatAddress = []
+      , _this = this;
 
     wx.chooseAddress({
       success: function (res) {
@@ -118,12 +141,15 @@ let pageConfig = {
             wechatAddress.push({
               address_id: resInfo.data.address_id,
               consignee: res.userName,
-              mobile: res.mobile,
-              adress_info: res.provinceName + res.cityName + res.countyName + res.detailInfo,
+              mobile: res.telNumber,
+              province: res.provinceName,
+              city: res.cityName,
+              district: res.countyName,
+              address: res.detailInfo,
               is_default: 0
             });
             _this.setData({
-              address: wechatAddress
+              address: _this.data.address.concat(wechatAddress)
             });
           }, 'POST')
         }
@@ -146,14 +172,15 @@ let pageConfig = {
   },
   // 保存
   formSubmit(e) {
-    let dataObj = e.detail.value
-      , region = this.data.region;
+    let _this = this
+      , dataObj = e.detail.value
+      , region = _this.data.region;
 
     dataObj.province = region[0];
     dataObj.city = region[1];
     dataObj.district = region[2];
-    if (editId) {
-      dataObj.id = editId;
+    if (_this.store['editId']) {
+      dataObj.id = _this.store['editId'];
     }
     console.log(dataObj);
     // app.ApiConfig.ajax('postAddressInfo', dataObj, function (res) {

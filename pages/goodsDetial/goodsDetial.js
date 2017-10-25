@@ -27,8 +27,11 @@ let pageConfig = {
   // 数据缓存区
   store: {
     url: {
+      // 商品详情
       goodsDetialUrl: app.globalData.isDebug ? 'goodsDetial' : '/wechatapp/goods/detail',
+      // 加入购物车
       addCartUrl: app.globalData.isDebug ? 'addCart' : '/wechatapp/cart/add',
+      // 评论列表
       commentlist: app.globalData.isDebug ? 'commentlist' : '/wechatapp/goods/commentlist',
     },
     bnGoodsID: 0, // 选中色号商品ID

@@ -18,6 +18,7 @@ let pageConfig = {
   // 数据缓存区
   store: {
     url: {
+      // 商品列表
       goodsListUrl: app.globalData.isDebug ? 'hotGoods' : '/wechatapp/goods/list' 
     }
   },
