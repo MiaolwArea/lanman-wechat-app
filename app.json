@@ -4,7 +4,8 @@
     "pages/shoppingCart/shoppingCart",
     "pages/user/user",
     "pages/goodsDetial/goodsDetial",
-    "pages/user/address/address"
+    "pages/user/address/address",
+    "pages/user/order/order"
   ],
   "window":{
     "backgroundTextStyle":"light",

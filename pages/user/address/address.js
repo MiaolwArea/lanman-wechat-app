@@ -104,22 +104,20 @@ let pageConfig = {
   },
   // 编辑地址详细信息
   editAddress(e) {
-    let _this = this;
+    let _this = this
+      , address = _this.data.address;
     _this.store['editId'] = e.target.dataset.id;
-
-    if (_this.store['editId']) {
-      app.ApiConfig.ajax('getAddressInfo?id=' + _this.store['editId'], function (res) {
-        if (res) {
-          _this.setData({
-            addressInfo: res,
-            region: [res.province, res.city, res.district]
-          })
-        }
-      })
+    
+    for (let i = 0; i < address.length; i++){
+      if (address[i].address_id == _this.store['editId']) {
+        _this.setData({
+          addressInfo: address[i],
+          region: [address[i].province, address[i].city, address[i].district],
+          isEdit: true
+        });
+        break;
+      }
     }
-    _this.setData({
-      isEdit: true
-    })
   },
   // 导入微信地址
   importAddress(e){
@@ -174,20 +172,44 @@ let pageConfig = {
   formSubmit(e) {
     let _this = this
       , dataObj = e.detail.value
-      , region = _this.data.region;
+      , region = _this.data.region
+      , url
+      , wechatAddress = [];
 
-    dataObj.province = region[0];
-    dataObj.city = region[1];
-    dataObj.district = region[2];
     if (_this.store['editId']) {
       dataObj.id = _this.store['editId'];
+      url = _this.store['url'].editAddressUrl;
+    }else{
+      url = _this.store['url'].addAddressUrl
     }
-    console.log(dataObj);
-    // app.ApiConfig.ajax('postAddressInfo', dataObj, function (res) {
-    //   if (res) {
-
-    //   }
-    // })
+    app.ApiConfig.ajax(url, {
+      city: region[1],
+      province: region[0],
+      district: region[2],
+      ...dataObj
+    }, function (resInfo) {
+      if (res.success) {
+        wechatAddress.push({
+          address_id: resInfo.data.address_id,
+          consignee: dataObj.consignee,
+          mobile: dataObj.mobile,
+          province: dataObj.province,
+          city: dataObj.city,
+          district: dataObj.district,
+          address: dataObj.address,
+          is_default: 0
+        });
+        _this.setData({
+          isEdit: false,
+          address: _this.data.address.concat(wechatAddress)
+        });
+        wx.showToast({
+          title: '成功',
+          icon: 'success',
+          duration: 1000
+        });
+      }
+    }, 'POST')
   }
 }
 

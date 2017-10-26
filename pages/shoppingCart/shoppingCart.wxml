@@ -14,24 +14,42 @@
   <view class="line-cut"></view>
   <view class="goods-list">
     <view class="list-item flex {{isTouchMove[index] ? 'touch-move-active' : ''}}" 
-      bindtouchstart="touchstart" bindtouchmove="touchmove" data-index="{{index}}" wx:for="{{ goodsList }}" wx:key="item.bn_goods_id">
-      <navigator class="address-choose content p30 flex" hover-class="none" url="../goodsDetial/goodsDetial?goods_id={{ item.goods_id }}&bn_goods_id={{ item.bn_goods_id }}">
+      bindtouchstart="touchstart" bindtouchmove="touchmove" 
+      data-index="{{index}}" wx:for="{{ goodsList }}" wx:key="item.bn_goods_id">
+      <navigator class="address-choose content p30 flex" 
+      hover-class="none" 
+      url="../goodsDetial/goodsDetial?goods_id={{ item.goods_id }}&bn_goods_id={{ item.bn_goods_id }}">
         <image class="goods-pic" mode="widthFix" src="{{ item.outside_view }}"></image>
         <view class="order-goods-info col-8">
           <view class="mb-20">{{ item.goods_name }}</view>
           <view class="order-goods-num flex">
             <view class="num flex">
                 <view>数量：</view>
-                <view class="box" data-index="{{ index }}" catchtap="minusNum">-</view>
-                <view class="box">{{ item.goods_num }}</view>
-                <view class="box" data-index="{{ index }}" catchtap="plusNum">+</view>   
+                <view class="box" 
+                data-index="{{ index }}" 
+                data-id="{{ item.bn_goods_id }}" 
+                catchtap="minusNum">-</view>
+                <input class="box num" 
+                data-index="{{ index }}" 
+                data-id="{{ item.bn_goods_id }}" 
+                catchtap catchblur="inputNum" type="number" value="{{ item.goods_num }}" />
+                <view class="box" 
+                data-index="{{ index }}" 
+                data-id="{{ item.bn_goods_id }}" 
+                catchtap="plusNum">+</view>   
             </view>
             <view class="tar padding-5">¥{{ item.shop_price }}</view>
           </view>
         </view>
       </navigator>
-      <view class="del tac" data-id="{{ item.bn_goods_id }}" catchtap="delGoods" data-index="{{index}}">删除</view>
+      <view class="del tac" data-id="{{ item.bn_goods_id }}" 
+      catchtap="delGoods" data-index="{{index}}">删除</view>
     </view>
+  </view>
+  <!-- 商品换购 -->
+  <view class="line-cut" hidden="{{ !isExchange }}"></view>
+  <view class="edit-address" hidden="{{ !isExchange }}">
+    12
   </view>
   <view class="line-cut"></view>
   <view class="order-info">

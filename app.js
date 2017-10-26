@@ -26,7 +26,15 @@ App({
                 code: code,
                 userInfo: res.userInfo
               }, function (res) {
-                that.globalData.sso = res.data.sso;
+                if(res.success){
+                  that.globalData.sso = res.data.sso;
+                }else{
+                  wx.showToast({
+                    title: '快捷登入失败',
+                    icon: 'loading',
+                    duration: 1000
+                  });
+                }
               }, 'post')
 
               that.globalData.userInfo = res.userInfo

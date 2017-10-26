@@ -16,6 +16,8 @@ let pageConfig = {
     discountPrice: 0, // 抵用金额
     finalPrice: 0,    // 实付金额
     textAreaInfo: '', // 文本域内容
+    inclist: '',      // 换购商品列表
+    isExchange: false,// 是否开启换购
   }, 
   // 数据缓存区
   store: {
@@ -26,7 +28,15 @@ let pageConfig = {
       delGoodsUrl: app.globalData.isDebug ? 'delGoods' : '/wechatapp/cart/del',
       // 添加默认地址
       addAddressUrl: app.globalData.isDebug ? 'addAddress' : '/wechatapp/address/add',
-    }
+      // 下单接口
+      addOrderUrl: app.globalData.isDebug ? 'addOrder' : '/wechatapp/order/add',
+      // 修改数量
+      updateNumUrl: app.globalData.isDebug ? 'updateNum' : '/wechatapp/cart/updatenum',
+      // 换购商品列表
+      inclistUrl: app.globalData.isDebug ? 'inclist' : '/wechatapp/goods/inclist',
+    },
+    // 默认地址ID
+    addressId: null
   },
   onLoad: function () {
     let _this = this
@@ -36,14 +46,14 @@ let pageConfig = {
     appendParamForUrl(_this.store['url'], {
       sso: app.globalData.sso
     });
-
+    // 获取购物车详情
     app.ApiConfig.ajax(_this.store['url'].shoppingCartUrl, function (res) {
       if (res.success) {
         let dataInfo = res.data;
         
         if (!res.data.address) {
           // 获取地址信息做为默认收货地址
-          // TODO 先请求后台判断是否有默认地址，没有则Next
+          // 先请求后台判断是否有默认地址，没有则Next
           wx.chooseAddress({
             success: function (res) {
               if (res.errMsg = "chooseAddress:ok") {
@@ -61,7 +71,11 @@ let pageConfig = {
                   address: res.detailInfo,
                   mobile: res.telNumber
                 }, function (res) {
-                  
+                  if (res.success){
+                    _this.setData({
+                      addressId: res.data.address_id
+                    })
+                  }
                 }, 'POST')
               }
             }
@@ -70,12 +84,11 @@ let pageConfig = {
           _this.setData({
             'username': dataInfo.address.consignee,
             'phone': dataInfo.address.mobile,
-            'addressInfo': dataInfo.address.province + dataInfo.address.city + dataInfo.address.district + dataInfo.address.address
+            'addressInfo': dataInfo.address.province + dataInfo.address.city + dataInfo.address.district + dataInfo.address.address,
+            'addressId': dataInfo.address.address_id
           });
         }
-        for (let i = 0; i < dataInfo.goods_list.length; i++) {
-          isTouchMoveAry[i] = false;
-        }
+        isTouchMoveAry = new Array(dataInfo.goods_list.length).fill(false);
         _this.setData({
           'goodsList': dataInfo.goods_list,
           'isTouchMove': isTouchMoveAry
@@ -96,35 +109,64 @@ let pageConfig = {
         }
       }
     })
+    // 获取换购商品
+    app.ApiConfig.ajax(_this.store['url'].inclistUrl, function (res) {
+      if(res.success){
+        _this.setData({
+          "inclist": res.data
+        });
+      }
+    })
   },
-  // 数量加减
+  // 数量加减, 修改
   minusNum(e) {
     let index = e.target.dataset.index
+      , id = e.target.dataset.id
       , _this = this
-      , goodsList = _this.data.goodsList
       , num = --_this.data.goodsList[index].goods_num;
 
     if (num < 1) {
       num = 1;
     }
-    // TODO更新到后台
-    goodsList[index].goods_num = num;
-    _this.setData({
-      "goodsList": goodsList
-    })
-    _this._countPrice();
+    wx.showLoading();
+    _this._updateNum(index, id, num);
   },
   plusNum(e) {
     let index = e.target.dataset.index
+      , id = e.target.dataset.id
       , _this = this
+      , num = ++_this.data.goodsList[index].goods_num;
+
+    wx.showLoading();
+    _this._updateNum(index, id, num);
+  },
+  inputNum(e){
+    let index = e.target.dataset.index
+      , id = e.target.dataset.id
+      , _this = this
+      , num = e.detail.value;
+
+    wx.showLoading();
+    _this._updateNum(index, id, num);
+  },
+  // 更新到后台
+  _updateNum(index, id, num){
+    let _this = this
       , goodsList = _this.data.goodsList;
 
-    goodsList[index].goods_num = ++_this.data.goodsList[index].goods_num;
-    // TODO更新到后台
-    _this.setData({
-      "goodsList": goodsList
-    })
-    _this._countPrice();
+    app.ApiConfig.ajax(_this.store['url'].updateNumUrl, {
+      bn_goods_id: id,
+      goods_num: num
+    }, function (res) {
+      if (res.success) {
+        goodsList[index].goods_num = num;
+        _this.setData({
+          "goodsList": goodsList
+        });
+        _this._countPrice();
+        wx.hideLoading();
+      }
+    }, 'POST')
   },
   // 删除商品
   delGoods(e) {
@@ -139,22 +181,17 @@ let pageConfig = {
       confirmColor: "#a3a3a3",
       success: function (res) {
         if (res.confirm) {
-          // TODO更新到后台
+          // 更新到后台
           app.ApiConfig.ajax(_this.store['url'].delGoodsUrl, {
             bn_goods_id: id
           }, function (res) {
             if (res.success) {
-              for (let i = 0; i < goodsList.length; i++){
-                isTouchMoveAry[i] = false;
-                if (goodsList[i].bn_goods_id == id){
-                  goodsList.splice(i, 1);
-                  _this.setData({
-                    'goodsList': goodsList,
-                    'isTouchMove': isTouchMoveAry
-                  });
-                  break;
-                }
-              }
+              goodsList = app.delElm({ bn_goods_id: id }, goodsList);
+              isTouchMoveAry = new Array(goodsList.length).fill(false);
+              _this.setData({
+                'goodsList': goodsList,
+                'isTouchMove': isTouchMoveAry
+              });
               _this._countPrice();
             }
           }, 'POST')
@@ -180,7 +217,7 @@ let pageConfig = {
       , startY = _this.data.startY  // 开始Y坐标
       , touchMoveX = e.changedTouches[0].clientX  // 滑动变化坐标
       , touchMoveY = e.changedTouches[0].clientY  // 滑动变化坐标
-      , angle = _this.angle({ X: startX, Y: startY }, { X: touchMoveX, Y: touchMoveY }) // 获取滑动角度
+      , angle = _this._angle({ X: startX, Y: startY }, { X: touchMoveX, Y: touchMoveY }) // 获取滑动角度
       , isTouchMoveAry = _this.data.isTouchMove;
 
     for (let i = 0; i < isTouchMoveAry.length; i++) {
@@ -200,7 +237,7 @@ let pageConfig = {
     })
   },
   // 计算滑动角度
-  angle: function (start, end) {
+  _angle: function (start, end) {
     var _X = end.X - start.X,
       _Y = end.Y - start.Y
     // 返回角度 /Math.atan()返回数字的反正切值
@@ -227,30 +264,23 @@ let pageConfig = {
       textAreaInfo: e.detail.value
     })
   },
-  payWechat() {
-    app.ApiConfig.ajax('payOrder', {
-      textAreaInfo: this.data.textAreaInfo
-    }, function (res) {
+  payWechat(e) {
+    let _this = this;
 
-    })
-    // TODO调用微信支付接口
+    wx.showLoading();
+    // 调用微信支付接口
     wx.login({
       success: function (res) {
         if (res.code) {
-          //发起网络请求, 开发者服务器使用登录凭证 code 获取 openid
-          // wx.request({
-          //   url: 'https://yourwebsit/onLogin',
-          //   method: 'POST',
-          //   data: {
-          //     code: res.code
-          //   },
-          //   success: function (res) {
-          //     var openid = res.data.openid;
-          //   },
-          //   fail: function (err) {
-          //     console.log(err)
-          //   }
-          // })
+          app.ApiConfig.ajax(_this.store['url'].addOrderUrl, {
+            goods_info: _this.data.goodsList,
+            address_id: _this.data.address_id,
+            memo: _this.data.textAreaInfo,
+            incprice_id: '',
+            code: res.code
+          }, function(){
+            wx.hideLoading();
+          }, 'POST')
         } else {
           console.log('获取用户登录态失败！' + res.errMsg)
         }
