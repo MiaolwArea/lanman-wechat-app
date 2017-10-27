@@ -132,7 +132,7 @@ let pageConfig = {
 
       if (res.success) {
         for (let i = 0; i < data.length; i++) {
-          data[i].add_time = formatTime('1508681549');
+          data[i].add_time = formatTime(data[i].add_time);
         };
         _this.setData({
           commentList: _this.data.commentList.concat(data)

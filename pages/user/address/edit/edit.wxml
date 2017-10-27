@@ -1,5 +1,5 @@
 <!-- address_edit.wxml -->
-<view class="address">
+<view class="address-edit">
   <!-- 编辑添加地址 -->
   <view class="edit-address">
     <form class="address-list p30" bindsubmit="formSubmit">

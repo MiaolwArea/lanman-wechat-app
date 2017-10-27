@@ -10,7 +10,7 @@
   </view>
   <view class="menu-list">
     <view class="list-item">
-      <navigator class="p30" url="url">
+      <navigator class="p30" url="../user/order/order">
         <text class="menu-name">我的订单</text>
         <view class="arrow pr"></view>
       </navigator>

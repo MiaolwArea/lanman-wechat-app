@@ -1,3 +1,28 @@
 /**order.wxss**/
-page{ background-color: #333;color: #fff; }
-
+page{ background-color: #000;color: #fff; }
+.order-list .header{
+  border-bottom: 1px solid #3c3c3c;
+  padding-bottom: 20rpx;
+}
+.order-list .order-item{
+  padding-bottom: 0;
+  border-bottom: 1px solid #3c3c3c;
+}
+.order-list .order-content{
+  padding: 30rpx 0;
+  border-bottom: 1px solid #3c3c3c;
+}
+.order-list .goods-pic{
+  width: 160rpx;
+  margin-right: 30rpx;
+}
+.order-list .footer{
+  padding: 0 30rpx 30rpx;
+}
+.order-goods-info{
+  line-height: 2;
+  width: 65%;
+}
+.order-goods-info text, .footer text{
+  display: block;
+}

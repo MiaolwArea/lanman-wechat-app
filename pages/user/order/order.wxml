@@ -1,2 +1,37 @@
-<!--order.wxml-->
-
+<!-- order.wxml -->
+<view class="order">
+<!-- 订单列表 -->
+  <view class="order-list font-color">
+    <view class="order-item" wx:for="{{ orderList }}" wx:key="item.order_id">
+      <navigator hover-class="none" url="../order/detail/detail?order_id={{ item.order_id }}" class="p30">
+        <view class="flex fzr15 header">
+          <view class="status">
+            订单状态：<text class="color-white">{{ item.order_status_cn }}</text>
+          </view>
+          <view>{{ item.add_time }}</view>
+        </view>
+        <view class="order-content flex fzr15"
+            wx:for="{{ item.goods }}" 
+            wx:for-item="goodsItem" wx:key="goodsItem.goods_id">
+          <view class="col-8 flex">
+            <image mode="widthFix" class="goods-pic" src="http://image.lanman.cn/2017/07/26/588b211f7341b8e735d79483f062360e.jpg"></image>
+            <view class="order-goods-info">
+              <text class="otw">{{ goodsItem.goods_name }}</text>
+              <text>{{ goodsItem.color_name }}</text>
+              <text>数量: {{ goodsItem.goods_num }}</text>
+            </view>
+          </view>
+          <view class="pirce color-white otw">¥ {{ goodsItem.shop_price }}</view>
+        </view>
+      </navigator>
+      <view class="footer flex fzr14">
+        <view>
+          <text>数 量 : {{ item.goods_total }}</text>
+          <text>订单金额: {{ item.total_money }}</text>
+        </view>
+        <!-- <view>申请售后</view> -->
+      </view>
+      <view class="line-cut"></view>
+    </view>
+  </view>
+</view>

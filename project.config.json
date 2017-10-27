@@ -12,12 +12,24 @@
 	"projectname": "lanman-wechat-app",
 	"condition": {
 		"weapp": {
-			"current": -1,
+			"current": 2,
 			"list": [
 				{
 					"id": -1,
 					"name": "address",
 					"pathName": "pages/user/address/address",
+					"query": ""
+				},
+				{
+					"id": 1,
+					"name": "order",
+					"pathName": "pages/user/order/order",
+					"query": ""
+				},
+				{
+					"id": -1,
+					"name": "order-detail",
+					"pathName": "pages/user/order/detail/detail",
 					"query": ""
 				}
 			]

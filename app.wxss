@@ -16,6 +16,7 @@ page{ font-size: 28rpx; }
 .color-gray{ color: #ccc; }
 .color-black{ color: #000; }
 .color-white{ color: #fff; }
+.font-color{ color: #a3a3a3; }
 
 .fw{ font-weight: bold; }
 .fl{ float: left; }
@@ -30,6 +31,7 @@ page{ font-size: 28rpx; }
 .p30{ padding: 30rpx; }
 .pb100{ padding-bottom: 100rpx; }
 .mb-20{ margin-bottom: 20rpx; }
+.pb-20{ padding-bottom: 20rpx; }
 .mlr20{margin: auto 20rpx;}
 
 .pr{ position: relative; }

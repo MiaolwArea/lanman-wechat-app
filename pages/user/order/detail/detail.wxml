@@ -1,0 +1,46 @@
+<!-- order_detail.wxml -->
+ <view class="order-detail">
+  <view class="order-info-box font-color fzr14">
+    <view class="address-info p30">
+      <view class="name-phone fzr18">收货人：<text>{{ orderDetail.consignee }}  {{ orderDetail.mobile }}</text></view>
+      <view class="address">收货地址：{{ orderDetail.province_cn }}{{ orderDetail.city_cn }}{{ orderDetail.district_cn }}{{ orderDetail.address }}</view>
+    </view>
+    <view class="line-cut"></view>
+    <view class="order-info">
+      <view class="order-title p30 color-white">订单信息</view>
+      <view class="info-item p30">
+        <view>订单状态：{{ orderDetail.order_status_cn }}</view>
+        <view>下单时间：{{ orderDetail.add_time }}</view>
+        <view>订单编号：{{ orderDetail.order_sn }}</view>
+        <view>配送方式：{{ orderDetail.shipping_name }}</view>
+      </view>
+    </view>
+    <view class="line-cut"></view>
+    <view class="order-detail-info">
+      <view class="order-title p30 color-white">订单详情</view>
+      <view class="order-content flex fzr15"
+          wx:for="{{ item.goods }}" 
+          wx:for-item="goodsItem" wx:key="goodsItem.goods_id">
+        <view class="col-8 flex">
+          <image mode="widthFix" class="goods-pic" src="http://image.lanman.cn/2017/07/26/588b211f7341b8e735d79483f062360e.jpg"></image>
+          <view class="order-goods-info">
+            <text class="otw">{{ goodsItem.goods_name }}</text>
+            <text>{{ goodsItem.color_name }}</text>
+            <text>数量: {{ goodsItem.goods_num }}</text>
+          </view>
+        </view>
+        <view class="pirce color-white otw">¥ {{ goodsItem.shop_price }}</view>
+      </view>
+      <view class="info-item p30">
+        <view>订单金额：{{ orderDetail.goods_amount }}</view>
+        <view>订单总数：{{ orderDetail.goods_total }}</view>
+        <view>订单运费：{{ orderDetail.freight }}</view>
+        <view>优惠金额：{{ orderDetail.discount }}</view>
+        <view>消费积分：{{ orderDetail.use_score || 0 }}</view>
+        <view>获得积分：{{ orderDetail.get_score }}</view>
+        <view>实付金额：{{ orderDetail.total_money }}</view>
+        <view>订单留言：{{ orderDetail.remark || '无' }}</view>
+      </view>
+    </view>
+  </view>
+ </view>

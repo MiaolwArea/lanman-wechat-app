@@ -5,7 +5,9 @@
     "pages/goodsDetial/goodsDetial",
     "pages/user/user",
     "pages/user/address/address",
-    "pages/user/address/edit/edit"
+    "pages/user/address/edit/edit",
+    "pages/user/order/order",
+    "pages/user/order/detail/detail"
   ],
   "window":{
     "backgroundTextStyle":"light",
