@@ -5,12 +5,8 @@ import { appendParamForUrl } from '../../../utils/util'
 
 let pageConfig = {
   data: {
-    customItem: "全部",
     userInfo: {},
-    address: [],
-    isEdit: false,
-    region: [],
-    addressInfo: {}
+    address: []
   },
   // 数据缓存区
   store: {
@@ -19,15 +15,11 @@ let pageConfig = {
       addressListUrl: app.globalData.isDebug ? 'address' : '/wechatapp/address/list',
       // 删除地址
       delAddressUrl: app.globalData.isDebug ? 'delAddress' : '/wechatapp/address/del',
-      // 编辑地址
-      editAddressUrl: app.globalData.isDebug ? 'editAddress' : '/wechatapp/address/edit',
       // 添加地址
       addAddressUrl: app.globalData.isDebug ? 'addAddress' : '/wechatapp/address/add',
       // 设置默认地址
       setDefaultAddressUrl: app.globalData.isDebug ? 'setAddress' : '/wechatapp/address/default'
-    },
-    // 编辑地址ID
-    editId: null
+    }
   },
   onLoad: function () {
     let _this = this;
@@ -102,23 +94,6 @@ let pageConfig = {
       })
     }
   },
-  // 编辑地址详细信息
-  editAddress(e) {
-    let _this = this
-      , address = _this.data.address;
-    _this.store['editId'] = e.target.dataset.id;
-    
-    for (let i = 0; i < address.length; i++){
-      if (address[i].address_id == _this.store['editId']) {
-        _this.setData({
-          addressInfo: address[i],
-          region: [address[i].province, address[i].city, address[i].district],
-          isEdit: true
-        });
-        break;
-      }
-    }
-  },
   // 导入微信地址
   importAddress(e){
     let wechatAddress = []
@@ -153,63 +128,6 @@ let pageConfig = {
         }
       }
     })
-  },
-  // 地区选择
-  bindChange(e) {
-    let cityAry = e.detail.value
-      , customItem = this.data.customItem;
-
-    for (let i = 0; i < cityAry.length; i++) {
-      if (cityAry[i] == customItem) {
-        cityAry[i] = '';
-      }
-    }
-    this.setData({
-      region: cityAry
-    })
-  },
-  // 保存
-  formSubmit(e) {
-    let _this = this
-      , dataObj = e.detail.value
-      , region = _this.data.region
-      , url
-      , wechatAddress = [];
-
-    if (_this.store['editId']) {
-      dataObj.id = _this.store['editId'];
-      url = _this.store['url'].editAddressUrl;
-    }else{
-      url = _this.store['url'].addAddressUrl
-    }
-    app.ApiConfig.ajax(url, {
-      city: region[1],
-      province: region[0],
-      district: region[2],
-      ...dataObj
-    }, function (resInfo) {
-      if (res.success) {
-        wechatAddress.push({
-          address_id: resInfo.data.address_id,
-          consignee: dataObj.consignee,
-          mobile: dataObj.mobile,
-          province: dataObj.province,
-          city: dataObj.city,
-          district: dataObj.district,
-          address: dataObj.address,
-          is_default: 0
-        });
-        _this.setData({
-          isEdit: false,
-          address: _this.data.address.concat(wechatAddress)
-        });
-        wx.showToast({
-          title: '成功',
-          icon: 'success',
-          duration: 1000
-        });
-      }
-    }, 'POST')
   }
 }
 

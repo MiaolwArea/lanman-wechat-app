@@ -19,19 +19,3 @@ page{ background-color: #000;color: #fff; }
 .add-address .add-btn:first-child{
   border-right: 1px solid #777;
 }
-.address-item {
-  justify-content: flex-start;
-  padding: 30rpx;
-  border-bottom: 1px solid #3c3c3c;
-}
-.address-item label{ width: 200rpx; }
-.address-item .consignee{ width: 500rpx; }
-
-.btn-area{
-  padding: 30rpx;
-}
-.btn-area .submit{
-  background-color: #a3a3a3;
-  border-radius: 0;
-  color: #fff;
-}

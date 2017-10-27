@@ -1,0 +1,33 @@
+<!-- address_edit.wxml -->
+<view class="address">
+  <!-- 编辑添加地址 -->
+  <view class="edit-address">
+    <form class="address-list p30" bindsubmit="formSubmit">
+      <view class="address-item flex">
+        <label class="fzr16 color-white">收货人</label>
+        <input class="consignee" name="consignee" type="text" value="{{ addressInfo.consignee }}" placeholder="必填" />
+      </view>
+      <view class="address-item flex">
+        <label class="fzr16 color-white">联系电话</label>
+        <input class="consignee" name="mobile" type="text" value="{{ addressInfo.mobile }}" placeholder="必填" />
+      </view>
+      <view class="address-item flex">
+        <label class="fzr16 color-white">邮政编码</label>
+        <input class="consignee" name="postal" type="text" value="{{ addressInfo.postal }}" placeholder="选填" />
+      </view>
+      <view class="address-item flex">
+        <label class="fzr16 color-white">所在城市</label>
+        <picker mode="region" bindchange="bindChange" value="{{ region }}" custom-item="{{ customItem }}">
+          <input class="picker consignee"  placeholder="点击选择" value="{{region[0]}}{{region[1]}}{{region[2]}}" disabled type="text" />
+        </picker>
+      </view>
+      <view class="address-item flex">
+        <label class="fzr16 color-white">详细地址</label>
+        <input class="consignee" name="address" type="text" value="{{ addressInfo.address }}" placeholder="必填" />
+      </view>
+      <view class="btn-area">
+        <button class="submit fzr16" formType="submit">保存</button>
+      </view>
+    </form> 
+  </view>
+</view>

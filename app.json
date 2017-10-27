@@ -2,10 +2,10 @@
   "pages":[
     "pages/index/index",
     "pages/shoppingCart/shoppingCart",
-    "pages/user/user",
     "pages/goodsDetial/goodsDetial",
+    "pages/user/user",
     "pages/user/address/address",
-    "pages/user/order/order"
+    "pages/user/address/edit/edit"
   ],
   "window":{
     "backgroundTextStyle":"light",
