@@ -1,5 +1,5 @@
-//index.js
-//获取应用实例
+// index.js
+// 获取应用实例
 let app = getApp()
 import { pageAction } from '../../utils/util'
 

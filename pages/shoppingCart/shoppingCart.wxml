@@ -1,4 +1,4 @@
-<!--shoppingCart.wxml-->
+<!-- shoppingCart.wxml -->
 <view class="shopping-cart">
   <navigator class="address-choose p30 flex" url="../user/address/address">
     <view class="info-l">

@@ -1,4 +1,4 @@
-/**shoppingCart.wxss**/
+/** shoppingCart.wxss **/
 page{ background-color: #333; }
 .shopping-cart{ background-color: #000;color: #a3a3a3; }
 .name-phone .user-name{ margin-right: 20rpx; }

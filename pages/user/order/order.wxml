@@ -1,6 +1,12 @@
 <!-- order.wxml -->
 <view class="order">
-<!-- 订单列表 -->
+  <view class="swiper-tab">
+    <view class="swiper-tab-list {{currentTab==0 ? 'on' : ''}}" data-current="0" bindtap="swichNav">全部 </view>
+    <view class="swiper-tab-list {{currentTab==1 ? 'on' : ''}}" data-current="1" bindtap="swichNav">待付款</view>
+    <view class="swiper-tab-list {{currentTab==2 ? 'on' : ''}}" data-current="2" bindtap="swichNav">待收货</view>
+    <view class="swiper-tab-list {{currentTab==3 ? 'on' : ''}}" data-current="3" bindtap="swichNav">已完成</view>
+  </view>
+  <!-- 订单列表 -->
   <view class="order-list font-color">
     <view class="order-item" wx:for="{{ orderList }}" wx:key="item.order_id">
       <navigator hover-class="none" url="../order/detail/detail?order_id={{ item.order_id }}" class="p30">
@@ -29,7 +35,11 @@
           <text>数 量 : {{ item.goods_total }}</text>
           <text>订单金额: {{ item.total_money }}</text>
         </view>
-        <!-- <view>申请售后</view> -->
+        <!-- 根据订单修改按钮功能 -->
+        <view wx:if="{{ item.order_status_cn == '待付款' }}">去付款</view> 
+        <view wx:elif="{{ item.order_status_cn == '待收货' }}">查看物流</view> 
+        <navigator wx:elif="{{ item.order_status_cn == '已完成' }} 
+        hover-class="none" url="../afterSalesList/apply/apply?feedback_id={{ obj.feedback_id }}">申请售后</navigator> 
       </view>
       <view class="line-cut"></view>
     </view>

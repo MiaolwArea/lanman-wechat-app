@@ -1,4 +1,4 @@
-/**goodsDetial.wxss**/
+/** goodsDetial.wxss **/
 .goods-detial{ background-color: #000; color: #fff; }
 swiper {
   height: 750rpx;

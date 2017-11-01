@@ -1,5 +1,5 @@
 // goodsDetial.js
-//获取应用实例
+// 获取应用实例
 let app = getApp()
 import { pageAction, appendParamForUrl, formatTime } from '../../utils/util'
 
@@ -46,7 +46,6 @@ let pageConfig = {
     appendParamForUrl(_this.store['url'], {
       sso: app.globalData.sso
     });
-    console.log(_this.store['url'])
     // 商品详情
     app.ApiConfig.ajax(_this.store['url'].goodsDetialUrl + '&goods_id=' + _this.store['goodsId'], function (res) {
       let data = res.data;

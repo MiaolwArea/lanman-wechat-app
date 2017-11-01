@@ -1,5 +1,5 @@
-//shoppingCart.js
-//获取应用实例
+// shoppingCart.js
+// 获取应用实例
 var app = getApp()
 import { appendParamForUrl } from '../../utils/util'
 
@@ -38,14 +38,19 @@ let pageConfig = {
     // 默认地址ID
     addressId: null
   },
-  onLoad: function () {
-    let _this = this
-      , isTouchMoveAry = [];
+  onLoad(){
+    let _this = this;
 
     // 地址参数处理
     appendParamForUrl(_this.store['url'], {
       sso: app.globalData.sso
     });
+  },
+  onShow: function () {
+    let _this = this
+      , isTouchMoveAry = [];
+
+    wx.showLoading(); 
     // 获取购物车详情
     app.ApiConfig.ajax(_this.store['url'].shoppingCartUrl, function (res) {
       if (res.success) {
@@ -69,7 +74,7 @@ let pageConfig = {
                   district: res.countyName,
                   consignee: res.userName,
                   address: res.detailInfo,
-                  mobile: res.telNumber
+                  mobile: '17623418273' || res.telNumber
                 }, function (res) {
                   if (res.success){
                     _this.setData({
@@ -94,6 +99,7 @@ let pageConfig = {
           'isTouchMove': isTouchMoveAry
         });
         _this._countPrice();
+        wx.hideLoading();
       }
     })
     // 地址授权询问
@@ -274,12 +280,36 @@ let pageConfig = {
         if (res.code) {
           app.ApiConfig.ajax(_this.store['url'].addOrderUrl, {
             goods_info: _this.data.goodsList,
-            address_id: _this.data.address_id,
+            address_id: _this.data.addressId,
             memo: _this.data.textAreaInfo,
             incprice_id: '',
-            code: res.code
-          }, function(){
+            code: ''
+          }, function(res){
             wx.hideLoading();
+            wx.requestPayment({
+              'timeStamp': res.data.timeStamp.toString(),
+              'nonceStr': res.data.nonceStr,
+              'package': res.data.package,
+              'signType': res.data.signType,
+              'paySign': res.data.paySign,
+              'success': function (resInfo) {
+                wx.navigateTo({
+                  url: '../user/order/detail/detail?order_id=' + res.data.order_id
+                })
+              },
+              'fail': function (resInfo) {
+                wx.showToast({
+                  title: '失败',
+                  icon: 'loading',
+                  duration: 1000,
+                  complete: function(){
+                    wx.navigateTo({
+                      url: '../user/order/detail/detail?order_id=' + res.data.order_id
+                    })
+                  }
+                })
+              }
+            })
           }, 'POST')
         } else {
           console.log('获取用户登录态失败！' + res.errMsg)

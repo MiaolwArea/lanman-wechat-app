@@ -1,4 +1,4 @@
-<!--goodsDetial.wxml-->
+<!-- goodsDetial.wxml -->
 <view class="goods-detial page pb100">
   <view class="exhibition">
     <swiper indicator-dots="true" current="{{ currentTab }}" bindchange="changeIndex">

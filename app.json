@@ -7,7 +7,9 @@
     "pages/user/address/address",
     "pages/user/address/edit/edit",
     "pages/user/order/order",
-    "pages/user/order/detail/detail"
+    "pages/user/order/detail/detail",
+    "pages/user/afterSalesList/apply/apply",
+    "pages/user/afterSalesList/detail/detail"
   ],
   "window":{
     "backgroundTextStyle":"light",

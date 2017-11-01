@@ -1,4 +1,4 @@
-<!-- user.wxml -->
+<!-- afterSalesList.wxml -->
 <view class="user">
   <view class="about-me flex p30 mb-20">
     <view class="member-photo">

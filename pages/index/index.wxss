@@ -1,4 +1,4 @@
-/**index.wxss**/
+/** index.wxss **/
 .header{
   min-height: 152px;
 }
