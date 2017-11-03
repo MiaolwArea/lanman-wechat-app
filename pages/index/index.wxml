@@ -1,47 +1,150 @@
 <!-- index.wxml -->
-<view class="page">
+<view class="page home"> 
   <view class="header">
     <view class="logo">
-      <image mode="widthFix" src="http://image.lanman.cn/2016/m.lanman.cn/images/index/slogn.png"></image>
+      <swiper
+        autoplay="true" interval="2000">
+        <block wx:for="{{imgUrls}}">
+          <swiper-item>
+            <image mode="widthFix" src="{{item}}" class="slide-image" />
+          </swiper-item>
+        </block>
+      </swiper>
     </view>
-    <view class="{{ moveSearch == 'true' ? 'search move-search': 'search' }}">
-      <view class="search-b">
-        <input class="search-input tac fzr16" bindtap="searchInfo" placeholder="请输入商品名称" />
+    <view class="header-info flex p30 color-gray">
+      <view class="header-info-item">
+        <image mode="widthFix" class="bingo-icon" src="../../assets/images/icon/bingo.png"></image>
+        <text>正品保证</text>
+      </view>
+      <view class="header-info-item">
+        <image mode="widthFix" class="bingo-icon" src="../../assets/images/icon/bingo.png"></image>
+        <text>七天退换</text>
+      </view>
+      <view class="header-info-item">
+        <image mode="widthFix" class="bingo-icon" src="../../assets/images/icon/bingo.png"></image>
+        <text>极速退款</text>
+      </view>
+      <view class="header-info-item">
+        <image mode="widthFix" class="bingo-icon" src="../../assets/images/icon/bingo.png"></image>
+        <text>全场包邮</text>
+      </view>
+    </view>
+    <view class="line-cut"></view>
+    <view class="p30 search pa {{ moveSearch == 'true' ? 'move-search': '' }}">
+      <view class="search-b pr">
+        <image mode="widthFix" class="search-icon" src="../../assets/images/icon/search.png"></image>
+        <input class="search-input" bindtap="searchInfo" placeholder-style="color:#999;" placeholder="请输入商品名称" />
       </view>
     </view>
   </view>
   <view class="container">
-    <!-- <text class="hot-goods">热门商品</text> -->
-    <view class="goods-list">
-      <view class="list-item fzr15" wx:for="{{ hotGoods }}" wx:for-index="idx" wx:for-item="obj" wx:key="obj.goods_id">
-        <navigator hover-class="none" url="../goodsDetial/goodsDetial?goods_id={{ obj.goods_id }}">
-          <image mode="widthFix" src="{{ obj.cover }}"></image>
-          <view class="info">
-            <view class="title mb-20">
-              {{ obj.goods_name }}
-            </view>
-            <view class="list-buy flex">
-              <view class="info-goods col-6">
-                <view class="pirce mb-20">
-                  <text class="now-pirce">¥{{ obj.counter_price }}</text>
-                  <text class="old-pirce">¥{{ obj.shop_price }}</text>
-                </view>
-                <view class="order-num flex col-9">
-                  <text class="col-2">已售{{ aaa }}</text>
-                  <progress class="col-8" active activeColor="#000" percent="{{ obj.sale_percentage || 20 }}" show-info />
-                </view>
-              </view>
-              <view class="buy-btn-box col-4 tar">
-                <button class="buy-btn fzr16">立即购买</button>
-              </view>
-            </view>
-          </view>
-        </navigator>
+    <view class="lessons">
+      <view class="title flex p30 fzr15">
+        <text>美妆私教</text>
+        <text class="color-gray">每周更新</text>
       </view>
-      <view hidden="{{ noMore }}" class="no-more fzr14 flex">
-        <view class="line"></view>
-        <view class="mlr20">无更多商品</view>
-        <view class="line"></view>
+      <view class="lessons-video-box">
+        <video id="myVideo" src="http://wxsnsdy.tc.qq.com/105/20210/snsdyvideodownload?filekey=30280201010421301f0201690402534804102ca905ce620b1241b726bc41dcff44e00204012882540400&bizid=1023&hy=SH&fileparam=302c020101042530230204136ffd93020457e3c4ff02024ef202031e8d7f02030f42400204045a320a0201000400" danmu-list="{{danmuList}}" enable-danmu danmu-btn controls></video>
+      </view>
+    </view>
+    <view class="line-cut"></view>
+    <view class="recommend">
+      <view class="title flex p30 fzr15">
+        <text>秋冬流行色</text>
+      </view>
+      <view class="recommend-list">
+        <scroll-view class="list-box flex" scroll-x>
+          <view class="list-item">
+            <navigator hover-class="none" url="../goodsDetial/goodsDetial">
+              <image mode="widthFix" class="image" src=""></image>
+              <view class="info">
+                <view class="title mb-20">
+                  秋冬流行色
+                </view>
+                <view class="pirce">
+                  ¥129
+                </view>
+              </view>
+            </navigator>
+          </view>
+          <view class="list-item">
+            <navigator hover-class="none" url="../goodsDetial/goodsDetial">
+              <image mode="widthFix" class="image" src=""></image>
+              <view class="info">
+                <view class="title mb-20">
+                  秋冬流行色
+                </view>
+                <view class="pirce">
+                  ¥129
+                </view>
+              </view>
+            </navigator>
+          </view>
+          <view class="list-item">
+            <navigator hover-class="none" url="../goodsDetial/goodsDetial">
+              <image mode="widthFix" class="image" src=""></image>
+              <view class="info">
+                <view class="title mb-20">
+                  秋冬流行色
+                </view>
+                <view class="pirce">
+                  ¥129
+                </view>
+              </view>
+            </navigator>
+          </view>
+          <view class="list-item">
+            <navigator hover-class="none" url="../goodsDetial/goodsDetial">
+              <image mode="widthFix" class="image" src=""></image>
+              <view class="info">
+                <view class="title mb-20">
+                  秋冬流行色
+                </view>
+                <view class="pirce">
+                  ¥129
+                </view>
+              </view>
+            </navigator>
+          </view>
+        </scroll-view>
+      </view>
+    </view>
+    <view class="line-cut"></view>
+    <view class="series">
+      <view class="title flex fzr15">
+        <text>系列商品</text>
+      </view>
+      <view class="series-list p30">
+        <view class="list-item mb-30">
+          <navigator class="flex" hover-class="none" url="../goodsDetial/goodsDetial">
+            <image mode="widthFix" class="goods-pic col-5"></image>
+            <view class="goods-info col-5">
+              <view class="title fw fzr15">LAN  MAN“一鹿梦幻” 圣诞限定礼盒</view>
+              <view class="introduction color-gray fzr12">2支巧克力初心自选颜色，一支润唇膏，麋鹿的水晶项链</view>
+              <view class="pirce">¥129</view>
+            </view>
+          </navigator>
+        </view>
+        <view class="list-item mb-30">
+          <navigator class="flex" hover-class="none" url="../goodsDetial/goodsDetial">
+            <image mode="widthFix" class="goods-pic col-5"></image>
+            <view class="goods-info col-5">
+              <view class="title fw fzr15">LAN  MAN“一鹿梦幻” 圣诞限定礼盒</view>
+              <view class="introduction color-gray fzr12">2支巧克力初心自选颜色，一支润唇膏，麋鹿的水晶项链</view>
+              <view class="pirce">¥129</view>
+            </view>
+          </navigator>
+        </view>
+        <view class="list-item mb-30">
+          <navigator class="flex" hover-class="none" url="../goodsDetial/goodsDetial">
+            <image mode="widthFix" class="goods-pic col-5"></image>
+            <view class="goods-info col-5">
+              <view class="title fw fzr15">LAN  MAN“一鹿梦幻” 圣诞限定礼盒</view>
+              <view class="introduction color-gray fzr12">2支巧克力初心自选颜色，一支润唇膏，麋鹿的水晶项链</view>
+              <view class="pirce">¥129</view>
+            </view>
+          </navigator>
+        </view>
       </view>
     </view>
   </view>

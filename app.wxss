@@ -13,7 +13,7 @@ page{ font-size: 28rpx; }
 .col-8{ width: 79.99%; }
 .col-9{ width: 89.99%; }
 
-.color-gray{ color: #ccc; }
+.color-gray{ color: #999; }
 .color-black{ color: #000; }
 .color-white{ color: #fff; }
 .font-color{ color: #a3a3a3; }
@@ -31,6 +31,7 @@ page{ font-size: 28rpx; }
 .p30{ padding: 30rpx; }
 .pb100{ padding-bottom: 100rpx; }
 .mb-20{ margin-bottom: 20rpx; }
+.mb-30{ margin-bottom: 30rpx; }
 .pb-20{ padding-bottom: 20rpx; }
 .mlr20{margin: auto 20rpx;}
 
@@ -43,6 +44,13 @@ page{ font-size: 28rpx; }
   overflow: hidden;
   text-overflow:ellipsis;
   white-space: nowrap;
+}
+.clear::after{
+  content:"."; 
+  display:block; 
+  height:0; 
+  visibility:hidden; 
+  clear:both;
 }
 /* 公共样式  */
 image{
@@ -80,7 +88,7 @@ image{
 .line-cut{
   width: 100%;
   height: 20rpx;
-  background-color: #333;
+  background-color: #e6e6e6;
 }
 .arrow:after, .arrow:before {
   border: 15rpx solid transparent;
@@ -98,6 +106,11 @@ image{
 }
 radio{
   transform:scale(.6);
+}
+.bingo-icon{
+  width: 25rpx;
+  height: 25rpx;
+  margin-right: 10rpx;
 }
 /* 删除滑动效果 */
 .touch-item {

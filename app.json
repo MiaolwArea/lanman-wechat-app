@@ -19,10 +19,10 @@
     "onReachBottomDistance": 100
   },
   "tabBar": {
-    "color": "#000",
-    "selectedColor": "#fff",
-    "borderStyle": "white",
-    "backgroundColor": "#4c4c4c",
+    "color": "#808080",
+    "selectedColor": "#000",
+    "borderStyle": "black",
+    "backgroundColor": "#fff",
     "list": [
       {
         "iconPath": "assets/images/tabBar/home.png",

@@ -1,52 +1,69 @@
 /** index.wxss **/
+.home .container{
+  margin-top: 132.5rpx;
+}
 .header{
   min-height: 152px;
 }
-.search{
-  background-color: #000;
-  padding: 20rpx 30rpx;
+.header-info{
+  padding: 40rpx 30rpx;
+}
+swiper{
+  height: 580rpx;
+}
+.search-icon{
+  position: absolute;
+  top: 25rpx;
+  left: 20rpx;
+  width: 25rpx;
+  height: 25rpx;
 }
 .search-b{
-  border-radius: 40rpx;
-  border: 1rpx solid #000;
-  background-color: #fff;
-  padding: 10rpx 20rpx;
+  border-radius: 10rpx;
+  background-color: #e6e6e6;
+  padding: 10rpx 50rpx;
 }
-.move-search{
+.search{
+  width: calc(100% - 60rpx);
+}
+.search.move-search{
   position: fixed;
   top: 0;
   left:0;
   right: 0;
   z-index: 99;
 }
-
-.goods-list{
-  padding: 20rpx 30rpx;
+.lessons-video-box video{
+  width: 100%;
 }
-.list-item{
-  margin: 25rpx 0;
-  box-shadow: 0rpx 0rpx 20rpx #ccc;
+.container.move-search{
+  padding-top: 140rpx;
 }
-.list-item .info{
-  padding: 20rpx;
+.recommend .list-box{
+  white-space: nowrap;
 }
-.list-item .now-pirce{
-  color: red;
-  margin-right: 20rpx;
+.recommend-list .list-item{
+  display: inline-block;
+  width: 300rpx;
+  padding: 0 30rpx 30rpx 30rpx;
 }
-.list-item .old-pirce{
-  text-decoration: line-through;
-  color: #ccc;
-  font-size: 24rpx;
+.recommend-list .image{
+  background-color: #000;
 }
-.order-num progress{
-  padding-right: 10rpx; 
+.series>.title{
+  margin: 30rpx;
+  padding-bottom: 30rpx;
+  border-bottom: 1px solid #b9b9b9;
 }
-.buy-btn{
-  width: 200rpx;
+.series-list .goods-pic{
+  width: 360rpx;
+  margin-right: 30rpx;
+  height: 240rpx;
+  background-color: #000;
 }
-
-.no-more{
-  color: #ccc;
-  justify-content: center;
+.series-list .pirce{
+  color: #ff0000;
+}
+.series-list .introduction{
+  margin: 20rpx auto;
 }

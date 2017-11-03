@@ -74,7 +74,7 @@ let pageConfig = {
                   district: res.countyName,
                   consignee: res.userName,
                   address: res.detailInfo,
-                  mobile: '17623418273' || res.telNumber
+                  mobile: res.telNumber
                 }, function (res) {
                   if (res.success){
                     _this.setData({

@@ -4,36 +4,14 @@
 		"urlCheck": true,
 		"es6": true,
 		"postcss": true,
-		"minified": true
+		"minified": true,
+		"newFeature": true
 	},
-	"compileType": "weapp",
-	"libVersion": "1.5.2",
+	"compileType": "miniprogram",
+	"libVersion": "1.6.4",
 	"appid": "wxbcccc0fcb501e54b",
 	"projectname": "lanman-wechat-app",
 	"condition": {
-		"weapp": {
-			"current": -1,
-			"list": [
-				{
-					"id": -1,
-					"name": "address",
-					"pathName": "pages/user/address/address",
-					"query": ""
-				},
-				{
-					"id": 1,
-					"name": "order",
-					"pathName": "pages/user/order/order",
-					"query": ""
-				},
-				{
-					"id": -1,
-					"name": "order-detail",
-					"pathName": "pages/user/order/detail/detail",
-					"query": ""
-				}
-			]
-		},
 		"search": {
 			"current": -1,
 			"list": [
@@ -53,6 +31,29 @@
 					"query": "",
 					"boxQI": "",
 					"service": {}
+				}
+			]
+		},
+		"miniprogram": {
+			"current": -1,
+			"list": [
+				{
+					"id": -1,
+					"name": "address",
+					"pathName": "pages/user/address/address",
+					"query": ""
+				},
+				{
+					"id": 1,
+					"name": "order",
+					"pathName": "pages/user/order/order",
+					"query": ""
+				},
+				{
+					"id": -1,
+					"name": "order-detail",
+					"pathName": "pages/user/order/detail/detail",
+					"query": ""
 				}
 			]
 		}

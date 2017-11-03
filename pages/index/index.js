@@ -13,7 +13,13 @@ let pageConfig = {
     hotGoods: [],
     noMore: "false",
     moveSearch: "false",
-    aaa: ''
+    imgUrls: [
+      'http://image.lanman.cn/2017/10/24/8ebfae35530df34b0e04dba001e5da18.png',
+      'http://image.lanman.cn/2017/10/24/8ebfae35530df34b0e04dba001e5da18.png',
+      'http://image.lanman.cn/2017/10/24/8ebfae35530df34b0e04dba001e5da18.png'
+    ],
+    countNum: 4,
+    numOfNow: 2
   },
   // 数据缓存区
   store: {
@@ -23,16 +29,16 @@ let pageConfig = {
     }
   },
   onReachBottom: function () {
-    wx.showLoading({
-      title: "加载中"
-    });
-    this.getHotGoods();
+    // wx.showLoading({
+    //   title: "加载中"
+    // });
+    // this.getHotGoods();
   },
   onPageScroll: function (e) {
     var _this = this;
 
     _this.setData({
-      moveSearch: e.scrollTop >= 94 ? "true" : "false"
+      moveSearch: e.scrollTop >= 360 ? "true" : "false"
     })
   },
   onLoad: function () {
