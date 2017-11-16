@@ -4,71 +4,138 @@ let app = getApp()
 import { pageAction } from '../../utils/util'
 
 // 私有属性
-let page = 1,
-    count = 5,
-    search = '';
+let pageOfSeries = 1,
+    pageOfGoods = 1,
+    count = 5;
 
 let pageConfig = {
   data: {
-    hotGoods: [],
-    noMore: "false",
-    moveSearch: "false",
-    imgUrls: [
-      'http://image.lanman.cn/2017/10/24/8ebfae35530df34b0e04dba001e5da18.png',
-      'http://image.lanman.cn/2017/10/24/8ebfae35530df34b0e04dba001e5da18.png',
-      'http://image.lanman.cn/2017/10/24/8ebfae35530df34b0e04dba001e5da18.png'
-    ],
+    homeInfos: [],
+    series: [],
+    goodsList: [],
+    moveSearch: false,
     countNum: 4,
-    numOfNow: 2
+    numOfNow: 2,
+    showSaerch: false,
+    searchFocus: true
   },
   // 数据缓存区
   store: {
     url: {
       // 商品列表
-      goodsListUrl: app.globalData.isDebug ? 'hotGoods' : '/wechatapp/goods/list' 
-    }
+      homeUrl: app.globalData.isDebug ? 'homeUrl' : '/wechatapp/index/index', 
+      // 商品搜索
+      goodsListUrl: app.globalData.isDebug ? 'homeUrl' : '/wechatapp/goods/list' 
+    },
+    loadMoreOfSeries: false,
+    noMoreOfSeries: false,
+    noMoreOfGoods: false,
+    keyword: ''
   },
   onReachBottom: function () {
-    // wx.showLoading({
-    //   title: "加载中"
-    // });
-    // this.getHotGoods();
+    if (this.data.showSaerch){
+      if (!this.store['noMoreOfGoods']) {
+        wx.showLoading({
+          title: "加载中"
+        });
+        this._getGoodsList();
+      }
+    }else{
+      if (!this.store['noMoreOfSeries']) {
+        wx.showLoading({
+          title: "加载中"
+        });
+        this.store['loadMoreOfSeries'] = true;
+        this._getHomeInfos();
+      }
+    }
   },
   onPageScroll: function (e) {
     var _this = this;
 
     _this.setData({
-      moveSearch: e.scrollTop >= 360 ? "true" : "false"
+      moveSearch: e.scrollTop >= 360 ? true : false
     })
   },
   onLoad: function () {
     let _this = this;
     
-    _this.getHotGoods();
+    _this._getHomeInfos();
   },
   // 自定义事件
-  getHotGoods: function () {
+  _getHomeInfos: function () {
     let _this = this;
-
-    app.ApiConfig.ajax(_this.store['url'].goodsListUrl + '?page=' + page + '&count=' + count + '&search=' + search, function (res) {
-      if (res.success) {
-        _this.setData({
-          hotGoods: _this.data.hotGoods.concat(res.data)
-        })
-        page++;
-      } else {
-        _this.setData({
-          noMore: "true"
-        })
-      }
-      wx.hideLoading();
-    });
+    
+    if (!_this.store['noMoreOfSeries']){
+      app.ApiConfig.ajax(_this.store['url'].homeUrl +
+        (_this.store['loadMoreOfSeries'] ? '?page=' + pageOfSeries + '&count=' + count : ''), function (res) {
+          if (res.success) {
+            if (_this.store['loadMoreOfSeries']) {
+              if (res.data.series.list.length != 0){
+                _this.setData({
+                  series: _this.data.series.concat(res.data.series.list)
+                });
+              }else{
+                _this.store['noMoreOfSeries'] = true;
+              }
+            } else {
+              _this.setData({
+                homeInfos: res.data,
+                series: _this.data.series.concat(res.data.series.list)
+              })
+            }
+            pageOfSeries++;
+          }
+          wx.hideLoading();
+        });
+    }
   },
   searchInfo: function(event){
-    search = event.detail;
+    let _this = this;
+
+    pageOfGoods = 1;
+    _this.store['noMoreOfGoods'] = false;
+    _this.store['keyword'] = event.detail.value;
+    _this._getGoodsList();
+  },
+  _getGoodsList(){
+    let _this = this;
+
+    app.ApiConfig.ajax(_this.store['url'].goodsListUrl + '?search=' + _this.store['keyword'] +
+      '&page=' + pageOfGoods + '&count=' + count, function (res) {
+        if (res.success) {
+          _this.setData({
+            goodsList: _this.data.goodsList.concat(res.data)
+          });
+          pageOfGoods++;
+          wx.hideLoading();
+        }
+      });
+  },
+  showSaerchPage(){
+    let animation = wx.createAnimation({
+        duration: 500,
+        timingFunction: "linear",
+        delay: 0
+      })
+      , _this = this;
+    
+    // 第一段动画 
+    _this.animation = animation;  
+    animation.opacity(0).step();
+
     _this.setData({
-      aaa: search
-    })
+      animationData: animation.export()
+    });
+    _this.setData({
+      showSaerch: !_this.data.showSaerch
+    });
+
+    // 第二段动画
+    animation.opacity(1).step();
+    _this.setData({
+      animationData: animation.export()
+    });
   }
 }
 

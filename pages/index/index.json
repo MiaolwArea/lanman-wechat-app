@@ -1,1 +1,5 @@
-{}
+{
+  "usingComponents": {
+    "SearchPanel": "../../component/SearchPanel/SearchPanel"
+  }
+}

@@ -1,0 +1,7 @@
+<!--SearchPanel.wxml-->
+<view class="p30 search pa {{ moveSearch == 'true' ? 'move-search': '' }}">
+      <view class="search-b pr">
+        <image mode="widthFix" class="search-icon" src="../../assets/images/icon/search.png"></image>
+        <input class="search-input" bindtap="searchInfo" placeholder-style="color:#999;" placeholder="请输入商品名称" />
+      </view>
+    </view>

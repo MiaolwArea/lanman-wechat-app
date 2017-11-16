@@ -2,6 +2,7 @@
 .home .container{
   margin-top: 132.5rpx;
 }
+.home .cancel{padding: 25rpx;color: #2ab6f6;}
 .header{
   min-height: 152px;
 }
@@ -13,7 +14,7 @@ swiper{
 }
 .search-icon{
   position: absolute;
-  top: 25rpx;
+  top: 20rpx;
   left: 20rpx;
   width: 25rpx;
   height: 25rpx;
@@ -42,10 +43,18 @@ swiper{
 .recommend .list-box{
   white-space: nowrap;
 }
+.recommend .list-box .title{ white-space: pre-line; }
 .recommend-list .list-item{
   display: inline-block;
   width: 300rpx;
   padding: 0 30rpx 30rpx 30rpx;
+}
+.list-box .title{
+  display: block;
+  width: 100%;
+}
+.list-box .title p{
+  color: red;
 }
 .recommend-list .image{
   background-color: #000;
