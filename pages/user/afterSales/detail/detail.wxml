@@ -1,4 +1,4 @@
-<!-- afterSalesList-detail.wxml -->
+<!-- afterSales-detail.wxml -->
  <view class="order-detail">
   <view class="order-info-box font-color fzr14">
     <view class="address-info p30">

@@ -2,14 +2,16 @@
   "pages":[
     "pages/index/index",
     "pages/shoppingCart/shoppingCart",
-    "pages/goodsDetial/goodsDetial",
+    "pages/goods/detial/detial",
+    "pages/goods/list",
     "pages/user/user",
-    "pages/user/address/address",
+    "pages/user/address/list",
     "pages/user/address/edit/edit",
-    "pages/user/order/order",
+    "pages/user/order/list",
     "pages/user/order/detail/detail",
-    "pages/user/afterSalesList/apply/apply",
-    "pages/user/afterSalesList/detail/detail"
+    "pages/user/afterSales/list",
+    "pages/user/afterSales/apply/apply",
+    "pages/user/afterSales/detail/detail"
   ],
   "window":{
     "backgroundTextStyle":"light",

@@ -1,4 +1,4 @@
-// afterSalesList-detail.js
+// afterSales-detail.js
 // 获取应用实例
 var app = getApp()
 import { appendParamForUrl } from '../../../../utils/util'

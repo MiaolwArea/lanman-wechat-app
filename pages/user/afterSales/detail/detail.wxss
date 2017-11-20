@@ -1,4 +1,4 @@
-/** afterSalesList-detail.wxss **/
+/** afterSales-detail.wxss **/
 page{ background-color: #000;color: #fff; }
 
 .order-info-box .address-info{

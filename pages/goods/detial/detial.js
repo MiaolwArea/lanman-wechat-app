@@ -1,7 +1,7 @@
 // goodsDetial.js
 // 获取应用实例
 let app = getApp()
-import { pageAction, appendParamForUrl, formatTime } from '../../utils/util'
+import { pageAction, appendParamForUrl, formatTime } from '../../../utils/util'
 
 // let countHeight = 0; // 图片总高度
 // let windowWidth = wx.getSystemInfoSync().windowWidth; // 屏宽
@@ -79,7 +79,7 @@ let pageConfig = {
       wx.showLoading({
         title: "加载中"
       });
-      this.getCommentList(this.store['pageNum']);
+      this.getCommentList();
       this.store['pageNum']++;
     }
   },
@@ -185,7 +185,7 @@ let pageConfig = {
 // 合并公共配置
 pageConfig = {
   ...pageConfig, ...pageAction({
-    url: '/pages/goodsDetial/goodsDetial'
+    url: '/pages/goods/detial/detial'
   })
 };
 

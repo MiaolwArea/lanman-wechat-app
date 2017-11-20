@@ -10,13 +10,13 @@
   </view>
   <view class="menu-list">
     <view class="list-item">
-      <navigator class="p30" url="../user/order/order">
+      <navigator class="p30" url="../user/order/list">
         <text class="menu-name">我的订单</text>
         <view class="arrow pr"></view>
       </navigator>
     </view>
     <view class="list-item">
-      <navigator class="p30" url="../user/address/address">
+      <navigator class="p30" url="../user/address/list">
         <text class="menu-name">我的地址</text>
         <view class="arrow pr"></view>
       </navigator>

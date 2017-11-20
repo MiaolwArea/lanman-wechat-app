@@ -40,13 +40,13 @@
 				{
 					"id": -1,
 					"name": "address",
-					"pathName": "pages/user/address/address",
+					"pathName": "pages/user/address/list",
 					"query": ""
 				},
 				{
 					"id": 1,
 					"name": "order",
-					"pathName": "pages/user/order/order",
+					"pathName": "pages/user/order/list",
 					"query": ""
 				},
 				{

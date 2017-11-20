@@ -1,6 +1,6 @@
 <!-- shoppingCart.wxml -->
 <view class="shopping-cart">
-  <navigator class="address-choose p30 flex" url="../user/address/address">
+  <navigator class="address-choose p30 flex" url="../user/address/list">
     <view class="info-l">
       <view class="name-phone mb-20">
         <text class="user-name">{{ username }}</text><text class="phone otw">{{ phone }}</text>
@@ -18,7 +18,7 @@
       data-index="{{index}}" wx:for="{{ goodsList }}" wx:key="item.bn_goods_id">
       <navigator class="address-choose content p30 flex" 
       hover-class="none" 
-      url="../goodsDetial/goodsDetial?goods_id={{ item.goods_id }}&bn_goods_id={{ item.bn_goods_id }}">
+      url="../goods/detial/detial?goods_id={{ item.goods_id }}&bn_goods_id={{ item.bn_goods_id }}">
         <image class="goods-pic" mode="widthFix" src="{{ item.outside_view }}"></image>
         <view class="order-goods-info col-8">
           <view class="mb-20">{{ item.goods_name }}</view>

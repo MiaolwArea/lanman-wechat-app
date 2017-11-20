@@ -58,7 +58,7 @@
         <view class="recommend-list">
           <scroll-view class="list-box flex" scroll-x>
             <view class="list-item" wx:for="{{ homeInfos.hot.list }}" wx:key="{{ index }}">
-              <navigator hover-class="none" url="../goodsDetial/goodsDetial">
+              <navigator hover-class="none" url="{{ item.url }}">
                 <image mode="widthFix" class="image" src="{{ item.img }}"></image>
                 <view class="info">
                    <rich-text class="title mb-20" nodes="{{ item.desc }}"></rich-text> 
@@ -71,11 +71,12 @@
       <view class="line-cut"></view>
       <view class="series">
         <view class="title flex fzr15">
-          <text>系列商品</text>
+          <text>{{ homeInfos.series.title }}</text>
         </view>
         <view class="series-list p30">
-          <view class="list-item mb-30" wx:for="{{ series }}" wx:key="{{ item.goods_id }}">
-            <navigator class="flex" hover-class="none" url="../goodsDetial/goodsDetial">
+          <view class="list-item mb-30" wx:for="{{ series }}" wx:key="{{ index }}">
+            <navigator class="flex" hover-class="none" 
+            url="{{ item.series_id ? '../goods/list?series_id=' + item.series_id : '../goods/detial/detial?goods_id=' + item.goods_id }}">
               <image mode="widthFix" class="goods-pic col-5" src="{{ item.advertising_photo }}"></image>
               <view class="goods-info col-5">
                 <view class="title fw fzr15">{{ item.series_name }}</view>
@@ -98,7 +99,7 @@
     <view class="search-result">
       <view class="series-list p30">
         <view class="list-item mb-30" wx:for="{{ goodsList }}" wx:key="{{ item.goods_id }}">
-          <navigator class="flex" hover-class="none" url="../goodsDetial/goodsDetial">
+          <navigator class="flex" hover-class="none" url="../goods/detial/detial?goods_id={{ item.goods_id }}">
             <image mode="widthFix" class="goods-pic col-5" src="{{ item.cover }}"></image>
             <view class="goods-info col-5">
               <view class="title fw fzr15">{{ item.goods_name }}</view>

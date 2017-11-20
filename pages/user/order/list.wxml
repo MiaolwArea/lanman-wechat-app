@@ -39,7 +39,7 @@
         <view wx:if="{{ item.order_status_cn == '待付款' }}">去付款</view> 
         <view wx:elif="{{ item.order_status_cn == '待收货' }}">查看物流</view> 
         <navigator wx:elif="{{ item.order_status_cn == '已完成' }} 
-        hover-class="none" url="../afterSalesList/apply/apply?feedback_id={{ obj.feedback_id }}">申请售后</navigator> 
+        hover-class="none" url="../afterSales/apply/apply?feedback_id={{ obj.feedback_id }}">申请售后</navigator> 
       </view>
       <view class="line-cut"></view>
     </view>
