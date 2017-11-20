@@ -1,1 +1,22 @@
 /** goodsList.wxss **/
+.goods-list{overflow: hidden;}
+.goods-list .list-item{
+  width: calc(50% - 16rpx);
+}
+.goods-list .list-item{
+  padding-right: 30rpx;
+  padding: 0px 30rpx 50rpx 0px;
+}
+.goods-list .list-item:nth-child(2n){
+  padding-right: 0px;
+}
+.list-item .skin{
+  color: #ccc;
+  margin: 10rpx auto;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+.list-item .pirce{
+  font-weight: bold;
+}

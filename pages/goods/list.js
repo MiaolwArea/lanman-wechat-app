@@ -5,7 +5,7 @@ import { pageAction, appendParamForUrl } from '../../utils/util'
 
 let pageConfig = {
   data: {
-    goodsList: {}
+    goodsList: []
   },
   // 数据缓存区
   store: {
@@ -34,22 +34,23 @@ let pageConfig = {
       wx.showLoading({
         title: "加载中"
       });
-      this._getGoodsList();
       this.store['pageNum']++;
+      this._getGoodsList();
     }
   },
   _getGoodsList(){
     let _this = this;
 
     app.ApiConfig.ajax(_this.store['url'].goodsListUrl + '&page=' + _this.store['pageNum'] + '&count=' + _this.store['count'] + '&series_id=' + _this.store['seriesId'], function (res) {
-      let data = res.data;
-
       if (res.success) {
         if (res.data.length != 0) {
-          console.log(res.data)
+          _this.setData({
+            goodsList: _this.data.goodsList.concat(res.data)
+          })
         }else{
           _this.store['noMore'] = true;
         }
+        wx.hideLoading();
       }
     });
   }
