@@ -3,7 +3,7 @@ page{ font-size: 28rpx; }
 .tac{ text-align: center; }
 .tar{ text-align: right; }
 .tal{ text-align: left; }
-.col-1{ width: .99%; }
+.col-1{ width: 9.99%; }
 .col-2{ width: 19.99%; }
 .col-3{ width: 29.99%; }
 .col-4{ width: 39.99%; }
@@ -16,6 +16,7 @@ page{ font-size: 28rpx; }
 .color-gray{ color: #999; }
 .color-black{ color: #000; }
 .color-white{ color: #fff; }
+.color-red{ color: #b30000; }
 .font-color{ color: #a3a3a3; }
 
 .fw{ font-weight: bold; }
@@ -104,8 +105,8 @@ image{
   border-left-color: #a3a3a3;
   right: -22rpx;
 }
-radio{
-  transform:scale(.6);
+radio, checkbox{
+  transform:scale(.7);
 }
 .bingo-icon{
   width: 25rpx;
@@ -130,10 +131,10 @@ radio{
  width: 100%;
 }
 .del {
- background-color: #ccc;
+ background-color: #d30404;
  width: 130rpx;
  height: 150rpx;
- color: #000;
+ color: #fff;
  display: flex;
  flex-direction: column;
  align-items: center;

@@ -1,0 +1,92 @@
+<!-- shoppingCart-list.wxml -->
+<view class="shoppingCart-list">
+  <!-- 公共说明 -->
+  <view class="aside flex fzr12 p30">
+    <view class="aside-item flex">
+      <view class="round-gray"></view>
+      <text class="aside-text">过敏包退</text>
+    </view>
+    <view class="aside-item flex">
+      <view class="round-gray"></view>
+      <text class="aside-text">破损包退</text>
+    </view>
+    <view class="aside-item flex">
+      <view class="round-gray"></view>
+      <text class="aside-text">全国包邮</text>
+    </view>
+  </view>
+  <!-- 无商品 -->
+  <view class="no-goods flex" wx:if="{{ !hasGoods }}">
+    <image mode="widthFix" src="../../assets/images/icon/shoppingCart.png" class="no-goods-image" />
+    <view class="no-goods-text">去添加点什么吧！</view>
+  </view>
+  <!-- 有商品 -->
+  <view class="shoppingCart-warp" wx:if="{{ hasGoods }}">
+    <checkbox-group>
+      <view class="goods-list-warp">
+        <!-- <view class="goods-exchange">
+          <view class="exchange-tab">加价购</view>
+          <view class="exchange-title"></view>
+          <view class="exchange-btn">查看换购</view>
+        </view> -->
+        <view class="goods-list">
+          <view class="list-item flex {{isTouchMove[index] ? 'touch-move-active' : ''}}" 
+          bindtouchstart="touchstart" bindtouchmove="touchmove" 
+          data-index="{{index}}" 
+          wx:for="{{ shoppingCart.goods_list }}" wx:key="{{ item.goods_id }}">
+            <view class="content flex">
+              <label class="checkbox col-1" data-bn_goods_id="{{ item.bn_goods_id }}" bindtap="changeSelected">  
+                <image mode="widthFix" src="{{ idAryMap[item.bn_goods_id] ? '../../assets/images/icon/choose.png' : '../../assets/images/icon/unchoose.png' }}" class="unchoose" />
+                <checkbox value="{{ item.bn_goods_id }}" class="choose-item-btn" checked="{{ idAryMap[item.bn_goods_id] }}" hidden />
+              </label> 
+              <navigator hover-class="none"
+            url="" class="flex">
+                <image mode="widthFix" src="{{ item.outside_view }}" class="goods-image" />
+                <view class="goods-info col-7">
+                  <view class="goods-title">{{ item.goods_name }}</view>
+                  <view class="goods-footer flex">
+                    <view class="pirce fw">¥{{ item.shop_price }}</view>
+                    <view class="order-goods-num flex">
+                      <view class="num flex">
+                          <view>数量：</view>
+                          <view class="box" 
+                          data-index="{{ index }}" 
+                          data-id="{{ item.bn_goods_id }}" 
+                          catchtap="minusNum">-</view>
+                          <input class="box num" 
+                          data-index="{{ index }}" 
+                          data-id="{{ item.bn_goods_id }}" 
+                          catchtap catchblur="inputNum" type="number" value="{{ item.goods_num }}" />
+                          <view class="box" 
+                          data-index="{{ index }}" 
+                          data-id="{{ item.bn_goods_id }}" 
+                          catchtap="plusNum">+</view>   
+                      </view>
+                    </view>
+                  </view>
+                </view>
+              </navigator>
+            </view>
+            <view class="del tac" data-id="{{ item.bn_goods_id }}" 
+            catchtap="delGoods" data-index="{{index}}">删除</view>
+          </view>
+        </view>
+      </view>
+      <view class="choose-area flex">
+        <view class="choose-area-ctl p30 flex col-7">
+          <view class="flex-l flex">
+            <label class="checkbox" bindtap="changeAllSelected">  
+              <image mode="widthFix" src="{{ idAryMap['all'] ? '../../assets/images/icon/choose.png' : '../../assets/images/icon/unchoose.png' }}" class="unchoose" />
+              <checkbox value="{{ item.bn_goods_id }}" checked="{{ isChecked }}" class="choose-item-btn" hidden />
+            </label>  
+            <text>全选</text>  
+          </view> 
+          <text class="flex-r color-red all-pirce">¥{{ goodsPrice }}</text>
+        </view>
+        <view class="flex-r tac col-3">
+          <view class="add-oreder">下单</view>
+        </view>
+      </view>
+    </checkbox-group>
+  </view>
+</view>

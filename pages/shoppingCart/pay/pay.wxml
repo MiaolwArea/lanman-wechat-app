@@ -42,8 +42,6 @@
           </view>
         </view>
       </navigator>
-      <view class="del tac" data-id="{{ item.bn_goods_id }}" 
-      catchtap="delGoods" data-index="{{index}}">删除</view>
     </view>
   </view>
   <!-- 商品换购 -->

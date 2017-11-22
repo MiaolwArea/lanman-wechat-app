@@ -1,7 +1,8 @@
 {
   "pages":[
     "pages/index/index",
-    "pages/shoppingCart/shoppingCart",
+    "pages/shoppingCart/list",
+    "pages/shoppingCart/pay/pay",
     "pages/goods/detail/detail",
     "pages/goods/list",
     "pages/user/user",
@@ -35,7 +36,7 @@
       {
         "iconPath": "assets/images/tabBar/shoppingCart.png",
         "selectedIconPath": "assets/images/tabBar/shoppingCart01.png",
-        "pagePath": "pages/shoppingCart/shoppingCart",
+        "pagePath": "pages/shoppingCart/list",
         "text": "购物车"
       },
       {

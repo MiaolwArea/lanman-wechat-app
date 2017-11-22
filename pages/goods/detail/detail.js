@@ -163,7 +163,7 @@ let pageConfig = {
         // 立即购买
         if (isBuyNow != null) {
           wx.switchTab({
-            url: '../shoppingCart/shoppingCart'
+            url: '../shoppingCart/pay/pay'
           })
         }
       }

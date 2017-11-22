@@ -3,13 +3,13 @@
   <view class="goods-list p30">
     <view class="list-item inline-block" wx:for="{{ goodsList }}" wx:key="{{ item.goods_id }}">
       <navigator hover-class="none"
-      url="./detial/detial?goods_id={{ item.goods_id }}">
-        <image mode="widthFix" src="http://image.lanman.cn//2017/09/22/9d31f568d521b394f2c9a46155ce8149.jpg" />
-        <view class="title">LANMAN #101 巧克力初心系列-烂熳红</view>
-        <view class="skin fzr12">适合肤色：偏白、偏黄、偏黑</view>
+      url="./detail/detail?goods_id={{ item.goods_id }}">
+        <image mode="widthFix" src="{{ item.cover }}" />
+        <view class="title">{{ item.goods_name }}</view>
+        <view class="skin pr fzr12">{{ item.desc }}</view>
         <view class="footer flex">
-          <view class="pirce fzr16">¥129.00</view>
-          <view class="comment-num">125条评论</view>
+          <view class="pirce fzr16">¥{{ item.shop_price }}</view>
+          <!-- <view class="comment-num">125条评论</view> -->
         </view>
       </navigator>
     </view>
