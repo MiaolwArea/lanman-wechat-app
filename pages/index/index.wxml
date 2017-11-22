@@ -76,7 +76,7 @@
         <view class="series-list p30">
           <view class="list-item mb-30" wx:for="{{ series }}" wx:key="{{ index }}">
             <navigator class="flex" hover-class="none" 
-            url="{{ item.series_id ? '../goods/list?series_id=' + item.series_id : '../goods/detial/detial?goods_id=' + item.goods_id }}">
+            url="{{ item.series_id ? '../goods/list?series_id=' + item.series_id : '../goods/detail/detail?goods_id=' + item.goods_id }}">
               <image mode="widthFix" class="goods-pic col-5" src="{{ item.advertising_photo }}"></image>
               <view class="goods-info col-5">
                 <view class="title fw fzr15">{{ item.series_name }}</view>

@@ -11,7 +11,8 @@ let pageConfig = {
     isChecked: false,
     goodsPrice: 0,    // 商品金额
     discountPrice: 0, // 抵用金额
-    idAryMap: {}
+    idAryMap: {},
+    hasChoose: false
   }, 
   // 数据缓存区
   store: {
@@ -74,6 +75,11 @@ let pageConfig = {
     _this.setData({
       idAryMap: idAryMap
     });
+    if (_this.data.idAryMap['all'] === false){
+      _this.setData({
+        hasChoose: false
+      });
+    }
   },
   // 数量加减, 修改
   minusNum(e) {
@@ -215,6 +221,22 @@ let pageConfig = {
       goodsPrice: goodsPrice
     })
   },
+  // 下单
+  addOrder(){
+    
+  },
+  // 下单按钮变化
+  checkboxchange(e){
+    if(e.detail.value.length != 0){
+      this.setData({
+        hasChoose: true
+      })
+    }else{
+      this.setData({
+        hasChoose: false
+      })
+    }
+  }
 }
 
 Page(pageConfig);

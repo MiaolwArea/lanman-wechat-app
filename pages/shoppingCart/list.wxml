@@ -22,7 +22,7 @@
   </view>
   <!-- 有商品 -->
   <view class="shoppingCart-warp" wx:if="{{ hasGoods }}">
-    <checkbox-group>
+    <checkbox-group bindchange="checkboxchange">
       <view class="goods-list-warp">
         <!-- <view class="goods-exchange">
           <view class="exchange-tab">加价购</view>
@@ -40,7 +40,7 @@
                 <checkbox value="{{ item.bn_goods_id }}" class="choose-item-btn" checked="{{ idAryMap[item.bn_goods_id] }}" hidden />
               </label> 
               <navigator hover-class="none"
-            url="" class="flex">
+            url="../goods/detail/detail?goods_id={{ item.goods_id }}" class="flex">
                 <image mode="widthFix" src="{{ item.outside_view }}" class="goods-image" />
                 <view class="goods-info col-7">
                   <view class="goods-title">{{ item.goods_name }}</view>
@@ -84,7 +84,7 @@
           <text class="flex-r color-red all-pirce">¥{{ goodsPrice }}</text>
         </view>
         <view class="flex-r tac col-3">
-          <view class="add-oreder">下单</view>
+          <view class="add-oreder {{hasChoose ? '' : 'disable'}}" bindtap="addOrder">下单</view>
         </view>
       </view>
     </checkbox-group>

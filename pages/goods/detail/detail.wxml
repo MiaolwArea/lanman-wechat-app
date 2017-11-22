@@ -61,7 +61,7 @@
     </view>
   </view>
   <view class="footer flex">
-    <navigator class="shopping-cart flex" url="../shoppingCart/list" open-type="switchTab">
+    <navigator class="shopping-cart flex" url="../../shoppingCart/list" open-type="switchTab">
       <image class="img" mode="widthFix" src="../../../assets/images/tabBar/shoppingCart.png"></image>
       <text class="red-dlot tac">{{ cartNum }}</text>
       <view class="color-black">购物车</view>

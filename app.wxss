@@ -41,6 +41,7 @@ page{ font-size: 28rpx; }
 .show{ display: block; }
 .hide{ display: none; }
 .inline-block{ display: inline-block; }
+.disable{ background-color: #ccc; color: #808080; }
 .otw{
   overflow: hidden;
   text-overflow:ellipsis;

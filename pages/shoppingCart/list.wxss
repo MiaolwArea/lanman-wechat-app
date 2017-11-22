@@ -35,6 +35,7 @@ page{ background-color: #f4f4f4; color: #1a1a1a; }
 .goods-list .list-item{
   padding: 30rpx 0;
   border-bottom: 1px solid #ccc;
+  overflow-x: hidden;
 }
 .goods-list .list-item:last-child{
   border-bottom: none;
