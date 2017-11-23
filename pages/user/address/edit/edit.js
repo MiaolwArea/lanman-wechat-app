@@ -7,7 +7,8 @@ let pageConfig = {
   data: {
     customItem: "全部",
     region: [],
-    addressInfo: {}
+    addressInfo: {},
+    
   },
   // 数据缓存区
   store: {
@@ -60,11 +61,10 @@ let pageConfig = {
     let _this = this
       , dataObj = e.detail.value
       , region = _this.data.region
-      , url
-      , wechatAddress = [];
+      , url;
 
     if (_this.store['editId']) {
-      dataObj.id = _this.store['editId'];
+      dataObj.address_id = _this.store['editId'];
       url = _this.store['url'].editAddressUrl;
     }else{
       url = _this.store['url'].addAddressUrl
@@ -75,26 +75,17 @@ let pageConfig = {
       district: region[2],
       ...dataObj
     }, function (resInfo) {
-      if (res.success) {
-        wechatAddress.push({
-          address_id: resInfo.data.address_id,
-          consignee: dataObj.consignee,
-          mobile: dataObj.mobile,
-          province: dataObj.province,
-          city: dataObj.city,
-          district: dataObj.district,
-          address: dataObj.address,
-          is_default: 0
-        });
-        _this.setData({
-          isEdit: false,
-          address: _this.data.address.concat(wechatAddress)
-        });
+      if (resInfo.success) {
         wx.showToast({
           title: '成功',
           icon: 'success',
           duration: 1000
         });
+        setTimeout(function(){
+          wx.redirectTo({
+            url: '../list'
+          })
+        }, 1000)
       }
     }, 'POST')
   }

@@ -1,8 +1,8 @@
 /** user.wxss **/
-page{ background-color: #333;color: #fff; }
+page{ background-color: #f4f4f4; color: #1a1a1a; }
 .about-me{
-  background-color: #000;
-  justify-content: flex-start;
+  background-color: #fff;
+  border-top: 1px solid #f4f4f4;
 }
 .member-photo image{
   width: 150rpx;
@@ -11,10 +11,37 @@ page{ background-color: #333;color: #fff; }
   margin-right: 30rpx;
 }
 
-.list-item{
-  border-bottom: 1px solid #3c3c3c;
-  background-color: #000;
+.menu-list, .you-like{
+  background-color: #fff;
 }
-.arrow:after, .arrow:before{
-  top: -24rpx;
+.menu-title{
+  border-bottom: 1px solid #ccc;
+}
+.icon-link-area{
+  padding-top: 30rpx;
+}
+.order-icon-list .goods-pic{
+  width: 60rpx;
+}
+.you-like .title{
+  padding: 30rpx 30rpx 0 30rpx;
+}
+.you-like .list-item-box{
+  padding-right: 15rpx;
+  padding-bottom: 30rpx;
+  white-space: pre-line;
+}
+.you-like .list-item:nth-child(2n) .list-item-box{
+  padding-right: 0rpx;
+  padding-left: 15rpx;
+}
+.you-like .list-item .title{
+  overflow: hidden;
+  text-overflow:ellipsis;
+  white-space: nowrap;
+}
+.you-like .list-item .desc{
+  word-wrap:break-word;
+  color: #808080;
+  margin: 10rpx auto;
 }

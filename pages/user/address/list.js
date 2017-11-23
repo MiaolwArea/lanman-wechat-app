@@ -6,7 +6,8 @@ import { appendParamForUrl } from '../../../utils/util'
 let pageConfig = {
   data: {
     userInfo: {},
-    address: []
+    address: [],
+    hasAddress: true
   },
   // 数据缓存区
   store: {
@@ -36,6 +37,12 @@ let pageConfig = {
     // 获取初始化数据 
     app.ApiConfig.ajax(_this.store['url'].addressListUrl, function (res) {
       if (res.success) {
+        if (res.data.length == 0){
+          _this.setData({
+            hasAddress: false
+          });
+          return;
+        }
         _this.setData({
           address: res.data
         })

@@ -1,5 +1,5 @@
 /**order.wxss**/
-page{ background-color: #000;color: #fff; }
+page{ background-color: #f4f4f4; color: #1a1a1a; }
 /* tab切换 */
 .swiper-tab{
   position: fixed;
@@ -7,10 +7,10 @@ page{ background-color: #000;color: #fff; }
   left: 0;
   right: 0;
   width: 100%; 
-  border-bottom: 2rpx solid #777777; 
+  border-top: 2rpx solid #f4f4f4; 
   text-align: center; 
   line-height: 80rpx;
-  background-color: #000;
+  background-color: #fff;
 }
 .swiper-tab-list{
   font-size: 30rpx; 
@@ -19,8 +19,8 @@ page{ background-color: #000;color: #fff; }
   color: #777777; 
 }
 .on{
-  color: #fff; 
-  border-bottom: 5rpx solid #fff;
+  color: #b30000; 
+  border-bottom: 5rpx solid #b30000;
 }
 
 .order-list{

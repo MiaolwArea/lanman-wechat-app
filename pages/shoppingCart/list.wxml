@@ -40,7 +40,7 @@
                 <checkbox value="{{ item.bn_goods_id }}" class="choose-item-btn" checked="{{ idAryMap[item.bn_goods_id] }}" hidden />
               </label> 
               <navigator hover-class="none"
-            url="../goods/detail/detail?goods_id={{ item.goods_id }}" class="flex">
+            url="../goods/detail/detail?goods_id={{ item.goods_id }}" class="flex col-9">
                 <image mode="widthFix" src="{{ item.outside_view }}" class="goods-image" />
                 <view class="goods-info col-7">
                   <view class="goods-title">{{ item.goods_name }}</view>
@@ -77,7 +77,7 @@
           <view class="flex-l flex">
             <label class="checkbox" bindtap="changeAllSelected">  
               <image mode="widthFix" src="{{ idAryMap['all'] ? '../../assets/images/icon/choose.png' : '../../assets/images/icon/unchoose.png' }}" class="unchoose" />
-              <checkbox value="{{ item.bn_goods_id }}" checked="{{ isChecked }}" class="choose-item-btn" hidden />
+              <checkbox value="{{ item.bn_goods_id }}" class="choose-item-btn" hidden />
             </label>  
             <text>全选</text>  
           </view> 

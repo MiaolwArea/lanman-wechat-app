@@ -15,11 +15,12 @@ let pageConfig = {
       orderListUrl: app.globalData.isDebug ? 'orderList' : '/wechatapp/order/list',
     },
     // 订单状态
-    orderStatus: '0'
+    orderStatus: 0
   },
   onLoad: function (opt) {
     let _this = this;
 
+    // order_status: 全部->0, 待付款->1, 待发货->5, 待收货->2, 已完成->3, 待评价->4
     _this.store['orderStatus'] = opt.order_status || 0;
     // 获取系统信息 
     wx.getSystemInfo({

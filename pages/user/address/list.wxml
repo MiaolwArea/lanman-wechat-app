@@ -2,36 +2,48 @@
 <view class="address">
   <!-- 地址列表 -->
   <view class="manage" hidden="{{ isEdit }}">
-    <view class="address-list">
+    <!-- 无地址 -->
+    <view class="no-address flex" wx:if="{{ !hasAddress }}">
+      <image mode="widthFix" src="../../../assets/images/icon/address.png" class="no-address-image" />
+      <view class="no-address-text">收货地址在哪里？</view>
+    </view>
+    <!-- 地址列表 -->
+    <view class="address-list" wx:if="{{ hasAddress }}">
       <radio-group class="radio-group" bindchange="radioChange">
         <view class="goods-item p30" wx:for="{{ address }}" wx:key="item.address_id">
           <view class="receive-info mb-20">
-            <view class="receive mb-20 fzr16">
+            <view class="receive mb-20 fzr16 color-black flex">
               <text class="name">{{ item.consignee }}</text>
               <text class="phone">{{ item.mobile }}</text>
             </view>
-            <view class="receive-address mb-20">
+            <view class="receive-address mb-30">
               <text class="address-info">{{ item.province + item.city + item.district + item.address }}</text>
             </view>    
           </view>
           <view class="address-operate flex">
             <view class="set-default flex">
-              <radio value="{{ item.address_id }}" id="radio{{ index }}" checked="{{ item.is_default }}" color="#a3a3a3" />
-              <label class="color-white" for="radio{{ index }}">{{ item.is_default ? '默认地址' : '设为默认地址' }}</label>
+              <radio value="{{ item.address_id }}" id="radio{{ index }}" checked="{{ item.is_default }}" color="#b20000" />
+              <label class="color-red" for="radio{{ index }}">{{ item.is_default ? '默认地址' : '设为默认地址' }}</label>
             </view>
-            <view class="control flex color-white">
-              <navigator class="btn edit" 
+            <view class="control flex ">
+              <navigator class="flex" 
               hover-class="none"
-              url="../address/edit/edit?address_id={{ item.address_id }}">编辑</navigator>
-              <label class="btn" data-id="{{ item.address_id }}" data-isdefault="{{ item.is_default }}" bindtap="delAddress">删除</label>
+              url="../address/edit/edit?address_id={{ item.address_id }}">
+                <image src="../../../assets/images/icon/edit.png" class="edit-icon" />
+                <text>编辑</text>
+              </navigator>
+              <label class="flex" data-id="{{ item.address_id }}" data-isdefault="{{ item.is_default }}" bindtap="delAddress">
+                <image src="../../../assets/images/icon/delete.png" class="delete-icon" />
+                <text>删除</text>
+              </label>
             </view>
           </view>
         </view>
       </radio-group>
     </view>
     <view class="add-address flex">
-      <view class="add-btn tac p30 color-white" bindtap="importAddress">导入微信地址</view>
-      <navigator class="add-btn tac p30 color-white" 
+      <view class="add-btn tac p30" bindtap="importAddress">导入微信地址</view>
+      <navigator class="add-btn tac p30" 
               hover-class="none"
               url="../address/edit/edit">新增收货地址</navigator>
     </view>

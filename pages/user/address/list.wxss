@@ -1,21 +1,39 @@
 /**address.wxss**/
-page{ background-color: #000;color: #fff; }
-.address{ color: #a3a3a3; }
-.goods-item, .receive-info{ border-bottom: 1px solid #3c3c3c; }
+page{ background-color: #f4f4f4; }
+.no-address{
+  justify-content: center;
+  flex-flow: column wrap;
+  color: #808080;
+}
+.no-address .no-address-image{
+  width: 206.077348rpx;
+  margin-top: 360rpx;
+  opacity: .4;
+}
+
+.goods-item{margin: 20rpx auto;background-color: #fff;}
+.receive-info{ border-bottom: 1px solid #f4f4f4; }
 .receive .name{ margin-right: 20rpx; }
-.control .edit{margin-right: 20rpx;}
-.control .btn{ border: 1px solid #fff;border-radius: 26rpx;padding: 10rpx 20rpx; }
+.control>navigator{
+  margin-right: 20rpx;
+}
+.control image{
+  width: 30rpx;
+  height: 26rpx;
+  padding-right: 5rpx;
+}
 
 .add-address{
   position: fixed;
   bottom: 0;
   left: 0;
   width: 100%;
-  background-color: #a3a3a3;
+  background-color: #b20000;
+  color: #fff;
 }
 .add-address .add-btn{
   width: 50%;
 }
 .add-address .add-btn:first-child{
-  border-right: 1px solid #777;
+  border-right: 1px solid #ccc;
 }
