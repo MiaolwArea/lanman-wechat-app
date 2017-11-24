@@ -4,7 +4,7 @@ var app = getApp()
 
 let pageConfig = {
   data: {
-    userInfo: {}
+    isSuccess: false
   },
   onLoad: function () {
     if (app.globalData.userInfo) {

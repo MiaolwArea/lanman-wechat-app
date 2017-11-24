@@ -23,12 +23,17 @@
   <!-- 有商品 -->
   <view class="shoppingCart-warp" wx:if="{{ hasGoods }}">
     <checkbox-group bindchange="checkboxchange">
-      <view class="goods-list-warp">
-        <!-- <view class="goods-exchange">
-          <view class="exchange-tab">加价购</view>
-          <view class="exchange-title"></view>
-          <view class="exchange-btn">查看换购</view>
-        </view> -->
+      <view class="goods-list-warp bg-white">
+         <view class="goods-exchange flex">
+          <view class="exchange-tab">
+            <text class="color-red tab">加价购</text>
+            <text class="title otw">加价购</text>
+          </view>
+          <navigator class="exchange-btn"
+          hover-class="none"
+          url="./inclist/inclist"
+          >查看换购</navigator>
+        </view> 
         <view class="goods-list">
           <view class="list-item flex {{isTouchMove[index] ? 'touch-move-active' : ''}}" 
           bindtouchstart="touchstart" bindtouchmove="touchmove" 
@@ -73,7 +78,7 @@
         </view>
       </view>
       <view class="choose-area flex">
-        <view class="choose-area-ctl p30 flex col-7">
+        <view class="choose-area-ctl bg-white p30 flex col-7">
           <view class="flex-l flex">
             <label class="checkbox" bindtap="changeAllSelected">  
               <image mode="widthFix" src="{{ idAryMap['all'] ? '../../assets/images/icon/choose.png' : '../../assets/images/icon/unchoose.png' }}" class="unchoose" />

@@ -1,15 +1,9 @@
 /** afterSales-apply.wxss **/
 @import '../list.wxss';
 /* 选择商品 */
-.goods-list-warp{
-  margin-bottom: 110rpx;
-}
 .checkbox .unchoose{  
    width: 30.624309rpx;
 }  
-.goods-list{
-  background-color: #fff;
-}
 .goods-list .goods-image{
   width: 122.099448rpx;
 }
@@ -20,9 +14,6 @@
 }
 .goods-list .list-item:last-child{
   border-bottom: none;
-}
-.goods-list .content{
-  padding: 0 30rpx;
 }
 .goods-list .goods-info{
   width: 77%;
@@ -39,4 +30,9 @@
   min-height: auto;
   border-left: 0;
   border-right: 0;
+}
+
+.success-ifno{
+  justify-content: center;
+  margin: 60rpx;
 }

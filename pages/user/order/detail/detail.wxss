@@ -1,12 +1,27 @@
 /** order_detail.wxss **/
-page{ background-color: #000;color: #fff; }
-
-.order-info-box .address-info{
-  line-height: 2;
+page{ background-color: #f4f4f4; color: #1a1a1a; }
+.address-info{
+  justify-content: left;
 }
-.order-title{
-  border-bottom: 1px solid #3c3c3c;
+.address-text .name-phone{
+  padding-bottom: 10rpx;
 }
-.info-item{
-  line-height: 1.5;
+.position-image{
+  width: 30rpx;
+  margin-right: 30rpx;
+}
+.goods-info .desc{
+  padding: 5rpx 0;
+}
+.footer .add-cart, .btn-area .btn{
+  border: 1px solid #ccc;
+  padding: 5rpx 20rpx;
+}
+.footer-area{
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: calc(100% - 60rpx);
+  z-index: 9;
+  border-top: 1px solid #f4f4f4;
 }

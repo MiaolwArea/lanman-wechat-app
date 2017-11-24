@@ -3,9 +3,6 @@ page{ background-color: #f4f4f4; color: #1a1a1a; }
 .after-sales-list, .after-sales-goods, .after-sales-apply-l{
   margin-top: 20rpx;
 }
-.after-sales-item, .after-sales-goods, .after-sales-info{
-  background-color: #fff;
-}
 .after-sales-item .header, .after-sales-info .after-sales-info-i{
   border-bottom: 1px solid #f4f4f4;
 }

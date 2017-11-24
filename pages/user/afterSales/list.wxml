@@ -1,7 +1,7 @@
 <!-- afterSalesList.wxml -->
 <view class="after-sales">
   <view class="after-sales-list">
-    <view class="after-sales-item p30 mb-20">
+    <view class="after-sales-item bg-white p30 mb-20">
       <view class="header fzr12 pb-20 color-gray">
         <text class="order-num mr-20">订单编号：1231123123 </text>
         <text class="time">下单时间：2017-11-11 11:11:11</text>

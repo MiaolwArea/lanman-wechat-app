@@ -1,6 +1,6 @@
 <!-- afterSales-detail.wxml -->
  <view class="after-sales-detail">
-  <view class="after-sales-goods p30 mb-20">
+  <view class="after-sales-goods bg-white p30 mb-20">
     <view class="goods-link flex">
       <image mode="widthFix" src="http://image.lanman.cn/2017/06/16/9ad597d1ab9e4bb43eba3bb057af5fc2.jpg" class="after-sales-image"></image>
       <view class="goods-info tal">
@@ -15,7 +15,7 @@
       </view>
     </view>
   </view>
-  <view class="after-sales-info plr30">
+  <view class="after-sales-info bg-white plr30">
     <view class="after-sales-info-i flex">
       <text>退款类型</text>
       <text></text>

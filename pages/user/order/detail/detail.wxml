@@ -1,46 +1,57 @@
 <!-- order_detail.wxml -->
- <view class="order-detail">
-  <view class="order-info-box font-color fzr14">
-    <view class="address-info p30">
-      <view class="name-phone fzr18">收货人：<text>{{ orderDetail.consignee }}  {{ orderDetail.mobile }}</text></view>
-      <view class="address">收货地址：{{ orderDetail.province_cn }}{{ orderDetail.city_cn }}{{ orderDetail.district_cn }}{{ orderDetail.address }}</view>
-    </view>
-    <view class="line-cut"></view>
-    <view class="order-info">
-      <view class="order-title p30 color-white">订单信息</view>
-      <view class="info-item p30">
-        <view>订单状态：{{ orderDetail.order_status_cn }}</view>
-        <view>下单时间：{{ orderDetail.add_time }}</view>
-        <view>订单编号：{{ orderDetail.order_sn }}</view>
-        <view>配送方式：{{ orderDetail.shipping_name }}</view>
+ <view class="order-detail mt-banner">
+  <view class="order-info-box mt-20">
+    <view class="address-info bg-white flex p30">
+      <image mode="widthFix" src="../../../../assets/images/icon/position.png" class="position-image"></image>
+      <view class="address-text">
+        <view class="name-phone">岁破零星 12363749576</view>
+        <view class="address fzr12 color-gray">地址：福建省厦门市万海璐39号美衣在线</view>
       </view>
     </view>
-    <view class="line-cut"></view>
-    <view class="order-detail-info">
-      <view class="order-title p30 color-white">订单详情</view>
-      <view class="order-content flex fzr15"
-          wx:for="{{ item.goods }}" 
-          wx:for-item="goodsItem" wx:key="goodsItem.goods_id">
-        <view class="col-8 flex">
-          <image mode="widthFix" class="goods-pic" src="http://image.lanman.cn/2017/07/26/588b211f7341b8e735d79483f062360e.jpg"></image>
-          <view class="order-goods-info">
-            <text class="otw">{{ goodsItem.goods_name }}</text>
-            <text>{{ goodsItem.color_name }}</text>
-            <text>数量: {{ goodsItem.goods_num }}</text>
+    <view class="order-info mt-20 p30 bg-white">
+      <view class="order-title border-bottom-line pb-20 flex">
+        <text class="title">LANMAN 烂熳</text>
+        <text class="contact fzr12 color-gray">联系客服</text>
+      </view>
+      <view class="info-list ptb30 border-bottom-line-i">
+        <view class="list-item flex">
+          <image mode="widthFix" src="http://image.lanman.cn/2017/06/16/9ad597d1ab9e4bb43eba3bb057af5fc2.jpg" class="goods-image"></image>
+          <view class="goods-info tal">
+            <view class="title otw">LANMAN巧克力巧克力LANMAN巧克力巧克力</view>
+            <view class="desc fzr12">
+              <text class="mr-20">数量：2 </text>
+              <text>数量：2 </text>
+            </view>
+            <view class="footer flex">
+              <view class="price">¥129.00</view>
+              <view class="add-cart color-gray">加入购物车</view>
+            </view>
           </view>
         </view>
-        <view class="pirce color-white otw">¥ {{ goodsItem.shop_price }}</view>
       </view>
-      <view class="info-item p30">
-        <view>订单金额：{{ orderDetail.goods_amount }}</view>
-        <view>订单总数：{{ orderDetail.goods_total }}</view>
-        <view>订单运费：{{ orderDetail.freight }}</view>
-        <view>优惠金额：{{ orderDetail.discount }}</view>
-        <view>消费积分：{{ orderDetail.use_score || 0 }}</view>
-        <view>获得积分：{{ orderDetail.get_score }}</view>
-        <view>实付金额：{{ orderDetail.total_money }}</view>
-        <view>订单留言：{{ orderDetail.remark || '无' }}</view>
+    </view>
+    <view class="order-detail-info p30 mt-20 bg-white">
+      <view class="mb-20">订单编号：123123123213</view>
+      <view class="">下单时间：2017-11-11 11:11:11</view>
+    </view>
+    <view class="order-price mt-20 p30 bg-white">
+      <view class="content pb-20 border-bottom-line">
+        <view class="flex">
+          <text>商品总额</text>
+          <text>¥258.00</text>
+        </view>
+        <view class="flex">
+          <text>运费</text>
+          <text>0.00</text>
+        </view>
       </view>
+      <view class="count-num tar mt-20">实付款：<text class="color-red">258.00</text></view>
+    </view>  
+  </view>
+  <view class="footer-area p30 flex bg-white">
+    <text class="del-order">删除订单</text>
+    <view class="btn-area">
+      <navigator hover-class="none" class="btn">申请售后</navigator>
     </view>
   </view>
  </view>

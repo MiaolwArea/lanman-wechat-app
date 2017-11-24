@@ -3,6 +3,7 @@
     "pages/index/index",
     "pages/shoppingCart/list",
     "pages/shoppingCart/pay/pay",
+    "pages/shoppingCart/inclist/inclist",
     "pages/goods/detail/detail",
     "pages/goods/list",
     "pages/user/user",

@@ -23,14 +23,17 @@ page{ background-color: #f4f4f4; color: #1a1a1a; }
 .goods-list-warp{
   margin-bottom: 110rpx;
 }
-.checkbox .unchoose{  
-   width: 30.624309rpx;
-}  
-.goods-list{
-  background-color: #fff;
+.goods-list-warp .goods-exchange{
+  padding: 30rpx 30rpx 20rpx 30rpx;
+  border-bottom: 1px solid #f4f4f4;
 }
-.goods-list .goods-image{
-  width: 122.099448rpx;
+.goods-list-warp .exchange-btn{
+  padding-left: 20rpx;
+  border-left: 1px solid #f4f4f4;
+}
+.goods-exchange .tab{
+  border: 1px solid #b30000;
+  margin-right: 20rpx;
 }
 .goods-list .list-item{
   padding: 30rpx 0;
@@ -66,9 +69,7 @@ page{ background-color: #f4f4f4; color: #1a1a1a; }
   left: 0;
   width: 100%;
   z-index: 9;
-}
-.choose-area-ctl{
-  background-color: #fff;
+  border-top: 1px solid #f4f4f4;
 }
 .choose-area .flex-l .checkbox{
   padding-right: 30rpx;

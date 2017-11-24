@@ -1,75 +1,109 @@
 <!-- afterSales-apply.wxml -->
 <view class="afterSales-apply">
-  <view class="after-sales-apply-l mb-20 plr30">
-    <view class="after-sales-apply-i flex">
-      <text>退款类型</text>
-      <text></text>
+  <view class="apply-page" wx:if="{{ !isSuccess }}">
+    <view class="after-sales-apply-l mb-20 bg-white plr30">
+      <view class="after-sales-apply-i ptb20 border-bottom-line color-gray flex">
+        <text>退款类型</text>
+        <text></text>
+      </view>
+      <view class="after-sales-apply-i ptb20 border-bottom-line color-gray flex">
+        <text>退款类型</text>
+        <text></text>
+      </view>
+      <view class="after-sales-apply-i ptb20 border-bottom-line color-gray flex">
+        <text>退款类型</text>
+        <text></text>
+      </view>
+      <view class="after-sales-apply-i ptb20 border-bottom-line color-gray flex">
+        <text>退款类型</text>
+        <text></text>
+      </view>
     </view>
-    <view class="after-sales-apply-i flex">
-      <text>退款类型</text>
-      <text></text>
-    </view>
-    <view class="after-sales-apply-i flex">
-      <text>退款类型</text>
-      <text></text>
-    </view>
-    <view class="after-sales-apply-i flex">
-      <text>退款类型</text>
-      <text></text>
-    </view>
-  </view>
-  <!-- 选择商品 -->
-  <view class="choose-area">
-    <view class="goods-list-warp">
-       <view class="choose-header">
-        <view class="choose-title">选中商品</view>
-        <view class="choose-btn">全选</view>
-      </view> 
-      <view class="goods-list">
-        <view class="list-item flex" 
-        wx:for="{{ shoppingCart.goods_list }}" wx:key="{{ item.goods_id }}">
-          <view class="content flex">
-            <label class="checkbox col-1" data-bn_goods_id="{{ item.bn_goods_id }}" bindtap="changeSelected">  
-              <image mode="widthFix" src="{{ idAryMap[item.bn_goods_id] ? '../../assets/images/icon/choose.png' : '../../assets/images/icon/unchoose.png' }}" class="unchoose" />
-              <checkbox value="{{ item.bn_goods_id }}" class="choose-item-btn" checked="{{ idAryMap[item.bn_goods_id] }}" hidden />
-            </label> 
-            <navigator hover-class="none"
-          url="../goods/detail/detail?goods_id={{ item.goods_id }}" class="flex col-9">
-              <image mode="widthFix" src="{{ item.outside_view }}" class="goods-image" />
-              <view class="goods-info col-7">
-                <view class="goods-title">{{ item.goods_name }}</view>
-                <view class="goods-footer flex">
-                  <view class="pirce fw">¥{{ item.shop_price }}</view>
-                  <view class="order-goods-num flex">
-                    <view class="num flex">
-                        <view>数量：</view>
-                        <view class="box" 
-                        data-index="{{ index }}" 
-                        data-id="{{ item.bn_goods_id }}" 
-                        catchtap="minusNum">-</view>
-                        <input class="box num" 
-                        data-index="{{ index }}" 
-                        data-id="{{ item.bn_goods_id }}" 
-                        catchtap catchblur="inputNum" type="number" value="{{ item.goods_num }}" />
-                        <view class="box" 
-                        data-index="{{ index }}" 
-                        data-id="{{ item.bn_goods_id }}" 
-                        catchtap="plusNum">+</view>   
+    <!-- 选择商品 -->
+    <view class="choose-area bg-white p30">
+      <view class="goods-list-warp">
+        <view class="choose-header flex color-gray pb-20 border-bottom-line">
+          <view class="choose-title">选中商品</view>
+          <view class="choose-btn">全选</view>
+        </view> 
+        <view class="goods-list">
+          <view class="list-item flex" >
+            <view class="content flex">
+              <label class="checkbox col-1" data-bn_goods_id="{{ item.bn_goods_id }}" bindtap="changeSelected">  
+                <image mode="widthFix" src="{{ idAryMap[item.bn_goods_id] ? '../../../../assets/images/icon/choose.png' : '../../../../assets/images/icon/unchoose.png' }}" class="unchoose" />
+                <checkbox value="{{ item.bn_goods_id }}" class="choose-item-btn" checked="{{ idAryMap[item.bn_goods_id] }}" hidden />
+              </label> 
+              <navigator hover-class="none"
+            url="../goods/detail/detail?goods_id={{ item.goods_id }}" class="flex col-9">
+                <image mode="widthFix" src="http://image.lanman.cn/2017/06/16/9ad597d1ab9e4bb43eba3bb057af5fc2.jpg" class="goods-image" />
+                <view class="goods-info col-7">
+                  <view class="goods-title">LANMAN巧克力LANMAN巧克力LANMAN巧克力</view>
+                  <view class="goods-footer flex">
+                    <view class="pirce fw">¥129</view>
+                    <view class="order-goods-num flex">
+                      <view class="num flex">
+                          <view>数量：</view>
+                          <view class="box" 
+                          data-index="{{ index }}" 
+                          data-id="{{ item.bn_goods_id }}" 
+                          catchtap="minusNum">-</view>
+                          <input class="box num" 
+                          data-index="{{ index }}" 
+                          data-id="{{ item.bn_goods_id }}" 
+                          catchtap catchblur="inputNum" type="number" value="{{ item.goods_num }}" />
+                          <view class="box" 
+                          data-index="{{ index }}" 
+                          data-id="{{ item.bn_goods_id }}" 
+                          catchtap="plusNum">+</view>   
+                      </view>
                     </view>
                   </view>
                 </view>
-              </view>
-            </navigator>
+              </navigator>
+            </view>
+            <view class="del tac" data-id="{{ item.bn_goods_id }}" 
+            catchtap="delGoods" data-index="{{index}}">删除</view>
           </view>
-          <view class="del tac" data-id="{{ item.bn_goods_id }}" 
-          catchtap="delGoods" data-index="{{index}}">删除</view>
         </view>
       </view>
     </view>
+    <!-- 退款原因 -->
+    <view class="reason tips mt-20 bg-white p30">
+      <view class="tips-title pb-20 border-bottom-line">退款原因</view>
+      <view class="reason-select"></view>
+    </view>
   </view>
-  <!-- 退款原因 -->
-  <view class="reason">
-    <view class="reason-title"></view>
-    <view class="reason-title"></view>
+  <!-- 提交申请成功 -->
+  <view class="apply-success-page" wx:if="{{ isSuccess }}">
+    <view class="success-ifno flex">
+      <radio checked color="#b20000"></radio>
+      <view class="">您的售后已提交，请等待客服审核，谢谢！</view>
+    </view>
+    <view class="apply-info bg-white plr30 mb-20">
+      <view class="after-sales-apply-i ptb20 border-bottom-line color-gray">
+        <text>退款类型:</text>
+        <text></text>
+      </view>
+      <view class="after-sales-apply-i ptb20 border-bottom-line color-gray">
+        <text>退款类型:</text>
+        <text></text>
+      </view>
+      <view class="after-sales-apply-i ptb20 border-bottom-line color-gray">
+        <text>退款类型:</text>
+        <text></text>
+      </view>
+      <view class="after-sales-apply-i ptb20 border-bottom-line color-gray">
+        <text>退款类型:</text>
+        <text></text>
+      </view>
+      <view class="after-sales-apply-i ptb20 border-bottom-line color-gray">
+        <text>退款类型:</text>
+        <text></text>
+      </view>
+    </view>
+    <view class="tips mt-20 bg-white p30 color-gray">
+      <view class="tips-title pb-20 border-bottom-line">注意事项</view>
+      <view class="tips-text mt-20">注意事项注意事项注意事项注意事项注意事项注意事项注意事项注意事项注意事项注意事项注意事项注意事项注意事项注意事项注意事项</view>
+    </view>
   </view>
 </view>

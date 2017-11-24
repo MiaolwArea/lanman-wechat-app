@@ -1,0 +1,29 @@
+/** inclist.wxss **/
+page{ background-color: #f4f4f4; }
+.goods-list-warp{
+  margin-bottom: 110rpx;
+}
+.inclist-header, .inclist-list .list-item{
+  border-bottom: 1px solid #f4f4f4;
+}
+.inclist-list .list-item{
+  padding: 20rpx 0;
+}
+.goods-info .title{
+  margin-bottom: 20rpx;
+}
+.footer-area{
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  z-index: 9;
+  height: 110rpx;
+  letter-spacing: 2px;
+  border-top: 1px solid #f4f4f4;
+}
+.footer-area .sure{
+  background-color: #666;
+  line-height: 110rpx;
+  color: #fff;
+}

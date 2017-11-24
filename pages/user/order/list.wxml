@@ -8,7 +8,7 @@
   </view>
   <!-- 订单列表 -->
   <view class="order-list" wx:if="{{ hasOrder }}">
-    <view class="order-item p30 mb-20">
+    <view class="order-item bg-white p30 mb-20">
       <view class="header flex pb-20">
         <view class="title">LANMAN 烂熳</view>
         <view class="status color-red">买家已付款</view>

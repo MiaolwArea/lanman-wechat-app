@@ -41,7 +41,7 @@ let pageConfig = {
   },
   onShow: function () {
     let _this = this;
-
+return;
     wx.showLoading(); 
     // 获取购物车详情
     app.ApiConfig.ajax(_this.store['url'].shoppingCartUrl, function (res) {

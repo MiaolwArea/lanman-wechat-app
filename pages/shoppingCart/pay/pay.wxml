@@ -1,85 +1,59 @@
 <!-- shoppingCart.wxml -->
-<view class="shopping-cart">
-  <navigator class="address-choose p30 flex" url="../user/address/list">
-    <view class="info-l">
-      <view class="name-phone mb-20">
-        <text class="user-name">{{ username }}</text><text class="phone otw">{{ phone }}</text>
-      </view>
-      <view class="address">
-        <text>{{ addressInfo }}</text>
+<view class="shopping-cart mt-banner">
+  <navigator class="address-choose bg-white mt-20 flex p30" url="../user/address/list">
+    <view class="flex-l flex">
+      <image mode="widthFix" src="../../../../assets/images/icon/position.png" class="position-image"></image>
+      <view class="address-text">
+        <view class="name-phone"><text class="mr-20">收货人：岁破零星</text>12363749576</view>
+        <view class="address fzr12 color-gray">福建省厦门市万海璐39号美衣在线</view>
       </view>
     </view>
     <view class="info-r arrow pr"></view>
   </navigator>
   <view class="line-cut"></view>
   <view class="goods-list">
-    <view class="list-item flex {{isTouchMove[index] ? 'touch-move-active' : ''}}" 
-      bindtouchstart="touchstart" bindtouchmove="touchmove" 
-      data-index="{{index}}" wx:for="{{ goodsList }}" wx:key="item.bn_goods_id">
-      <navigator class="address-choose content p30 flex" 
-      hover-class="none" 
-      url="../goods/detial/detial?goods_id={{ item.goods_id }}&bn_goods_id={{ item.bn_goods_id }}">
-        <image class="goods-pic" mode="widthFix" src="{{ item.outside_view }}"></image>
-        <view class="order-goods-info col-8">
-          <view class="mb-20">{{ item.goods_name }}</view>
-          <view class="order-goods-num flex">
-            <view class="num flex">
-                <view>数量：</view>
-                <view class="box" 
-                data-index="{{ index }}" 
-                data-id="{{ item.bn_goods_id }}" 
-                catchtap="minusNum">-</view>
-                <input class="box num" 
-                data-index="{{ index }}" 
-                data-id="{{ item.bn_goods_id }}" 
-                catchtap catchblur="inputNum" type="number" value="{{ item.goods_num }}" />
-                <view class="box" 
-                data-index="{{ index }}" 
-                data-id="{{ item.bn_goods_id }}" 
-                catchtap="plusNum">+</view>   
-            </view>
-            <view class="tar padding-5">¥{{ item.shop_price }}</view>
-          </view>
+    <view class="order-item bg-white p30 mb-20">
+      <view class="header flex border-bottom-line pb-20">
+        <view class="title">LANMAN 烂熳</view>
+      </view>
+      <navigator hover-class="none" url="../order/detail/detail?order_id={{ item.order_id }}" class="goods-link border-bottom-line flex">
+        <image mode="widthFix" src="http://image.lanman.cn/2017/06/16/9ad597d1ab9e4bb43eba3bb057af5fc2.jpg" class="order-image"></image>
+        <view class="goods-info tal">
+          <view class="title mb-20">LANMAN巧克力巧克力LANMAN巧克力巧克力</view>
+          <view class="price">¥129.00</view>
         </view>
       </navigator>
+      <view class="footer">
+        <view class="goods-count tar fzr12">
+          <text class="num">共1件商品</text>
+          <text class="price">合计: ¥129.00(含运费¥0.00)</text>
+        </view>
+      </view>
     </view>
   </view>
-  <!-- 商品换购 -->
-  <view class="line-cut" hidden="{{ !isExchange }}"></view>
-  <view class="edit-address" hidden="{{ !isExchange }}">
-    12
-  </view>
-  <view class="line-cut"></view>
-  <view class="order-info">
-    <view class="order-item flex p30">
-        <view class="color-white">商品金额</view>
-        <view>¥{{ goodsPrice }}</view>
+  <view class="order-info bg-white p30 mt-20">
+    <view class="ptb20 border-bottom-line flex">
+      <text>商品金额</text>
+      <text>¥{{ goodsPrice }}</text>
     </view>
-    <view class="order-item flex p30">
-        <view class="color-white">抵用金额</view>
-        <view>¥{{ discountPrice }}</view>
+    <view class="ptb20 border-bottom-line flex">
+      <text>抵用金额</text>
+      <text>¥{{ discountPrice }}</text>
     </view>
-    <view class="order-item flex p30">
-        <view class="color-white">运费</view>
-        <view>免运费</view>
+    <view class="ptb20 border-bottom-line flex">
+      <text>运费</text>
+      <text>免运费</text>
     </view>
-    <view class="order-item p30">
-        <view class="color-white">我要留言</view>
-        <textarea class="remark" bindblur="bindTextAreaBlur"></textarea>
+    <view class="ptb20 border-bottom-line">
+      <text>我要留言</text>
+      <textarea class="remark" bindblur="bindTextAreaBlur"></textarea>
     </view>
     <view class="order-item tar p30">
-        <view class="fzr16">实付¥{{ finalPrice }}</view>
+      <view class="fzr16">实付¥{{ finalPrice }}</view>
     </view>
   </view>
-  <view class="footer">
-    <view class="pay-btn-box">
-      <view class="pay-btn tac fzr16 color-white" bindtap="payWechat">微信支付</view>
-    </view>
-    <view class="lanman-footer-logo">
-      <image mode="widthFix" src="http://image.lanman.cn/2016/m.lanman.cn/images/my/lanman-footer-logo.png"></image>
-    </view>
-    <view class="contact-tel tac">
-      <text>全球服务联系电话：400－700－0825</text>    
-    </view>
+  <view class="footer-area flex tac bg-white">
+    <text class="col-7">合计金额：¥129.00</text>
+    <view class="sure col-3" bindtap="payWechat">确定</view>
   </view>
 </view>
