@@ -1,20 +1,23 @@
 /** afterSalesList.wxss **/
-page{ background-color: #333;color: #fff; }
-.about-me{
-  background-color: #000;
-  justify-content: flex-start;
+page{ background-color: #f4f4f4; color: #1a1a1a; }
+.after-sales-list, .after-sales-goods, .after-sales-apply-l{
+  margin-top: 20rpx;
 }
-.member-photo image{
+.after-sales-item, .after-sales-goods, .after-sales-info{
+  background-color: #fff;
+}
+.after-sales-item .header, .after-sales-info .after-sales-info-i{
+  border-bottom: 1px solid #f4f4f4;
+}
+.after-sales-item .goods-link, .after-sales-info-i{
+  padding: 20rpx 0;
+}
+.after-sales-image{
   width: 150rpx;
-  height: 150rpx;
-  border-radius: 50%;
-  margin-right: 30rpx;
+  margin-right: 20rpx;
 }
-
-.list-item{
-  border-bottom: 1px solid #3c3c3c;
-  background-color: #000;
-}
-.arrow:after, .arrow:before{
-  top: -24rpx;
+.info-link{
+  border: 1px solid #000;
+  padding: 5rpx 10rpx;
+  border-radius: 3px;
 }

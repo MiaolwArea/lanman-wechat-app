@@ -5,7 +5,7 @@
     <!-- 无地址 -->
     <view class="no-address flex" wx:if="{{ !hasAddress }}">
       <image mode="widthFix" src="../../../assets/images/icon/address.png" class="no-address-image" />
-      <view class="no-address-text">收货地址在哪里？</view>
+      <view class="no-address-text">收货地址在哪里?</view>
     </view>
     <!-- 地址列表 -->
     <view class="address-list" wx:if="{{ hasAddress }}">

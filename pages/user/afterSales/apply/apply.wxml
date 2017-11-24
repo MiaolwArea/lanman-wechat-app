@@ -1,4 +1,75 @@
 <!-- afterSales-apply.wxml -->
 <view class="afterSales-apply">
-  
+  <view class="after-sales-apply-l mb-20 plr30">
+    <view class="after-sales-apply-i flex">
+      <text>退款类型</text>
+      <text></text>
+    </view>
+    <view class="after-sales-apply-i flex">
+      <text>退款类型</text>
+      <text></text>
+    </view>
+    <view class="after-sales-apply-i flex">
+      <text>退款类型</text>
+      <text></text>
+    </view>
+    <view class="after-sales-apply-i flex">
+      <text>退款类型</text>
+      <text></text>
+    </view>
+  </view>
+  <!-- 选择商品 -->
+  <view class="choose-area">
+    <view class="goods-list-warp">
+       <view class="choose-header">
+        <view class="choose-title">选中商品</view>
+        <view class="choose-btn">全选</view>
+      </view> 
+      <view class="goods-list">
+        <view class="list-item flex" 
+        wx:for="{{ shoppingCart.goods_list }}" wx:key="{{ item.goods_id }}">
+          <view class="content flex">
+            <label class="checkbox col-1" data-bn_goods_id="{{ item.bn_goods_id }}" bindtap="changeSelected">  
+              <image mode="widthFix" src="{{ idAryMap[item.bn_goods_id] ? '../../assets/images/icon/choose.png' : '../../assets/images/icon/unchoose.png' }}" class="unchoose" />
+              <checkbox value="{{ item.bn_goods_id }}" class="choose-item-btn" checked="{{ idAryMap[item.bn_goods_id] }}" hidden />
+            </label> 
+            <navigator hover-class="none"
+          url="../goods/detail/detail?goods_id={{ item.goods_id }}" class="flex col-9">
+              <image mode="widthFix" src="{{ item.outside_view }}" class="goods-image" />
+              <view class="goods-info col-7">
+                <view class="goods-title">{{ item.goods_name }}</view>
+                <view class="goods-footer flex">
+                  <view class="pirce fw">¥{{ item.shop_price }}</view>
+                  <view class="order-goods-num flex">
+                    <view class="num flex">
+                        <view>数量：</view>
+                        <view class="box" 
+                        data-index="{{ index }}" 
+                        data-id="{{ item.bn_goods_id }}" 
+                        catchtap="minusNum">-</view>
+                        <input class="box num" 
+                        data-index="{{ index }}" 
+                        data-id="{{ item.bn_goods_id }}" 
+                        catchtap catchblur="inputNum" type="number" value="{{ item.goods_num }}" />
+                        <view class="box" 
+                        data-index="{{ index }}" 
+                        data-id="{{ item.bn_goods_id }}" 
+                        catchtap="plusNum">+</view>   
+                    </view>
+                  </view>
+                </view>
+              </view>
+            </navigator>
+          </view>
+          <view class="del tac" data-id="{{ item.bn_goods_id }}" 
+          catchtap="delGoods" data-index="{{index}}">删除</view>
+        </view>
+      </view>
+    </view>
+  </view>
+  <!-- 退款原因 -->
+  <view class="reason">
+    <view class="reason-title"></view>
+    <view class="reason-title"></view>
+  </view>
 </view>

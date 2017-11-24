@@ -18,7 +18,7 @@
   <!-- 无商品 -->
   <view class="no-goods flex" wx:if="{{ !hasGoods }}">
     <image mode="widthFix" src="../../assets/images/icon/shoppingCart.png" class="no-goods-image" />
-    <view class="no-goods-text">去添加点什么吧！</view>
+    <view class="no-goods-text">去添加点什么吧!</view>
   </view>
   <!-- 有商品 -->
   <view class="shoppingCart-warp" wx:if="{{ hasGoods }}">

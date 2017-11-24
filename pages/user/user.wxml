@@ -37,7 +37,7 @@
           </navigator>
         </view>
         <view class="list-item tac">
-          <navigator hover-class="none" class="icon-link-area" url="../order/list?order_status=after">
+          <navigator hover-class="none" class="icon-link-area" url="./afterSales/list">
             <image mode="widthFix" class="goods-pic" src="../../assets/images/icon/after.png"></image>
             <view class="menu-name">售后服务</view>
           </navigator>

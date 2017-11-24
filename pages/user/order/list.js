@@ -7,6 +7,7 @@ let pageConfig = {
   data: {
     orderList: null,
     currentTab: 0,    // tab切换 
+    hasOrder: true
   },
   // 数据缓存区
   store: {
@@ -36,7 +37,15 @@ let pageConfig = {
       sso: app.globalData.sso
     });
     // 获取初始化数据 
-    _this._getOrderList(_this.store['orderStatus']);
+    _this._getOrderList(_this.store['orderStatus'], function(res){
+      if(res.success){
+        if(res.data.length == 0){
+          _this.setData({
+            hasOrder: false
+          });
+        }
+      }
+    });
   },
   // 获取相应订单
   _getOrderList(orderStatus){

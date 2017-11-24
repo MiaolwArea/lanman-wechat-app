@@ -13,7 +13,7 @@ page{ font-size: 28rpx; }
 .col-8{ width: 79.99%; }
 .col-9{ width: 89.99%; }
 
-.color-gray{ color: #999; }
+.color-gray{ color: #808080; }
 .color-black{ color: #000; }
 .color-white{ color: #fff; }
 .color-red{ color: #b30000; }
@@ -31,10 +31,12 @@ page{ font-size: 28rpx; }
 
 .p30{ padding: 30rpx; }
 .pb100{ padding-bottom: 100rpx; }
+.mr-20{ margin-right: 20rpx; }
 .mb-20{ margin-bottom: 20rpx; }
 .mb-30{ margin-bottom: 30rpx; }
 .pb-20{ padding-bottom: 20rpx; }
 .mlr30{margin: auto 30rpx;}
+.plr30{padding: 0 30rpx;}
 
 .pr{ position: relative; }
 .pa{ position: absolute; }
@@ -90,7 +92,7 @@ image{
 .line-cut{
   width: 100%;
   height: 20rpx;
-  background-color: #e6e6e6;
+  background-color: #f4f4f4;
 }
 .arrow:after, .arrow:before {
   border: 15rpx solid transparent;

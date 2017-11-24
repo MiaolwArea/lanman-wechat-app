@@ -7,41 +7,38 @@
     <view class="swiper-tab-list {{currentTab==3 ? 'on' : ''}}" data-current="3" bindtap="swichNav">已完成</view>
   </view>
   <!-- 订单列表 -->
-  <view class="order-list font-color">
-    <view class="order-item" wx:for="{{ orderList }}" wx:key="item.order_id">
-      <navigator hover-class="none" url="../order/detail/detail?order_id={{ item.order_id }}" class="p30">
-        <view class="flex fzr15 header">
-          <view class="status">
-            订单状态：<text class="color-white">{{ item.order_status_cn }}</text>
-          </view>
-          <view>{{ item.add_time }}</view>
-        </view>
-        <view class="order-content flex fzr15"
-            wx:for="{{ item.goods }}" 
-            wx:for-item="goodsItem" wx:key="goodsItem.goods_id">
-          <view class="col-8 flex">
-            <image mode="widthFix" class="goods-pic" src="http://image.lanman.cn/2017/07/26/588b211f7341b8e735d79483f062360e.jpg"></image>
-            <view class="order-goods-info">
-              <text class="otw">{{ goodsItem.goods_name }}</text>
-              <text>{{ goodsItem.color_name }}</text>
-              <text>数量: {{ goodsItem.goods_num }}</text>
-            </view>
-          </view>
-          <view class="pirce color-white otw">¥ {{ goodsItem.shop_price }}</view>
+  <view class="order-list" wx:if="{{ hasOrder }}">
+    <view class="order-item p30 mb-20">
+      <view class="header flex pb-20">
+        <view class="title">LANMAN 烂熳</view>
+        <view class="status color-red">买家已付款</view>
+      </view>
+      <navigator hover-class="none" url="../order/detail/detail?order_id={{ item.order_id }}" class="goods-link flex">
+        <image mode="widthFix" src="http://image.lanman.cn/2017/06/16/9ad597d1ab9e4bb43eba3bb057af5fc2.jpg" class="order-image"></image>
+        <view class="goods-info tal">
+          <view class="title mb-20">LANMAN巧克力巧克力LANMAN巧克力巧克力</view>
+          <view class="price">¥129.00</view>
         </view>
       </navigator>
-      <view class="footer flex fzr14">
-        <view>
-          <text>数 量 : {{ item.goods_total }}</text>
-          <text>订单金额: {{ item.total_money }}</text>
+      <view class="footer">
+        <view class="goods-count tar fzr12">
+          <text class="num">共1件商品</text>
+          <text class="price">合计: ¥129.00(含运费¥0.00)</text>
         </view>
         <!-- 根据订单修改按钮功能 -->
-        <view wx:if="{{ item.order_status_cn == '待付款' }}">去付款</view> 
-        <view wx:elif="{{ item.order_status_cn == '待收货' }}">查看物流</view> 
-        <navigator wx:elif="{{ item.order_status_cn == '已完成' }} 
-        hover-class="none" url="../afterSales/apply/apply?feedback_id={{ obj.feedback_id }}">申请售后</navigator> 
+        <view class="footer-ctl flex">
+          <view class="order-btn" wx:if="{{ item.order_status_cn == '待付款' }}">去付款</view> 
+          <view class="order-btn" wx:elif="{{ item.order_status_cn == '待收货' }}">查看物流</view> 
+          <navigator class="order-btn" 
+          wx:elif="{{ item.order_status_cn == '已完成' }} 
+          hover-class="none" url="../afterSales/apply/apply?feedback_id={{ obj.feedback_id }}">申请售后</navigator> 
+        </view>
       </view>
-      <view class="line-cut"></view>
     </view>
+  </view>
+  <!-- 无订单 -->
+  <view class="no-order flex" wx:if="{{ !hasOrder }}">
+    <image mode="widthFix" src="../../../assets/images/icon/order.png" class="no-order-image" />
+    <view class="no-order-text">还没有任何订单呢!</view>
   </view>
 </view>

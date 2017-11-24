@@ -1,3 +1,42 @@
 /** afterSales-apply.wxss **/
-page{ background-color: #333;color: #fff; }
-
+@import '../list.wxss';
+/* 选择商品 */
+.goods-list-warp{
+  margin-bottom: 110rpx;
+}
+.checkbox .unchoose{  
+   width: 30.624309rpx;
+}  
+.goods-list{
+  background-color: #fff;
+}
+.goods-list .goods-image{
+  width: 122.099448rpx;
+}
+.goods-list .list-item{
+  padding: 30rpx 0;
+  border-bottom: 1px solid #ccc;
+  overflow-x: hidden;
+}
+.goods-list .list-item:last-child{
+  border-bottom: none;
+}
+.goods-list .content{
+  padding: 0 30rpx;
+}
+.goods-list .goods-info{
+  width: 77%;
+}
+.order-goods-num .box{
+  width: 50rpx;
+  height: 50rpx;
+  text-align: center;
+  line-height: 50rpx;
+  border: 1px solid #a3a3a3;
+}
+.order-goods-num .box.num{
+  width: 70rpx;
+  min-height: auto;
+  border-left: 0;
+  border-right: 0;
+}
