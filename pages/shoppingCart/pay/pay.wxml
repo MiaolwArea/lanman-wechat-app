@@ -1,6 +1,6 @@
 <!-- shoppingCart.wxml -->
 <view class="shopping-cart mt-banner">
-  <navigator class="address-choose bg-white mt-20 flex p30" url="../user/address/list">
+  <navigator class="address-choose bg-white mt-20 flex p30" url="../../user/address/list">
     <view class="flex-l flex">
       <image mode="widthFix" src="../../../../assets/images/icon/position.png" class="position-image"></image>
       <view class="address-text">

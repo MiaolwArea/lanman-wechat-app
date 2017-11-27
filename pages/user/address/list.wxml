@@ -23,7 +23,7 @@
           <view class="address-operate flex">
             <view class="set-default flex">
               <radio value="{{ item.address_id }}" id="radio{{ index }}" checked="{{ item.is_default }}" color="#b20000" />
-              <label class="color-red" for="radio{{ index }}">{{ item.is_default ? '默认地址' : '设为默认地址' }}</label>
+              <label class="{{ item.is_default ? 'color-red' : '' }}" for="radio{{ index }}">{{ item.is_default ? '默认地址' : '设为默认地址' }}</label>
             </view>
             <view class="control flex ">
               <navigator class="flex" 

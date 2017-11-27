@@ -1,19 +1,13 @@
 /** user.wxss **/
 page{ background-color: #f4f4f4; color: #1a1a1a; }
-.about-me{
-  background-color: #fff;
-  border-top: 1px solid #f4f4f4;
-}
 .member-photo image{
   width: 150rpx;
   height: 150rpx;
   border-radius: 50%;
   margin-right: 30rpx;
 }
+.about-me{ border-top: 1px solid #f4f4f4; }
 
-.menu-list, .you-like{
-  background-color: #fff;
-}
 .menu-title{
   border-bottom: 1px solid #ccc;
 }

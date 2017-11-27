@@ -1,6 +1,6 @@
 <!-- user.wxml -->
 <view class="user">
-  <view class="about-me flex p30 mb-20">
+  <view class="about-me bg-white flex p30 mb-20">
     <view class="member-info mlr30">
         <view class="nickName fzr18 mb-20">{{ userInfo.nickName }}</view>
         <view class="show-info font-color">查看并编辑个人资料</view>
@@ -9,7 +9,7 @@
         <image src="{{ userInfo.avatarUrl }}"></image>
     </view>
   </view>
-  <view class="menu-list mb-20 p30">
+  <view class="menu-list bg-white mb-20 p30">
     <view class="my-order">
       <view class="menu-title pb-20 flex">
         <text class="title">我的订单</text>
@@ -45,7 +45,7 @@
       </view>
     </view>
   </view>
-  <view class="you-like">
+  <view class="you-like bg-white">
     <view class="title">猜你喜欢</view>
     <view class="goods-list p30">
       <view class="list-item inline-block col-5">

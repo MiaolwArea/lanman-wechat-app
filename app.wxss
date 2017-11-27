@@ -1,4 +1,5 @@
-/**app.wxss**/
+/** app.wxss **/
+/* 图标：http://image.lanman.cn/2017/wechat_app/images/lanman_icon.png */
 page{ font-size: 28rpx; }
 .tac{ text-align: center; }
 .tar{ text-align: right; }
