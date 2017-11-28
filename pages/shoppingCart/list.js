@@ -11,7 +11,8 @@ let pageConfig = {
     goodsPrice: 0,        // 商品金额
     discountPrice: 0,     // 抵用金额
     idAryMap: {},         // 选中
-    hasChoose: false      // 下单按钮点击控制
+    hasChoose: false,     // 下单按钮点击控制
+    inclistText: ''
   }, 
   // 数据缓存区
   store: {
@@ -21,12 +22,15 @@ let pageConfig = {
       // 删除商品
       delGoodsUrl: app.globalData.isDebug ? 'delGoods' : '/wechatapp/cart/del',
       // 修改数量
-      updateNumUrl: app.globalData.isDebug ? 'updateNum' : '/wechatapp/cart/updatenum'
+      updateNumUrl: app.globalData.isDebug ? 'updateNum' : '/wechatapp/cart/updatenum',
+      // 选择商品
+      chooseChangeUrl: app.globalData.isDebug ? 'chooseChange' : '/wechatapp/cart/selected'
     },
     startX: 0,        // 手势X轴
     startY: 0,        // 手势Y轴
+    goodsListNum: 0,
   },
-  onLoad(){
+  onShow(){
     let _this = this
       , isTouchMoveAry = [];
     
@@ -36,80 +40,93 @@ let pageConfig = {
     });
     // 购物车信息
     app.ApiConfig.ajax(_this.store['url'].shoppingCartUrl, function (res) {
-      let goods_list = res.data.goods_list
-        , idAry = wx.getStorageSync('idAryMap');
-      
-      if (goods_list.length == 0){
-        _this.setData({
-          hasGoods: false
-        });
-        return;
-      }
-      for (let i = 0; i < goods_list.length; i++){
-        if (idAry[goods_list[i].bn_goods_id] === undefined){
-          idAry[goods_list[i].bn_goods_id] = true;
+      if (res.success) {
+        let goods_list = res.data.goods_list
+          , idAry = {};
+
+        _this.store['goodsListNum'] = goods_list.length;
+        if (goods_list.length == 0) {
+          _this.setData({
+            hasGoods: false
+          });
+          return;
         }
-        isTouchMoveAry[i] = false;
-      } 
-      _this._checkedStatus(idAry);
-      _this.setData({
-        shoppingCart: res.data,
-        isTouchMove: isTouchMoveAry
-      });
-      _this._countPrice();
+        for (let i = 0; i < goods_list.length; i++) {
+          isTouchMoveAry[i] = false;
+        }
+        _this.setData({
+          shoppingCart: res.data,
+          isTouchMove: isTouchMoveAry
+        });
+        _this._checkedStatus(res.data.select_ids);
+        _this._countPrice();
+      }
     })
   },
   // 选中状态
   _checkedStatus(aryObj){
     let _this = this
       , isAddOrder = false
-      , isAllChecked = true;
-
+      , isAllChecked = true
+      , idAryMap = {};
+    
     Object.keys(aryObj).forEach((attr, index) => {
-      if (aryObj[attr]){
+      if (aryObj[attr]) {
         isAddOrder = true
-      }else{
+      } else {
         isAllChecked = false
       }
     });
-    aryObj['all'] = isAllChecked;
+    
+    idAryMap['isSelected'] = aryObj;
+    idAryMap['all'] = isAllChecked;
+    idAryMap['incpriceInfo'] = wx.getStorageSync('incpriceInfo');
     _this.setData({
       hasChoose: isAddOrder,
-      idAryMap: aryObj
-    });
-    wx.setStorageSync('idAryMap', aryObj);
+      idAryMap: idAryMap,
+      inclistText: (idAryMap['incpriceInfo']['num'] ? '已换购' + idAryMap['incpriceInfo']['num'] + '件' : _this.data.shoppingCart.inc_title)
+    }); 
   },
-  // 单选
+  // 单选/反选
   changeSelected(e){
     let _this = this
       , idAryMap = _this.data.idAryMap
-      , bnGoodsId = e.currentTarget.dataset['bn_goods_id'];
+      , cartId = e.currentTarget.dataset['cart_id']
+      , isSelected = e.currentTarget.dataset['selected'];
     
-    idAryMap[bnGoodsId] = !_this.data.idAryMap[bnGoodsId];
-    _this.setData({
-      idAryMap: idAryMap
-    });
-    wx.setStorageSync('idAryMap', idAryMap);
-    _this._countPrice();
+    _this._postChangeSelected(cartId, !isSelected);
+  },
+  // 勾选提交后台
+  _postChangeSelected(cardId, isSelected){
+    let _this = this
+      , idAryMap = _this.data.idAryMap;
+    
+    wx.showLoading();
+    app.ApiConfig.ajax(_this.store['url'].chooseChangeUrl, {
+      cart_id: cardId,
+      is_selected: isSelected
+    }, function (res) {
+      if (res.success) {
+        let dataObj = res.data;
+        
+        Object.keys(dataObj).forEach((attr, index) => {
+          idAryMap['isSelected'][attr] = dataObj[attr]
+        })
+        _this.setData({
+          idAryMap: idAryMap
+        });
+        _this._countPrice();
+        wx.hideLoading();
+      }
+    }, 'POST')
   },
   // 反选
   changeAllSelected(e){
     let _this = this
       , idAryMap = _this.data.idAryMap;
 
-    Object.keys(idAryMap).forEach((attr, index) => {
-      idAryMap[attr] = !_this.data.idAryMap['all'];
-    });
-    _this.setData({
-      idAryMap: idAryMap
-    });
-    wx.setStorageSync('idAryMap', idAryMap);
-    if (_this.data.idAryMap['all'] === false){
-      _this.setData({
-        hasChoose: false
-      });
-    }
-    _this._countPrice();
+    _this.data.idAryMap['all'] = !_this.data.idAryMap['all'];
+    _this._postChangeSelected(0, _this.data.idAryMap['all']);
   },
   // 数量加减, 修改
   minusNum(e) {
@@ -148,7 +165,7 @@ let pageConfig = {
       , shoppingCart = _this.data.shoppingCart;
 
     app.ApiConfig.ajax(_this.store['url'].updateNumUrl, {
-      bn_goods_id: id,
+      cart_id: id,
       goods_num: num
     }, function (res) {
       if (res.success) {
@@ -166,8 +183,7 @@ let pageConfig = {
     let id = e.target.dataset.id
       , _this = this
       , shoppingCart = _this.data.shoppingCart
-      , isTouchMoveAry = []
-      , idAryMap = _this.data.idAryMap;
+      , isTouchMoveAry = [];
 
     wx.showModal({
       title: '',
@@ -177,18 +193,15 @@ let pageConfig = {
         if (res.confirm) {
           // 更新到后台
           app.ApiConfig.ajax(_this.store['url'].delGoodsUrl, {
-            bn_goods_id: id
+            cart_id: id
           }, function (res) {
             if (res.success) {
-              shoppingCart.goods_list = app.delElm({ bn_goods_id: id }, shoppingCart.goods_list);
+              shoppingCart.goods_list = app.delElm({ cart_id: id }, shoppingCart.goods_list);
               isTouchMoveAry = new Array(shoppingCart.goods_list.length).fill(false);
-              delete idAryMap[id];
               _this.setData({
                 'shoppingCart': shoppingCart,
-                'isTouchMove': isTouchMoveAry,
-                'idAryMap': idAryMap
+                'isTouchMove': isTouchMoveAry
               });
-              wx.setStorageSync('idAryMap', idAryMap);
               _this._countPrice();
             }
           }, 'POST')
@@ -241,16 +254,16 @@ let pageConfig = {
   // 计算金额
   _countPrice() {
     let _this = this
-      , shoppingCart = this.data.shoppingCart
+      , goodsList = _this.data.shoppingCart.goods_list
       , goodsPrice = 0
-      , idAry = wx.getStorageSync('idAryMap');
-
-    for (let i = 0; i < shoppingCart.goods_list.length; i++) {
-      if (idAry[shoppingCart.goods_list[i].bn_goods_id]){
-        goodsPrice += parseInt(shoppingCart.goods_list[i].goods_num) * parseFloat(shoppingCart.goods_list[i].shop_price)
+      , idAry = _this.data.idAryMap;
+    
+    for (let i = 0; i < goodsList.length; i++) {
+      if (idAry['isSelected'][goodsList[i].cart_id]){
+        goodsPrice += parseInt(goodsList[i].goods_num) * parseFloat(goodsList[i].shop_price)
       }
     }
-    goodsPrice = goodsPrice - _this.data.discountPrice;
+    goodsPrice = goodsPrice - _this.data.discountPrice + (idAry['incpriceInfo']['price'] || 0);
     _this.setData({
       goodsPrice: goodsPrice
     })
@@ -263,20 +276,23 @@ let pageConfig = {
       return;
     }
     wx.navigateTo({
-      url: './pay/pay?bn_goods_id=12'
+      url: './pay/pay?cart_id=12'
     })
   },
   // 下单按钮变化
   checkboxchange(e){
-    if(e.detail.value.length != 0){
-      this.setData({
-        hasChoose: true
-      })
+    let _this = this
+      , idAryMap = _this.data.idAryMap;
+
+    if (e.detail.value.length == (_this.store['goodsListNum'] + 1)){
+      idAryMap['all'] = true;
     }else{
-      this.setData({
-        hasChoose: false
-      })
+      idAryMap['all'] = false;
     }
+    _this.setData({
+      hasChoose: e.detail.value.length != 0,
+      idAryMap: idAryMap
+    })
   }
 }
 

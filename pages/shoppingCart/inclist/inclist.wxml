@@ -4,23 +4,25 @@
     <view class="inclist-header pb-20">
       <view class="title tal color-gray">选择商品</view>
     </view>
-    <view class="inclist-list">
-      <view class="list-item mt-20 mb-20 flex">
-        <label class="checkbox col-1">  
-          <image mode="widthFix" src="{{ idAryMap[item.bn_goods_id] ? '../../../assets/images/icon/choose.png' : '../../../assets/images/icon/unchoose.png' }}" class="unchoose"></image>
-          <checkbox value="{{ item.bn_goods_id }}" class="choose-item-btn" hidden />
-        </label> 
-        <image mode="widthFix" src="http://image.lanman.cn/2017/06/16/9ad597d1ab9e4bb43eba3bb057af5fc2.jpg" class="goods-image"></image>
-        <view class="goods-info col-6">
-          <view class="title">LANMAN 烂熳高端定制唇刷</view>
-          <view class="price">¥9.00</view>
+    <checkbox-group bindchange="checkboxchange">
+      <view class="inclist-list">
+        <view class="list-item mt-20 mb-20 flex" wx:for="{{ inclist }}" wx:key="{{ item.incprice_id }}">
+          <label class="checkbox col-1" data-incprice_id="{{ item.incprice_id }}" data-price="{{ item.price }}" bindtap="changeSelected">  
+            <image mode="widthFix" src="{{ idAryMap[item.incprice_id] ? '../../../assets/images/icon/choose.png' : '../../../assets/images/icon/unchoose.png' }}" class="unchoose"></image>
+            <checkbox value="{{ item.incprice_id }}" class="choose-item-btn" hidden />
+          </label> 
+          <image mode="widthFix" src="{{ item.info.advertising_photo }}" class="goods-image"></image>
+          <view class="goods-info col-6">
+            <view class="title">{{ item.info.goods_name }}</view>
+            <view class="price">¥{{ item.price }}</view>
+          </view>
+          <text>X 1</text>
         </view>
-        <text>X 1</text>
       </view>
-    </view>
+    </checkbox-group>
   </view>
   <view class="footer-area flex tac bg-white">
-    <text class="col-7" bindtap="addOrder">已换购0件</text>
-    <view class="sure col-3" bindtap="addOrder">提交订单</view>
+    <text class="col-7">已换购{{ chooseNum }}件</text>
+    <view class="sure col-3" bindtap="inclistSure">完成</view>
   </view>
 </view>

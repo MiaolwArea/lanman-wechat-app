@@ -10,7 +10,7 @@
     <!-- 地址列表 -->
     <view class="address-list" wx:if="{{ hasAddress }}">
       <radio-group class="radio-group" bindchange="radioChange">
-        <view class="goods-item p30" wx:for="{{ address }}" wx:key="item.address_id">
+        <view class="goods-item p30" wx:for="{{ address }}" wx:key="{{ item.address_id }}" data-address_id="{{ item.address_id }}" bindtap="chooseAdress">
           <view class="receive-info mb-20">
             <view class="receive mb-20 fzr16 color-black flex">
               <text class="name">{{ item.consignee }}</text>
@@ -20,12 +20,13 @@
               <text class="address-info">{{ item.province + item.city + item.district + item.address }}</text>
             </view>    
           </view>
-          <view class="address-operate flex">
+          <view class="address-operate flex" >
             <view class="set-default flex">
-              <radio value="{{ item.address_id }}" id="radio{{ index }}" checked="{{ item.is_default }}" color="#b20000" />
-              <label class="{{ item.is_default ? 'color-red' : '' }}" for="radio{{ index }}">{{ item.is_default ? '默认地址' : '设为默认地址' }}</label>
+              <radio value="{{ item.address_id }}" id="radio{{ index }}" checked="{{ item.is_default }}" color="#b20000" wx:if="{{ !choose }}" />
+              <label class="{{ item.is_default ? 'color-red' : '' }}" for="radio{{ index }}" wx:if="{{ !choose }}">{{ item.is_default ? '默认地址' : '设为默认地址' }}</label>
+              <label class="{{ item.is_default ? 'color-red' : '' }}" for="radio{{ index }}" wx:if="{{ choose }}">{{ item.is_default ? '默认地址' : '' }}</label>
             </view>
-            <view class="control flex ">
+            <view class="control flex" wx:if="{{ !choose }}">
               <navigator class="flex" 
               hover-class="none"
               url="../address/edit/edit?address_id={{ item.address_id }}">
@@ -41,7 +42,7 @@
         </view>
       </radio-group>
     </view>
-    <view class="add-address flex">
+    <view class="add-address flex" wx:if="{{ !choose }}">
       <view class="add-btn tac p30" bindtap="importAddress">导入微信地址</view>
       <navigator class="add-btn tac p30" 
               hover-class="none"

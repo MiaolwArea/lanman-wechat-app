@@ -79,13 +79,13 @@ let pageConfig = {
         wx.showToast({
           title: '成功',
           icon: 'success',
-          duration: 1000
+          duration: 500
         });
         setTimeout(function(){
           wx.redirectTo({
             url: '../list'
           })
-        }, 1000)
+        }, 500)
       }
     }, 'POST')
   }

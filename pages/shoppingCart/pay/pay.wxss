@@ -36,6 +36,16 @@ page{ background-color: #f4f4f4; }
   padding: 5rpx 10rpx;
   border-radius: 3px;
 }
+.order-info .code{
+  border: 1px solid #ccc;
+  padding: 0 10rpx;
+}
+.order-info .remark{
+  width: calc(100% - 40rpx);
+  margin-top: 20rpx;
+  border: 1px solid #ccc;
+  padding: 20rpx;
+}
 
 .footer-area{
   position: fixed;

@@ -10,28 +10,32 @@ let pageConfig = {
     adressInfo: '',   // 收货地址
     goodsList: [],    // 商品列表
     goodsPrice: 0,    // 商品金额
+    inclistNum: '',   // 换购商品数量
     discountPrice: 0, // 抵用金额
+    freight: 0,       // 运费
     finalPrice: 0,    // 实付金额
     textAreaInfo: '', // 文本域内容
-    inclist: '',      // 换购商品列表
-    isExchange: false,// 是否开启换购
   }, 
   // 数据缓存区
   store: {
     url: {
-      // 购物车详情
-      shoppingCartUrl: app.globalData.isDebug ? 'shoppingCart' : '/wechatapp/cart/index',
+      // 下单详情
+      shoppingCartUrl: app.globalData.isDebug ? 'shoppingCart' : '/wechatapp/order/confirm',
       // 添加默认地址
       addAddressUrl: app.globalData.isDebug ? 'addAddress' : '/wechatapp/address/add',
       // 下单接口
       addOrderUrl: app.globalData.isDebug ? 'addOrder' : '/wechatapp/order/add',
-      // 换购商品列表
-      inclistUrl: app.globalData.isDebug ? 'inclist' : '/wechatapp/goods/inclist',
+      // 获取更改金额
+      changeMoneyUrl: app.globalData.isDebug ? 'addOrder' : '/wechatapp/order/add',
     },
-    // 默认地址ID
-    addressId: null
+    // 下单地址ID
+    addressId: '',
+    // 优惠码
+    code: null,
+    // 换购ID
+    incpriceId: null
   },
-  onLoad(){
+  onLoad(opt){
     let _this = this;
 
     // 地址参数处理
@@ -40,15 +44,43 @@ let pageConfig = {
     });
   },
   onShow: function () {
-    let _this = this;
-return;
-    wx.showLoading(); 
+    let _this = this
+      , incpriceIdsAry = []
+      , incpriceIds = wx.getStorageSync('incpriceIds') || {};
+
+    wx.showLoading();
+    Object.keys(incpriceIds).forEach((attr, index) => {
+      incpriceIdsAry.push(attr);
+    });
+    _this.store['incpriceId'] = incpriceIdsAry.join(',');
+    _this._getShoppingCartUrl({
+      incprice_id: _this.store['incpriceId'],
+      address_id: _this.store['addressId']
+    });
+    // 地址授权询问
+    wx.getSetting({
+      success(res) {
+        if (!res.authSetting['scope.address']) {
+          wx.authorize({
+            scope: 'scope.address',
+            success(res) {
+              wx.chooseAddress();
+            }
+          })
+        }
+      }
+    })
+  },
+  _getShoppingCartUrl(data){
+    let _this = this
+      , dataInfo = data || {};
+
     // 获取购物车详情
-    app.ApiConfig.ajax(_this.store['url'].shoppingCartUrl, function (res) {
+    app.ApiConfig.ajax(_this.store['url'].shoppingCartUrl, dataInfo, function (res) {
       if (res.success) {
         let dataInfo = res.data;
-        
-        if (!res.data.address) {
+
+        if (!dataInfo.address) {
           // 获取地址信息做为默认收货地址
           // 先请求后台判断是否有默认地址，没有则Next
           wx.chooseAddress({
@@ -68,7 +100,7 @@ return;
                   address: res.detailInfo,
                   mobile: res.telNumber
                 }, function (res) {
-                  if (res.success){
+                  if (res.success) {
                     _this.setData({
                       addressId: res.data.address_id
                     })
@@ -86,38 +118,46 @@ return;
           });
         }
         _this.setData({
-          'goodsList': dataInfo.goods_list
+          'goodsList': dataInfo.goods_list,
+          'freight': parseFloat(dataInfo.freight) || 0,
+          'discountPrice': parseFloat(dataInfo.discount) || 0
         });
         _this._countPrice();
         wx.hideLoading();
       }
-    })
-    // 地址授权询问
-    wx.getSetting({
-      success(res) {
-        if (!res.authSetting['scope.address']) {
-          wx.authorize({
-            scope: 'scope.address',
-            success(res) {
-              wx.chooseAddress();
-            }
-          })
-        }
-      }
-    })
-    // 获取换购商品
-    app.ApiConfig.ajax(_this.store['url'].inclistUrl, function (res) {
-      if(res.success){
-        _this.setData({
-          "inclist": res.data
-        });
-      }
+    }, 'POST');
+  },
+  // 计算金额
+  _countPrice() {
+    let _this = this
+      , goodsList = _this.data.goodsList
+      , goodsPrice = 0
+      , idAry = wx.getStorageSync('incpriceInfo');
+    
+    for (let i = 0; i < goodsList.length; i++) {
+      goodsPrice += parseInt(goodsList[i].goods_num) * parseFloat(goodsList[i].shop_price)
+    }
+    goodsPrice = goodsPrice + (idAry['price'] || 0);
+    _this.setData({
+      goodsPrice: goodsPrice,
+      inclistNum: (idAry['num'] || ''),
+      finalPrice: goodsPrice - _this.data.freight - _this.data.discountPrice
     })
   },
   bindTextAreaBlur(e) {
     this.setData({
       textAreaInfo: e.detail.value
     })
+  },
+  // 输入优惠码，改变抵用金额
+  getCode(e){
+    let _this = this
+      , code = e.detail.value;
+
+    _this.store['code'] = code;
+    _this._getShoppingCartUrl({
+      code: code
+    });
   },
   payWechat(e) {
     let _this = this;
@@ -128,11 +168,10 @@ return;
       success: function (res) {
         if (res.code) {
           app.ApiConfig.ajax(_this.store['url'].addOrderUrl, {
-            goods_info: _this.data.goodsList,
             address_id: _this.data.addressId,
             memo: _this.data.textAreaInfo,
-            incprice_id: '',
-            code: ''
+            incprice_id: _this.store['incpriceId'],
+            code: _this.store['code']
           }, function(res){
             wx.hideLoading();
             wx.requestPayment({

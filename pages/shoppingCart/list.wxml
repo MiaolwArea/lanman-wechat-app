@@ -27,7 +27,7 @@
          <view class="goods-exchange flex">
           <view class="exchange-tab">
             <text class="color-red tab">加价购</text>
-            <text class="title otw">加价购</text>
+            <text class="title otw">{{ inclistText }}</text>
           </view>
           <navigator class="exchange-btn"
           hover-class="none"
@@ -40,9 +40,9 @@
           data-index="{{index}}" 
           wx:for="{{ shoppingCart.goods_list }}" wx:key="{{ item.goods_id }}">
             <view class="content flex">
-              <label class="checkbox col-1" data-bn_goods_id="{{ item.bn_goods_id }}" bindtap="changeSelected">  
-                <image mode="widthFix" src="{{ idAryMap[item.bn_goods_id] ? '../../assets/images/icon/choose.png' : '../../assets/images/icon/unchoose.png' }}" class="unchoose" />
-                <checkbox value="{{ item.bn_goods_id }}" class="choose-item-btn" checked="{{ idAryMap[item.bn_goods_id] }}" hidden />
+              <label class="checkbox col-1" data-selected="{{ idAryMap.isSelected[item.cart_id] }}" data-cart_id="{{ item.cart_id }}" bindtap="changeSelected">  
+                <image mode="widthFix" src="{{ idAryMap.isSelected[item.cart_id] ? '../../assets/images/icon/choose.png' : '../../assets/images/icon/unchoose.png' }}" class="unchoose" />
+                <checkbox value="{{ item.cart_id }}" class="choose-item-btn" checked="{{ idAryMap.isSelected[item.cart_id] }}" hidden />
               </label> 
               <navigator hover-class="none"
             url="../goods/detail/detail?goods_id={{ item.goods_id }}" class="flex col-9">
@@ -55,16 +55,16 @@
                       <view class="num flex">
                           <view>数量：</view>
                           <view class="box" 
-                          data-index="{{ index }}" 
-                          data-id="{{ item.bn_goods_id }}" 
+                          data-index="{{ index }}"
+                          data-id="{{ item.cart_id }}" 
                           catchtap="minusNum">-</view>
                           <input class="box num" 
                           data-index="{{ index }}" 
-                          data-id="{{ item.bn_goods_id }}" 
+                          data-id="{{ item.cart_id }}" 
                           catchtap catchblur="inputNum" type="number" value="{{ item.goods_num }}" />
                           <view class="box" 
                           data-index="{{ index }}" 
-                          data-id="{{ item.bn_goods_id }}" 
+                          data-id="{{ item.cart_id }}" 
                           catchtap="plusNum">+</view>   
                       </view>
                     </view>
@@ -72,7 +72,7 @@
                 </view>
               </navigator>
             </view>
-            <view class="del tac" data-id="{{ item.bn_goods_id }}" 
+            <view class="del tac" data-id="{{ item.cart_id }}" 
             catchtap="delGoods" data-index="{{index}}">删除</view>
           </view>
         </view>
@@ -82,7 +82,7 @@
           <view class="flex-l flex">
             <label class="checkbox" bindtap="changeAllSelected">  
               <image mode="widthFix" src="{{ idAryMap['all'] ? '../../assets/images/icon/choose.png' : '../../assets/images/icon/unchoose.png' }}" class="unchoose" />
-              <checkbox value="{{ item.bn_goods_id }}" class="choose-item-btn" hidden />
+              <checkbox value="{{ item.cart_id }}" class="choose-item-btn" hidden />
             </label>  
             <text>全选</text>  
           </view> 

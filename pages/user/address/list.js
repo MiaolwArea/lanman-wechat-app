@@ -7,7 +7,8 @@ let pageConfig = {
   data: {
     userInfo: {},
     address: [],
-    hasAddress: true
+    hasAddress: true,
+    choose: false
   },
   // 数据缓存区
   store: {
@@ -19,17 +20,29 @@ let pageConfig = {
       // 添加地址
       addAddressUrl: app.globalData.isDebug ? 'addAddress' : '/wechatapp/address/add',
       // 设置默认地址
-      setDefaultAddressUrl: app.globalData.isDebug ? 'setAddress' : '/wechatapp/address/default'
+      setDefaultAddressUrl: app.globalData.isDebug ? 'setAddress' : '/wechatapp/address/default',
+      // 更改下单地址
+      changeMoneyUrl: app.globalData.isDebug ? 'addOrder' : '/wechatapp/order/confirm',
     }
   },
-  onLoad: function () {
+  onLoad(opt){
     let _this = this;
-    
+
     if (app.globalData.userInfo) {
       _this.setData({
         userInfo: app.globalData.userInfo
       })
     }
+
+    if(opt.choose){
+      this.setData({
+        choose: true
+      })
+    }
+  },
+  onShow: function () {
+    let _this = this;
+    
     // 地址参数处理
     appendParamForUrl(_this.store['url'], {
       sso: app.globalData.sso
@@ -71,6 +84,19 @@ let pageConfig = {
         })
       }
     }, 'POST');
+  },
+  chooseAdress(e){
+    let _this = this
+      , pages = getCurrentPages()
+      , prevPage = pages[pages.length - 2]
+      , address_id = e.currentTarget.dataset.address_id;
+    
+    if(_this.data.choose){
+      prevPage.store['addressId'] = address_id;
+      wx.navigateBack({
+        delta: 1
+      })
+    }
   },
   // 删除地址
   delAddress(e) {
