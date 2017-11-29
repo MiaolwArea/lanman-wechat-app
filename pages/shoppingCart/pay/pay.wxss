@@ -19,9 +19,6 @@ page{ background-color: #f4f4f4; }
   width: 150rpx;
   margin-right: 30rpx;
 }
-.footer .goods-count{
-  padding: 20rpx 0;
-}
 .footer .footer-ctl{
   margin-top: 20rpx;
 }

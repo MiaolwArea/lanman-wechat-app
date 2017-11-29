@@ -31,13 +31,16 @@ let pageConfig = {
     // 下单地址ID
     addressId: '',
     // 优惠码
-    code: null,
+    code: '',
     // 换购ID
-    incpriceId: null
+    incpriceId: '',
+    // 下单购物车ID
+    cartId: null,
   },
   onLoad(opt){
     let _this = this;
-
+    
+    _this.store['cartId'] = opt.cart_id || '';
     // 地址参数处理
     appendParamForUrl(_this.store['url'], {
       sso: app.globalData.sso
@@ -49,12 +52,16 @@ let pageConfig = {
       , incpriceIds = wx.getStorageSync('incpriceIds') || {};
 
     wx.showLoading();
-    Object.keys(incpriceIds).forEach((attr, index) => {
-      incpriceIdsAry.push(attr);
-    });
-    _this.store['incpriceId'] = incpriceIdsAry.join(',');
+    if (_this.store['cartId'] == ''){
+      Object.keys(incpriceIds).forEach((attr, index) => {
+        incpriceIdsAry.push(attr);
+      });
+      _this.store['incpriceId'] = incpriceIdsAry.join(',');
+    }
+    
     _this._getShoppingCartUrl({
-      incprice_id: _this.store['incpriceId'],
+      cart_id: _this.store['cartId'],
+      incprice_id: (_this.store['cartId'] ? '' : _this.store['incpriceId']),
       address_id: _this.store['addressId']
     });
     // 地址授权询问

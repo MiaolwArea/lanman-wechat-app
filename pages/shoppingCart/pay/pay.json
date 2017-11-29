@@ -1,6 +1,5 @@
 {
   "navigationBarTitleText": "下单",
   "navigationBarBackgroundColor": "#fff",
-  "navigationBarTextStyle": "black",
-  "backgroundColor": "#333"
+  "navigationBarTextStyle": "black"
 }

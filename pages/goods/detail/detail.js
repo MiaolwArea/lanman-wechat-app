@@ -19,7 +19,9 @@ let pageConfig = {
     isTabOn1: "on",
     isTabOn2: "",
     cartNum: 0,
-    commentList: []
+    commentList: [],
+    goodsType: 1,
+    goodsColors: {},
     // lazyLoad: {
     //   index: 3
     // }
@@ -34,7 +36,7 @@ let pageConfig = {
       // 评论列表
       commentlist: app.globalData.isDebug ? 'commentlist' : '/wechatapp/goods/commentlist',
     },
-    bnGoodsID: 0, // 选中色号商品ID
+    bnGoodsID: [], // 选中色号商品ID
     pageNum: 1,
     goodsId: null
   },
@@ -51,26 +53,44 @@ let pageConfig = {
       let data = res.data;
 
       if (res.success) {
-        _this.setData({
-          goodsDetial: data,
-          cartNum: data.cart_goods_num
-        });
         // 购物车入口，设置色号坐标
-        if (opt.bn_goods_id) {
-          let bgi = opt.bn_goods_id
-            , goodsColors = data.goods_colors;
+        let bgi = opt.bn_goods_id || ''
+          , goodsColors = data.goods_colors
+          , goodsColorsAry = {}
+          , bgiAry = [];
 
-          for (let i = 0; i < goodsColors.length; i++) {
+        for (let i = 0; i < goodsColors.length; i++) {
+          if (data.goods_type != 2) {
             if (goodsColors[i].bn_goods_id == bgi) {
               _this.setData({
                 currentTab: i
               })
-              break;
+            }
+          } else {
+            if (bgi){
+              bgiAry = bgi.split(',');
+              goodsColorsAry[goodsColors[i].bn_goods_id] = {
+                isSelected: (bgiAry.indexOf(goodsColors[i].bn_goods_id) > -1) 
+              };
+            }else{
+              goodsColorsAry[goodsColors[i].bn_goods_id] = {
+                isSelected: (i == 0)
+              };
             }
           }
-        } else {
-          _this.store['bnGoodsID'] = data.goods_colors[0].bn_goods_id;
         }
+        if (bgi) {
+          _this.store['bnGoodsID'].push(bgi);
+        } else {
+          _this.store['bnGoodsID'].push(data.goods_colors[0].bn_goods_id);
+        }
+        // 设置初始值
+        _this.setData({
+          goodsDetial: data,
+          cartNum: (data.cart_goods_num < 100 ? data.cart_goods_num : 99),
+          goodsType: data.goods_type,
+          goodsColors: goodsColorsAry
+        });
       }
     });
   },
@@ -97,10 +117,28 @@ let pageConfig = {
   // 自定义事件
   // 切换轮播
   swichSwiper(e) {
-    this.setData({
+    let _this = this
+      , goodsColorsAry = _this.data.goodsColors
+      , bngoodsid = e.target.dataset.bngoodsid
+      , pos = _this.store['bnGoodsID'].indexOf(bngoodsid);
+
+    _this.setData({
       currentTab: e.currentTarget.dataset.index
     });
-    this.store['bnGoodsID'] = e.target.dataset.bngoosid;
+    // 
+    if (_this.data.goodsType == 2){
+      goodsColorsAry[bngoodsid].isSelected = !goodsColorsAry[bngoodsid].isSelected;
+      if (goodsColorsAry[bngoodsid].isSelected){
+        _this.store['bnGoodsID'].push(bngoodsid);
+      }else{
+        _this.store['bnGoodsID'].splice(pos, 1);
+      }
+      _this.setData({
+        goodsColors: goodsColorsAry
+      });
+    }else{
+      _this.store['bnGoodsID'][0] = bngoodsid;
+    }
   },
   changeIndex(e) {
     this.setData({
@@ -123,10 +161,11 @@ let pageConfig = {
     }
   },
   getCommentList() {
-    let _this = this, count = 15;
+    let _this = this
+      , count = 15;
 
     // 用户评价
-    app.ApiConfig.ajax(_this.store['url'].commentlist + '&page=' + _this.store['pageNum'] + '&count=' + count + '&goods_id=' + _this.store['goodsID'], function (res) {
+    app.ApiConfig.ajax(_this.store['url'].commentlist + '&page=' + _this.store['pageNum'] + '&count=' + count + '&goods_id=' + _this.store['goodsId'], function (res) {
       let data = res.data;
 
       if (res.success) {
@@ -147,7 +186,9 @@ let pageConfig = {
       , isBuyNow = e.target.dataset.action || null;
 
     app.ApiConfig.ajax(_this.store['url'].addCartUrl, {
-      bn_goods_id: _this.store['bnGoodsID']
+      bn_goods_id: _this.store['bnGoodsID'].join(','),
+      goods_id: _this.store['goodsId'],
+      goods_type: _this.data.goodsType
     }, function (res) {
       if (res.success) {
         cartNum++;
@@ -162,8 +203,8 @@ let pageConfig = {
         }
         // 立即购买
         if (isBuyNow != null) {
-          wx.switchTab({
-            url: '../shoppingCart/pay/pay'
+          wx.redirectTo({
+            url: '../../shoppingCart/pay/pay?cart_id=' + res.data.cart_id
           })
         }
       }

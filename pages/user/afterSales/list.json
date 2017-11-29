@@ -1,6 +1,5 @@
 {
   "navigationBarTitleText": "售后列表",
   "navigationBarBackgroundColor": "#fff",
-  "navigationBarTextStyle": "black",
-  "backgroundColor": "#333"
+  "navigationBarTextStyle": "black"
 }

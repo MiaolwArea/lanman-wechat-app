@@ -29,15 +29,20 @@ let pageConfig = {
     startX: 0,        // 手势X轴
     startY: 0,        // 手势Y轴
     goodsListNum: 0,
+    chooseLength: 0,
+  },
+  onLoad(){
+    let _this = this;
+
+    // 地址参数处理
+    appendParamForUrl(_this.store['url'], {
+      sso: app.globalData.sso
+    });
   },
   onShow(){
     let _this = this
       , isTouchMoveAry = [];
     
-    // 地址参数处理
-    appendParamForUrl(_this.store['url'], {
-      sso: app.globalData.sso
-    });
     // 购物车信息
     app.ApiConfig.ajax(_this.store['url'].shoppingCartUrl, function (res) {
       if (res.success) {
@@ -87,13 +92,17 @@ let pageConfig = {
       inclistText: (idAryMap['incpriceInfo']['num'] ? '已换购' + idAryMap['incpriceInfo']['num'] + '件' : _this.data.shoppingCart.inc_title)
     }); 
   },
-  // 单选/反选
+  // 单选
   changeSelected(e){
     let _this = this
       , idAryMap = _this.data.idAryMap
       , cartId = e.currentTarget.dataset['cart_id']
       , isSelected = e.currentTarget.dataset['selected'];
     
+    idAryMap['all'] = (_this.store['chooseLength'] == _this.store['goodsListNum'])
+    _this.setData({
+      idAryMap: idAryMap
+    });
     _this._postChangeSelected(cartId, !isSelected);
   },
   // 勾选提交后台
@@ -124,8 +133,12 @@ let pageConfig = {
   changeAllSelected(e){
     let _this = this
       , idAryMap = _this.data.idAryMap;
-
-    _this.data.idAryMap['all'] = !_this.data.idAryMap['all'];
+    
+    idAryMap['all'] = !idAryMap['all'];
+    _this.setData({
+      hasChoose: idAryMap['all'],
+      idAryMap: idAryMap
+    });
     _this._postChangeSelected(0, _this.data.idAryMap['all']);
   },
   // 数量加减, 修改
@@ -276,22 +289,16 @@ let pageConfig = {
       return;
     }
     wx.navigateTo({
-      url: './pay/pay?cart_id=12'
+      url: './pay/pay'
     })
   },
   // 下单按钮变化
   checkboxchange(e){
-    let _this = this
-      , idAryMap = _this.data.idAryMap;
-
-    if (e.detail.value.length == (_this.store['goodsListNum'] + 1)){
-      idAryMap['all'] = true;
-    }else{
-      idAryMap['all'] = false;
-    }
+    let _this = this;
+    
+    _this.store['chooseLength'] = e.detail.value.length;
     _this.setData({
-      hasChoose: e.detail.value.length != 0,
-      idAryMap: idAryMap
+      hasChoose: (e.detail.value.length > 0)
     })
   }
 }

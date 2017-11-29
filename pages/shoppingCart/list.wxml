@@ -49,6 +49,7 @@
                 <image mode="widthFix" src="{{ item.outside_view }}" class="goods-image" />
                 <view class="goods-info col-7">
                   <view class="goods-title">{{ item.goods_name }}</view>
+                  <view class="goods-color" wx:if="{{ item.goods_type != 2 }}">{{ item.color_name }}</view>
                   <view class="goods-footer flex">
                     <view class="pirce fw">¥{{ item.shop_price }}</view>
                     <view class="order-goods-num flex">
@@ -77,7 +78,7 @@
           </view>
         </view>
       </view>
-      <view class="choose-area flex">
+      <view class="choose-area flex bg-white">
         <view class="choose-area-ctl bg-white p30 flex col-7">
           <view class="flex-l flex">
             <label class="checkbox" bindtap="changeAllSelected">  

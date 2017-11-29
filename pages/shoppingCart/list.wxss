@@ -49,9 +49,9 @@ page{ background-color: #f4f4f4; color: #1a1a1a; }
 .goods-list .goods-info{
   width: 77%;
 }
-.goods-list .goods-info .goods-title{
+/* .goods-list .goods-info .goods-title{
   min-height: 80rpx;
-}
+} */
 .order-goods-num .box{
   width: 50rpx;
   height: 50rpx;
@@ -81,6 +81,6 @@ page{ background-color: #f4f4f4; color: #1a1a1a; }
 }
 .choose-area>.flex-r{
   line-height: 110rpx;
-  background-color: #666;
+  background-color: #b30000;
   color: #fff;
 }

@@ -20,11 +20,12 @@
         <image mode="widthFix" src="{{ item.outside_view }}" class="order-image"></image>
         <view class="goods-info tal">
           <view class="title mb-20">{{ item.goods_name }}</view>
+          <view class="goods-color" wx:if="{{ item.goods_type != 2 }}">{{ item.color_name }}</view>
           <view class="price">¥{{ item.shop_price }}</view>
         </view>
       </navigator>
       <view class="footer">
-        <view class="goods-count tar fzr12">
+        <view class="goods-count tar mt-20 fzr12">
           <text class="num">共{{ item.goods_num }}件商品</text>
           <text class="price">合计: ¥{{ item.goods_num * item.shop_price }}</text>
         </view>
@@ -34,7 +35,7 @@
   <view class="order-info bg-white p30 mt-20">
     <view class="ptb20 border-bottom-line flex">
       <text>商品金额</text>
-      <text>¥{{ goodsPrice }} (包含换购商品{{ inclistNum }}件)</text>
+      <text>¥{{ goodsPrice }} {{ inclistNum ? '(包含换购商品' + inclistNum + '件)' : '' }}</text>
     </view>
     <view class="ptb20 border-bottom-line flex">
       <text>优惠码</text>
@@ -57,7 +58,7 @@
     </view> -->
   </view>
   <view class="footer-area flex tac bg-white">
-    <text class="col-7">合计金额：¥{{ finalPrice }}</text>
+    <text class="col-7">合计金额：<text class="color-red">¥{{ finalPrice }}</text></text>
     <view class="sure col-3" bindtap="payWechat">确定</view>
   </view>
 </view>

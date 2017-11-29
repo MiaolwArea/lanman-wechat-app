@@ -1,5 +1,5 @@
 /** goodsDetial.wxss **/
-.goods-detial{ background-color: #000; color: #fff; }
+.goods-detial{ background-color: #f4f4f4; color: #1a1a1a; }
 swiper {
   height: 750rpx;
   width: 100%;
@@ -11,8 +11,8 @@ swiper {
 }
 .type-info-list .list-item{
   padding: 20rpx;
-  border: 1px solid #ccc;
-  color: #ccc;
+  border: 1px solid #000;
+  color: #000;
   margin: auto 20rpx 20rpx auto;
   border-radius: 5rpx;
 }
@@ -23,17 +23,16 @@ swiper {
   color: #ccc;
 }
 .tab-nav .tab.on{
-  border-bottom: 1px solid #fff;
-  color: #fff;
+  border-bottom: 1px solid #ccc;
+  color: #000;
 }
 
 .introduce.on, .comment.on{ display: block; }
 .type-info-list .list-item.on{
   color: #fff;
   background-color: #ccc;
+  border: 1px solid #ccc;
 }
-.list-item{ border-bottom: 1px solid #4a4a4a; }
-.user-info{ margin-bottom: 20rpx; }
 .user-img{ width: 70rpx;border-radius: 50%;margin-right: 20rpx; }
 .name-and-star .name{ margin-bottom: 10rpx; }
 
@@ -44,6 +43,7 @@ swiper {
   right: 0;
   height: 100rpx;
   background-color: #4c4c4c;
+  border-top: 1px solid #f4f4f4; 
 }
 .shopping-cart{
   width: 100rpx;
@@ -65,9 +65,9 @@ swiper {
   line-height: 3;
 }
 .footer .add-cart{
-  background-color: #ccc;
+  background-color: #f4f4f4;
 }
 .footer .join-order{
-  background-color: #000;
+  background-color: #b30000;
   color: #fff;
 }

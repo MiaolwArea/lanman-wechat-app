@@ -53,9 +53,6 @@ page{ background-color: #f4f4f4; color: #1a1a1a; }
 .footer .goods-count{
   padding: 20rpx 0;
 }
-.footer .footer-ctl{
-  margin-top: 20rpx;
-}
 .goods-count .num{
   margin-right: 20rpx;
 }

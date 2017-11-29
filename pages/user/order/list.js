@@ -37,15 +37,7 @@ let pageConfig = {
       sso: app.globalData.sso
     });
     // 获取初始化数据 
-    _this._getOrderList(_this.store['orderStatus'], function(res){
-      if(res.success){
-        if(res.data.length == 0){
-          _this.setData({
-            hasOrder: false
-          });
-        }
-      }
-    });
+    _this._getOrderList(_this.store['orderStatus']);
   },
   // 获取相应订单
   _getOrderList(orderStatus){
@@ -56,13 +48,20 @@ let pageConfig = {
       if (res.success) {
         let data = res.data;
 
-        for (let i = 0; i < data.length; i++) {
-          data[i].add_time = formatTime(data[i].add_time, 'yyyy.MM.dd');
-        };
+        wx.hideLoading();
+        if (data.length == 0) {
+          _this.setData({
+            hasOrder: false
+          });
+          return;
+        }else{
+          _this.setData({
+            hasOrder: true
+          });
+        }
         _this.setData({
           orderList: data
         })
-        wx.hideLoading();
       }
     });
   },

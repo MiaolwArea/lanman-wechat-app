@@ -1,6 +1,5 @@
 {
   "navigationBarTitleText": "地址编辑",
   "navigationBarBackgroundColor": "#000",
-  "navigationBarTextStyle": "white",
-  "backgroundColor": "#333"
+  "navigationBarTextStyle": "white"
 }

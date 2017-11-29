@@ -20,7 +20,8 @@
     "navigationBarBackgroundColor": "#000",
     "navigationBarTitleText": "LANMAN 烂熳口红",
     "navigationBarTextStyle":"white",
-    "onReachBottomDistance": 100
+    "onReachBottomDistance": 100,
+    "backgroundColor": "#f4f4f4"
   },
   "tabBar": {
     "color": "#808080",

@@ -89,12 +89,12 @@ image{
 }
 .red-dlot{
   position: absolute;
-  left: 60rpx;
+  left: 55rpx;
   top: 3rpx;
   width: 30rpx;
   height: 30rpx;
   border-radius: 50%;
-  background-color: red;
+  background-color: #b30000;
   font-size: 20rpx;
   line-height: 30rpx;
   display: block;
