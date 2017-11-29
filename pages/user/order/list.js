@@ -23,6 +23,9 @@ let pageConfig = {
 
     // order_status: 全部->0, 待付款->1, 待发货->5, 待收货->2, 已完成->3, 待评价->4
     _this.store['orderStatus'] = opt.order_status || 0;
+    _this.setData({
+      currentTab: _this.store['orderStatus']
+    })
     // 获取系统信息 
     wx.getSystemInfo({
       success: function (res) {

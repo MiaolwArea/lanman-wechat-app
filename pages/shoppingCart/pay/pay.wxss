@@ -9,7 +9,7 @@ page{ background-color: #f4f4f4; }
   margin-right: 30rpx;
 }
 .order-list{
-  margin-top: 110rpx;
+  padding-top: 110rpx;
 }
 .goods-link{
   padding: 20rpx 0;

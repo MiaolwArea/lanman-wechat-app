@@ -37,7 +37,7 @@ page{ background-color: #f4f4f4; color: #1a1a1a; }
 }
 
 .order-list{
-  margin-top: 110rpx;
+  padding-top: 110rpx;
 }
 .order-item .header, .order-item .goods-link, .footer .goods-count{
   border-bottom: 1px solid #f4f4f4;

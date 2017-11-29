@@ -1,5 +1,5 @@
 <!-- inclist.wxml -->
-<view class="inclist mt-banner">
+<view class="inclist pt-banner">
   <view class="inclist-wrap p30 mt-20 bg-white">
     <view class="inclist-header pb-20">
       <view class="title tal color-gray">选择商品</view>

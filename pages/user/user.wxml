@@ -3,7 +3,7 @@
   <view class="about-me bg-white flex p30 mb-20">
     <view class="member-info mlr30">
         <view class="nickName fzr18 mb-20">{{ userInfo.nickName }}</view>
-        <view class="show-info font-color">查看并编辑个人资料</view>
+        <!-- <view class="show-info font-color">查看并编辑个人资料</view> -->
     </view>
     <view class="member-photo">
         <image src="{{ userInfo.avatarUrl }}"></image>
@@ -19,19 +19,19 @@
       </view>
       <view class="order-icon-list flex">
         <view class="list-item tac">
-          <navigator hover-class="none" class="icon-link-area" url="../order/list?order_status=1">
+          <navigator hover-class="none" class="icon-link-area" url="./order/list?order_status=1">
             <image mode="widthFix" class="goods-pic" src="../../assets/images/icon/pay.png"></image>
             <view class="menu-name">待付款</view>
           </navigator>
         </view>
         <view class="list-item tac">
-          <navigator hover-class="none" class="icon-link-area" url="../order/list?order_status=5">
+          <navigator hover-class="none" class="icon-link-area" url="./order/list?order_status=5">
             <image mode="widthFix" class="goods-pic" src="../../assets/images/icon/send.png"></image>
             <view class="menu-name">待发货</view>
           </navigator>
         </view>
         <view class="list-item tac">
-          <navigator hover-class="none" class="icon-link-area" url="../order/list?order_status=2">
+          <navigator hover-class="none" class="icon-link-area" url="./order/list?order_status=2">
             <image mode="widthFix" class="goods-pic" src="../../assets/images/icon/receipt.png"></image>
             <view class="menu-name">待收货</view>
           </navigator>
@@ -45,13 +45,19 @@
       </view>
     </view>
   </view>
+  <view class="mb-20 bg-white plr30">
+    <navigator hover-class="none" url="./address/list" class="ptb20 bg-white border-bottom-line flex">
+      <view>我的地址</view>
+      <view class="info-r arrow pr"></view>
+    </navigator>
+  </view>
   <view class="you-like bg-white">
     <view class="title">猜你喜欢</view>
     <view class="goods-list p30">
       <view class="list-item inline-block col-5">
         <navigator hover-class="none" class="list-item-box"
         url="./detail/detail?goods_id={{ item.goods_id }}">
-          <image mode="widthFix" src="http://image.lanman.cn/2016/m.lanman.cn/images/new_goods/new_goods01.jpg"></image>
+          <image src="http://image.lanman.cn/2016/m.lanman.cn/images/new_goods/new_goods01.jpg"></image>
           <view class="title fw">产品名称</view>
           <view class="desc fzr12">lanmanlanmanlanmanlanmanlanman</view>
           <view class="footer flex">

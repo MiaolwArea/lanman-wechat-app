@@ -35,7 +35,7 @@ page{ font-size: 28rpx; }
 .p30{ padding: 30rpx; }
 .pb100{ padding-bottom: 100rpx; }
 .mt-20{ margin-top: 20rpx; }
-.mt-banner{ margin-bottom: 130rpx; }
+.pt-banner{ padding-bottom: 130rpx; }
 .mr-20{ margin-right: 20rpx; }
 .mb-20{ margin-bottom: 20rpx; }
 .mb-30{ margin-bottom: 30rpx; }
@@ -165,8 +165,10 @@ radio, checkbox{
 /* 选中按钮 */
 .checkbox .unchoose{  
    width: 30.624309rpx;
+   height: 30.624309rpx;
 } 
 .goods-image{
   width: 122.099448rpx;
+  height: 122.099448rpx;
   margin-right: 20rpx;
 }

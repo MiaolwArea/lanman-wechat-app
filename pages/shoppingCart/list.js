@@ -44,6 +44,7 @@ let pageConfig = {
       , isTouchMoveAry = [];
     
     // 购物车信息
+    wx.showLoading();
     app.ApiConfig.ajax(_this.store['url'].shoppingCartUrl, function (res) {
       if (res.success) {
         let goods_list = res.data.goods_list
@@ -65,6 +66,7 @@ let pageConfig = {
         });
         _this._checkedStatus(res.data.select_ids);
         _this._countPrice();
+        wx.hideLoading();
       }
     })
   },
@@ -160,7 +162,6 @@ let pageConfig = {
       , _this = this
       , num = ++_this.data.shoppingCart.goods_list[index].goods_num;
 
-    wx.showLoading();
     _this._updateNum(index, id, num);
   },
   inputNum(e) {
@@ -169,7 +170,6 @@ let pageConfig = {
       , _this = this
       , num = e.detail.value;
 
-    wx.showLoading();
     _this._updateNum(index, id, num);
   },
   // 更新到后台
@@ -177,6 +177,9 @@ let pageConfig = {
     let _this = this
       , shoppingCart = _this.data.shoppingCart;
 
+    wx.showLoading({
+      mask: true,
+    })
     app.ApiConfig.ajax(_this.store['url'].updateNumUrl, {
       cart_id: id,
       goods_num: num

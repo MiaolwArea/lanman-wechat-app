@@ -21,7 +21,7 @@ page{ background-color: #f4f4f4; color: #1a1a1a; }
 }
 
 .goods-list-warp{
-  margin-bottom: 110rpx;
+  padding-bottom: 110rpx;
 }
 .goods-list-warp .goods-exchange{
   padding: 30rpx 30rpx 20rpx 30rpx;

@@ -1,5 +1,5 @@
 <!-- shoppingCart.wxml -->
-<view class="shopping-cart mt-banner">
+<view class="shopping-cart pt-banner">
   <navigator class="address-choose bg-white mt-20 flex p30" url="../../user/address/list?choose=true">
     <view class="flex-l flex">
       <image mode="widthFix" src="../../../assets/images/icon/position.png" class="position-image"></image>
@@ -49,7 +49,7 @@
       <text>运费</text>
       <text>{{ freight || '免运费' }}</text>
     </view>
-    <view class="ptb20 border-bottom-line">
+    <view class="mt-20">
       <text>我要留言</text>
       <textarea class="remark" bindblur="bindTextAreaBlur"></textarea>
     </view>

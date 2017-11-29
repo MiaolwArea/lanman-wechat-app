@@ -1,7 +1,7 @@
 // order_detail.js
 // 获取应用实例
 var app = getApp()
-import { appendParamForUrl } from '../../../../utils/util'
+import { appendParamForUrl, formatTime } from '../../../../utils/util'
 
 let pageConfig = {
   data: {
@@ -27,8 +27,11 @@ let pageConfig = {
     // 获取初始化数据 
     app.ApiConfig.ajax(_this.store['url'].orderDetailUrl + '&order_id=' + _this.store['orderId'], function (res) {
       if (res.success) {
+        let data = res.data;
+
+        data.add_time = formatTime(data.add_time, 'yyyy-MM-dd hh:mm:ss');
         _this.setData({
-          orderDetail: res.data
+          orderDetail: data
         })
       }
     });
