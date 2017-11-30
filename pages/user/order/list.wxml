@@ -10,12 +10,12 @@
   <!-- 订单列表 -->
   <view class="order-list" wx:if="{{ hasOrder }}">
     <view class="order-item bg-white p30 mb-20" wx:for="{{ orderList }}" wx:key="{{ item.order_id }}">
-    <navigator hover-class="none" url="./detail/detail?order_id={{ item.order_id }}">
-        <view class="header flex pb-20">
-          <view class="title">LANMAN 烂熳</view>
-          <view class="status color-red">{{ item.order_status_cn }}</view>
-        </view>
-        <view class="goods-list">
+      <view class="header flex pb-20">
+        <view class="title">LANMAN 烂熳</view>
+        <view class="status color-red">{{ item.order_status_cn }}</view>
+      </view>
+      <view class="goods-list">
+        <navigator hover-class="none" url="./detail/detail?order_id={{ item.order_id }}">
           <view class="goods-link flex" wx:for="{{ item.goods }}" wx:for-index="idx" wx:for-item="goodsItem" wx:key="{{ goodsItem.goods_id }}">
             <image src="{{ goodsItem.outside_view }}" class="order-image col-3"></image>
             <view class="goods-info tal col-7">
@@ -23,23 +23,23 @@
               <view class="price fw color-red">¥{{ goodsItem.shop_price }}</view>
             </view>
           </view>
+        </navigator>
+      </view>
+      <view class="footer">
+        <view class="goods-count tar fzr12">
+          <text class="num">共{{ item.goods_total }}件商品</text>
+          <text class="price fw color-red fzr14">合计: ¥{{ item.total_money }}</text>
         </view>
-        <view class="footer">
-          <view class="goods-count tar fzr12">
-            <text class="num">共{{ item.goods_total }}件商品</text>
-            <text class="price fw color-red fzr14">合计: ¥{{ item.total_money }}</text>
-          </view>
-          <!-- 根据订单修改按钮功能 -->
-          <view class="footer-ctl flex">
-            <view hover-class="none" class="order-btn mt-20 ml-20" wx:if="{{ item.order_status == 10 }}" data-order_id="{{ item.order_id }}" bindtap="cancelOrder">取消订单</view>  
-            <navigator hover-class="none" url="../../shoppingCart/pay/pay?cart_id={{ item.cart_id }}" class="order-btn mt-20 ml-20" wx:if="{{ item.order_status == 10 }}">去付款</navigator> 
-            <navigator hover-class="none" url="" class="order-btn mt-20 ml-20" wx:if="{{ item.order_status == 40 }}">查看物流</navigator> 
-            <navigator class="order-btn mt-20 ml-20" 
-            wx:if="{{ (item.order_status == 50) && (item.real_order_status == 50) }}" 
-            hover-class="none" url="../afterSales/apply/apply?order_id={{ item.order_id }}">申请售后</navigator> 
-          </view>
+        <!-- 根据订单修改按钮功能 -->
+        <view class="footer-ctl flex">
+          <view hover-class="none" class="order-btn mt-20 ml-20" wx:if="{{ item.order_status == 10 }}" data-order_id="{{ item.order_id }}" bindtap="cancelOrder">取消订单</view>  
+          <navigator hover-class="none" url="../../shoppingCart/pay/pay?cart_id={{ item.cart_id }}" class="order-btn mt-20 ml-20" wx:if="{{ item.order_status == 10 }}">去付款</navigator> 
+          <navigator hover-class="none" url="" class="order-btn mt-20 ml-20" wx:if="{{ item.order_status == 40 }}">查看物流</navigator> 
+          <navigator class="order-btn mt-20 ml-20" 
+          wx:if="{{ (item.order_status == 50 && item.real_order_status == 50) || item.order_status == 20 }}" 
+          hover-class="none" url="../afterSales/apply/apply?order_id={{ item.order_id }}">申请售后</navigator> 
         </view>
-      </navigator>
+      </view>
     </view>
   </view>
   <!-- 无订单 -->

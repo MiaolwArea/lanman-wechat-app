@@ -1,5 +1,6 @@
 /** afterSales-apply.wxss **/
 @import '../list.wxss';
+.apply-page{ padding-bottom: 110rpx; }
 .choose-pic{
   width: 36rpx;
   height: 36rpx;
@@ -14,12 +15,22 @@
   left: 0;
   background-color: #b20000;
   width: 100%;
+  z-index: 99;
 }
 .btn-area .submit{
   color: #fff;
   background-color: #b20000;
   height: 100rpx;
   line-height: 100rpx;
+}
+.remark{
+  width: calc(100% - 40rpx);
+  margin-top: 20rpx;
+  border: 1px solid #ccc;
+  padding: 20rpx;
+}
+.apply-price{
+  padding: 0 10rpx;
 }
 /* 选择商品 */
 .checkbox .unchoose{  

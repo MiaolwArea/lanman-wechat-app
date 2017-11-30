@@ -25,36 +25,33 @@
         <checkbox-group bindchange="checkboxChange">
           <view class="choose-header flex color-gray pb-20 border-bottom-line">
             <view class="choose-title">选择商品</view>
-            <view class="choose-btn">全选</view>
+            <!-- <view class="choose-btn">全选</view> -->
           </view> 
           <view class="goods-list">
-            <view class="list-item border-bottom-line-i ptb30 flex" >
+            <view class="list-item border-bottom-line-i ptb30 flex" wx:for="{{ goodsList }}" wx:key="{{ item.goods_id }}">
               <view class="content flex">
                 <label class="checkbox col-1" data-goods_id="{{ item.goods_id }}" bindtap="changeSelected">  
-                  <image src="{{ idAryMap.indexOf(item.goods_id) > -1 ? '../../../../assets/images/icon/choose.png' : '../../../../assets/images/icon/unchoose.png' }}" class="unchoose" />
+                  <image src="{{ idAryMap[item.goods_id] ? '../../../../assets/images/icon/choose.png' : '../../../../assets/images/icon/unchoose.png' }}" class="unchoose" />
                   <checkbox value="{{ item.goods_id }}" class="choose-item-btn" checked="{{ idAryMap[item.goods_id] }}" hidden />
                 </label> 
                 <navigator hover-class="none"
               url="../goods/detail/detail?goods_id={{ item.goods_id }}" class="flex col-9">
                   <image mode="widthFix" src="http://image.lanman.cn/2017/06/16/9ad597d1ab9e4bb43eba3bb057af5fc2.jpg" class="goods-image" />
                   <view class="goods-info col-7">
-                    <view class="goods-title">LANMAN巧克力LANMAN巧克力LANMAN巧克力</view>
+                    <view class="goods-title mb-10">{{ item.goods_name }}</view>
                     <view class="goods-footer flex">
-                      <view class="pirce fw color-red">¥129</view>
+                      <view class="pirce fw color-red">¥{{ item.shop_price }}</view>
                       <view class="order-goods-num flex">
                         <view class="num flex">
                             <view>数量：</view>
                             <view class="box" 
                             data-index="{{ index }}" 
-                            data-id="{{ item.bn_goods_id }}" 
                             catchtap="minusNum">-</view>
                             <input class="box num" 
                             data-index="{{ index }}" 
-                            data-id="{{ item.bn_goods_id }}" 
                             catchtap catchblur="inputNum" type="number" value="{{ item.goods_num }}" />
                             <view class="box" 
                             data-index="{{ index }}" 
-                            data-id="{{ item.bn_goods_id }}" 
                             catchtap="plusNum">+</view>   
                         </view>
                       </view>
@@ -77,8 +74,22 @@
         </view>
       </picker>
     </view>
-    <view class="btn-area">
-      <view class="submit tac fzr16" formType="submit">保存</view>
+    <view class="mt-20 bg-white plr30">
+      <view class="after-sales-apply-i ptb20 border-bottom-line color-gray flex">
+        <text>最多退款：</text>
+        <text>{{ limitPrice }}</text>
+      </view>
+      <view class="after-sales-apply-i ptb20 border-bottom-line color-gray flex">
+        <text>退款金额：</text>
+        <input class="apply-price tar" placeholder="不要超过最多退款" bindblur="checkInput"></input>
+      </view>
+      <view class="after-sales-apply-i ptb20 border-bottom-line color-gray">
+        <text>具体原因</text>
+        <textarea class="remark" bindconfirm="confirmRemark"></textarea>
+      </view>
+    </view>
+    <view class="btn-area" bindtap="sure">
+      <view class="submit tac fzr16">保存</view>
     </view>
   </view>
   <!-- 提交申请成功 -->

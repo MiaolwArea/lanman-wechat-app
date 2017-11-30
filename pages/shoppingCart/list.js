@@ -49,8 +49,7 @@ let pageConfig = {
     });
     app.ApiConfig.ajax(_this.store['url'].shoppingCartUrl, function (res) {
       if (res.success) {
-        let goods_list = res.data.goods_list
-          , idAry = {};
+        let goods_list = res.data.goods_list;
 
         wx.hideLoading();
         _this.store['goodsListNum'] = goods_list.length;
@@ -169,7 +168,6 @@ let pageConfig = {
     if (num < 1) {
       num = 1;
     }
-    wx.showLoading();
     _this._updateNum(index, id, num);
   },
   plusNum(e) {

@@ -21,11 +21,7 @@ let pageConfig = {
   onLoad: function (opt) {
     let _this = this;
 
-    // order_status: 全部->0, 待付款->1, 待发货->5, 待收货->2, 已完成->3, 待评价->4
     _this.store['orderStatus'] = opt.order_status || 0;
-    _this.setData({
-      currentTab: _this.store['orderStatus']
-    })
     // 获取系统信息 
     wx.getSystemInfo({
       success: function (res) {
@@ -43,6 +39,11 @@ let pageConfig = {
   onShow(){
     let _this = this;
 
+    // order_status: 全部->0, 待付款->1, 待发货->5, 待收货->2, 已完成->3, 待评价->4
+    _this.data.currentTab == 0 ? null : _this.store['orderStatus'] = _this.data.currentTab;
+    _this.setData({
+      currentTab: _this.store['orderStatus']
+    })
     // 获取初始化数据 
     _this._getOrderList(_this.store['orderStatus']);
   },
