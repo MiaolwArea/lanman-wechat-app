@@ -48,10 +48,10 @@
             url="../goods/detail/detail?goods_id={{ item.goods_id }}" class="flex col-9">
                 <image src="{{ item.outside_view }}" class="goods-image" />
                 <view class="goods-info col-7">
-                  <view class="goods-title">{{ item.goods_name }}</view>
-                  <view class="goods-color" wx:if="{{ item.goods_type != 2 }}">{{ item.color_name }}</view>
+                  <view class="goods-title {{ item.goods_type != 2 ? '' : 'mb-10' }}">{{ item.goods_name }}</view>
+                  <view class="goods-color mb-10" wx:if="{{ item.goods_type != 2 }}">{{ item.color_name }}</view>
                   <view class="goods-footer flex">
-                    <view class="pirce fw">¥{{ item.shop_price }}</view>
+                    <view class="pirce fw color-red">¥{{ item.shop_price }}</view>
                     <view class="order-goods-num flex">
                       <view class="num flex">
                           <view>数量：</view>

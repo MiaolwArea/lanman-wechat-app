@@ -11,7 +11,7 @@
             <image mode="widthFix" src="{{ idAryMap[item.incprice_id] ? '../../../assets/images/icon/choose.png' : '../../../assets/images/icon/unchoose.png' }}" class="unchoose"></image>
             <checkbox value="{{ item.incprice_id }}" class="choose-item-btn" hidden />
           </label> 
-          <image mode="widthFix" src="{{ item.info.advertising_photo }}" class="goods-image"></image>
+          <image src="{{ item.info.advertising_photo }}" class="goods-image"></image>
           <view class="goods-info col-6">
             <view class="title">{{ item.info.goods_name }}</view>
             <view class="price">¥{{ item.price }}</view>

@@ -5,13 +5,14 @@ import { appendParamForUrl } from '../../utils/util'
 
 let pageConfig = {
   data: {
-    userInfo: {}
+    userInfo: {},
+    recommend: null,
   },
   // 数据缓存区
   store: {
     url: {
       // 推荐列表
-      hotGoodsUrl: app.globalData.isDebug ? 'hotGoods' : '/wechatapp/address/list',
+      indexUrl: app.globalData.isDebug ? 'index' : '/wechatapp/my/index',
     }
   },
   onLoad: function () {
@@ -26,9 +27,11 @@ let pageConfig = {
       sso: app.globalData.sso
     });
     // 获取初始化数据 
-    app.ApiConfig.ajax(_this.store['url'].hotGoodsUrl, function (res) {
+    app.ApiConfig.ajax(_this.store['url'].indexUrl, function (res) {
       if (res.success) {
-        
+        _this.setData({
+          recommend: res.data.recommend
+        });
       }
     });
   }

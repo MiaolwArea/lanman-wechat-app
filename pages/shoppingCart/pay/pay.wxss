@@ -1,9 +1,6 @@
 /** shoppingCart.wxss **/
 page{ background-color: #f4f4f4; }
 
-.address-text .name-phone{
-  padding-bottom: 10rpx;
-}
 .position-image{
   width: 30rpx;
   margin-right: 30rpx;

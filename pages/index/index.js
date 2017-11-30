@@ -60,6 +60,7 @@ let pageConfig = {
   onLoad: function () {
     let _this = this;
     
+    wx.showLoading();
     _this._getHomeInfos();
   },
   // 自定义事件

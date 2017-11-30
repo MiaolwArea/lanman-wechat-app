@@ -2,7 +2,7 @@
 .home .container{
   margin-top: 132.5rpx;
 }
-.home .cancel{padding: 25rpx;color: #2ab6f6;}
+.home .cancel{padding: 25rpx;}
 .header{
   min-height: 152px;
 }
@@ -21,7 +21,7 @@ swiper{
 }
 .search-b{
   border-radius: 10rpx;
-  background-color: #e6e6e6;
+  background-color: rgba(230, 230, 230, .8);
   padding: 10rpx 50rpx;
 }
 .search{
@@ -62,17 +62,25 @@ swiper{
 .series>.title{
   margin: 30rpx;
   padding-bottom: 30rpx;
-  border-bottom: 1px solid #b9b9b9;
+  border-bottom: 1px solid #ccc;
 }
 .series-list .goods-pic{
-  width: 360rpx;
+  width: 300rpx;
   margin-right: 30rpx;
-  height: 240rpx;
   background-color: #000;
-}
-.series-list .pirce{
-  color: #ff0000;
 }
 .series-list .introduction{
   margin: 20rpx auto;
+}
+.search-result .goods-pic{
+  width: 250rpx;
+  height: 250rpx;
+}
+.search-result .introduction{
+  overflow: hidden;
+  height: 100rpx;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
 }

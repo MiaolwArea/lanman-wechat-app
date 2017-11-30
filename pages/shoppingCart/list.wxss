@@ -20,7 +20,7 @@ page{ background-color: #f4f4f4; color: #1a1a1a; }
   opacity: .4;
 }
 
-.goods-list-warp{
+.shoppingCart-warp{
   padding-bottom: 110rpx;
 }
 .goods-list-warp .goods-exchange{
@@ -46,12 +46,12 @@ page{ background-color: #f4f4f4; color: #1a1a1a; }
 .goods-list .content{
   padding: 0 30rpx;
 }
+.goods-list .content .checkbox{
+  padding: 40rpx 0;
+}
 .goods-list .goods-info{
   width: 77%;
 }
-/* .goods-list .goods-info .goods-title{
-  min-height: 80rpx;
-} */
 .order-goods-num .box{
   width: 50rpx;
   height: 50rpx;

@@ -45,7 +45,6 @@
     <view class="add-address flex" wx:if="{{ !choose }}">
       <view class="add-btn tac p30" bindtap="importAddress">导入微信地址</view>
       <navigator class="add-btn tac p30" 
-              hover-class="none"
               url="../address/edit/edit">新增收货地址</navigator>
     </view>
   </view>

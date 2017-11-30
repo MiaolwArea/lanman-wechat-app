@@ -8,7 +8,7 @@
         <view class="title">{{ item.goods_name }}</view>
         <view class="skin pr fzr12">{{ item.desc }}</view>
         <view class="footer flex">
-          <view class="pirce fzr16">¥{{ item.shop_price }}</view>
+          <view class="pirce fzr16 fw color-red">¥{{ item.shop_price }}</view>
           <!-- <view class="comment-num">125条评论</view> -->
         </view>
       </navigator>

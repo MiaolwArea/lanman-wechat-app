@@ -11,21 +11,28 @@
     <view class="order-info mt-20 p30 bg-white">
       <view class="order-title border-bottom-line pb-20 flex">
         <text class="title">LANMAN 烂熳</text>
-        <text class="contact fzr12 color-gray">联系客服</text>
+        <view>
+          <contact-button 
+            class="contact mr-20 fzr12 color-gray"
+            type="default-light" 
+            size="20"
+            session-from="weapp">联系客服</contact-button>
+          <view class="info-r arrow pr"></view>
+        </view>
       </view>
       <view class="info-list ptb30 border-bottom-line-i">
-        <view class="list-item" wx:for="{{ orderDetail.goods }}" wx:key="{{ goodsItem.goods_id }}">
-         <navigator hover-class="none" url="../../../goods/detail?goods_id={{ item.goods_id }}" class="flex list-item-link">
-          <image mode="widthFix" src="http://image.lanman.cn/2017/06/16/9ad597d1ab9e4bb43eba3bb057af5fc2.jpg" class="goods-image col-2"></image>
+        <view class="list-item mb-30" wx:for="{{ orderDetail.goods }}" wx:key="{{ goodsItem.goods_id }}">
+         <navigator hover-class="none" url="../../../goods/detail/detail?goods_id={{ item.goods_id }}" class="flex list-item-link">
+          <image src="http://image.lanman.cn/2017/06/16/9ad597d1ab9e4bb43eba3bb057af5fc2.jpg" class="goods-image col-2"></image>
           <view class="goods-info tal col-8">
             <view class="title otw">{{ item.goods_name }}</view>
-            <view class="desc fzr12">
+            <view class="desc fzr12 color-gray">
               <text class="mr-20">数量：{{ item.goods_num }} </text>
               <text>颜色：{{ item.color_name }} </text>
             </view>
             <view class="footer flex">
               <view class="price">¥{{ item.shop_price }}</view>
-              <view class="add-cart color-gray">加入购物车</view>
+              <view class="add-cart" data-bn_goods_id="{{ item.bn_goods_id }}" data-goods_id="{{ item.goods_id }}" data-goods_type="{{ item.goods_type }}" catchtap="addCart">加入购物车</view>
             </view>
           </view>
          </navigator>
@@ -33,32 +40,42 @@
       </view>
     </view>
     <view class="order-detail-info p30 mt-20 bg-white">
-      <view class="mb-20">订单编号：{{ orderDetail.order_sn }}</view>
-      <view class="">下单时间：{{ orderDetail.add_time }}</view>
+      <view class="mb-20">
+        <text class="color-gray">订单编号：</text>
+        <text>{{ orderDetail.order_sn }}</text>
+      </view>
+      <view class="">
+        <text class="color-gray">下单时间：</text>
+        <text>{{ orderDetail.add_time }}</text>
+      </view>
     </view>
     <view class="order-price mt-20 p30 bg-white">
       <view class="content pb-20 border-bottom-line">
-        <view class="inclist border-bottom-line mb-20 pb-20">
-          <view>已换购商品</view>
-          <view class="tac color-gray">121231231213231</view>
-          <view class="tac color-gray">12123123121sdsdsdssd3231</view>
+        <view class="inclist border-bottom-line mb-20 pb-20" wx:if="{{ orderDetail.incprice_list }}">
+          <view class="color-gray">已换购商品</view>
+          <view class="inclist-item tac" wx:if="{{ orderDetail.incprice_list }}" wx:key="{{ item.goods_id }}">{{ item.goods_name }} X {{ item.goods_num }}</view>
         </view>
         <view class="flex">
-          <text>商品总额</text>
+          <text class="color-gray">商品总额</text>
           <text>¥{{ orderDetail.goods_amount }}</text>
         </view>
         <view class="flex">
-          <text>运费</text>
+          <text class="color-gray">运费</text>
           <text>{{ orderDetail.freight }}</text>
         </view>
       </view>
-      <view class="count-num tar mt-20">实付款：<text class="color-red">¥{{ orderDetail.total_money }}</text></view>
+      <view class="count-num tar mt-20 color-gray">实付款：<text class="color-red">¥{{ orderDetail.total_money }}</text></view>
     </view>  
   </view>
   <view class="footer-area p30 flex bg-white">
     <text class="del-order">删除订单</text>
-    <view class="btn-area">
-      <navigator hover-class="none" class="btn">申请售后</navigator>
+    <view class="btn-area flex">
+      <view hover-class="none" class="btn ml-20" wx:if="{{ orderDetail.order_status == 10 }}" data-order_id="{{ orderDetail.order_id }}" bindtap="cancelOrder">取消订单</view>   
+      <navigator hover-class="none" url="../../../shoppingCart/pay/pay?cart_id={{ orderDetail.cart_id }}" class="btn ml-20" wx:if="{{ orderDetail.order_status == 10 }}">去付款</navigator> 
+      <navigator hover-class="none" url="../../../logistics/logistics?invoice_no={{ orderDetail.invoice_no }}&shipping_name={{ orderDetail.shipping_name }}" class="btn ml-20" wx:if="{{ orderDetail.order_status == 40 }}">查看物流</navigator> 
+      <navigator class="btn ml-20" 
+      wx:if="{{ (orderDetail.order_status == 50) && (orderDetail.real_order_status == 50) }}" 
+      hover-class="none" url="../../afterSales/apply/apply?order_id={{ orderDetail.order_id }}">申请售后</navigator> 
     </view>
   </view>
  </view>

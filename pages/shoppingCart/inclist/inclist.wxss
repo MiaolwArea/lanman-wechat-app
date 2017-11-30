@@ -9,6 +9,9 @@ page{ background-color: #f4f4f4; }
 .inclist-list .list-item{
   padding: 20rpx 0;
 }
+.inclist-list .goods-image{
+  height: 153.1247rpx;
+}
 .goods-info .title{
   margin-bottom: 20rpx;
 }

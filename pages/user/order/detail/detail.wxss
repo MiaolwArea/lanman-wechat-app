@@ -6,6 +6,23 @@ page{ background-color: #f4f4f4; color: #1a1a1a; }
 .address-text .name-phone{
   padding-bottom: 10rpx;
 }
+.order-info .contact{
+  margin-right: 10rpx;
+  padding: 10rpx 0rpx;
+}
+.order-info .arrow:after, .order-info .arrow:before{
+  border:10rpx solid transparent;
+  border-left:10rpx solid #fff;
+  top: -27rpx;
+  right: -10rpx;
+}
+.order-info .arrow:before{
+  border-left-color: #a3a3a3;
+  right: -14rpx;
+}
+.info-list .list-item:last-child{
+  margin-bottom: 0px;
+}
 .position-image{
   width: 30rpx;
   margin-right: 30rpx;

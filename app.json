@@ -1,6 +1,7 @@
 {
   "pages":[
     "pages/index/index",
+    "pages/logistics/logistics",
     "pages/shoppingCart/list",
     "pages/shoppingCart/pay/pay",
     "pages/shoppingCart/inclist/inclist",

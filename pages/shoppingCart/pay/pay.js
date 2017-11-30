@@ -189,7 +189,7 @@ let pageConfig = {
               'paySign': res.data.paySign,
               'success': function (resInfo) {
                 wx.navigateTo({
-                  url: '../user/order/detail/detail?order_id=' + res.data.order_id
+                  url: '../../user/order/detail/detail?order_id=' + res.data.order_id
                 })
               },
               'fail': function (resInfo) {
@@ -199,7 +199,7 @@ let pageConfig = {
                   duration: 1000,
                   complete: function(){
                     wx.navigateTo({
-                      url: '../user/order/detail/detail?order_id=' + res.data.order_id
+                      url: '../../user/order/detail/detail?order_id=' + res.data.order_id
                     })
                   }
                 })

@@ -37,6 +37,8 @@ page{ font-size: 28rpx; }
 .mt-20{ margin-top: 20rpx; }
 .pt-banner{ padding-bottom: 130rpx; }
 .mr-20{ margin-right: 20rpx; }
+.ml-20{ margin-left: 20rpx; }
+.mb-10{ margin-bottom: 10rpx; }
 .mb-20{ margin-bottom: 20rpx; }
 .mb-30{ margin-bottom: 30rpx; }
 .pb-20{ padding-bottom: 20rpx; }
@@ -52,6 +54,7 @@ page{ font-size: 28rpx; }
 .w100{ width: 100%; }
 .inline-block{ display: inline-block; }
 .disable{ background-color: #ccc; color: #808080; }
+.border-top-line{ border-top: 1px solid #f4f4f4; }
 .border-bottom-line, .border-bottom-line-i{ border-bottom: 1px solid #f4f4f4; }
 .border-bottom-line-i:last-child{ border-bottom: none; }
 .otw{

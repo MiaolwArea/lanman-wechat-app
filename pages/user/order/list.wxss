@@ -48,6 +48,7 @@ page{ background-color: #f4f4f4; color: #1a1a1a; }
 }
 .goods-link .order-image{
   width: 150rpx;
+  height: 150rpx;
   margin-right: 30rpx;
 }
 .footer .goods-count{

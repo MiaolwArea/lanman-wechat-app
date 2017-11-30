@@ -1,0 +1,37 @@
+/** logistics.wxss **/
+page{ background-color: #f4f4f4; color: #1a1a1a; }
+
+.logistics-item{
+  padding-left: 40rpx;
+  border-left: 1px solid #f4f4f4;
+}
+.logistics-item:first-child{ padding-top: 0rpx; }
+.logistics-content{
+  justify-content: flex-start;
+}
+.logistics-context{
+  margin-left: -30rpx;
+}
+.pos-icon{
+  width: 33rpx;
+  height: 33rpx;
+  background-color: #f4f4f4;
+  border-radius: 50%;
+  top: -2rpx;
+  left: -55rpx;
+}
+.pos-icon:after, .pos-icon:before {
+  border: 10rpx solid transparent;
+  border-bottom: 10rpx solid #f4f4f4;
+  width: 0;
+  height: 0;
+  position: absolute;
+  top: 3rpx;
+  left: 7rpx;
+  content: ' '
+}
+.pos-icon:before {
+  border-bottom-color: #a3a3a3;
+  top: -1rpx;
+}
+

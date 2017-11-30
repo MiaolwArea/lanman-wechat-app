@@ -29,7 +29,7 @@ let pageConfig = {
     startX: 0,        // 手势X轴
     startY: 0,        // 手势Y轴
     goodsListNum: 0,
-    chooseLength: 0,
+    chooseLength: [],
   },
   onLoad(){
     let _this = this;
@@ -44,21 +44,31 @@ let pageConfig = {
       , isTouchMoveAry = [];
     
     // 购物车信息
-    wx.showLoading();
+    wx.showLoading({
+      mask: true
+    });
     app.ApiConfig.ajax(_this.store['url'].shoppingCartUrl, function (res) {
       if (res.success) {
         let goods_list = res.data.goods_list
           , idAry = {};
 
+        wx.hideLoading();
         _this.store['goodsListNum'] = goods_list.length;
         if (goods_list.length == 0) {
           _this.setData({
             hasGoods: false
           });
           return;
+        }else{
+          _this.setData({
+            hasGoods: true
+          });
         }
         for (let i = 0; i < goods_list.length; i++) {
           isTouchMoveAry[i] = false;
+          if (goods_list[i].is_selected){
+            _this.store['chooseLength'].push(goods_list[i].cart_id)
+          }
         }
         _this.setData({
           shoppingCart: res.data,
@@ -66,7 +76,6 @@ let pageConfig = {
         });
         _this._checkedStatus(res.data.select_ids);
         _this._countPrice();
-        wx.hideLoading();
       }
     })
   },
@@ -101,7 +110,7 @@ let pageConfig = {
       , cartId = e.currentTarget.dataset['cart_id']
       , isSelected = e.currentTarget.dataset['selected'];
     
-    idAryMap['all'] = (_this.store['chooseLength'] == _this.store['goodsListNum'])
+    idAryMap['all'] = (_this.store['chooseLength'].length == _this.store['goodsListNum'])
     _this.setData({
       idAryMap: idAryMap
     });
@@ -127,8 +136,15 @@ let pageConfig = {
           idAryMap: idAryMap
         });
         _this._countPrice();
-        wx.hideLoading();
+      }else{
+        wx.showToast({
+          mask: true,
+          title: res.msg,
+          icon: 'loading',
+          duration: 1000
+        })
       }
+      wx.hideLoading();
     }, 'POST')
   },
   // 反选
@@ -184,13 +200,19 @@ let pageConfig = {
       cart_id: id,
       goods_num: num
     }, function (res) {
+      wx.hideLoading();
       if (res.success) {
         shoppingCart.goods_list[index].goods_num = num;
         _this.setData({
           "shoppingCart": shoppingCart
         });
         _this._countPrice();
-        wx.hideLoading();
+      }else{
+        wx.showToast({
+          title: res.msg,
+          icon: 'loading',
+          duration: 1000
+        })
       }
     }, 'POST')
   },
@@ -218,6 +240,11 @@ let pageConfig = {
                 'shoppingCart': shoppingCart,
                 'isTouchMove': isTouchMoveAry
               });
+              if (_this.store['chooseLength'].length == 1 && _this.store['chooseLength'].indexOf(id) > -1){
+                _this.setData({
+                  'hasChoose': false
+                });
+              }
               _this._countPrice();
             }
           }, 'POST')
@@ -299,7 +326,7 @@ let pageConfig = {
   checkboxchange(e){
     let _this = this;
     
-    _this.store['chooseLength'] = e.detail.value.length;
+    _this.store['chooseLength'] = e.detail.value;
     _this.setData({
       hasChoose: (e.detail.value.length > 0)
     })

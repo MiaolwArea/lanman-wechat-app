@@ -39,6 +39,10 @@ let pageConfig = {
     appendParamForUrl(_this.store['url'], {
       sso: app.globalData.sso
     });
+  },
+  onShow(){
+    let _this = this;
+
     // 获取初始化数据 
     _this._getOrderList(_this.store['orderStatus']);
   },
@@ -46,6 +50,9 @@ let pageConfig = {
   _getOrderList(orderStatus){
     let _this = this;
 
+    wx.showLoading({
+      mask: true
+    })
     // 全部订单
     app.ApiConfig.ajax(_this.store['url'].orderListUrl + '&order_status=' + orderStatus, function (res) {
       if (res.success) {
@@ -82,7 +89,27 @@ let pageConfig = {
         currentTab: Ecurrent
       })
     }
-  } 
+  },
+  // 取消订单
+  cancelOrder(e) {
+    let _this = this
+      , orderId = e.currentTarget.dataset.order_id;
+
+    app.ApiConfig.ajax(_this.store['url'].cancelOrderUrl, {
+      order_id: orderId
+    }, function (res) {
+      if (res.success) {
+        let data = res.data;
+
+        wx.showToast({
+          title: res.msg,
+          icon: 'success',
+          duration: 1000
+        })
+        _this._getOrderList(_this.store['orderStatus']);
+      }
+    });
+  }
 }
 
 Page(pageConfig)
