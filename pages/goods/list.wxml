@@ -4,7 +4,7 @@
     <view class="list-item inline-block" wx:for="{{ goodsList }}" wx:key="{{ item.goods_id }}">
       <navigator hover-class="none"
       url="./detail/detail?goods_id={{ item.goods_id }}">
-        <image mode="widthFix" src="{{ item.cover }}" />
+        <image class="goods-list-img" src="{{ item.cover }}" />
         <view class="title">{{ item.goods_name }}</view>
         <view class="skin pr fzr12">{{ item.desc }}</view>
         <view class="footer flex">

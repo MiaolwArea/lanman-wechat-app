@@ -10,7 +10,7 @@
   padding: 40rpx 30rpx;
 }
 swiper{
-  height: 580rpx;
+  height: 923rpx;
 }
 .search-icon{
   position: absolute;
@@ -48,6 +48,7 @@ swiper{
   display: inline-block;
   width: 300rpx;
   padding: 0 30rpx 30rpx 30rpx;
+  vertical-align: top;
 }
 .list-box .title{
   display: block;
@@ -58,6 +59,7 @@ swiper{
 }
 .recommend-list .image{
   background-color: #000;
+  height: 400rpx;
 }
 .series>.title{
   margin: 30rpx;

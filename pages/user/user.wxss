@@ -24,6 +24,9 @@ page{ background-color: #f4f4f4; color: #1a1a1a; }
   vertical-align: middle;
   margin-bottom: 8rpx;
 }
+.goods-list .list-item{
+  vertical-align: top;
+}
 
 .menu-title{
   border-bottom: 1px solid #ccc;
@@ -45,7 +48,7 @@ page{ background-color: #f4f4f4; color: #1a1a1a; }
 }
 .recommend .list-item:nth-child(2n) .list-item-box{
   padding-right: 0rpx;
-  padding-left: 15rpx;
+  padding-left: 20rpx;
 }
 .recommend .list-item .title{
   overflow: hidden;

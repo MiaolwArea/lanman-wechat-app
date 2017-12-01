@@ -38,7 +38,8 @@ let pageConfig = {
     },
     bnGoodsID: [], // 选中色号商品ID
     pageNum: 1,
-    goodsId: null
+    goodsId: null,
+    limitNum: 0
   },
   onLoad: function (opt) {
     let _this = this;
@@ -84,6 +85,7 @@ let pageConfig = {
         } else {
           _this.store['bnGoodsID'].push(data.goods_colors[0].bn_goods_id);
         }
+        _this.store['limitNum'] = data.limit_num;
         // 设置初始值
         _this.setData({
           goodsDetial: data,
@@ -125,8 +127,11 @@ let pageConfig = {
     _this.setData({
       currentTab: e.currentTarget.dataset.index
     });
-    // 
-    if (_this.data.goodsType == 2){
+    // 限制条件
+    if (_this.data.goodsType == 2) {
+      // if (_this.store['bnGoodsID'].length == _this.store['limitNum']) {
+      //   return;
+      // }
       goodsColorsAry[bngoodsid].isSelected = !goodsColorsAry[bngoodsid].isSelected;
       if (goodsColorsAry[bngoodsid].isSelected){
         _this.store['bnGoodsID'].push(bngoodsid);

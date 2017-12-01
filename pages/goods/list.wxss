@@ -10,6 +10,10 @@
 .goods-list .list-item:nth-child(2n){
   padding-right: 0px;
 }
+.goods-list-img{
+  width: 332rpx;
+  height: 332rpx;
+}
 .list-item .skin{
   color: #ccc;
   margin: 10rpx auto;

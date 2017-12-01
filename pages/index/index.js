@@ -30,7 +30,12 @@ let pageConfig = {
     loadMoreOfSeries: false,
     noMoreOfSeries: false,
     noMoreOfGoods: false,
-    keyword: ''
+    keyword: '',
+    model: {
+      '414': 580,
+      '375': 530
+    },
+    topNum: 530
   },
   onReachBottom: function () {
     if (this.data.showSaerch){
@@ -52,14 +57,19 @@ let pageConfig = {
   },
   onPageScroll: function (e) {
     var _this = this;
-
+    
     _this.setData({
-      moveSearch: e.scrollTop >= 360 ? true : false
+      moveSearch: e.scrollTop >= _this.store['topNum'] ? true : false
     })
   },
   onLoad: function () {
     let _this = this;
     
+    wx.getSystemInfo({
+      success: function (res) {
+        _this.store['topNum'] = _this.store['model'][res.screenWidth];
+      }
+    })
     wx.showLoading();
     _this._getHomeInfos();
   },
@@ -105,9 +115,15 @@ let pageConfig = {
     app.ApiConfig.ajax(_this.store['url'].goodsListUrl + '?search=' + _this.store['keyword'] +
       '&page=' + pageOfGoods + '&count=' + count, function (res) {
         if (res.success) {
-          _this.setData({
-            goodsList: _this.data.goodsList.concat(res.data)
-          });
+          if (pageOfGoods == 1){
+            _this.setData({
+              goodsList: res.data
+            });
+          }else{
+            _this.setData({
+              goodsList: _this.data.goodsList.concat(res.data)
+            });
+          }
           pageOfGoods++;
           wx.hideLoading();
         }
