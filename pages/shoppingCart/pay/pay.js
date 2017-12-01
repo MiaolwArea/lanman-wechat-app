@@ -1,7 +1,7 @@
 // shoppingCart.js
 // 获取应用实例
 var app = getApp()
-import { appendParamForUrl } from '../../../utils/util'
+import { appendParamForUrl, formatNum } from '../../../utils/util'
 
 let pageConfig = {
   data: {
@@ -127,7 +127,7 @@ let pageConfig = {
         _this.setData({
           'goodsList': dataInfo.goods_list,
           'freight': parseFloat(dataInfo.freight) || 0,
-          'discountPrice': parseFloat(dataInfo.discount) || 0
+          'discountPrice': formatNum(parseFloat(dataInfo.discount) || 0)
         });
         _this._countPrice();
         wx.hideLoading();
@@ -146,9 +146,9 @@ let pageConfig = {
     }
     goodsPrice = goodsPrice + (idAry['price'] || 0);
     _this.setData({
-      goodsPrice: goodsPrice,
+      goodsPrice: formatNum(goodsPrice),
       inclistNum: (idAry['num'] || ''),
-      finalPrice: goodsPrice - _this.data.freight - _this.data.discountPrice
+      finalPrice: formatNum(goodsPrice - _this.data.freight - _this.data.discountPrice)
     })
   },
   bindTextAreaBlur(e) {

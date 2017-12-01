@@ -1,7 +1,7 @@
 // logistics.js
 // 获取应用实例
 let app = getApp()
-import { pageAction } from '../../utils/util'
+import { appendParamForUrl } from '../../utils/util'
 
 let pageConfig = {
   data: {
@@ -10,23 +10,34 @@ let pageConfig = {
   // 数据缓存区
   store: {
     url: {
-      // 商品列表
-      logisticsUrl: app.globalData.isDebug ? 'homeUrl' : '/wechatapp/logistics/logistics'
+      // 物流信息
+      logisticsUrl: app.globalData.isDebug ? 'homeUrl' : '/wechatapp/order/express'
     },
-    loadMoreOfSeries: false,
-    noMoreOfSeries: false,
-    noMoreOfGoods: false,
-    keyword: ''
   },
-  onLoad: function () {
+  onLoad: function (opt) {
     let _this = this;
     
+    // 地址参数处理
+    appendParamForUrl(_this.store['url'], {
+      sso: app.globalData.sso
+    });
+    // 获取初始化数据 
+    app.ApiConfig.ajax(_this.store['url'].logisticsUrl + '&shipping_name=' + opt.shipping_name + '&invoice_no=' + opt.invoice_no, function (res) {
+      if (res.success) {
+        let dataInfo = res.data;
+
+        _this.setData({
+          logisticsInfos: dataInfo
+        })
+      }else{
+        wx.showModal({
+          title: '查询物流',
+          content: res.msg,
+          showCancel: false
+        })
+      }
+    });
   }
 }
-
-// 合并公共配置
-pageConfig = {...pageConfig, ...pageAction({
-  url: '/pages/logistics/logistics'
-})};
 
 Page(pageConfig)

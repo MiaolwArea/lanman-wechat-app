@@ -21,7 +21,7 @@ let pageConfig = {
     cartNum: 0,
     commentList: [],
     goodsType: 1,
-    goodsColors: {},
+    goodsColors: {}
     // lazyLoad: {
     //   index: 3
     // }

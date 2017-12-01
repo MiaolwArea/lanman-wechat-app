@@ -1,2 +1,10 @@
 /** afterSales-detail.wxss **/
 @import '../list.wxss';
+.after-sales-logistics .btn{
+  border: 1px solid #ccc;
+  padding: 5rpx 20rpx;
+}
+.after-sales-logistics .input{
+  border: 1px solid #ccc;
+  padding: 5rpx 20rpx;
+}

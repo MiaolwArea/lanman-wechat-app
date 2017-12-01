@@ -1,7 +1,7 @@
 // shoppingCart-list.js
 // 获取应用实例
 var app = getApp();
-import { appendParamForUrl } from '../../utils/util';
+import { appendParamForUrl, formatNum } from '../../utils/util';
 
 let pageConfig = {
   data: {
@@ -306,7 +306,7 @@ let pageConfig = {
     }
     goodsPrice = goodsPrice - _this.data.discountPrice + (idAry['incpriceInfo']['price'] || 0);
     _this.setData({
-      goodsPrice: goodsPrice
+      goodsPrice: formatNum(goodsPrice)
     })
   },
   // 下单

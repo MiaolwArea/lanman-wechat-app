@@ -39,7 +39,7 @@
   <view class="explain p30 bg-white mb-20">
     <view class="title fzr18 mb-20">{{ goodsDetial.goods_name }}</view>
     <view class="info mb-20 color-gray">{{ goodsDetial.simple_desc }}</view>
-    <view class="pirce fw fzr18 tar">¥{{ goodsDetial.counter_price }}</view>
+    <view class="pirce fw fzr18 tar">¥{{ goodsDetial.shop_price }}</view>
   </view>
   <view class="server flex bg-white mb-20">
     <view class="dlot"></view>
@@ -53,7 +53,7 @@
   <view class="container">
     <view class="introduce hide fz0 {{ isTabOn1 }}" bindtouchstart="infoTouchStart">
       <block wx:for="{{ goodsDetial.picture_desc }}" wx:key="index">
-      <image mode="widthFix" src="{{ item }}" />
+      <image mode="widthFix" src="{{ item }}"></image>
       </block>
     </view>
     <view class="comment bg-white hide {{ isTabOn2 }}">
@@ -61,17 +61,24 @@
       <view class="list-item p30 color-gray border-bottom-line-i">
         <view class="user-info flex pb-20">
           <view class="user flex">
-            <image class="user-img" mode="widthFix" src="{{ item.headimgurl }}"></image>
+            <image class="user-img" src="{{ item.headimgurl }}"></image>
             <view class="name-and-star">
               <view class="name">{{ item.nickname }}</view>
               <view class="star-list">
-                <view class="list-item inline-block" wx:for="{{ item.star }}" wx:key="item.index">1</view>
+                <view class="list-item inline-block" wx:for="{{ item.star }}" wx:key="{{ index }}">
+                  <image class="star-img" src="../../../assets/images/icon/star.png"></image>
+                </view>
               </view>
             </view>
           </view>
           <view class="add-date">{{ item.add_time }}</view>
         </view>
         <view class="comment-content color-black">{{ item.content }}</view>
+        <view class="comment-pics mt-20 flex" wx:if="{{ item.img_url[0] }}">
+          <view class="pic-item mr-20" wx:for="{{ item.img_url }}" wx:key="{{index}}">
+            <image class="comment-img" src="{{ item }}"></image>
+          </view>
+        </view>
       </view>
       </block>
     </view>

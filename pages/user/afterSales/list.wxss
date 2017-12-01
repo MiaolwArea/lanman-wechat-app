@@ -11,6 +11,7 @@ page{ background-color: #f4f4f4; color: #1a1a1a; }
 }
 .after-sales-image{
   width: 150rpx;
+  height: 150rpx;
   margin-right: 20rpx;
 }
 .info-link{

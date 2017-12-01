@@ -20,7 +20,7 @@ swiper {
 .server .server-title{ margin: auto 20rpx; }
 .tab-nav .tab{
   padding: 30rpx 0;
-  color: #ccc;
+  color: #808080;
 }
 .tab-nav .tab.on{
   border-bottom: 1px solid #ccc;
@@ -33,8 +33,21 @@ swiper {
   background-color: #ccc;
   border: 1px solid #ccc;
 }
-.user-img{ width: 70rpx;border-radius: 50%;margin-right: 20rpx; }
+.user-img{
+  width: 70rpx;
+  height: 70rpx;
+  border-radius: 50%;
+  margin-right: 20rpx;
+}
+.comment-img{
+  width: 170rpx;
+  height: 227rpx;
+}
 .name-and-star .name{ margin-bottom: 10rpx; }
+.star-img{
+  width: 20rpx;
+  height: 20rpx;
+}
 
 .footer{
   position: fixed;

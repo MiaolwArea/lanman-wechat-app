@@ -86,10 +86,36 @@ export const delElm = (pos, ary) => {
         break;
       }
     }
-    ary.splice(index, 1);
+    ary.splice(index - 1, 1);
     return ary;
   } else if (typeof pos === 'number') {
     ary.splice(pos, 1);
     return ary;
   }
+}
+// 格式化小数目
+export const formatNum = (num, len) => {
+  let floatNum = parseFloat(num)
+    , lenn = len || 2
+    , i = lenn
+    , lenNum = 1;
+
+  while (i--){
+    lenNum *= 10;
+  }
+  if (floatNum == undefined || floatNum == null || lenn < 0) {
+    return false;
+  }
+  let floatNumN = Math.round(floatNum * lenNum) / lenNum
+    , floatNumS = floatNumN.toString()
+    , point = floatNumS.indexOf('.');
+
+  if (point < 0) {
+    point = floatNumS.length;
+    floatNumS += '.';
+  }
+  while (floatNumS.length <= point + lenn) {
+    floatNumS += '0';
+  }
+  return floatNumS;    
 }

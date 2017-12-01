@@ -1,44 +1,39 @@
 <!-- afterSales-detail.wxml -->
  <view class="after-sales-detail">
-  <view class="after-sales-goods bg-white p30 mb-20">
-    <view class="goods-link flex">
-      <image mode="widthFix" src="http://image.lanman.cn/2017/06/16/9ad597d1ab9e4bb43eba3bb057af5fc2.jpg" class="after-sales-image"></image>
-      <view class="goods-info tal">
-        <view class="title">LANMAN巧克力巧克力LANMAN巧克力巧克力</view>
-        <view class="desc fzr12">
-          <text class="mr-20">数量：2 </text>
-          <text>数量：2 </text>
-        </view>
-        <view class="footer flex">
-          <view class="price">¥129.00</view>
-        </view>
-      </view>
+  <view class="after-sales-info bg-white plr30 mt-20">
+    <view class="after-sales-info-i flex">
+      <text class="color-gray">申请类型:</text>
+      <text>{{ afterSalesDetail.feedback_type_cn }}</text>
+    </view>
+    <view class="after-sales-info-i flex">
+      <text class="color-gray">申请进度:</text>
+      <text>{{ afterSalesDetail.feedback_status_cn }}</text>
+    </view>
+    <view class="after-sales-info-i flex">
+      <text class="color-gray">申请时间:</text>
+      <text>{{ afterSalesDetail.add_time }}</text>
+    </view>
+    <view class="after-sales-info-i flex">
+      <text class="color-gray">订单号:</text>
+      <text>{{ afterSalesDetail.order_sn }}</text>
+    </view>
+    <view class="after-sales-info-i flex">
+      <text class="color-gray">内容说明:</text>
+        <text>{{ afterSalesDetail.content || '空' }}</text>
     </view>
   </view>
-  <view class="after-sales-info bg-white plr30">
-    <view class="after-sales-info-i flex">
-      <text>退款类型</text>
-      <text></text>
+  <view class="after-sales-logistics bg-white plr30 mt-20">
+    <view class="flex ptb20 border-bottom-line-i">
+      <text class="color-gray">物流查询</text>
+      <view class="btn" bindtap="linkLogistics">查询</view>
     </view>
-    <view class="after-sales-info-i flex">
-      <text>退款类型</text>
-      <text></text>
+    <view class="flex ptb20 border-bottom-line-i">
+      <text class="color-gray">物流公司</text>
+      <input class="input" bindblur="getCompany"></input>
     </view>
-    <view class="after-sales-info-i flex">
-      <text>退款类型</text>
-      <text></text>
-    </view>
-    <view class="after-sales-info-i flex">
-      <text>退款类型</text>
-      <text></text>
-    </view>
-    <view class="after-sales-info-i flex">
-      <text>退款类型</text>
-      <text></text>
-    </view>
-    <view class="after-sales-info-i flex">
-      <text>退款类型</text>
-      <text></text>
+    <view class="flex ptb20 border-bottom-line-i">
+      <text class="color-gray">物流单号</text>
+      <input class="input" bindblur="getCode"></input>
     </view>
   </view>
  </view>

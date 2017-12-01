@@ -6,19 +6,19 @@
         <view class="order-num mr-20 mb-10">订单编号：{{ item.order_sn }} </view>
         <view class="time">下单时间：{{ item.add_time }}</view>
       </view>
-      <view class="goods-link flex">
-        <image mode="widthFix" src="http://image.lanman.cn/2017/06/16/9ad597d1ab9e4bb43eba3bb057af5fc2.jpg" class="after-sales-image"></image>
+      <view class="goods-link flex" wx:for="{{ item.goods }}" wx:for-index="idx" wx:for-item="goodsItem" wx:key="{{ goodsItem.goods_id }}">
+        <image src="{{ goodsItem.outside_view }}" class="after-sales-image"></image>
         <view class="goods-info tal">
-          <view class="title">LANMAN巧克力巧克力LANMAN巧克力巧克力</view>
+          <view class="title">{{ goodsItem.goods_name }}</view>
           <view class="desc fzr12 mb-10">
-            <text class="mr-20">数量：2 </text>
-            <text>颜色：2 </text>
+            <text class="mr-20">数量：{{ goodsItem.goods_num }} </text>
+            <text>颜色：{{ goodsItem.color_name }} </text>
           </view>
         </view>
       </view>
       <view class="footer flex border-top-line">
         <view class="status color-red">{{ item.feedback_type_cn }} {{ item.feedback_status_cn }}</view>
-        <navigator hover-class="none" url="./detail/detail?order_id={{ item.order_id }}" class="info-link">查看详情</navigator>
+        <navigator hover-class="none" url="./detail/detail?feedback_id={{ item.feedback_id }}" class="info-link">查看详情</navigator>
       </view>
     </view>
   </view>

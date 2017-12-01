@@ -99,7 +99,7 @@
     <view class="search-result">
       <view class="series-list p30">
         <view class="list-item mb-30" wx:for="{{ goodsList }}" wx:key="{{ item.goods_id }}">
-          <navigator class="flex" hover-class="none" url="../goods/detial/detial?goods_id={{ item.goods_id }}">
+          <navigator class="flex" hover-class="none" url="../goods/detail/detail?goods_id={{ item.goods_id }}">
             <image class="goods-pic col-4" src="{{ item.cover }}"></image>
             <view class="goods-info col-6">
               <view class="title fw fzr15">{{ item.goods_name }}</view>

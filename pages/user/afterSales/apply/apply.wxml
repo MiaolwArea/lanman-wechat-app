@@ -20,7 +20,7 @@
       </view>
     </view>
     <!-- 选择商品 -->
-    <view class="choose-area bg-white p30">
+    <view class="choose-area bg-white p30" wx:if="{{ !priceBack }}">
       <view class="goods-list-warp">
         <checkbox-group bindchange="checkboxChange">
           <view class="choose-header flex color-gray pb-20 border-bottom-line">
@@ -30,7 +30,7 @@
           <view class="goods-list">
             <view class="list-item border-bottom-line-i ptb30 flex" wx:for="{{ goodsList }}" wx:key="{{ item.goods_id }}">
               <view class="content flex">
-                <label class="checkbox col-1" data-goods_id="{{ item.goods_id }}" bindtap="changeSelected">  
+                <label class="checkbox col-1" data-goods_id="{{ item.goods_id }}" data-shop_price="{{ item.shop_price }}" bindtap="changeSelected">  
                   <image src="{{ idAryMap[item.goods_id] ? '../../../../assets/images/icon/choose.png' : '../../../../assets/images/icon/unchoose.png' }}" class="unchoose" />
                   <checkbox value="{{ item.goods_id }}" class="choose-item-btn" checked="{{ idAryMap[item.goods_id] }}" hidden />
                 </label> 
@@ -46,12 +46,15 @@
                             <view>数量：</view>
                             <view class="box" 
                             data-index="{{ index }}" 
+                            data-max="{{ item.goods_num }}"
                             catchtap="minusNum">-</view>
                             <input class="box num" 
                             data-index="{{ index }}" 
+                            data-max="{{ item.goods_num }}"
                             catchtap catchblur="inputNum" type="number" value="{{ item.goods_num }}" />
                             <view class="box" 
                             data-index="{{ index }}" 
+                            data-max="{{ item.goods_num }}"
                             catchtap="plusNum">+</view>   
                         </view>
                       </view>
@@ -75,13 +78,13 @@
       </picker>
     </view>
     <view class="mt-20 bg-white plr30">
-      <view class="after-sales-apply-i ptb20 border-bottom-line color-gray flex">
+      <view class="after-sales-apply-i ptb20 border-bottom-line color-gray flex" wx:if="{{ !priceBack && !exchangeGoos }}">
         <text>最多退款：</text>
         <text>{{ limitPrice }}</text>
       </view>
-      <view class="after-sales-apply-i ptb20 border-bottom-line color-gray flex">
+      <view class="after-sales-apply-i ptb20 border-bottom-line color-gray flex" wx:if="{{ !exchangeGoos }}">
         <text>退款金额：</text>
-        <input class="apply-price tar" placeholder="不要超过最多退款" bindblur="checkInput"></input>
+        <input class="apply-price tar" placeholder="请输入退款金额" bindblur="checkInput"></input>
       </view>
       <view class="after-sales-apply-i ptb20 border-bottom-line color-gray">
         <text>具体原因</text>
@@ -96,33 +99,35 @@
   <view class="apply-success-page" wx:if="{{ isSuccess }}">
     <view class="success-ifno flex">
       <radio checked color="#b20000"></radio>
-      <view class="">您的售后已提交，请等待客服审核，谢谢！</view>
+      <view class="">{{ successInfo }}</view>
     </view>
     <view class="apply-info bg-white plr30 mb-20">
-      <view class="after-sales-apply-i ptb20 border-bottom-line color-gray">
-        <text>退款类型:</text>
-        <text></text>
+      <view class="after-sales-apply-i ptb20 border-bottom-line flex">
+        <text class="color-gray">申请类型:</text>
+        <text>{{ afterSalesDetail.feedback_type_cn }}</text>
       </view>
-      <view class="after-sales-apply-i ptb20 border-bottom-line color-gray">
-        <text>退款类型:</text>
-        <text></text>
+      <view class="after-sales-apply-i ptb20 border-bottom-line flex">
+        <text class="color-gray">申请进度:</text>
+        <text>{{ afterSalesDetail.feedback_status_cn }}</text>
       </view>
-      <view class="after-sales-apply-i ptb20 border-bottom-line color-gray">
-        <text>退款类型:</text>
-        <text></text>
+      <view class="after-sales-apply-i ptb20 border-bottom-line flex">
+        <text class="color-gray">申请时间:</text>
+        <text>{{ afterSalesDetail.add_time }}</text>
       </view>
-      <view class="after-sales-apply-i ptb20 border-bottom-line color-gray">
-        <text>退款类型:</text>
-        <text></text>
+      <view class="after-sales-apply-i ptb20 border-bottom-line flex">
+        <text class="color-gray">订单号:</text>
+        <text>{{ afterSalesDetail.order_sn }}</text>
       </view>
-      <view class="after-sales-apply-i ptb20 border-bottom-line color-gray">
-        <text>退款类型:</text>
-        <text></text>
+      <view class="after-sales-apply-i ptb20 border-bottom-line flex">
+        <text class="color-gray">内容说明:</text>
+        <text>{{ afterSalesDetail.content || '空' }}</text>
       </view>
     </view>
     <view class="tips mt-20 bg-white p30 color-gray">
       <view class="tips-title pb-20 border-bottom-line">注意事项</view>
-      <view class="tips-text mt-20">注意事项注意事项注意事项注意事项注意事项注意事项注意事项注意事项注意事项注意事项注意事项注意事项注意事项注意事项注意事项</view>
+      <view class="tips-text mt-20">1.麻烦您帮我们将退货商品等包装好，并用小纸条备注下具体退货原因和订单信息一并寄回</view>
+    <view class="tips-text">2.邮费请先帮忙垫付（福建省内最高可赔付8元，江浙沪粤最高可赔付10元，偏远地区最高可赔付15元），我们收到货会把垫付的邮费退还给您（不接受 邮件到付），建议天天、韵达、中通、宅急送、汇通等快递。</view>
+    <view class="tips-text">3.退货后请提供您退回的快递公司、快递单号、邮费金额，我们好跟进处理。</view>
     </view>
   </view>
 </view>

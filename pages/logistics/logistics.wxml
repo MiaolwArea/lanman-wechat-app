@@ -2,40 +2,27 @@
 <view class="page">
   <view class="logistics">
     <view class="waybill mb-20 p30 bg-white border-top-line">
-      <view class="mb-10">
-        <text>运单号：</text>
-        <text>GC123123123123</text>
+      <view class="mb-10 flex">
+        <text class="color-gray">运单号：</text>
+        <text>{{ logisticsInfos.invoice_no }}</text>
       </view>
-      <view class="mb-10">
-        <text>物流方：</text>
-        <text>顺丰快递</text>
+      <view class="mb-10 flex">
+        <text class="color-gray">物流方：</text>
+        <text>{{ logisticsInfos.shipping_name }}</text>
       </view>
-      <view class="mb-10">
-        <text>联系电话：</text>
-        <text>95311</text>
+      <view class="mb-10 flex">
+        <text class="color-gray">联系电话：</text>
+        <text>{{ logisticsInfos.tel }}</text>
       </view>
     </view>
     <view class="logistics-info p30 bg-white">
-      <view class="logistics-item border-bottom-line-i ptb20">
+      <view class="logistics-item border-bottom-line-i ptb20 {{ index == 0 ? '' : 'color-gray' }}"
+      wx:for="{{ logisticsInfos.list }}" wx:key="{{ index }}">
         <view class="logistics-content flex mb-10">
           <view class="pos-icon pr"></view>
-          <view class="logistics-context">[福建] 运送中</view>
+          <view class="logistics-context">{{ item.context }}</view>
         </view>
-        <view class="time">2017-11-30 21:11:12</view>
-      </view>
-      <view class="logistics-item border-bottom-line-i ptb20">
-        <view class="logistics-content flex mb-10">
-          <view class="pos-icon pr"></view>
-          <view class="logistics-context">[福建] 运送中</view>
-        </view>
-        <view class="time">2017-11-30 21:11:12</view>
-      </view>
-      <view class="logistics-item border-bottom-line-i ptb20">
-        <view class="logistics-content flex mb-10">
-          <view class="pos-icon pr"></view>
-          <view class="logistics-context">[福建] 运送中</view>
-        </view>
-        <view class="time">2017-11-30 21:11:12</view>
+        <view class="time">{{ item.ftime }}</view>
       </view>
     </view>
   </view>
