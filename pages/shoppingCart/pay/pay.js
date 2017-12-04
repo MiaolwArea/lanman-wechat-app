@@ -131,9 +131,16 @@ let pageConfig = {
         });
         _this._countPrice();
         wx.hideLoading();
+      }else{
+        wx.showToast({
+          title: res.msg,
+          duration: 1000,
+          icon: 'loading',
+          mask: true
+        })
       }
     }, 'POST');
-  },
+  }, 
   // 计算金额
   _countPrice() {
     let _this = this
@@ -161,10 +168,26 @@ let pageConfig = {
     let _this = this
       , code = e.detail.value;
 
-    _this.store['code'] = code;
-    _this._getShoppingCartUrl({
+    app.ApiConfig.ajax(_this.store['url'].shoppingCartUrl, {
       code: code
-    });
+    }, function (res) {
+      if (res.success) {
+        let dataInfo = res.data;
+
+        _this.setData({
+          'discountPrice': formatNum(parseFloat(dataInfo.discount) || 0)
+        });
+        _this.store['code'] = code;
+      }else{
+        wx.showToast({
+          title: res.msg,
+          duration: 1000,
+          icon: 'loading',
+          mask: true
+        });
+        _this.store['code'] = '';
+      }
+    }, 'POST');
   },
   payWechat(e) {
     let _this = this;
@@ -181,30 +204,39 @@ let pageConfig = {
             code: _this.store['code']
           }, function(res){
             wx.hideLoading();
-            wx.requestPayment({
-              'timeStamp': res.data.timeStamp.toString(),
-              'nonceStr': res.data.nonceStr,
-              'package': res.data.package,
-              'signType': res.data.signType,
-              'paySign': res.data.paySign,
-              'success': function (resInfo) {
-                wx.navigateTo({
-                  url: '../../user/order/detail/detail?order_id=' + res.data.order_id
-                })
-              },
-              'fail': function (resInfo) {
-                wx.showToast({
-                  title: '失败',
-                  icon: 'loading',
-                  duration: 1000,
-                  complete: function(){
-                    wx.navigateTo({
-                      url: '../../user/order/detail/detail?order_id=' + res.data.order_id
-                    })
-                  }
-                })
-              }
-            })
+            if (res.success) {
+              wx.requestPayment({
+                'timeStamp': res.data.timeStamp.toString(),
+                'nonceStr': res.data.nonceStr,
+                'package': res.data.package,
+                'signType': res.data.signType,
+                'paySign': res.data.paySign,
+                'success': function (resInfo) {
+                  wx.navigateTo({
+                    url: '../../user/order/detail/detail?order_id=' + res.data.order_id
+                  })
+                },
+                'fail': function (resInfo) {
+                  wx.showToast({
+                    title: '失败',
+                    icon: 'loading',
+                    duration: 1000,
+                    complete: function () {
+                      wx.navigateTo({
+                        url: '../../user/order/detail/detail?order_id=' + res.data.order_id
+                      })
+                    }
+                  })
+                }
+              })
+            }else{
+              wx.showToast({
+                title: res.msg,
+                duration: 1000,
+                icon: 'loading',
+                mask: true
+              })
+            }
           }, 'POST')
         } else {
           console.log('获取用户登录态失败！' + res.errMsg)

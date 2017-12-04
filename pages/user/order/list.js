@@ -14,6 +14,8 @@ let pageConfig = {
     url: {
       // 订单列表
       orderListUrl: app.globalData.isDebug ? 'orderList' : '/wechatapp/order/list',
+      // 取消订单
+      cancelOrderUrl: app.globalData.isDebug ? 'orderList' : '/wechatapp/order/cancel',
     },
     // 订单状态
     orderStatus: 0
@@ -109,7 +111,7 @@ let pageConfig = {
         })
         _this._getOrderList(_this.store['orderStatus']);
       }
-    });
+    }, 'POST');
   }
 }
 

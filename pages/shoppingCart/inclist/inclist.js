@@ -15,15 +15,15 @@ let pageConfig = {
       // 换购商品列表
       inclistUrl: app.globalData.isDebug ? 'shoppingCart' : '/wechatapp/goods/inclist',
     },
-    incpriceInfo: wx.getStorageSync('incpriceInfo') || {
-      price: 0.00,
-      num: 0
-    }
+    incpriceInfo: ''
   },
   onLoad(){
     let _this = this;
 
     // wx.clearStorage();
+    wx.showLoading({
+      mask: true,
+    })
     // 地址参数处理
     appendParamForUrl(_this.store['url'], {
       sso: app.globalData.sso
@@ -31,9 +31,12 @@ let pageConfig = {
     app.ApiConfig.ajax(_this.store['url'].inclistUrl, function (res) {
       if (res.success) {
         let inclist = res.data
-          , idAry = wx.getStorageSync('incpriceIds') || {}
-          , num = _this.store['incpriceInfo']['num'];
-
+          , idAry = wx.getStorageSync('incpriceIds') || {};
+        
+        _this.store['incpriceInfo'] = wx.getStorageSync('incpriceInfo') || {
+          price: 0.00,
+          num: 0
+        };
         _this.setData({
           inclist: inclist
         });
@@ -44,8 +47,9 @@ let pageConfig = {
         }
         _this.setData({
           idAryMap: idAry,
-          chooseNum: num
+          chooseNum: _this.store['incpriceInfo']['num']
         });
+        wx.hideLoading();
       }
     })
   },
@@ -56,13 +60,15 @@ let pageConfig = {
       , incpriceId = e.currentTarget.dataset['incprice_id']
       , price = e.currentTarget.dataset.price
       , isSelected = !_this.data.idAryMap[incpriceId];
-
-    if (isSelected){
+    
+    if (isSelected) {
       _this.store['incpriceInfo']['price'] += parseFloat(price);
       _this.store['incpriceInfo']['num']++;
+      
     }else{
       _this.store['incpriceInfo']['price'] -= parseFloat(price);
       _this.store['incpriceInfo']['num']--;
+      
     }
     idAryMap[incpriceId] = isSelected;
     _this.setData({
@@ -76,7 +82,7 @@ let pageConfig = {
   },
   inclistSure(){
     let _this = this;
-
+    
     wx.setStorageSync('incpriceIds', _this.data.idAryMap);
     wx.setStorageSync('incpriceInfo', _this.store['incpriceInfo']);
     wx.navigateBack({

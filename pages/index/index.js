@@ -17,7 +17,8 @@ let pageConfig = {
     countNum: 4,
     numOfNow: 2,
     showSaerch: false,
-    searchFocus: true
+    searchFocus: true,
+    isPlay: false
   },
   // 数据缓存区
   store: {
@@ -70,7 +71,9 @@ let pageConfig = {
         _this.store['topNum'] = _this.store['model'][res.screenWidth];
       }
     })
-    wx.showLoading();
+    wx.showLoading({
+      mask: true
+    });
     _this._getHomeInfos();
   },
   // 自定义事件
@@ -100,6 +103,11 @@ let pageConfig = {
           wx.hideLoading();
         });
     }
+  },
+  playVideo(){
+    this.setData({
+      isPlay: true
+    });
   },
   searchInfo: function(event){
     let _this = this;

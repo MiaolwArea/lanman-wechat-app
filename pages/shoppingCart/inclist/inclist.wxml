@@ -9,7 +9,7 @@
         <view class="list-item mt-20 mb-20 flex" wx:for="{{ inclist }}" wx:key="{{ item.incprice_id }}">
           <label class="checkbox col-1" data-incprice_id="{{ item.incprice_id }}" data-price="{{ item.price }}" bindtap="changeSelected">  
             <image mode="widthFix" src="{{ idAryMap[item.incprice_id] ? '../../../assets/images/icon/choose.png' : '../../../assets/images/icon/unchoose.png' }}" class="unchoose"></image>
-            <checkbox value="{{ item.incprice_id }}" class="choose-item-btn" hidden />
+            <checkbox value="{{ item.incprice_id }}" checked="{{ idAryMap[item.incprice_id] }}" class="choose-item-btn" hidden />
           </label> 
           <image src="{{ item.info.advertising_photo }}" class="goods-image"></image>
           <view class="goods-info col-6">

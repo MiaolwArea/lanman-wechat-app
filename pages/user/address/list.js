@@ -142,7 +142,7 @@ let pageConfig = {
             consignee: res.userName,
             address: res.detailInfo,
             mobile: res.telNumber
-          }, function (resInfo) {console.log(resInfo)
+          }, function (resInfo) {
             wechatAddress.push({
               address_id: resInfo.data.address_id,
               consignee: res.userName,

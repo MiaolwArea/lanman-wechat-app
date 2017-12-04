@@ -36,6 +36,11 @@ swiper{
 }
 .lessons-video-box video{
   width: 100%;
+  height: 450rpx;
+}
+.lessons-video-box .cover{
+  width: 100%;
+  height: 450rpx;
 }
 .container.move-search{
   padding-top: 140rpx;

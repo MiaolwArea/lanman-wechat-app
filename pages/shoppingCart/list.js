@@ -95,7 +95,7 @@ let pageConfig = {
     
     idAryMap['isSelected'] = aryObj;
     idAryMap['all'] = isAllChecked;
-    idAryMap['incpriceInfo'] = wx.getStorageSync('incpriceInfo');
+    idAryMap['incpriceInfo'] = wx.getStorageSync('incpriceInfo'); 
     _this.setData({
       hasChoose: isAddOrder,
       idAryMap: idAryMap,

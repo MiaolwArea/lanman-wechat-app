@@ -1,5 +1,5 @@
 <!-- shoppingCart.wxml -->
-<view class="shopping-cart pt-banner">
+<view class="shopping-cart">
   <navigator class="my-order bg-white mt-20 flex p30" url="../../user/address/list?choose=true">
     <view class="flex-l flex">
       <image mode="widthFix" src="../../../assets/images/icon/position.png" class="position-image"></image>
@@ -57,7 +57,7 @@
       <view class="fzr16">实付¥{{ finalPrice }}</view>
     </view> -->
   </view>
-  <view class="footer-area flex tac bg-white">
+  <view class="footer-area mt-20 flex tac bg-white">
     <text class="col-7">合计金额：<text class="color-red">¥{{ finalPrice }}</text></text>
     <view class="sure col-3" bindtap="payWechat">确定</view>
   </view>

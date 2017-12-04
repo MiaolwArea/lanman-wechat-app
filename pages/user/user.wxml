@@ -50,12 +50,18 @@
   </view>
   <view class="mb-20 bg-white plr30">
     <navigator hover-class="none" url="./address/list" class="ptb20 bg-white border-bottom-line flex">
-      <view>
+      <view class="flex-content">
         <image src="../../assets/images/icon/position.png" class="position-image"></image>
         <text>我的地址</text>
       </view>
       <view class="info-r arrow pr"></view>
     </navigator>
+    <view class="ptb20 bg-white border-bottom-line flex" wx:if="isDebug" bindtap="clearCache">
+      <view class="flex-content">
+        <text>清除缓存</text>
+      </view>
+      <view class="info-r arrow pr"></view>
+    </view>
   </view>
   <view class="recommend bg-white">
     <view class="title">{{ recommend.title }}</view>

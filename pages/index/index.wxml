@@ -47,7 +47,8 @@
           <text class="color-gray">每周更新</text>
         </view>
         <view class="lessons-video-box">
-          <video id="myVideo" src="{{ homeInfos.course.url }}" controls></video>
+          <image class="cover" src="{{ homeInfos.course.cover }}" wx:if="{{ !isPlay }}" bindtap="playVideo"></image>
+          <video id="myVideo" src="{{ homeInfos.course.url }}"  wx:else controls autoplay></video>
         </view>
       </view>
       <view class="line-cut"></view>
@@ -76,7 +77,7 @@
         <view class="series-list p30">
           <view class="list-item ptb20 border-bottom-line-i" wx:for="{{ series }}" wx:key="{{ index }}">
             <navigator class="flex" hover-class="none" 
-            url="{{ item.series_id ? '../goods/list?series_id=' + item.series_id : '../goods/detail/detail?goods_id=' + item.goods_id }}">
+            url="{{ item.goods_id == 0 ? '../goods/list?series_id=' + item.series_id : '../goods/detail/detail?goods_id=' + item.goods_id }}">
               <image mode="widthFix" class="goods-pic col-5" src="{{ item.advertising_photo }}"></image>
               <view class="goods-info col-5">
                 <view class="title fw fzr15">{{ item.series_name }}</view>

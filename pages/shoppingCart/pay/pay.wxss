@@ -42,11 +42,7 @@ page{ background-color: #f4f4f4; }
 }
 
 .footer-area{
-  position: fixed;
-  bottom: 0;
-  left: 0;
   width: 100%;
-  z-index: 99;
   height: 110rpx;
   letter-spacing: 2px;
   border-top: 1px solid #f4f4f4;

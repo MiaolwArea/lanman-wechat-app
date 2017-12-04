@@ -65,7 +65,7 @@ let pageConfig = {
           wx.navigateBack()
         }, 1000)
       }
-    });
+    }, 'POST');
   },
   // 加入购物车 
   addCart(e) {
