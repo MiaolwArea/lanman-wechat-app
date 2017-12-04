@@ -47,8 +47,11 @@ swiper{
 .recommend-list .list-item{
   display: inline-block;
   width: 300rpx;
-  padding: 0 30rpx 30rpx 30rpx;
+  padding: 0 30rpx 30rpx 0;
   vertical-align: top;
+}
+.recommend-list .list-item:first-child{
+  padding: 0 30rpx 30rpx 30rpx;
 }
 .list-box .title{
   display: block;
@@ -62,7 +65,7 @@ swiper{
   height: 400rpx;
 }
 .series>.title{
-  margin: 30rpx;
+  margin: 30rpx 30rpx 0px;
   padding-bottom: 30rpx;
   border-bottom: 1px solid #ccc;
 }

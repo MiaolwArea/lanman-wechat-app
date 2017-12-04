@@ -81,12 +81,13 @@ export const delElm = (pos, ary) => {
       val = pos[item];
     }
     for (let i = 0; i < ary.length; i++) {
-      if (ary[i].key == val){
+      if (ary[i][key] == val){
         index = i;
         break;
       }
     }
-    ary.splice(index - 1, 1);
+    
+    ary.splice(index, 1);
     return ary;
   } else if (typeof pos === 'number') {
     ary.splice(pos, 1);

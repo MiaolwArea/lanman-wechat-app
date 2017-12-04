@@ -82,8 +82,8 @@ let pageConfig = {
           duration: 500
         });
         setTimeout(function(){
-          wx.redirectTo({
-            url: '../list'
+          wx.navigateBack({
+            delta: 1
           })
         }, 500)
       }

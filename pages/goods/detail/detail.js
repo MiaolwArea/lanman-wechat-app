@@ -129,9 +129,9 @@ let pageConfig = {
     });
     // 限制条件
     if (_this.data.goodsType == 2) {
-      // if (_this.store['bnGoodsID'].length == _this.store['limitNum']) {
-      //   return;
-      // }
+      if ((_this.store['bnGoodsID'].length == _this.store['limitNum']) && (goodsColorsAry[bngoodsid].isSelected == false)) {
+        return;
+      }
       goodsColorsAry[bngoodsid].isSelected = !goodsColorsAry[bngoodsid].isSelected;
       if (goodsColorsAry[bngoodsid].isSelected){
         _this.store['bnGoodsID'].push(bngoodsid);

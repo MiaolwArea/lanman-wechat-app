@@ -28,12 +28,15 @@ let pageConfig = {
   onLoad(opt){
     let _this = this;
 
+    // 地址参数处理
+    appendParamForUrl(_this.store['url'], {
+      sso: app.globalData.sso
+    });
     if (app.globalData.userInfo) {
       _this.setData({
         userInfo: app.globalData.userInfo
       })
     }
-
     if(opt.choose){
       this.setData({
         choose: true
@@ -43,10 +46,6 @@ let pageConfig = {
   onShow: function () {
     let _this = this;
     
-    // 地址参数处理
-    appendParamForUrl(_this.store['url'], {
-      sso: app.globalData.sso
-    });
     // 获取初始化数据 
     app.ApiConfig.ajax(_this.store['url'].addressListUrl, function (res) {
       if (res.success) {
@@ -101,16 +100,16 @@ let pageConfig = {
   // 删除地址
   delAddress(e) {
     let _this = this
-      , dataset = e.target.dataset
+      , dataset = e.currentTarget.dataset
       , address = _this.data.address;
-
+    
     if (dataset.isdefault == 0) {
       app.ApiConfig.ajax(_this.store['url'].delAddressUrl, {
-        address_id: e.target.dataset.id
+        address_id: dataset.id
       }, function (res) {
         if (res.success) {
           _this.setData({
-            address: app.delElm({ address_id: e.target.dataset.id }, address)
+            address: app.delElm({ address_id: dataset.id }, address)
           })
           wx.showToast({
             title: '成功',
@@ -143,7 +142,7 @@ let pageConfig = {
             consignee: res.userName,
             address: res.detailInfo,
             mobile: res.telNumber
-          }, function (resInfo) {
+          }, function (resInfo) {console.log(resInfo)
             wechatAddress.push({
               address_id: resInfo.data.address_id,
               consignee: res.userName,

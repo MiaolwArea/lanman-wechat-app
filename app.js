@@ -27,7 +27,7 @@ App({
                 userInfo: res.userInfo
               }, function (res) {
                 if(res.success){
-                  that.globalData.sso = '48f1X8kLmj0KTSvoT5f1y2EEFA3MSr0hHEJAVn8GbBwdVZtaTA'||res.data.sso;
+                  that.globalData.sso = res.data.sso;
                 }else{
                   wx.showToast({
                     title: '快捷登入失败',
