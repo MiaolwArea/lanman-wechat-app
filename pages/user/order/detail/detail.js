@@ -54,7 +54,7 @@ let pageConfig = {
       content: '确认删除/取消订单吗？',
       showCancel: true,
       cancelColor: '#808080',
-      confirmColor: '#a3a3a3',
+      confirmColor: '#000',
       success: function(res) {
         if (res.confirm) {
           app.ApiConfig.ajax(_this.store['url'].cancelOrderUrl, {

@@ -36,10 +36,7 @@
 .checkbox .unchoose{  
    width: 30.624309rpx;
    height: 30.624309rpx;
-}  
-.goods-list .goods-image{
-  width: 122.099448rpx;
-}
+} 
 .goods-list .list-item:last-child{
   padding-bottom: 0px;
 }

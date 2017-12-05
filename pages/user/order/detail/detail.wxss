@@ -24,6 +24,9 @@ page{ background-color: #f4f4f4; color: #1a1a1a; }
   border-left-color: #a3a3a3;
   right: -14rpx;
 }
+.info-list .list-item-link{
+  justify-content: left;
+}
 .info-list .list-item:last-child{
   margin-bottom: 0px;
 }

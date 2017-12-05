@@ -29,15 +29,15 @@
           </view> 
           <view class="goods-list">
             <view class="list-item border-bottom-line-i ptb30 flex" wx:for="{{ goodsList }}" wx:key="{{ item.goods_id }}">
-              <view class="content flex">
+              <view class="flex">
                 <label class="checkbox col-1" data-goods_id="{{ item.goods_id }}" data-shop_price="{{ item.shop_price }}" bindtap="changeSelected">  
                   <image src="{{ idAryMap[item.goods_id] ? '../../../../assets/images/icon/choose.png' : '../../../../assets/images/icon/unchoose.png' }}" class="unchoose" />
                   <checkbox value="{{ item.goods_id }}" class="choose-item-btn" checked="{{ idAryMap[item.goods_id] }}" hidden />
                 </label> 
                 <navigator hover-class="none"
               url="../goods/detail/detail?goods_id={{ item.goods_id }}" class="flex col-9">
-                  <image mode="widthFix" src="http://image.lanman.cn/2017/06/16/9ad597d1ab9e4bb43eba3bb057af5fc2.jpg" class="goods-image" />
-                  <view class="goods-info col-7">
+                  <image src="{{ item.outside_view }}" class="goods-image" />
+                  <view class="goods-info">
                     <view class="goods-title mb-10">{{ item.goods_name }}</view>
                     <view class="goods-footer flex">
                       <view class="pirce fw color-red">¥{{ item.shop_price }}</view>

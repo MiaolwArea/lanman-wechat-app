@@ -150,7 +150,7 @@ radio, checkbox{
 .del {
  background-color: #d30404;
  width: 130rpx;
- height: 205rpx;
+ height: 210rpx;
  color: #fff;
  display: flex;
  flex-direction: column;
@@ -172,7 +172,7 @@ radio, checkbox{
    height: 30.624309rpx;
 } 
 .goods-image{
-  width: 122.099448rpx;
-  height: 122.099448rpx;
+  width: 150rpx;
+  height: 150rpx;
   margin-right: 20rpx;
 }

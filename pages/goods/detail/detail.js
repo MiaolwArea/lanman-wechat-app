@@ -184,6 +184,16 @@ let pageConfig = {
       }
     });
   },
+  // 预览图片
+  previewImage(e){
+    let current = e.target.dataset.src
+      , imgsUrl = e.target.dataset.imgs;  
+
+    wx.previewImage({
+      current: current, 
+      urls: imgsUrl
+    })  
+  },
   // 加入购物车 
   addCart(e) {
     let _this = this

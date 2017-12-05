@@ -69,12 +69,7 @@
       <view class="list-item inline-block col-5" wx:for="{{ recommend.list }}" wx:key="{{ index }}">
         <navigator hover-class="none" class="list-item-box"
         url="{{ item.url }}">
-          <image src="{{ item.img }}"></image>
-          <!-- <view class="title fw">产品名称</view>
-          <view class="desc fzr12">lanmanlanmanlanmanlanmanlanman</view>
-          <view class="footer flex">
-            <view class="pirce color-red fzr16">¥129</view>
-          </view> -->
+          <image src="{{ item.img }}" mode="widthFix" class="recommend-image"></image>
           <view class="info">
             <rich-text class="title mb-20" nodes="{{ item.desc }}"></rich-text> 
           </view>

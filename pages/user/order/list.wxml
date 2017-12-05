@@ -17,7 +17,7 @@
       <view class="goods-list">
         <navigator hover-class="none" url="./detail/detail?order_id={{ item.order_id }}">
           <view class="goods-link flex" wx:for="{{ item.goods }}" wx:for-index="idx" wx:for-item="goodsItem" wx:key="{{ goodsItem.goods_id }}">
-            <image src="{{ goodsItem.outside_view }}" class="order-image col-3"></image>
+            <image src="{{ goodsItem.outside_view }}" class="order-image goods-image col-3"></image>
             <view class="goods-info tal col-7">
               <view class="title mb-20">{{ goodsItem.goods_name }}</view>
               <view class="price color-red">¥{{ goodsItem.shop_price }}</view>

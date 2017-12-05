@@ -21,9 +21,9 @@
       <view class="info-list ptb30 border-bottom-line-i">
         <view class="list-item mb-30" wx:for="{{ orderDetail.goods }}" wx:key="{{ goodsItem.goods_id }}">
          <navigator hover-class="none" url="../../../goods/detail/detail?goods_id={{ item.goods_id }}" class="flex list-item-link">
-          <image src="{{ item.outside_view }}" class="goods-image col-2"></image>
-          <view class="goods-info tal col-8">
-            <view class="title otw">{{ item.goods_name }}</view>
+          <image src="{{ item.outside_view }}" class="goods-image col-3"></image>
+          <view class="goods-info tal col-7">
+            <view class="title">{{ item.goods_name }}</view>
             <view class="desc fzr12 color-gray">
               <text class="mr-20">数量：{{ item.goods_num }} </text>
               <text>颜色：{{ item.color_name }} </text>
@@ -66,9 +66,11 @@
     </view>  
   </view>
   <view class="footer-area p30 flex bg-white">
-    <text class="del-order" data-order_id="{{ orderDetail.order_id }}" bindtap="cancelOrder">删除订单</text>
+    <view class="flex-l">
+      <view class="del-order" wx:if="{{ orderDetail.order_status != 10 && orderDetail.order_status != 15 }}" data-order_id="{{ orderDetail.order_id }}" bindtap="cancelOrder">删除订单</view>
+    </view>
     <view class="btn-area flex">
-      <view hover-class="none" class="btn ml-20" wx:if="{{ orderDetail.order_status == 10 }}" data-order_id="{{ orderDetail.order_id }}" bindtap="cancelOrder">取消订单</view>   
+      <view hover-class="none" class="btn ml-20" wx:if="{{ orderDetail.order_status == 10 || orderDetail.order_status == 15 }}" data-order_id="{{ orderDetail.order_id }}" bindtap="cancelOrder">取消订单</view>   
       <view bindtap="payWechat" data-order_id="{{ orderDetail.order_id }}" class="btn ml-20" wx:if="{{ orderDetail.order_status == 10 }}">去付款</view> 
       <navigator hover-class="none" url="../../../logistics/logistics?invoice_no={{ orderDetail.invoice_no }}&shipping_name={{ orderDetail.shipping_name }}" class="btn ml-20" wx:if="{{ orderDetail.order_status == 40 }}">查看物流</navigator> 
       <navigator class="btn ml-20" 

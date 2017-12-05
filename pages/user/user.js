@@ -42,7 +42,7 @@ let pageConfig = {
       title: '清楚缓存',
       content: '注意！此操作会清空所有缓存操作记录！',
       cancelColor: '#808080',
-      confirmColor: '#a3a3a3',
+      confirmColor: '#000',
       success: function (res) {
         if (res.confirm) {
           wx.clearStorage();

@@ -46,11 +46,6 @@ page{ background-color: #f4f4f4; color: #1a1a1a; }
   padding: 20rpx 0;
   justify-content: left;
 }
-.goods-link .order-image{
-  width: 150rpx;
-  height: 150rpx;
-  margin-right: 30rpx;
-}
 .footer .goods-count{
   padding: 20rpx 0;
 }

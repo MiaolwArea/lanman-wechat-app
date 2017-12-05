@@ -75,8 +75,8 @@
         </view>
         <view class="comment-content color-black">{{ item.content }}</view>
         <view class="comment-pics mt-20 flex" wx:if="{{ item.img_url[0] }}">
-          <view class="pic-item mr-20" wx:for="{{ item.img_url }}" wx:key="{{index}}">
-            <image class="comment-img" src="{{ item }}"></image>
+          <view class="pic-item mr-20" wx:for="{{ item.img_url }}" wx:for-index="idx" wx:for-item="imgs" wx:key="{{ idx }}">
+            <image class="comment-img" src="{{ imgs }}" data-imgs="{{ item.img_url }}" bindtap="previewImage"></image>
           </view>
         </view>
       </view>

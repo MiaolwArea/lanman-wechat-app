@@ -138,6 +138,11 @@ let pageConfig = {
           icon: 'loading',
           mask: true
         })
+        setTimeout(function () {
+          wx.navigateBack({
+            delta: 1
+          })
+        }, 1000)
       }
     }, 'POST');
   }, 
@@ -215,7 +220,7 @@ let pageConfig = {
                 'signType': res.data.signType,
                 'paySign': res.data.paySign,
                 'success': function (resInfo) {
-                  wx.navigateTo({
+                  wx.redirectTo({
                     url: '../../user/order/detail/detail?order_id=' + res.data.order_id
                   })
                 },
@@ -225,7 +230,7 @@ let pageConfig = {
                     icon: 'loading',
                     duration: 1000,
                     complete: function () {
-                      wx.navigateTo({
+                      wx.redirectTo({
                         url: '../../user/order/detail/detail?order_id=' + res.data.order_id
                       })
                     }
@@ -238,7 +243,12 @@ let pageConfig = {
                 duration: 1000,
                 icon: 'loading',
                 mask: true
-              })
+              });
+              setTimeout(function () {
+                wx.navigateBack({
+                  delta: 1
+                })
+              }, 1000)
             }
           }, 'POST')
         } else {
