@@ -35,6 +35,7 @@ page{ font-size: 28rpx; }
 .p30{ padding: 30rpx; }
 .pb100{ padding-bottom: 100rpx; }
 .mt-20{ margin-top: 20rpx; }
+.pt-20{ padding-top: 20rpx; }
 .pt-banner{ padding-bottom: 130rpx; }
 .mr-20{ margin-right: 20rpx; }
 .ml-20{ margin-left: 20rpx; }
@@ -144,12 +145,12 @@ radio, checkbox{
  -webkit-transform: translateX(130rpx);
  transform: translateX(130rpx);
  margin-left: -130rpx;
- width: 100%;
+ width: calc(100% - 60rpx);
 }
 .del {
  background-color: #d30404;
  width: 130rpx;
- height: 150rpx;
+ height: 205rpx;
  color: #fff;
  display: flex;
  flex-direction: column;

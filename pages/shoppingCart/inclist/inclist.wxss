@@ -3,17 +3,11 @@ page{ background-color: #f4f4f4; }
 .goods-list-warp{
   margin-bottom: 110rpx;
 }
-.inclist-header, .inclist-list .list-item{
-  border-bottom: 1px solid #f4f4f4;
-}
-.inclist-list .list-item{
-  padding: 20rpx 0;
-}
 .inclist-list .goods-image{
   height: 153.1247rpx;
 }
-.goods-info .title{
-  margin-bottom: 20rpx;
+.inclist-list .checkbox{
+  padding: 40rpx 0;
 }
 .footer-area{
   position: fixed;

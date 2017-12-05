@@ -6,13 +6,13 @@
     </view>
     <checkbox-group bindchange="checkboxchange">
       <view class="inclist-list">
-        <view class="list-item mt-20 mb-20 flex" wx:for="{{ inclist }}" wx:key="{{ item.incprice_id }}">
+        <view class="list-item border-bottom-line-i ptb20 flex" wx:for="{{ inclist }}" wx:key="{{ item.incprice_id }}">
           <label class="checkbox col-1" data-incprice_id="{{ item.incprice_id }}" data-price="{{ item.price }}" bindtap="changeSelected">  
             <image mode="widthFix" src="{{ idAryMap[item.incprice_id] ? '../../../assets/images/icon/choose.png' : '../../../assets/images/icon/unchoose.png' }}" class="unchoose"></image>
             <checkbox value="{{ item.incprice_id }}" checked="{{ idAryMap[item.incprice_id] }}" class="choose-item-btn" hidden />
           </label> 
           <image src="{{ item.info.advertising_photo }}" class="goods-image"></image>
-          <view class="goods-info col-6">
+          <view class="goods-info mb-20 col-6">
             <view class="title">{{ item.info.goods_name }}</view>
             <view class="price">¥{{ item.price }}</view>
           </view>

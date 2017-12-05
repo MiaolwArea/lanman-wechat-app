@@ -49,23 +49,34 @@ let pageConfig = {
     let _this = this
       , orderId = e.currentTarget.dataset.order_id;
     
-    app.ApiConfig.ajax(_this.store['url'].cancelOrderUrl, {
-      order_id: orderId
-    }, function (res) {
-      if (res.success) {
-        let data = res.data;
+    wx.showModal({
+      title: '订单删除/取消',
+      content: '确认删除/取消订单吗？',
+      showCancel: true,
+      cancelColor: '#808080',
+      confirmColor: '#a3a3a3',
+      success: function(res) {
+        if (res.confirm) {
+          app.ApiConfig.ajax(_this.store['url'].cancelOrderUrl, {
+            order_id: orderId
+          }, function (res) {
+            if (res.success) {
+              let data = res.data;
 
-        wx.showToast({
-          mask: true,
-          title: res.msg,
-          icon: 'success',
-          duration: 1000
-        })
-        setTimeout(function () {
-          wx.navigateBack()
-        }, 1000)
-      }
-    }, 'POST');
+              wx.showToast({
+                mask: true,
+                title: res.msg,
+                icon: 'success',
+                duration: 1000
+              })
+              setTimeout(function () {
+                wx.navigateBack()
+              }, 1000)
+            }
+          }, 'POST');
+        }
+      },
+    })
   },
   // 加入购物车 
   addCart(e) {
@@ -87,6 +98,62 @@ let pageConfig = {
       }
     }, 'POST');
   },
+  // 付款
+  payWechat(e) {
+    let _this = this
+      , orderId = e.currentTarget.dataset.order_id;
+
+    wx.showLoading({
+      mask: true
+    });
+    // 调用微信支付接口
+    wx.login({
+      success: function (res) {
+        if (res.code) {
+          app.ApiConfig.ajax(_this.store['url'].addOrderUrl, {
+            order_id: orderId
+          }, function (res) {
+            wx.hideLoading();
+            if (res.success) {
+              wx.requestPayment({
+                'timeStamp': res.data.timeStamp.toString(),
+                'nonceStr': res.data.nonceStr,
+                'package': res.data.package,
+                'signType': res.data.signType,
+                'paySign': res.data.paySign,
+                'success': function (resInfo) {
+                  wx.navigateTo({
+                    url: '../list'
+                  })
+                },
+                'fail': function (resInfo) {
+                  wx.showToast({
+                    title: '失败',
+                    icon: 'loading',
+                    duration: 1000,
+                    complete: function () {
+                      wx.navigateTo({
+                        url: '../list'
+                      })
+                    }
+                  })
+                }
+              })
+            } else {
+              wx.showToast({
+                title: res.msg,
+                duration: 1000,
+                icon: 'loading',
+                mask: true
+              })
+            }
+          }, 'POST')
+        } else {
+          console.log('获取用户登录态失败！' + res.errMsg)
+        }
+      }
+    });
+  }
 }
 
 Page(pageConfig)

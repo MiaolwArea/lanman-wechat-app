@@ -7,7 +7,7 @@
           autoplay="true" interval="2000">
           <block wx:for="{{homeInfos.advert}}" wx:key="{{ index }}">
             <swiper-item>
-              <navigator hover-class="none" url="{{ item.url }}" class="p30">
+              <navigator hover-class="none" url="{{ item.url }}">
                 <image mode="widthFix" src="{{ item.img }}" class="slide-image" />
               </navigator>
             </swiper-item>

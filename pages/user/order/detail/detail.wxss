@@ -7,13 +7,17 @@ page{ background-color: #f4f4f4; color: #1a1a1a; }
   padding-bottom: 10rpx;
 }
 .order-info .contact{
-  margin-right: 10rpx;
-  padding: 10rpx 0rpx;
+  padding: 10rpx; 
+  background-color: #fff;
+  line-height: 30rpx;
+}
+.order-info .contact::after{
+  border: none;
 }
 .order-info .arrow:after, .order-info .arrow:before{
   border:10rpx solid transparent;
   border-left:10rpx solid #fff;
-  top: -27rpx;
+  top: -33rpx;
   right: -10rpx;
 }
 .order-info .arrow:before{

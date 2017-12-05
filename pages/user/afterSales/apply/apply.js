@@ -113,6 +113,7 @@ let pageConfig = {
     if (num > max) {
       wx.showModal({
         content: '超过最大数量！',
+        confirmColor: '#a3a3a3',
         showCancel: false
       })
       return;
@@ -120,6 +121,7 @@ let pageConfig = {
     if (num < 1) {
       wx.showModal({
         content: '数量不能为0！',
+        confirmColor: '#a3a3a3',
         showCancel: false
       })
       return;
@@ -206,6 +208,7 @@ let pageConfig = {
     if (e.detail.value > _this.store['maxMoney'] && !_this.data.priceBack){
       wx.showModal({
         content: '不能超过最多金额！',
+        confirmColor: '#a3a3a3',
         showCancel: false
       });
       _this.store['applyMoney'] = 0;

@@ -189,10 +189,13 @@ let pageConfig = {
       }
     }, 'POST');
   },
+  // 付款
   payWechat(e) {
     let _this = this;
 
-    wx.showLoading();
+    wx.showLoading({
+      mask: true
+    });
     // 调用微信支付接口
     wx.login({
       success: function (res) {

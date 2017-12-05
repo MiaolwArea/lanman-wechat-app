@@ -11,12 +11,10 @@
     <view class="order-info mt-20 p30 bg-white">
       <view class="order-title border-bottom-line pb-20 flex">
         <text class="title">LANMAN 烂熳</text>
-        <view>
-          <contact-button 
-            class="contact mr-20 fzr12 color-gray"
-            type="default-light" 
-            size="20"
-            session-from="weapp">联系客服</contact-button>
+        <view class="pr">
+          <button 
+            open-type="contact"
+            class="contact mr-20 fzr12 color-gray">联系客服</button>
           <view class="info-r arrow pr"></view>
         </view>
       </view>
@@ -31,7 +29,7 @@
               <text>颜色：{{ item.color_name }} </text>
             </view>
             <view class="footer flex">
-              <view class="price">¥{{ item.shop_price }}</view>
+              <view class="price color-red">¥{{ item.shop_price }}</view>
               <view class="add-cart" data-bn_goods_id="{{ item.bn_goods_id }}" data-goods_id="{{ item.goods_id }}" data-goods_type="{{ item.goods_type }}" catchtap="addCart">加入购物车</view>
             </view>
           </view>
@@ -53,25 +51,25 @@
       <view class="content pb-20 border-bottom-line">
         <view class="inclist border-bottom-line mb-20 pb-20" wx:if="{{ orderDetail.incprice_list }}">
           <view class="color-gray">已换购商品</view>
-          <view class="inclist-item tac" wx:if="{{ orderDetail.incprice_list }}" wx:key="{{ item.goods_id }}">{{ item.goods_name }} X {{ item.goods_num }}</view>
+          <view class="inclist-item tac" wx:for="{{ orderDetail.incprice_list }}" wx:key="{{ item.goods_id }}">{{ item.goods_name }} {{ item.shop_price }} X {{ item.goods_num }}</view>
         </view>
         <view class="flex">
           <text class="color-gray">商品总额</text>
-          <text>¥{{ orderDetail.goods_amount }}</text>
+          <text class="color-red">¥{{ orderDetail.goods_amount }}</text>
         </view>
         <view class="flex">
           <text class="color-gray">运费</text>
-          <text>{{ orderDetail.freight }}</text>
+          <text class="color-red">{{ orderDetail.freight }}</text>
         </view>
       </view>
-      <view class="count-num tar mt-20 color-gray">实付款：<text class="color-red">¥{{ orderDetail.total_money }}</text></view>
+      <view class="count-num tar mt-20 color-gray">实付款：<text class="color-red fw">¥{{ orderDetail.total_money }}</text></view>
     </view>  
   </view>
   <view class="footer-area p30 flex bg-white">
-    <text class="del-order">删除订单</text>
+    <text class="del-order" data-order_id="{{ orderDetail.order_id }}" bindtap="cancelOrder">删除订单</text>
     <view class="btn-area flex">
       <view hover-class="none" class="btn ml-20" wx:if="{{ orderDetail.order_status == 10 }}" data-order_id="{{ orderDetail.order_id }}" bindtap="cancelOrder">取消订单</view>   
-      <navigator hover-class="none" url="../../../shoppingCart/pay/pay?cart_id={{ orderDetail.cart_id }}" class="btn ml-20" wx:if="{{ orderDetail.order_status == 10 }}">去付款</navigator> 
+      <view bindtap="payWechat" data-order_id="{{ orderDetail.order_id }}" class="btn ml-20" wx:if="{{ orderDetail.order_status == 10 }}">去付款</view> 
       <navigator hover-class="none" url="../../../logistics/logistics?invoice_no={{ orderDetail.invoice_no }}&shipping_name={{ orderDetail.shipping_name }}" class="btn ml-20" wx:if="{{ orderDetail.order_status == 40 }}">查看物流</navigator> 
       <navigator class="btn ml-20" 
       wx:if="{{ (orderDetail.order_status == 50) && (orderDetail.real_order_status == 50) }}" 

@@ -35,11 +35,11 @@
           >查看换购</navigator>
         </view> 
         <view class="goods-list">
-          <view class="list-item flex {{isTouchMove[index] ? 'touch-move-active' : ''}}" 
+          <view class="list-item flex {{isTouchMove[index] ? 'touch-move-active' : ''}}"  
           bindtouchstart="touchstart" bindtouchmove="touchmove" 
           data-index="{{index}}" 
           wx:for="{{ shoppingCart.goods_list }}" wx:key="{{ item.goods_id }}">
-            <view class="content flex">
+            <view class="content flex p30">
               <label class="checkbox col-1" data-selected="{{ idAryMap.isSelected[item.cart_id] }}" data-cart_id="{{ item.cart_id }}" bindtap="changeSelected">  
                 <image src="{{ idAryMap.isSelected[item.cart_id] ? '../../assets/images/icon/choose.png' : '../../assets/images/icon/unchoose.png' }}" class="unchoose" />
                 <checkbox value="{{ item.cart_id }}" class="choose-item-btn" checked="{{ idAryMap.isSelected[item.cart_id] }}" hidden />
@@ -49,7 +49,7 @@
                 <image src="{{ item.outside_view }}" class="goods-image" />
                 <view class="goods-info col-7">
                   <view class="goods-title {{ item.goods_type != 2 ? '' : 'mb-10' }}">{{ item.goods_name }}</view>
-                  <view class="goods-color mb-10" wx:if="{{ item.goods_type != 2 }}">{{ item.color_name }}</view>
+                  <view class="goods-color mb-10 otw" wx:if="{{ item.goods_type != 2 }}">{{ item.color_name }}</view>
                   <view class="goods-footer flex">
                     <view class="pirce fw color-red">¥{{ item.shop_price }}</view>
                     <view class="order-goods-num flex">

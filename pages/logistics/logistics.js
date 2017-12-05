@@ -33,6 +33,7 @@ let pageConfig = {
         wx.showModal({
           title: '查询物流',
           content: res.msg,
+          confirmColor: '#a3a3a3',
           showCancel: false
         })
       }

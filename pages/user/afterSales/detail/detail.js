@@ -45,9 +45,16 @@ let pageConfig = {
     this.store['invoiceNo'] = e.detail.value;
   },
   linkLogistics(){
-    wx.redirectTo({
-      url: '../../../logistics/logistics?shipping_name=' + this.store['shippingName'] + '&invoice_no=' + this.store['invoiceNo'],
-    })
+    if (this.store['invoiceNo']){
+      wx.redirectTo({
+        url: '../../../logistics/logistics?shipping_name=' + this.store['shippingName'] + '&invoice_no=' + this.store['invoiceNo'],
+      })
+    }else{
+      wx.showToast({
+        title: '请输入信息',
+        icon: 'loading'
+      })
+    }
   }
 }
 

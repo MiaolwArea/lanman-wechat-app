@@ -122,6 +122,7 @@ let pageConfig = {
       wx.showModal({
         title: '',
         content: '默认地址不能删除！',
+        confirmColor: '#a3a3a3',
         showCancel: false
       })
     }

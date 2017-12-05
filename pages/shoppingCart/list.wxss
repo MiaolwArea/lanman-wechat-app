@@ -34,17 +34,22 @@ page{ background-color: #f4f4f4; color: #1a1a1a; }
 .goods-exchange .tab{
   border: 1px solid #b30000;
   margin-right: 20rpx;
+  padding: 0 10rpx;
 }
 .goods-list .list-item{
-  padding: 30rpx 0;
   border-bottom: 1px solid #ccc;
   overflow-x: hidden;
 }
 .goods-list .list-item:last-child{
   border-bottom: none;
 }
-.goods-list .content{
-  padding: 0 30rpx;
+.goods-list .list-item .goods-title{
+  overflow: hidden;
+  max-height: 80rpx;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
 }
 .goods-list .content .checkbox{
   padding: 40rpx 0;

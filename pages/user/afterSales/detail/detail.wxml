@@ -1,23 +1,23 @@
 <!-- afterSales-detail.wxml -->
  <view class="after-sales-detail">
   <view class="after-sales-info bg-white plr30 mt-20">
-    <view class="after-sales-info-i flex">
+    <view class="border-bottom-line-i ptb30 flex">
       <text class="color-gray">申请类型:</text>
       <text>{{ afterSalesDetail.feedback_type_cn }}</text>
     </view>
-    <view class="after-sales-info-i flex">
+    <view class="border-bottom-line-i ptb30 flex">
       <text class="color-gray">申请进度:</text>
       <text>{{ afterSalesDetail.feedback_status_cn }}</text>
     </view>
-    <view class="after-sales-info-i flex">
+    <view class="border-bottom-line-i ptb30 flex">
       <text class="color-gray">申请时间:</text>
       <text>{{ afterSalesDetail.add_time }}</text>
     </view>
-    <view class="after-sales-info-i flex">
+    <view class="border-bottom-line-i ptb30 flex">
       <text class="color-gray">订单号:</text>
       <text>{{ afterSalesDetail.order_sn }}</text>
     </view>
-    <view class="after-sales-info-i flex">
+    <view class="border-bottom-line-i ptb30 flex">
       <text class="color-gray">内容说明:</text>
         <text>{{ afterSalesDetail.content || '空' }}</text>
     </view>

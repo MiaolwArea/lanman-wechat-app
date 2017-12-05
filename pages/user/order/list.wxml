@@ -20,7 +20,7 @@
             <image src="{{ goodsItem.outside_view }}" class="order-image col-3"></image>
             <view class="goods-info tal col-7">
               <view class="title mb-20">{{ goodsItem.goods_name }}</view>
-              <view class="price fw color-red">¥{{ goodsItem.shop_price }}</view>
+              <view class="price color-red">¥{{ goodsItem.shop_price }}</view>
             </view>
           </view>
         </navigator>
@@ -33,7 +33,7 @@
         <!-- 根据订单修改按钮功能 -->
         <view class="footer-ctl flex">
           <view hover-class="none" class="order-btn mt-20 ml-20" wx:if="{{ item.order_status == 10 }}" data-order_id="{{ item.order_id }}" bindtap="cancelOrder">取消订单</view>  
-          <navigator hover-class="none" url="../../shoppingCart/pay/pay?cart_id={{ item.cart_id }}" class="order-btn mt-20 ml-20" wx:if="{{ item.order_status == 10 }}">去付款</navigator> 
+          <view bindtap="payWechat" data-order_id="{{ item.order_id }}" class="order-btn mt-20 ml-20" wx:if="{{ item.order_status == 10 }}">去付款</view> 
           <navigator hover-class="none" url="../../logistics/logistics?shipping_name={{ item.shipping_name }}&invoice_no={{ item.invoice_no }}" class="order-btn mt-20 ml-20" wx:if="{{ item.order_status == 40 }}">查看物流</navigator> 
           <navigator class="order-btn mt-20 ml-20" 
           wx:if="{{ (item.order_status == 50 && item.real_order_status == 50) || item.order_status == 20 }}" 

@@ -15,12 +15,11 @@ let pageConfig = {
       // 换购商品列表
       inclistUrl: app.globalData.isDebug ? 'shoppingCart' : '/wechatapp/goods/inclist',
     },
-    incpriceInfo: ''
+    priceAry: ''
   },
   onLoad(){
     let _this = this;
 
-    // wx.clearStorage();
     wx.showLoading({
       mask: true,
     })
@@ -31,24 +30,34 @@ let pageConfig = {
     app.ApiConfig.ajax(_this.store['url'].inclistUrl, function (res) {
       if (res.success) {
         let inclist = res.data
-          , idAry = wx.getStorageSync('incpriceIds') || {};
+          , idAry = wx.getStorageSync('incpriceIds') || {}
+          , priceAry = {}
+          , num = 0;
         
-        _this.store['incpriceInfo'] = wx.getStorageSync('incpriceInfo') || {
-          price: 0.00,
-          num: 0
-        };
         _this.setData({
           inclist: inclist
         });
         for (let i = 0; i < inclist.length; i++) {
+          priceAry[inclist[i].incprice_id] = inclist[i].price;
           if (idAry[inclist[i].incprice_id] === undefined) {
             idAry[inclist[i].incprice_id] = false;
           }
         }
+        
+        Object.keys(idAry).forEach((attr, index) => {
+          attr /= 1;
+          if (priceAry[attr] == undefined){
+            delete idAry[attr];
+          }
+          if (idAry[attr]){
+            num++;
+          }
+        });
         _this.setData({
           idAryMap: idAry,
-          chooseNum: _this.store['incpriceInfo']['num']
+          chooseNum: num
         });
+        _this.store['priceAry'] = priceAry;
         wx.hideLoading();
       }
     })
@@ -61,15 +70,6 @@ let pageConfig = {
       , price = e.currentTarget.dataset.price
       , isSelected = !_this.data.idAryMap[incpriceId];
     
-    if (isSelected) {
-      _this.store['incpriceInfo']['price'] += parseFloat(price);
-      _this.store['incpriceInfo']['num']++;
-      
-    }else{
-      _this.store['incpriceInfo']['price'] -= parseFloat(price);
-      _this.store['incpriceInfo']['num']--;
-      
-    }
     idAryMap[incpriceId] = isSelected;
     _this.setData({
       idAryMap: idAryMap
@@ -80,11 +80,27 @@ let pageConfig = {
       chooseNum: e.detail.value.length
     });
   },
+  // 确认
   inclistSure(){
-    let _this = this;
+    let _this = this
+      , idAry = _this.data.idAryMap
+      , incpriceInfo = {}
+      , num = 0
+      , price = 0;
     
+    Object.keys(idAry).forEach((attr, index) => {
+      attr /= 1; 
+      if (idAry[attr]) {
+        _this.store['priceAry'][attr] /= 1;
+        price += _this.store['priceAry'][attr]
+        num++;
+      }
+    });
     wx.setStorageSync('incpriceIds', _this.data.idAryMap);
-    wx.setStorageSync('incpriceInfo', _this.store['incpriceInfo']);
+    wx.setStorageSync('incpriceInfo', {
+      price: price,
+      num: num
+    });
     wx.navigateBack({
       delta: 1
     })

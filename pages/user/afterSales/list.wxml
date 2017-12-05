@@ -1,22 +1,22 @@
 <!-- afterSalesList.wxml -->
 <view class="after-sales">
-  <view class="after-sales-list">
+  <view class="after-sales-list mt-20">
     <view class="after-sales-item bg-white p30 mb-20" wx:for="{{ afterSalesList }}" wx:key="{{ item.order_id }}">
       <view class="header fzr12 pb-20 color-gray">
         <view class="order-num mr-20 mb-10">订单编号：{{ item.order_sn }} </view>
         <view class="time">下单时间：{{ item.add_time }}</view>
       </view>
-      <view class="goods-link flex" wx:for="{{ item.goods }}" wx:for-index="idx" wx:for-item="goodsItem" wx:key="{{ goodsItem.goods_id }}">
+      <view class="goods-link ptb30 flex" wx:for="{{ item.goods }}" wx:for-index="idx" wx:for-item="goodsItem" wx:key="{{ goodsItem.goods_id }}">
         <image src="{{ goodsItem.outside_view }}" class="after-sales-image"></image>
         <view class="goods-info tal">
-          <view class="title">{{ goodsItem.goods_name }}</view>
+          <view class="title mb-30">{{ goodsItem.goods_name }}</view>
           <view class="desc fzr12 mb-10">
             <text class="mr-20">数量：{{ goodsItem.goods_num }} </text>
             <text>颜色：{{ goodsItem.color_name }} </text>
           </view>
         </view>
       </view>
-      <view class="footer flex border-top-line">
+      <view class="footer pt-20 flex border-top-line">
         <view class="status color-red">{{ item.feedback_type_cn }} {{ item.feedback_status_cn }}</view>
         <navigator hover-class="none" url="./detail/detail?feedback_id={{ item.feedback_id }}" class="info-link">查看详情</navigator>
       </view>

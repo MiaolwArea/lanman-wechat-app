@@ -2,19 +2,19 @@
 <view class="afterSales-apply">
   <view class="apply-page" wx:if="{{ !isSuccess }}">
     <view class="after-sales-apply-l mb-20 bg-white plr30">
-      <view class="after-sales-apply-i ptb20 border-bottom-line color-gray flex">
+      <view class="mt-20 ptb20 border-bottom-line color-gray flex">
         <text class="fzr16">申请类型</text>
         <text></text>
       </view>
-      <view class="after-sales-apply-i ptb20 border-bottom-line color-gray flex" data-type="50" bindtap="chooseType">
+      <view class="mt-20 ptb20 border-bottom-line color-gray flex" data-type="50" bindtap="chooseType">
         <text>我要退货/退款</text>
         <image wx:if="{{ feedbackType[50].isSelected }}" src="../../../../assets/images/icon/selected.png" class="choose-pic"></image>
       </view>
-      <view class="after-sales-apply-i ptb20 border-bottom-line color-gray flex" data-type="70" bindtap="chooseType">
+      <view class="mt-20 ptb20 border-bottom-line color-gray flex" data-type="70" bindtap="chooseType">
         <text>我要换货</text>
         <image wx:if="{{ feedbackType[70].isSelected }}" src="../../../../assets/images/icon/selected.png" class="choose-pic"></image>
       </view>
-      <view class="after-sales-apply-i ptb20 border-bottom-line color-gray flex" data-type="90" bindtap="chooseType">
+      <view class="mt-20 ptb20 border-bottom-line color-gray flex" data-type="90" bindtap="chooseType">
         <text>我要退运费</text>
         <image wx:if="{{ feedbackType[90].isSelected }}" src="../../../../assets/images/icon/selected.png" class="choose-pic"></image>
       </view>
@@ -78,15 +78,15 @@
       </picker>
     </view>
     <view class="mt-20 bg-white plr30">
-      <view class="after-sales-apply-i ptb20 border-bottom-line color-gray flex" wx:if="{{ !priceBack && !exchangeGoos }}">
+      <view class="mt-20 ptb20 border-bottom-line color-gray flex" wx:if="{{ !priceBack && !exchangeGoos }}">
         <text>最多退款：</text>
         <text>{{ limitPrice }}</text>
       </view>
-      <view class="after-sales-apply-i ptb20 border-bottom-line color-gray flex" wx:if="{{ !exchangeGoos }}">
+      <view class="mt-20 ptb20 border-bottom-line color-gray flex" wx:if="{{ !exchangeGoos }}">
         <text>退款金额：</text>
         <input class="apply-price tar" placeholder="请输入退款金额" bindblur="checkInput"></input>
       </view>
-      <view class="after-sales-apply-i ptb20 border-bottom-line color-gray">
+      <view class="mt-20 ptb20 border-bottom-line color-gray">
         <text>具体原因</text>
         <textarea class="remark" bindconfirm="confirmRemark"></textarea>
       </view>
@@ -102,23 +102,23 @@
       <view class="">{{ successInfo }}</view>
     </view>
     <view class="apply-info bg-white plr30 mb-20">
-      <view class="after-sales-apply-i ptb20 border-bottom-line flex">
+      <view class="mt-20 ptb20 border-bottom-line flex">
         <text class="color-gray">申请类型:</text>
         <text>{{ afterSalesDetail.feedback_type_cn }}</text>
       </view>
-      <view class="after-sales-apply-i ptb20 border-bottom-line flex">
+      <view class="mt-20 ptb20 border-bottom-line flex">
         <text class="color-gray">申请进度:</text>
         <text>{{ afterSalesDetail.feedback_status_cn }}</text>
       </view>
-      <view class="after-sales-apply-i ptb20 border-bottom-line flex">
+      <view class="mt-20 ptb20 border-bottom-line flex">
         <text class="color-gray">申请时间:</text>
         <text>{{ afterSalesDetail.add_time }}</text>
       </view>
-      <view class="after-sales-apply-i ptb20 border-bottom-line flex">
+      <view class="mt-20 ptb20 border-bottom-line flex">
         <text class="color-gray">订单号:</text>
         <text>{{ afterSalesDetail.order_sn }}</text>
       </view>
-      <view class="after-sales-apply-i ptb20 border-bottom-line flex">
+      <view class="mt-20 ptb20 border-bottom-line flex">
         <text class="color-gray">内容说明:</text>
         <text>{{ afterSalesDetail.content || '空' }}</text>
       </view>
