@@ -1,7 +1,6 @@
 // logistics.js
 // 获取应用实例
 let app = getApp()
-import { appendParamForUrl } from '../../utils/util'
 
 let pageConfig = {
   data: {
@@ -17,12 +16,8 @@ let pageConfig = {
   onLoad: function (opt) {
     let _this = this;
     
-    // 地址参数处理
-    appendParamForUrl(_this.store['url'], {
-      sso: app.globalData.sso
-    });
     // 获取初始化数据 
-    app.ApiConfig.ajax(_this.store['url'].logisticsUrl + '&shipping_name=' + opt.shipping_name + '&invoice_no=' + opt.invoice_no, function (res) {
+    app.ApiConfig.ajax(_this.store['url'].logisticsUrl + '?shipping_name=' + opt.shipping_name + '&invoice_no=' + opt.invoice_no, function (res) {
       if (res.success) {
         let dataInfo = res.data;
 

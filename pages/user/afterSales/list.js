@@ -1,7 +1,7 @@
 // afterSalesList.js
 // 获取应用实例
 var app = getApp();
-import { appendParamForUrl, formatTime } from '../../../utils/util';
+import { formatTime } from '../../../utils/util';
 
 let pageConfig = {
   data: {
@@ -17,9 +17,6 @@ let pageConfig = {
   onLoad: function () {
     let _this = this;
 
-    appendParamForUrl(_this.store['url'], {
-      sso: app.globalData.sso
-    });
     wx.showLoading({
       mask: true,
     })

@@ -1,7 +1,6 @@
 // inclist.js
 // 获取应用实例
 var app = getApp()
-import { appendParamForUrl } from '../../../utils/util'
 
 let pageConfig = {
   data: {
@@ -23,10 +22,6 @@ let pageConfig = {
     wx.showLoading({
       mask: true,
     })
-    // 地址参数处理
-    appendParamForUrl(_this.store['url'], {
-      sso: app.globalData.sso
-    });
     app.ApiConfig.ajax(_this.store['url'].inclistUrl, function (res) {
       if (res.success) {
         let inclist = res.data

@@ -1,7 +1,7 @@
 // goodsList.js
 // 获取应用实例
 let app = getApp()
-import { pageAction, appendParamForUrl } from '../../utils/util'
+import { pageAction } from '../../utils/util'
 
 let pageConfig = {
   data: {
@@ -22,10 +22,6 @@ let pageConfig = {
     let _this = this;
     
     _this.store['seriesId'] = opt.series_id;
-    // 地址参数处理
-    appendParamForUrl(_this.store['url'], {
-      sso: app.globalData.sso
-    });
     // 商品详情
     this._getGoodsList();
   },
@@ -41,7 +37,7 @@ let pageConfig = {
   _getGoodsList(){
     let _this = this;
 
-    app.ApiConfig.ajax(_this.store['url'].goodsListUrl + '&page=' + _this.store['pageNum'] + '&count=' + _this.store['count'] + '&series_id=' + _this.store['seriesId'], function (res) {
+    app.ApiConfig.ajax(_this.store['url'].goodsListUrl + '?page=' + _this.store['pageNum'] + '&count=' + _this.store['count'] + '&series_id=' + _this.store['seriesId'], function (res) {
       if (res.success) {
         if (res.data.length != 0) {
           _this.setData({

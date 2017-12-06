@@ -1,7 +1,6 @@
 // address_edit.js
 // 获取应用实例
 let app = getApp();
-import { appendParamForUrl } from '../../../../utils/util'
 
 let pageConfig = {
   data: {
@@ -27,12 +26,8 @@ let pageConfig = {
     let _this = this;
     
     _this.store['editId'] = opt.address_id;
-    // 地址参数处理
-    appendParamForUrl(_this.store['url'], {
-      sso: app.globalData.sso
-    });
     // 获取初始化数据 
-    app.ApiConfig.ajax(_this.store['url'].addressDetailUrl + '&address_id=' + _this.store['editId'], function (res) {
+    app.ApiConfig.ajax(_this.store['url'].addressDetailUrl + '?address_id=' + _this.store['editId'], function (res) {
       if (res.success) {
         _this.setData({
           addressInfo: res.data,

@@ -56,7 +56,7 @@
       </view>
       <view class="info-r arrow pr"></view>
     </navigator>
-    <view class="ptb20 bg-white border-bottom-line flex" wx:if="isDebug" bindtap="clearCache">
+    <view class="ptb20 bg-white border-bottom-line flex" wx:if="{{ isDebug }}" bindtap="clearCache">
       <view class="flex-content">
         <text>清除缓存</text>
       </view>

@@ -1,7 +1,7 @@
 // order_detail.js
 // 获取应用实例
 var app = getApp()
-import { appendParamForUrl, formatTime } from '../../../../utils/util'
+import { formatTime } from '../../../../utils/util'
 
 let pageConfig = {
   data: {
@@ -24,15 +24,11 @@ let pageConfig = {
     let _this = this;
     _this.store['orderId'] = opt.order_id;
 
-    // 地址参数处理
-    appendParamForUrl(_this.store['url'], {
-      sso: app.globalData.sso
-    });
     wx.showLoading({
       mask: true
     })
     // 获取初始化数据 
-    app.ApiConfig.ajax(_this.store['url'].orderDetailUrl + '&order_id=' + _this.store['orderId'], function (res) {
+    app.ApiConfig.ajax(_this.store['url'].orderDetailUrl + '?order_id=' + _this.store['orderId'], function (res) {
       if (res.success) {
         let data = res.data;
 

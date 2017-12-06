@@ -3,7 +3,7 @@ let API = require('./utils/api');
 import { delElm } from './utils/util';
 
 App({
-  onLaunch: function() {
+  onLaunch: function () {
     this.getUserInfo();
     this.ApiConfig = API;
     this.delElm = delElm;
@@ -27,7 +27,10 @@ App({
                 userInfo: res.userInfo
               }, function (res) {
                 if(res.success){
-                  that.globalData.sso = res.data.sso;
+                  API.setHeader({
+                    sso: res.data.sso,
+                    token: res.data.token 
+                  })
                 }else{
                   wx.showToast({
                     title: '快捷登入失败',
@@ -56,7 +59,6 @@ App({
 
   globalData: {
     isDebug: false,
-    userInfo: null,
-    sso: ''
+    userInfo: null
   }
 })

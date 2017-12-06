@@ -120,8 +120,7 @@ let pageConfig = {
   _getGoodsList(){
     let _this = this;
 
-    app.ApiConfig.ajax(_this.store['url'].goodsListUrl + '?search=' + _this.store['keyword'] +
-      '&page=' + pageOfGoods + '&count=' + count, function (res) {
+    app.ApiConfig.ajax(_this.store['url'].goodsListUrl + '?search=' + _this.store['keyword'] + '&page=' + pageOfGoods + '&count=' + count, function (res) {
         if (res.success) {
           if (pageOfGoods == 1){
             _this.setData({

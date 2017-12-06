@@ -1,7 +1,7 @@
 // order.js
 // 获取应用实例
 var app = getApp()
-import { appendParamForUrl, formatTime } from '../../../utils/util'
+import { formatTime } from '../../../utils/util'
 
 let pageConfig = {
   data: {
@@ -35,10 +35,6 @@ let pageConfig = {
         });
       }
     }); 
-    // 地址参数处理
-    appendParamForUrl(_this.store['url'], {
-      sso: app.globalData.sso
-    });
   },
   onShow(){
     let _this = this;
@@ -59,7 +55,7 @@ let pageConfig = {
       mask: true
     })
     // 全部订单
-    app.ApiConfig.ajax(_this.store['url'].orderListUrl + '&order_status=' + orderStatus, function (res) {
+    app.ApiConfig.ajax(_this.store['url'].orderListUrl + '?order_status=' + orderStatus, function (res) {
       if (res.success) {
         let data = res.data;
 

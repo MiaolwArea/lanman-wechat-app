@@ -7,7 +7,7 @@ let pageConfig = {
   data: {
     userInfo: {},
     recommend: null,
-    isDebug: true
+    isDebug: false
   },
   // 数据缓存区
   store: {
@@ -24,9 +24,7 @@ let pageConfig = {
         userInfo: app.globalData.userInfo
       })
     }
-    appendParamForUrl(_this.store['url'], {
-      sso: app.globalData.sso
-    });
+   
     // 获取初始化数据 
     app.ApiConfig.ajax(_this.store['url'].indexUrl, function (res) {
       if (res.success) {

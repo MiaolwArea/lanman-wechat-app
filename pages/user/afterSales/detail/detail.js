@@ -1,7 +1,7 @@
 // afterSales-detail.js
 // 获取应用实例
 var app = getApp()
-import { appendParamForUrl, formatTime } from '../../../../utils/util'
+import { formatTime } from '../../../../utils/util'
 
 let pageConfig = {
   data: {
@@ -22,12 +22,8 @@ let pageConfig = {
     let _this = this;
     _this.store['feedbackId'] = opt.feedback_id;
 
-    // 地址参数处理
-    appendParamForUrl(_this.store['url'], {
-      sso: app.globalData.sso
-    });
     // 获取初始化数据 
-    app.ApiConfig.ajax(_this.store['url'].afterSalesDetailUrl + '&feedback_id=' + _this.store['feedbackId'], function (res) {
+    app.ApiConfig.ajax(_this.store['url'].afterSalesDetailUrl + '?feedback_id=' + _this.store['feedbackId'], function (res) {
       if (res.success) {
         let dataInfo = res.data;
 

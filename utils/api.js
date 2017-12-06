@@ -1,8 +1,15 @@
 let API_HOST = "https://api.lanman.cn/";
 let DEBUG = false;
 
-var Mock = require('../mock/mockData.js');
+let Mock = require('../mock/mockData.js');
 
+let headerParam = null; 
+
+function setHeader(param) {
+  if (typeof param === 'object') {
+    headerParam = param;
+  }
+}
 function ajax() {
   if (typeof arguments[1] === 'function') {
     Array.prototype.splice.call(arguments, 1, 0, {})
@@ -11,7 +18,7 @@ function ajax() {
   let data = arguments[1];
   let fn = arguments[2];
   let method = arguments[3] || 'get';
-  let header = arguments[4] || null;
+  let header = arguments[4] || headerParam || null;
   
   // 格式化POST数据
   (function(){
@@ -27,7 +34,7 @@ function ajax() {
       url: API_HOST + url,
       method: method ? method : 'get',
       data: data,
-      header: { "Content-Type": "application/x-www-form-urlencoded" },
+      header: { "Content-Type": "application/x-www-form-urlencoded", ...header },
       success: function (res) {
         fn(res.data);
       }
@@ -46,5 +53,6 @@ function ajax() {
 }
 
 module.exports = {
-  ajax: ajax
+  ajax: ajax,
+  setHeader: setHeader
 }

@@ -1,7 +1,7 @@
 // afterSales-apply.js
 // 获取应用实例
 var app = getApp();
-import { appendParamForUrl, formatTime } from '../../../../utils/util';
+import { formatTime } from '../../../../utils/util';
 
 let pageConfig = {
   data: {
@@ -52,14 +52,11 @@ let pageConfig = {
       , idAryMap = {};
 
     _this.store['orderId'] = opt.order_id || '';
-    appendParamForUrl(_this.store['url'], {
-      sso: app.globalData.sso
-    });
     wx.showLoading({
       mask: true,
     });
     // 获取初始化数据
-    app.ApiConfig.ajax(_this.store['url'].afterSalesListUrl + '&order_id=' + _this.store['orderId'], function (res) {
+    app.ApiConfig.ajax(_this.store['url'].afterSalesListUrl + '?order_id=' + _this.store['orderId'], function (res) {
       if (res.success) {
         let data = res.data
           , goods = data.order_detail.goods;
@@ -254,7 +251,7 @@ let pageConfig = {
           successInfo: res.msg,
           isSuccess: true
         })
-        app.ApiConfig.ajax(_this.store['url'].afterSalesDetailUrl + '&feedback_id=' + res.data, function(res){
+        app.ApiConfig.ajax(_this.store['url'].afterSalesDetailUrl + '?feedback_id=' + res.data, function(res){
           let dataInfo = res.data;
 
           dataInfo.add_time = formatTime(dataInfo.add_time, 'yyyy-MM-dd hh:mm:ss');

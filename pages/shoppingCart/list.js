@@ -1,7 +1,7 @@
 // shoppingCart-list.js
 // 获取应用实例
 var app = getApp();
-import { appendParamForUrl, formatNum } from '../../utils/util';
+import { formatNum } from '../../utils/util';
 
 let pageConfig = {
   data: {
@@ -31,14 +31,7 @@ let pageConfig = {
     goodsListNum: 0,
     chooseLength: [],
   },
-  onLoad(){
-    let _this = this;
-
-    // 地址参数处理
-    appendParamForUrl(_this.store['url'], {
-      sso: app.globalData.sso
-    });
-  },
+  onLoad(){},
   onShow(){
     let _this = this
       , isTouchMoveAry = [];

@@ -1,7 +1,6 @@
 //address.js
 //获取应用实例
 let app = getApp();
-import { appendParamForUrl } from '../../../utils/util'
 
 let pageConfig = {
   data: {
@@ -28,10 +27,6 @@ let pageConfig = {
   onLoad(opt){
     let _this = this;
 
-    // 地址参数处理
-    appendParamForUrl(_this.store['url'], {
-      sso: app.globalData.sso
-    });
     if (app.globalData.userInfo) {
       _this.setData({
         userInfo: app.globalData.userInfo

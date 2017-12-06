@@ -1,7 +1,7 @@
 // goodsDetial.js
 // 获取应用实例
 let app = getApp()
-import { pageAction, appendParamForUrl, formatTime } from '../../../utils/util'
+import { pageAction, formatTime } from '../../../utils/util'
 
 // let countHeight = 0; // 图片总高度
 // let windowWidth = wx.getSystemInfoSync().windowWidth; // 屏宽
@@ -45,12 +45,8 @@ let pageConfig = {
     let _this = this;
 
     _this.store['goodsId'] = opt.goods_id;
-    // 地址参数处理
-    appendParamForUrl(_this.store['url'], {
-      sso: app.globalData.sso
-    });
     // 商品详情
-    app.ApiConfig.ajax(_this.store['url'].goodsDetialUrl + '&goods_id=' + _this.store['goodsId'], function (res) {
+    app.ApiConfig.ajax(_this.store['url'].goodsDetialUrl + '?goods_id=' + _this.store['goodsId'], function (res) {
       let data = res.data;
 
       if (res.success) {
@@ -170,7 +166,7 @@ let pageConfig = {
       , count = 15;
 
     // 用户评价
-    app.ApiConfig.ajax(_this.store['url'].commentlist + '&page=' + _this.store['pageNum'] + '&count=' + count + '&goods_id=' + _this.store['goodsId'], function (res) {
+    app.ApiConfig.ajax(_this.store['url'].commentlist + '?page=' + _this.store['pageNum'] + '&count=' + count + '&goods_id=' + _this.store['goodsId'], function (res) {
       let data = res.data;
 
       if (res.success) {
