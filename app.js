@@ -10,7 +10,7 @@ App({
   },
 
   getUserInfo: function(cb) {
-    var that = this
+    var _this = this
     
     if (this.globalData.userInfo) {
       typeof cb == "function" && cb(this.globalData.userInfo)
@@ -30,7 +30,9 @@ App({
                   API.setHeader({
                     sso: res.data.sso,
                     token: res.data.token 
-                  })
+                  });
+                  _this.globalData.sso = res.data.sso;
+                  _this.globalData.token = res.data.token;
                 }else{
                   wx.showToast({
                     title: '快捷登入失败',
@@ -40,8 +42,8 @@ App({
                 }
               }, 'post')
 
-              that.globalData.userInfo = res.userInfo
-              typeof cb == "function" && cb(that.globalData.userInfo)
+              _this.globalData.userInfo = res.userInfo
+              typeof cb == "function" && cb(_this.globalData.userInfo)
             }
           })
         }
@@ -50,8 +52,8 @@ App({
       wx.getUserInfo({
         withCredentials: false,
         success: function (res) {
-          that.globalData.userInfo = res.userInfo
-          typeof cb == "function" && cb(that.globalData.userInfo)
+          _this.globalData.userInfo = res.userInfo
+          typeof cb == "function" && cb(_this.globalData.userInfo)
         }
       })
     }
@@ -59,6 +61,8 @@ App({
 
   globalData: {
     isDebug: false,
-    userInfo: null
+    userInfo: null,
+    sso: '',
+    token: ''
   }
 })

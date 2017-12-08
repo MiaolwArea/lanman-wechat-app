@@ -1,11 +1,11 @@
 <!-- order.wxml -->
 <view class="order">
-  <view class="swiper-tab">
-    <view class="swiper-tab-list {{currentTab==0 ? 'on' : ''}}" data-current="0" bindtap="swichNav">全部 </view>
-    <view class="swiper-tab-list {{currentTab==1 ? 'on' : ''}}" data-current="1" bindtap="swichNav">待付款</view>
-    <view class="swiper-tab-list {{currentTab==5 ? 'on' : ''}}" data-current="5" bindtap="swichNav">待发货</view>
-    <view class="swiper-tab-list {{currentTab==2 ? 'on' : ''}}" data-current="2" bindtap="swichNav">待收货</view>
-    <view class="swiper-tab-list {{currentTab==3 ? 'on' : ''}}" data-current="3" bindtap="swichNav">已完成</view>
+  <view class="swiper-tab" bindtap="swichNav">
+    <view class="swiper-tab-list {{currentTab==0 ? 'on' : ''}}" data-current="0">全部 </view>
+    <view class="swiper-tab-list {{currentTab==1 ? 'on' : ''}}" data-current="1">待付款</view>
+    <view class="swiper-tab-list {{currentTab==5 ? 'on' : ''}}" data-current="5">待发货</view>
+    <view class="swiper-tab-list {{currentTab==2 ? 'on' : ''}}" data-current="2">待收货</view>
+    <view class="swiper-tab-list {{currentTab==4 ? 'on' : ''}}" data-current="4">待评价</view>
   </view>
   <!-- 订单列表 -->
   <view class="order-list" wx:if="{{ hasOrder }}">
@@ -32,12 +32,15 @@
         </view>
         <!-- 根据订单修改按钮功能 -->
         <view class="footer-ctl flex">
-          <view hover-class="none" class="order-btn mt-20 ml-20" wx:if="{{ item.order_status == 10 }}" data-order_id="{{ item.order_id }}" bindtap="cancelOrder">取消订单</view>  
+          <view class="order-btn mt-20 ml-20" wx:if="{{ item.order_status == 10 }}" data-order_id="{{ item.order_id }}" bindtap="cancelOrder">取消订单</view>  
           <view bindtap="payWechat" data-order_id="{{ item.order_id }}" class="order-btn mt-20 ml-20" wx:if="{{ item.order_status == 10 }}">去付款</view> 
-          <navigator hover-class="none" url="../../logistics/logistics?shipping_name={{ item.shipping_name }}&invoice_no={{ item.invoice_no }}" class="order-btn mt-20 ml-20" wx:if="{{ item.order_status == 40 }}">查看物流</navigator> 
+          <navigator url="../../logistics/logistics?shipping_name={{ item.shipping_name }}&invoice_no={{ item.invoice_no }}" class="order-btn mt-20 ml-20" wx:if="{{ item.order_status == 40 }}">查看物流</navigator> 
           <navigator class="order-btn mt-20 ml-20" 
           wx:if="{{ (item.order_status == 50 && item.real_order_status == 50) || item.order_status == 20 }}" 
           hover-class="none" url="../afterSales/apply/apply?order_id={{ item.order_id }}">申请售后</navigator> 
+          <navigator class="order-btn mt-20 ml-20" 
+          wx:if="{{ currentTab == 4 }}" 
+          url="../comment/comment?order_id={{ item.order_id }}">去评价</navigator> 
         </view>
       </view>
     </view>

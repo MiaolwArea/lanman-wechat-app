@@ -1,20 +1,20 @@
 <!-- afterSales-apply.wxml -->
 <view class="afterSales-apply">
   <view class="apply-page" wx:if="{{ !isSuccess }}">
-    <view class="after-sales-apply-l mb-20 bg-white plr30">
+    <view class="after-sales-apply-l mb-20 bg-white plr30" bindtap="chooseType">
       <view class="mt-20 ptb20 border-bottom-line color-gray flex">
         <text class="fzr16">申请类型</text>
         <text></text>
       </view>
-      <view class="mt-20 ptb20 border-bottom-line color-gray flex" data-type="50" bindtap="chooseType">
+      <view class="mt-20 ptb20 border-bottom-line color-gray flex" data-type="50">
         <text>我要退货/退款</text>
         <image wx:if="{{ feedbackType[50].isSelected }}" src="../../../../assets/images/icon/selected.png" class="choose-pic"></image>
       </view>
-      <view class="mt-20 ptb20 border-bottom-line color-gray flex" data-type="70" bindtap="chooseType">
+      <view class="mt-20 ptb20 border-bottom-line color-gray flex" data-type="70">
         <text>我要换货</text>
         <image wx:if="{{ feedbackType[70].isSelected }}" src="../../../../assets/images/icon/selected.png" class="choose-pic"></image>
       </view>
-      <view class="mt-20 ptb20 border-bottom-line color-gray flex" data-type="90" bindtap="chooseType">
+      <view class="mt-20 ptb20 border-bottom-line color-gray flex" data-type="90">
         <text>我要退运费</text>
         <image wx:if="{{ feedbackType[90].isSelected }}" src="../../../../assets/images/icon/selected.png" class="choose-pic"></image>
       </view>
@@ -22,7 +22,7 @@
     <!-- 选择商品 -->
     <view class="choose-area bg-white p30" wx:if="{{ !priceBack }}">
       <view class="goods-list-warp">
-        <checkbox-group bindchange="checkboxChange">
+        <checkbox-group>
           <view class="choose-header flex color-gray pb-20 border-bottom-line">
             <view class="choose-title">选择商品</view>
             <!-- <view class="choose-btn">全选</view> -->
@@ -30,7 +30,7 @@
           <view class="goods-list">
             <view class="list-item border-bottom-line-i ptb30 flex" wx:for="{{ goodsList }}" wx:key="{{ item.goods_id }}">
               <view class="flex">
-                <label class="checkbox col-1" data-goods_id="{{ item.goods_id }}" data-shop_price="{{ item.shop_price }}" bindtap="changeSelected">  
+                <label class="checkbox col-1" data-goods_id="{{ item.goods_id }}" data-shop_price="{{ item.shop_price }}" bindchange="changeSelected">  
                   <image src="{{ idAryMap[item.goods_id] ? '../../../../assets/images/icon/choose.png' : '../../../../assets/images/icon/unchoose.png' }}" class="unchoose" />
                   <checkbox value="{{ item.goods_id }}" class="choose-item-btn" checked="{{ idAryMap[item.goods_id] }}" hidden />
                 </label> 

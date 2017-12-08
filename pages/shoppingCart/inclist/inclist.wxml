@@ -1,18 +1,18 @@
 <!-- inclist.wxml -->
 <view class="inclist pt-banner">
-  <view class="inclist-wrap p30 mt-20 bg-white">
-    <view class="inclist-header pb-20">
+  <view class="inclist-wrap ptb30 mt-20 bg-white">
+    <view class="inclist-header p30 border-bottom-line">
       <view class="title tal color-gray">选择商品</view>
     </view>
     <checkbox-group bindchange="checkboxchange">
       <view class="inclist-list">
         <view class="list-item border-bottom-line-i ptb20 flex" wx:for="{{ inclist }}" wx:key="{{ item.incprice_id }}">
-          <label class="checkbox col-1" data-incprice_id="{{ item.incprice_id }}" data-price="{{ item.price }}" bindtap="changeSelected">  
+          <label class="checkbox" data-incprice_id="{{ item.incprice_id }}" data-price="{{ item.price }}" bindtap="changeSelected">  
             <image mode="widthFix" src="{{ idAryMap[item.incprice_id] ? '../../../assets/images/icon/choose.png' : '../../../assets/images/icon/unchoose.png' }}" class="unchoose"></image>
             <checkbox value="{{ item.incprice_id }}" checked="{{ idAryMap[item.incprice_id] }}" class="choose-item-btn" hidden />
           </label> 
           <image src="{{ item.info.advertising_photo }}" class="goods-image"></image>
-          <view class="goods-info mb-20 col-6">
+          <view class="goods-info mb-20 mr-20 col-5">
             <view class="title">{{ item.info.goods_name }}</view>
             <view class="price">¥{{ item.price }}</view>
           </view>

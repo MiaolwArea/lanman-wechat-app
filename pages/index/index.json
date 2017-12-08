@@ -1,5 +1,5 @@
 {
   "usingComponents": {
-    "SearchPanel": "../../component/SearchPanel/SearchPanel"
+    "ContactPanel": "../../component/ContactPanel/ContactPanel"
   }
 }

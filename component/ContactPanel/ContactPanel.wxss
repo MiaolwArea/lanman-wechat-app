@@ -1,0 +1,25 @@
+/* ContactPanel.wxss */
+@import '../../assets/css/public.wxss';
+
+.contact-panel{
+  position: fixed;
+  right: 0;
+  bottom: 50rpx;
+  width: 132rpx;
+  height: 132rpx;
+  border-radius: 50%;
+  background: rgba(204, 204, 204, 1);
+}
+.contact-panel .flex{
+  justify-content: center;
+  flex-direction: column;
+}
+.contact-img{
+  width: 70rpx;
+  height: 70rpx;
+  margin: 5rpx auto;
+}
+.contact-text{
+  color: #fff;
+  font-size: 12px;
+}

@@ -14,7 +14,8 @@
     "pages/user/order/detail/detail",
     "pages/user/afterSales/list",
     "pages/user/afterSales/apply/apply",
-    "pages/user/afterSales/detail/detail"
+    "pages/user/afterSales/detail/detail",
+    "pages/user/comment/comment"
   ],
   "window":{
     "backgroundTextStyle":"light",
@@ -35,6 +36,12 @@
         "selectedIconPath": "assets/images/tabBar/home01.png",
         "pagePath": "pages/index/index",
         "text": "首页"
+      },
+      {
+        "iconPath": "assets/images/tabBar/activity.png",
+        "selectedIconPath": "assets/images/tabBar/activity01.png",
+        "pagePath": "pages/activity/activity",
+        "text": "惊喜"
       },
       {
         "iconPath": "assets/images/tabBar/shoppingCart.png",

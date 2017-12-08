@@ -40,9 +40,9 @@
           </navigator>
         </view>
         <view class="list-item tac">
-          <navigator hover-class="none" class="icon-link-area" url="./afterSales/list">
-            <image class="goods-pic" src="../../assets/images/icon/after.png"></image>
-            <view class="menu-name">售后服务</view>
+          <navigator hover-class="none" class="icon-link-area" url="./order/list?order_status=4">
+            <image class="goods-pic" src="../../assets/images/icon/comment.png"></image>
+            <view class="menu-name">待评价</view>
           </navigator>
         </view>
       </view>
@@ -53,6 +53,20 @@
       <view class="flex-content">
         <image src="../../assets/images/icon/position.png" class="position-image"></image>
         <text>我的地址</text>
+      </view>
+      <view class="info-r arrow pr"></view>
+    </navigator>
+    <navigator hover-class="none" url="./afterSales/list" class="ptb20 bg-white border-bottom-line flex">
+      <view class="flex-content">
+        <image src="../../assets/images/icon/after.png" class="position-image"></image>
+        <text>售后服务</text>
+      </view>
+      <view class="info-r arrow pr"></view>
+    </navigator>
+    <navigator hover-class="none" url="./address/list" class="ptb20 bg-white border-bottom-line flex">
+      <view class="flex-content">
+        <image src="../../assets/images/icon/point.png" class="position-image"></image>
+        <text>我的积分</text>
       </view>
       <view class="info-r arrow pr"></view>
     </navigator>

@@ -3,11 +3,14 @@ page{ background-color: #f4f4f4; }
 .goods-list-warp{
   margin-bottom: 110rpx;
 }
-.inclist-list .goods-image{
-  height: 153.1247rpx;
+.inclist-header{
+  padding: 0 30rpx 30rpx 30rpx;
 }
 .inclist-list .checkbox{
-  padding: 40rpx 0;
+  padding: 40rpx 30rpx 40rpx 40rpx;
+}
+.inclist-list .list-item{
+  justify-content: left;
 }
 .footer-area{
   position: fixed;

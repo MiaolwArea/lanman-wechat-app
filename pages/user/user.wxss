@@ -34,6 +34,9 @@ page{ background-color: #f4f4f4; color: #1a1a1a; }
 .icon-link-area{
   padding-top: 30rpx;
 }
+.order-icon-list{
+  padding: 0 10rpx;
+}
 .order-icon-list .goods-pic{
   width: 60rpx;
   height: 60rpx;
