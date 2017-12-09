@@ -2,6 +2,8 @@
 <view class="contact-panel">
   <view class="flex">
     <image class="contact-img" src="../../assets/images/icon/contact.png"></image>
-    <view class="contact-text">联系客服</view>
+     <button 
+      open-type="contact"
+      class="contact-text"></button> 
   </view>
 </view>

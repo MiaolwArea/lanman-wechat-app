@@ -1,5 +1,5 @@
 {
-  "pages":[
+  "pages": [
     "pages/index/index",
     "pages/logistics/logistics",
     "pages/shoppingCart/list",
@@ -15,13 +15,16 @@
     "pages/user/afterSales/list",
     "pages/user/afterSales/apply/apply",
     "pages/user/afterSales/detail/detail",
-    "pages/user/comment/comment"
+    "pages/user/comment/comment",
+    "pages/user/point/point",
+    "pages/user/point/logger/logger",
+    "pages/user/point/goodsDetail/detail"
   ],
-  "window":{
-    "backgroundTextStyle":"light",
+  "window": {
+    "backgroundTextStyle": "light",
     "navigationBarBackgroundColor": "#000",
     "navigationBarTitleText": "LANMAN 烂熳口红",
-    "navigationBarTextStyle":"white",
+    "navigationBarTextStyle": "white",
     "onReachBottomDistance": 100,
     "backgroundColor": "#f4f4f4"
   },
@@ -36,12 +39,6 @@
         "selectedIconPath": "assets/images/tabBar/home01.png",
         "pagePath": "pages/index/index",
         "text": "首页"
-      },
-      {
-        "iconPath": "assets/images/tabBar/activity.png",
-        "selectedIconPath": "assets/images/tabBar/activity01.png",
-        "pagePath": "pages/activity/activity",
-        "text": "惊喜"
       },
       {
         "iconPath": "assets/images/tabBar/shoppingCart.png",

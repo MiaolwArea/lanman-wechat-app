@@ -46,9 +46,9 @@
     <text class="server-title">七天无理由退换　全场包邮　安全检测</text>
     <view class="dlot"></view>
   </view>
-  <view class="tab-nav flex tac bg-white">
-    <view class="tab col-5 {{ isTabOn1 }}" data-index="1" bindtap="swichTab">商品详情</view>
-    <view class="tab col-5 {{ isTabOn2 }}" data-index="2" bindtap="swichTab">用户评价</view>
+  <view class="tab-nav flex tac bg-white" bindtap="swichTab">
+    <view class="tab col-5 {{ isTabOn1 }}" data-index="1">商品详情</view>
+    <view class="tab col-5 {{ isTabOn2 }}" data-index="2">用户评价</view>
   </view>
   <view class="container">
     <view class="introduce hide fz0 {{ isTabOn1 }}" bindtouchstart="infoTouchStart">

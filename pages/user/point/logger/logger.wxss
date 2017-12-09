@@ -1,0 +1,34 @@
+/* logger.wxss */
+.tab-nav .tab{
+  padding: 30rpx 0;
+  color: #808080;
+}
+.tab-nav .tab.on{
+  border-bottom: 1px solid #ccc;
+  color: #000;
+}
+.logger.on, .logger-of-will.on{
+  display: block;
+}
+
+.logger-header .arrow:after, .logger-header .arrow:before{
+  left: 310rpx;
+  top: -31rpx;
+}
+.logger-header .arrow:before{
+  left: 314rpx;
+}
+.logger-desc .dlot{
+  left: 42rpx;
+  width: 20rpx;
+  height: 20rpx;
+}
+.logger-desc .list-item{
+  margin-left: 50rpx;
+  padding: 30rpx 40rpx 30rpx 40rpx;
+  border-left: 1px solid #f4f4f4;
+  border-bottom: 1px solid #f4f4f4;
+}
+.logger-desc .list-item:last-child{
+  border-bottom: none;
+}

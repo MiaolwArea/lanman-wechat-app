@@ -1,5 +1,4 @@
 /** user.wxss **/
-page{ background-color: #f4f4f4; color: #1a1a1a; }
 .member-photo image{
   width: 150rpx;
   height: 150rpx;

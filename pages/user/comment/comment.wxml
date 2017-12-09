@@ -2,32 +2,33 @@
 <view class="comment">
   <view class="send-comment">
     <view class="comment-list">
-      <view class="comment-item mt-20 bg-white">
+      <view class="comment-item mt-20 bg-white" wx:for="{{ goodList }}" wx:key="{{ item.goods_id }}">
         <view class="comment-header p30 border-bottom-line flex">
           <view class="flex-l flex col-6">
-            <image class="comment-goods-pic mr-10" src="http://image.lanman.cn/2017/04/06/c4d5da4a2e1cdcd3c4cffefa5460b139.jpg!/fw/150"></image>
+            <image class="comment-goods-pic mr-10" src="{{ item.outside_view }}"></image>
             <text class="mr-10">满意程度</text>
-            <view class="star-list fz0" bindtap="chooseStar" wx:for="{{ 5 }}" wx:for-index="idx" wx:key="{{ idx }}">
+            <view></view>
+            <view class="star-list fz0" data-index_p="{{ index }}" bindtap="chooseStar" wx:for="{{ 5 }}" wx:for-index="idx" wx:key="{{ idx }}">
               <image class="star-img"
               data-index="{{ idx + 1 }}"
-              src="{{ idx <= chooseIndex ? '../../../assets/images/icon/star.png' : '../../../assets/images/icon/unstar.png' }}"></image>
+              src="{{ idx <= chooseIndex[index] ? '../../../assets/images/icon/star.png' : '../../../assets/images/icon/unstar.png' }}"></image>
             </view>
           </view>
           <text class="flex-r color-gray">{{ thoughtWord }}</text>
         </view>
         <view class="comment-content p30">
-          <textarea class="remark" placeholder="还满意吗？欢迎评价～"></textarea>
+          <textarea class="remark" data-index_p="{{ index }}" bindblur="saveText" placeholder="还满意吗？欢迎评价～"></textarea>
           <view class="pic-list">
             <view class="list-item inline-block" wx:for="{{ imageList }}" wx:for-index="idxofimg" wx:key="{{ idxofimg }}">
               <image src="{{ item }}" 
               mode="widthFix" class="comment-img" 
               data-imgs="{{ imageList }}" 
-              data-index="{{ index }}"
+              data-index_p="{{ index }}"
               data-index_ary="{{ idxofimg }}"
               bindtap="previewImage" 
               bindlongpress="delImage"></image>
             </view>
-            <view class="list-item inline-block" bindtap="chooseImg">
+            <view class="list-item inline-block" data-index_p="{{ index }}" bindtap="chooseImg">
               <view class="add-pic tac flex">
                 <image src="../../../assets/images/icon/camera.png" class="camera-icon"></image>
                 <view class="color-gray">添加图片</view>
@@ -36,6 +37,9 @@
           </view>
         </view>
       </view>
+    </view>
+    <view class="btn-area tac" bindtap="sendComment">
+      <view class="submit fzr16">发表</view>
     </view>
   </view>
 </view>

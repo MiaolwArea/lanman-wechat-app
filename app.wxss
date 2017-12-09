@@ -1,6 +1,6 @@
 /** app.wxss **/
 /* 图标：http://image.lanman.cn/2017/wechat_app/images/lanman_icon.png */
-page{ font-size: 28rpx; }
+page{ font-size: 28rpx; background-color: #f4f4f4; color: #1a1a1a; }
 .tac{ text-align: center; }
 .tar{ text-align: right; }
 .tal{ text-align: left; }
@@ -31,6 +31,7 @@ page{ font-size: 28rpx; }
 .fzr15{ font-size: 30rpx }
 .fzr16{ font-size: 32rpx }
 .fzr18{ font-size: 36rpx }
+.fzr20{ font-size: 40rpx }
 
 .p30{ padding: 30rpx; }
 .pb100{ padding-bottom: 100rpx; }

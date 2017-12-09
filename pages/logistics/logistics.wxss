@@ -1,6 +1,4 @@
 /** logistics.wxss **/
-page{ background-color: #f4f4f4; color: #1a1a1a; }
-
 .logistics-item{
   padding-left: 40rpx;
   border-left: 1px solid #f4f4f4;

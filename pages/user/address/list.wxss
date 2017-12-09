@@ -1,5 +1,4 @@
 /**address.wxss**/
-page{ background-color: #f4f4f4; }
 .no-address{
   justify-content: center;
   flex-flow: column wrap;

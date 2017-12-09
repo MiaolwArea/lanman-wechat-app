@@ -1,5 +1,4 @@
 /** order_detail.wxss **/
-page{ background-color: #f4f4f4; color: #1a1a1a; }
 .address-info{
   justify-content: left;
 }

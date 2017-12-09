@@ -1,0 +1,8 @@
+/* point-goods-detail.wxss */
+.point-image{
+  width: 100%;
+  height: 750rpx;
+}
+.pic-item{
+  width: 100%;
+}

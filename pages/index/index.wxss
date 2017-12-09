@@ -1,4 +1,5 @@
 /** index.wxss **/
+page{ background-color: #fff; }
 .home .container{
   margin-top: 132.5rpx;
 }

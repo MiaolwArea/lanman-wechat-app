@@ -1,0 +1,28 @@
+<!-- point-goods-detail.wxml -->
+<view class="point-goods-detail pt-banner">
+  <view class="goods-box mb-20">
+    <image class="point-image" src="{{ pointGoodsDetail.outside_view }}" />
+  </view>
+  <view class="point-goods-info bg-white">
+    <view class="info-header p30 fw fzr16 border-bottom-line">{{ pointGoodsDetail.goods_name }}</view>
+    <view class="info-content flex plr30">
+      <view class="p30 tac">
+        <view>所需积分</view>
+        <view class="fzr18 fw">{{ pointGoodsDetail.point }}</view>
+      </view>
+      <view class="p30 tac">
+        <view>价格</view>
+        <view>¥{{ pointGoodsDetail.shop_price }}</view>
+      </view>
+      <view class="p30 tac">
+        <view>限量</view>
+        <view>{{ pointGoodsDetail.total_num }}件</view>
+      </view>
+    </view>
+  </view>
+  <view class="point-desc fz0 mt-20">
+    <view class="pic-item" wx:for="{{ pointGoodsDetail.picture_desc }}" wx:key="{{ index }}">
+      <image class="desc-img" mode="widthFix" src="{{ item }}"></image>
+    </view>
+  </view>
+</view>

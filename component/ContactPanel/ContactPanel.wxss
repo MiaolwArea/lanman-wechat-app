@@ -3,23 +3,25 @@
 
 .contact-panel{
   position: fixed;
-  right: 0;
+  right: 20rpx;
   bottom: 50rpx;
-  width: 132rpx;
-  height: 132rpx;
+  width: 90rpx;
+  height: 90rpx;
   border-radius: 50%;
-  background: rgba(204, 204, 204, 1);
-}
-.contact-panel .flex{
-  justify-content: center;
-  flex-direction: column;
+  background: rgba(0, 0, 0, .2);
+  border: 1px solid #fff;
+  z-index: 99;
 }
 .contact-img{
-  width: 70rpx;
-  height: 70rpx;
-  margin: 5rpx auto;
+  width: 60rpx;
+  height: 60rpx;
+  margin: 10rpx auto;
 }
 .contact-text{
-  color: #fff;
-  font-size: 12px;
+  position: absolute;
+  top: 15rpx;
+  left: 14rpx;
+  width: 62rpx;
+  height: 62rpx;
+  opacity: 0;    
 }

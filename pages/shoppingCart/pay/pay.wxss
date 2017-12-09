@@ -1,6 +1,4 @@
 /** shoppingCart.wxss **/
-page{ background-color: #f4f4f4; }
-
 .position-image{
   width: 30rpx;
   margin-right: 30rpx;

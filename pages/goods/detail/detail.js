@@ -149,7 +149,7 @@ let pageConfig = {
   // 标签切换
   swichTab(e) {
     this.store['pageNum'] = 1;
-    if (e.currentTarget.dataset.index == 1) {
+    if (e.target.dataset.index == 1) {
       this.setData({
         isTabOn1: "on",
         isTabOn2: ""

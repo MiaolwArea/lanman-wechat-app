@@ -2,11 +2,11 @@
 <view class="user">
   <view class="about-me bg-white flex p30 mb-20">
     <view class="member-info mlr30">
-        <view class="nickName fzr18 mb-20">{{ userInfo.nickName }}</view>
-         <view class="show-info font-color">普通用户</view> 
+      <view class="nickName fzr18 mb-20">{{ userInfo.nickName }}</view>
+      <view class="show-info font-color">普通用户</view> 
     </view>
     <view class="member-photo">
-        <image src="{{ userInfo.avatarUrl }}"></image>
+      <image src="{{ userInfo.avatarUrl }}"></image>
     </view>
   </view>
   <view class="menu-list bg-white mb-20 p30">
@@ -49,28 +49,28 @@
     </view>
   </view>
   <view class="mb-20 bg-white plr30">
-    <navigator hover-class="none" url="./address/list" class="ptb20 bg-white border-bottom-line flex">
+    <navigator hover-class="none" url="./address/list" class="ptb30 bg-white border-bottom-line flex">
       <view class="flex-content">
         <image src="../../assets/images/icon/position.png" class="position-image"></image>
         <text>我的地址</text>
       </view>
       <view class="info-r arrow pr"></view>
     </navigator>
-    <navigator hover-class="none" url="./afterSales/list" class="ptb20 bg-white border-bottom-line flex">
+    <navigator hover-class="none" url="./afterSales/list" class="ptb30 bg-white border-bottom-line flex">
       <view class="flex-content">
         <image src="../../assets/images/icon/after.png" class="position-image"></image>
         <text>售后服务</text>
       </view>
       <view class="info-r arrow pr"></view>
     </navigator>
-    <navigator hover-class="none" url="./address/list" class="ptb20 bg-white border-bottom-line flex">
+    <navigator hover-class="none" url="./point/point" class="ptb30 bg-white border-bottom-line flex">
       <view class="flex-content">
         <image src="../../assets/images/icon/point.png" class="position-image"></image>
         <text>我的积分</text>
       </view>
       <view class="info-r arrow pr"></view>
     </navigator>
-    <view class="ptb20 bg-white border-bottom-line flex" wx:if="{{ isDebug }}" bindtap="clearCache">
+    <view class="ptb30 bg-white border-bottom-line flex" wx:if="{{ isDebug }}" bindtap="clearCache">
       <view class="flex-content">
         <text>清除缓存</text>
       </view>

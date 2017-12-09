@@ -1,0 +1,41 @@
+/* point.wxss */
+.heaer-img{
+  width: 40rpx;
+  height: 40rpx;
+  margin-right: 10rpx;
+}
+.point-num.flex{
+  justify-content: center;
+}
+.point-num{
+  height: 200rpx;
+}
+.point-num .num{
+  font-size: 72rpx;
+}
+
+.info-footer.flex{
+  justify-content: left;
+}
+.point-exchange .list-item-box{
+  padding-right: 15rpx;
+  padding-bottom: 30rpx;
+  white-space: pre-line;
+}
+.point-exchange .list-item:nth-child(2n) .list-item-box{
+  padding-right: 0rpx;
+  padding-left: 20rpx;
+}
+.point-exchange .list-item .title{
+  margin: 10rpx auto;
+  overflow: hidden;
+  height: 85rpx;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+}
+.point-image{
+  width: 322rpx;
+  height: 322rpx;
+}

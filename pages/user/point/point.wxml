@@ -1,0 +1,40 @@
+<!-- point.wxml -->
+<view class="point">
+  <view class="point-wrap">
+    <view class="point-info bg-white mt-20">
+      <view class="point-header flex p30 border-bottom-line">
+        <view class="flex-l flex">
+          <image class="heaer-img" src="../../../assets/images/icon/point.png"></image>
+          <text>我的积分</text>
+        </view>
+        <navigator class="flex-r flex" hover-class="none" url="./logger/logger">
+          <image class="heaer-img" src="../../../assets/images/icon/pointLog.png"></image>
+          <text>积分记录</text>
+        </navigator>
+      </view>
+      <view class="point-num flex">
+        <text>当前积分：</text>
+        <text class="num">{{ userInfo.integral }}</text>
+      </view>
+    </view>
+    <view class="point-exchange bg-white mt-20">
+      <view class="title p30 border-bottom-line">兑换商品</view>
+      <view class="goods-list p30">
+        <view class="list-item inline-block col-5" wx:for="{{ goodsList }}" wx:key="{{ item.point_id }}">
+          <navigator hover-class="none" class="list-item-box"
+          url="./goodsDetail/detail?point_id={{ item.point_id }}">
+            <image src="{{ item.cover }}" class="point-image"></image>
+            <view class="info">
+              <view class="title">{{ item.goods_name }}</view>
+              <view class="info-footer flex">
+                <image class="heaer-img" src="../../../assets/images/icon/point.png"></image>
+                <text>兑换积分：</text>
+                <text>{{ item.point }}</text>
+              </view>
+            </view>
+          </navigator>
+        </view>
+      </view>
+    </view>
+  </view>
+</view>

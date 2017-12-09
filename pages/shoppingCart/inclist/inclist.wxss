@@ -1,5 +1,4 @@
 /** inclist.wxss **/
-page{ background-color: #f4f4f4; }
 .goods-list-warp{
   margin-bottom: 110rpx;
 }

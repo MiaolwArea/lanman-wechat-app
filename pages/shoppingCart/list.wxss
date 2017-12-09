@@ -1,6 +1,5 @@
 /** shoppingCart-list.wxss **/
 /* 字体灰色：808080 */
-page{ background-color: #f4f4f4; color: #1a1a1a; }
 .aside .aside-item{ color: #808080; } 
 .aside .round-gray{
   width: 10rpx;
