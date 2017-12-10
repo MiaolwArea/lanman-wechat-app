@@ -50,6 +50,7 @@ swiper{
   white-space: nowrap;
 }
 .recommend .list-box .title{ white-space: pre-line; }
+.recommend-list{ overflow: scroll; }
 .recommend-list .list-item{
   display: inline-block;
   width: 300rpx;

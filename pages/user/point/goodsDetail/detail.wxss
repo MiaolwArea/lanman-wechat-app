@@ -6,3 +6,16 @@
 .pic-item{
   width: 100%;
 }
+.btn-area{
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  background-color: #b20000;
+  width: 100%;
+}
+.btn-area .submit{
+  color: #fff;
+  background-color: #b20000;
+  height: 100rpx;
+  line-height: 100rpx;
+}

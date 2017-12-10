@@ -13,6 +13,8 @@ Page({
     url: {
       // 积分详情
       pointGoodsDetailUrl: app.globalData.isDebug ? 'pointGoodsDetail' : '/wechatapp/point/goodsdetail',
+      // 立即兑换
+      exchangeUrl: app.globalData.isDebug ? 'exchangeUrl' : '/wechatapp/point/exchange',
     },
     pointId: ''
   },
@@ -35,4 +37,24 @@ Page({
       }
     })
   },
+  exchange(){
+    let _this = this;
+    
+    wx.showLoading();
+    app.ApiConfig.ajax(_this.store['url'].exchangeUrl, {
+      point_id: _this.store['pointId']
+    }, function (res) {
+      wx.hideLoading();
+      if (res.success) {
+        wx.showToast({
+          title: res.msg,
+        })
+      }else{
+        wx.showModal({
+          content: res.msg,
+          showCancel: false
+        })
+      }
+    }, 'POST')
+  }
 })

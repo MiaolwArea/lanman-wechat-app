@@ -25,4 +25,7 @@
       <image class="desc-img" mode="widthFix" src="{{ item }}"></image>
     </view>
   </view>
+  <view class="btn-area tac" bindtap="exchange">
+    <view class="submit fzr16">立即兑换</view>
+  </view>
 </view>

@@ -9,33 +9,33 @@
     <!-- 积分记录 -->
     <view class="logger hide mt-20 bg-white {{currentTab == 1 ? 'on' : ''}}">
       <view class="logger-header p30 border-bottom-line">
-        <view class="tal mb-10">可用积分：1000</view>
+        <view class="tal mb-10">可用积分：{{ loggerInfo.integral }}</view>
         <view class="tal">
-          <text>即将获得订单积分：10</text>
+          <text>即将获得订单积分：{{ loggerInfo.freeze_integral }}</text>
           <view class="arrow pr"></view>
         </view>
       </view>
       <view class="logger-desc">
-        <view class="list-item flex">
+        <view class="list-item flex" wx:for="{{ loggerList }}" wx:key="{{ index }}">
           <view class="dlot pa"></view> 
           <view class="flex-l">
-            <view class="title mb-10">订单取消退回积分</view>
-            <view class="add-time">2017-11-12 12:12:12</view>
+            <view class="title mb-10">{{ item.remark }}</view>
+            <view class="add-time">{{ item.add_time }}</view>
           </view>
-          <view class="flex-r">+100</view>
+          <view class="flex-r">{{ item.val }}</view>
         </view>
       </view>
     </view>
     <!-- 即将获得积分 -->
     <view class="logger-of-will hide mt-20 bg-white {{currentTab == 2 ? 'on' : ''}}">
     <view class="logger-desc">
-      <view class="list-item flex">
+      <view class="list-item flex" wx:for="{{ loggerList }}" wx:key="{{ index }}">
         <view class="dlot pa"></view> 
         <view class="flex-l">
-          <view class="title mb-10">订单取消退回积分</view>
-          <view class="add-time">2017-11-12 12:12:12</view>
+          <view class="title mb-10">{{ item.remark }}</view>
+          <view class="add-time">{{ item.add_time }}</view>
         </view>
-        <view class="flex-r">+100</view>
+        <view class="flex-r">{{ item.val }}</view>
       </view>
     </view>
     </view>

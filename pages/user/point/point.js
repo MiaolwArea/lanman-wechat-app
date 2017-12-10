@@ -15,7 +15,6 @@ Page({
       // 积分详情
       pointUrl: app.globalData.isDebug ? 'orderList' : '/wechatapp/point/goodslist',
     },
-    loadMore: false,
     count: 10,
     page: 1,
     noMore: false
@@ -42,7 +41,7 @@ Page({
         })
         if (res.data.goods_list){
           _this.setData({
-            goodsList: _this.data.goodsList.concat(res.data.goods_list),
+            goodsList: _this.data.goodsList.concat(res.data.goods_list)
           });
           _this.store['page']++;
         }else{
