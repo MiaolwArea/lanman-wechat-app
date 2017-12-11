@@ -10,6 +10,10 @@
       <text>{{ afterSalesDetail.feedback_status_cn }}</text>
     </view>
     <view class="border-bottom-line-i ptb30 flex">
+      <text class="color-gray">退款金额:</text>
+      <text>{{ afterSalesDetail.apply_money }}</text>
+    </view>
+    <view class="border-bottom-line-i ptb30 flex">
       <text class="color-gray">申请时间:</text>
       <text>{{ afterSalesDetail.add_time }}</text>
     </view>
