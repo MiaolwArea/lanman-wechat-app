@@ -3,14 +3,19 @@
 
 .contact-panel{
   position: fixed;
-  right: 20rpx;
-  bottom: 50rpx;
+  right: 100rpx;
+  top: 0;
+  height: 100%;
+  width: 1px;
+  background-color: transparent;
+  z-index: 999;
+}
+.move-view{
+  border: 1px solid #fff;
   width: 90rpx;
   height: 90rpx;
   border-radius: 50%;
-  background: rgba(0, 0, 0, .2);
-  border: 1px solid #fff;
-  z-index: 99;
+  background-color: rgba(0, 0, 0, .2);
 }
 .contact-img{
   width: 60rpx;

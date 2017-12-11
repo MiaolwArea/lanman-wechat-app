@@ -1,5 +1,5 @@
 <!-- point-goods-detail.wxml -->
-<view class="point-goods-detail pt-banner">
+<view class="point-goods-detail pb100">
   <view class="goods-box mb-20">
     <image class="point-image" src="{{ pointGoodsDetail.outside_view }}" />
   </view>

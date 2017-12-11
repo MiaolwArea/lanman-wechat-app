@@ -18,7 +18,10 @@
       </view>
     </view>
     <view class="point-exchange bg-white mt-20">
-      <view class="title p30 border-bottom-line">兑换商品</view>
+      <view class="title p30 border-bottom-line">
+        <view class="mb-10">兑换商品</view>
+        <text class="fzr12 font-color">全场积分免费兑换，邮费15元（不需邮寄商品除外）</text>
+      </view>
       <view class="goods-list p30">
         <view class="list-item inline-block col-5" wx:for="{{ goodsList }}" wx:key="{{ item.point_id }}">
           <navigator hover-class="none" class="list-item-box"

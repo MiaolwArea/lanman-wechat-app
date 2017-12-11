@@ -1,5 +1,8 @@
 {
   "navigationBarTitleText": "购物车",
   "navigationBarBackgroundColor": "#fff",
-  "navigationBarTextStyle": "black"
+  "navigationBarTextStyle": "black",
+  "usingComponents": {
+    "ContactPanel": "../../component/ContactPanel/ContactPanel"
+  }
 }

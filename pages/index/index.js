@@ -31,12 +31,7 @@ let pageConfig = {
     loadMoreOfSeries: false,
     noMoreOfSeries: false,
     noMoreOfGoods: false,
-    keyword: '',
-    model: {
-      '414': 580,
-      '375': 530
-    },
-    topNum: 530
+    keyword: ''
   },
   onReachBottom: function () {
     if (this.data.showSaerch){
@@ -60,17 +55,12 @@ let pageConfig = {
     var _this = this;
     
     _this.setData({
-      moveSearch: e.scrollTop >= _this.store['topNum'] ? true : false
+      moveSearch: e.scrollTop >= (wx.getSystemInfoSync().screenHeight / 1.26) ? true : false
     })
   },
   onLoad: function () {
     let _this = this;
     
-    wx.getSystemInfo({
-      success: function (res) {
-        _this.store['topNum'] = _this.store['model'][res.screenWidth];
-      }
-    })
     wx.showLoading({
       mask: true
     });

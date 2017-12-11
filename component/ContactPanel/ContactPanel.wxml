@@ -1,9 +1,11 @@
 <!-- ContactPanel.wxml -->
-<view class="contact-panel">
-  <view class="flex">
-    <image class="contact-img" src="../../assets/images/icon/contact.png"></image>
-     <button 
-      open-type="contact"
-      class="contact-text"></button> 
-  </view>
-</view>
+<movable-area class="contact-panel">
+  <movable-view class="move-view" x="{{x}}" y="{{y}}" direction="all" bindtouchend="resetPos">
+    <view class="flex">
+      <image class="contact-img" src="../../assets/images/icon/contact.png"></image>
+        <button 
+        open-type="contact"
+        class="contact-text"></button> 
+    </view>
+  </movable-view>
+</movable-area>

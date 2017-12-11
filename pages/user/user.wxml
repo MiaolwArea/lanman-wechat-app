@@ -91,4 +91,6 @@
       </view>
     </view>
   </view>
+  <!-- 组件区 -->
+  <ContactPanel></ContactPanel>
 </view>
