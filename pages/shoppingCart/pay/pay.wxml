@@ -17,7 +17,7 @@
         <view class="title">LANMAN 烂熳</view>
       </view>
       <navigator hover-class="none" url="../order/detail/detail?order_id={{ item.order_id }}" class="goods-link border-bottom-line flex">
-        <image mode="widthFix" src="{{ item.outside_view }}" class="order-image"></image>
+        <image src="{{ item.outside_view }}" class="order-image"></image>
         <view class="goods-info tal">
           <view class="title mb-20">{{ item.goods_name }}</view>
           <view class="goods-color" wx:if="{{ item.goods_type != 2 }}">{{ item.color_name }}</view>
@@ -49,9 +49,16 @@
       <text>运费</text>
       <text>{{ freight || '免运费' }}</text>
     </view>
+    <view class="border-bottom-line flex mark" bindtap="mark">
+      <text class="fw">我要刻字!</text>
+      <view>
+        <text class="color-gray mr-20">{{ keziTxt }}</text>
+        <view class="arrow pr"></view>
+      </view>
+    </view>
     <view class="mt-20">
       <text>我要留言</text>
-      <textarea class="remark" bindblur="bindTextAreaBlur"></textarea>
+      <textarea class="remark" disabled="{{ disTextarea }}" bindlongpress="TextAreaLong" bindblur="bindTextAreaBlur"></textarea>
     </view>
     <!-- <view class="order-item tar p30">
       <view class="fzr16">实付¥{{ finalPrice }}</view>
@@ -60,5 +67,33 @@
   <view class="footer-area mt-20 flex tac bg-white">
     <text class="col-7">合计金额：<text class="color-red">¥{{ finalPrice }}</text></text>
     <view class="sure col-3" bindtap="payWechat">确定</view>
+  </view>
+  <!-- 刻字框 -->
+  <view class="{{ showMark ? '' : 'hide' }} mask">
+    <view class="alert-model p30">
+      <view class="model-title tac fzr16 pb-20 mb-20 border-bottom-line">刻字服务</view>
+      <view class="model-content mb-30 border-bottom-line">
+        <view class="goods-item" wx:for="{{ keziGoods }}" wx:key="{{ index }}">
+          <view class="flex mb-20">
+            <text class="otw color-name">{{ item.name }}</text>
+            <input name="{{ item.color_name }}" data-index="{{ index }}" bindblur="textBlur" class="model-input" value="{{ keziTxtInfo[index] }}"></input>
+          </view>
+          <view class="flex mb-20">
+            <text>添加“♡”符号</text>
+            <radio-group name="radio-group" data-index="{{ index }}" bindchange="radioChange">
+              <label><radio color="#000" value="true"/>是</label>
+              <label><radio color="#000" checked value="false"/>否</label>
+            </radio-group>
+          </view>
+        </view>
+      </view>
+      <view class="model-footer">
+        <view class="color-gray mb-20">提示：刻字内容限简体中文、英文、数字；中文不超过5个字，英文不超过10个字。符号仅限使用“♡”。</view>
+        <view class="flex">
+          <view class="btn" bindtap="cancel">不刻字</view>
+          <view class="btn sure" bindtap="keziSure">确认刻字</view>
+        </view>
+      </view>
+    </view>
   </view>
 </view>

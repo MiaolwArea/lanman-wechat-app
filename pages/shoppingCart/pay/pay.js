@@ -9,12 +9,17 @@ let pageConfig = {
     phone: '',        // 联想电话
     adressInfo: '',   // 收货地址
     goodsList: [],    // 商品列表
+    keziGoods: [],    // 刻字商品
     goodsPrice: 0,    // 商品金额
     inclistNum: '',   // 换购商品数量
     discountPrice: 0, // 抵用金额
     freight: 0,       // 运费
     finalPrice: 0,    // 实付金额
     textAreaInfo: '', // 文本域内容
+    showMark: false,  // 是否显示刻字框
+    disTextarea: false,
+    keziTxt: '不刻字',
+    keziTxtInfo: []
   }, 
   // 数据缓存区
   store: {
@@ -36,48 +41,48 @@ let pageConfig = {
     incpriceId: '',
     // 下单购物车ID
     cartId: null,
+    keziInfo: [],
+    isKezi: false
   },
   onLoad(opt){
-    let _this = this;
-    
-    _this.store['cartId'] = opt.cart_id || '';
-  },
-  onShow: function () {
     let _this = this
       , incpriceIdsAry = []
       , incpriceIds = wx.getStorageSync('incpriceIds') || {};
 
-    wx.showLoading();
-    if (_this.store['cartId'] == ''){
+    _this.store['cartId'] = opt.cart_id || '';
+    if (_this.store['cartId'] == '') {
       Object.keys(incpriceIds).forEach((attr, index) => {
         incpriceIdsAry.push(attr);
       });
       _this.store['incpriceId'] = incpriceIdsAry.join(',');
     }
     
-    _this._getShoppingCartUrl({
-      cart_id: _this.store['cartId'],
-      incprice_id: (_this.store['cartId'] ? '' : _this.store['incpriceId']),
-      address_id: _this.store['addressId']
-    });
     // 地址授权询问
     wx.getSetting({
       success(res) {
         if (!res.authSetting['scope.address']) {
           wx.authorize({
             scope: 'scope.address',
-            success(res) {
-              wx.chooseAddress();
-            }
+            success(res) {}
           })
         }
       }
     })
   },
+  onShow: function () {
+    let _this = this;
+    
+    _this._getShoppingCartUrl({
+      cart_id: _this.store['cartId'],
+      incprice_id: (_this.store['cartId'] ? '' : _this.store['incpriceId']),
+      address_id: _this.store['addressId']
+    });
+  },
   _getShoppingCartUrl(data){
     let _this = this
       , dataInfo = data || {};
 
+    wx.showLoading();
     // 获取购物车详情
     app.ApiConfig.ajax(_this.store['url'].shoppingCartUrl, dataInfo, function (res) {
       if (res.success) {
@@ -120,13 +125,28 @@ let pageConfig = {
             'addressId': dataInfo.address.address_id
           });
         }
+        // 刻字信息初始化
+        let keziTxtInfoAry = [];
+
+        if (_this.store['keziInfo'].length == 0){
+          for (let i = 0; i < dataInfo.kezi_goods.length; i++) {
+            _this.store['keziInfo'].push({
+              color_name: dataInfo.kezi_goods[i].color_name,
+              info: ""
+            })
+            keziTxtInfoAry.push("");
+          }
+        }
+        
+        // 数据初始化
         _this.setData({
           'goodsList': dataInfo.goods_list,
+          'keziGoods': dataInfo.kezi_goods,
+          'keziTxtInfo': keziTxtInfoAry,
           'freight': parseFloat(dataInfo.freight) || 0,
           'discountPrice': formatNum(parseFloat(dataInfo.discount) || 0)
         });
         _this._countPrice();
-        wx.hideLoading();
       }else{
         wx.showToast({
           title: res.msg,
@@ -140,6 +160,7 @@ let pageConfig = {
           })
         }, 1000)
       }
+      wx.hideLoading();
     }, 'POST');
   }, 
   // 计算金额
@@ -150,7 +171,7 @@ let pageConfig = {
       , idAry = wx.getStorageSync('incpriceInfo');
     
     for (let i = 0; i < goodsList.length; i++) {
-      goodsPrice += parseInt(goodsList[i].goods_num) * parseFloat(goodsList[i].shop_price)
+      goodsPrice += parseInt(goodsList[i].goods_num) * parseFloat(goodsList[i].shop_price);
     }
     goodsPrice = goodsPrice + (idAry['price'] || 0);
     _this.setData({
@@ -159,9 +180,16 @@ let pageConfig = {
       finalPrice: formatNum(goodsPrice - _this.data.freight - _this.data.discountPrice)
     })
   },
+  // 长按留言
+  TextAreaLong(){
+    this.setData({
+      disTextarea: false
+    })
+  },
   bindTextAreaBlur(e) {
     this.setData({
-      textAreaInfo: e.detail.value
+      textAreaInfo: e.detail.value,
+      disTextarea: true
     })
   },
   // 输入优惠码，改变抵用金额
@@ -190,6 +218,50 @@ let pageConfig = {
       }
     }, 'POST');
   },
+  // 刻字弹窗事件
+  mark(){
+    this.setData({
+      showMark: !this.data.showMark,
+      disTextarea: true
+    });
+  },
+  cancel(){
+    this.setData({
+      showMark: false,
+      keziTxt: '不刻字',
+      disTextarea: false
+    });
+    this.store['isKezi'] = false;
+  },
+  textBlur(e){
+    let _this = this
+      , index = e.currentTarget.dataset.index;
+    
+    _this.store['keziInfo'][index].info = e.detail.value;
+  },
+  radioChange(e){
+    let _this = this
+      , index = e.currentTarget.dataset.index
+      , keziInfo = _this.store['keziInfo']
+      , keziTxtInfo = _this.data.keziTxtInfo;
+
+    if (e.detail.value == 'true') {
+      keziInfo[index].info = keziTxtInfo[index] = '♡' + keziInfo[index].info + '♡';
+    } else if (e.detail.value == 'false'){console.log(23)
+      keziInfo[index].info = keziTxtInfo[index] = keziInfo[index].info.replace(/♡/g, '');
+    }
+    _this.setData({
+      keziTxtInfo: keziTxtInfo
+    })
+  },
+  keziSure(){
+    this.setData({
+      showMark: false,
+      keziTxt: '已刻字',
+      disTextarea: false
+    });
+    this.store['isKezi'] = true;
+  },
   // 付款
   payWechat(e) {
     let _this = this;
@@ -203,7 +275,7 @@ let pageConfig = {
         if (res.code) {
           app.ApiConfig.ajax(_this.store['url'].addOrderUrl, {
             address_id: _this.data.addressId,
-            memo: _this.data.textAreaInfo,
+            memo: _this.data.textAreaInfo + (_this.store['isKezi'] ? '|' + JSON.stringify(_this.store['keziInfo']) : ''),
             incprice_id: _this.store['incpriceId'],
             code: _this.store['code']
           }, function(res){

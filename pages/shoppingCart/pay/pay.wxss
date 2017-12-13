@@ -12,6 +12,7 @@
 }
 .goods-link .order-image{
   width: 150rpx;
+  height: 150rpx;
   margin-right: 30rpx;
 }
 .footer .footer-ctl{
@@ -21,7 +22,7 @@
   margin-right: 20rpx;
 }
 .footer .footer-ctl{
-   justify-content: flex-end; 
+  justify-content: flex-end; 
 }
 .order-btn{
   border: 1px solid #000;
@@ -32,8 +33,15 @@
   border: 1px solid #ccc;
   padding: 0 10rpx;
 }
+.order-info .mark{
+  padding: 20rpx 20rpx 20rpx 0;
+}
+.order-info .mark .arrow{
+  top: -15rpx;
+}
 .order-info .remark{
   width: calc(100% - 40rpx);
+  height: 200rpx;
   margin-top: 20rpx;
   border: 1px solid #ccc;
   padding: 20rpx;
@@ -48,5 +56,44 @@
 .footer-area .sure{
   background-color: #b30000;
   line-height: 110rpx;
+  color: #fff;
+}
+
+.mask{
+  position: fixed;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, .6);
+  z-index: 9;
+}
+.alert-model{
+  position: absolute;
+  left: calc(50% - 300rpx);
+  top: 10%;
+  width: 540rpx;
+  background-color: #fff;
+  border-radius: 20rpx;
+  z-index: 99;
+}
+.model-content{
+  overflow: scroll;
+  max-height: 230rpx;
+}
+.model-input{
+  border: 1px solid #ccc;
+  padding: 0 10rpx;
+}
+.alert-model .btn{
+  height: 70rpx;
+  width: 250rpx;
+  line-height: 70rpx;
+  border: 1px solid #000;
+  text-align: center;
+}
+.color-name{ width: 240rpx; }
+.btn.sure{
+  background-color: #000;
   color: #fff;
 }

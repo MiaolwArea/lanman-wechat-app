@@ -23,6 +23,11 @@ Component({
       this.setData({
         x: 0
       });
+      if ((e.changedTouches[0].pageY) > wx.getSystemInfoSync().windowHeight){
+        this.setData({
+          y: wx.getSystemInfoSync().windowHeight - 50
+        });
+      }
     }
   }
 })

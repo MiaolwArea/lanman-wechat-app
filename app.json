@@ -18,7 +18,8 @@
     "pages/user/comment/comment",
     "pages/user/point/point",
     "pages/user/point/logger/logger",
-    "pages/user/point/goodsDetail/detail"
+    "pages/user/point/goodsDetail/detail",
+    "pages/activity/turntable/turntable"
   ],
   "window": {
     "backgroundTextStyle": "light",

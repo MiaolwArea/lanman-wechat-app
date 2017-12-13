@@ -30,7 +30,7 @@
           <view class="goods-list">
             <view class="list-item border-bottom-line-i ptb30 flex" wx:for="{{ goodsList }}" wx:key="{{ item.goods_id }}">
               <view class="flex">
-                <label class="checkbox col-1" data-goods_id="{{ item.goods_id }}" data-shop_price="{{ item.shop_price }}" bindchange="changeSelected">  
+                <label class="checkbox col-1" data-index="{{ index }}" data-goods_id="{{ item.goods_id }}" data-shop_price="{{ item.shop_price }}" bindtap="changeSelected">  
                   <image src="{{ idAryMap[item.goods_id] ? '../../../../assets/images/icon/choose.png' : '../../../../assets/images/icon/unchoose.png' }}" class="unchoose" />
                   <checkbox value="{{ item.goods_id }}" class="choose-item-btn" checked="{{ idAryMap[item.goods_id] }}" hidden />
                 </label> 
@@ -47,14 +47,17 @@
                             <view class="box" 
                             data-index="{{ index }}" 
                             data-max="{{ item.goods_num }}"
+                            data-goods_id="{{ item.goods_id }}"
                             catchtap="minusNum">-</view>
                             <input class="box num" 
                             data-index="{{ index }}" 
                             data-max="{{ item.goods_num }}"
+                            data-goods_id="{{ item.goods_id }}"
                             catchtap catchblur="inputNum" type="number" value="{{ item.goods_num }}" />
                             <view class="box" 
                             data-index="{{ index }}" 
                             data-max="{{ item.goods_num }}"
+                            data-goods_id="{{ item.goods_id }}"
                             catchtap="plusNum">+</view>   
                         </view>
                       </view>
@@ -80,7 +83,7 @@
     <view class="mt-20 bg-white plr30">
       <view class="mt-20 ptb20 border-bottom-line color-gray flex" wx:if="{{ !priceBack && !exchangeGoos }}">
         <text>最多退款：</text>
-        <text>{{ limitPrice }}</text>
+        <text>{{ limitPrice || 0 }}</text>
       </view>
       <view class="mt-20 ptb20 border-bottom-line color-gray flex" wx:if="{{ !exchangeGoos }}">
         <text>退款金额：</text>

@@ -5,7 +5,7 @@
     <swiper indicator-dots="true" current="{{ currentTab }}" bindchange="changeIndex" wx:if="{{ goodsType != 2 }}">
       <block wx:for="{{ goodsDetial.goods_colors }}" wx:key="{{ item.bn_goods_id }}">
         <swiper-item>
-          <image class="slide-image" mode="widthFix" src="{{ item.outside_view }}" height="300" />
+          <image lazy-load class="slide-image" mode="widthFix" src="{{ item.outside_view }}" height="300" />
         </swiper-item>
       </block>
     </swiper>

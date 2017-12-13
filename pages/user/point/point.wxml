@@ -30,7 +30,7 @@
             <view class="info">
               <view class="title">{{ item.goods_name }}</view>
               <view class="info-footer flex">
-                <image class="heaer-img" src="../../../assets/images/icon/point.png"></image>
+                <image class="heaer-img" lazy-load src="../../../assets/images/icon/point.png"></image>
                 <text>兑换积分：</text>
                 <text>{{ item.point }}</text>
               </view>

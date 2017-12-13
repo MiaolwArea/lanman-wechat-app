@@ -221,6 +221,20 @@ let pageConfig = {
       }
     }, 'POST');
   },
+  onShareAppMessage: function (res) {
+    let _this = this;
+
+    return {
+      title: _this.data.goodsDetial.goods_name,
+      path: '/pages/goods/detail/detail?goods_id=' + _this.store['goodsId'],
+      success: function (res) {
+        // 转发成功
+      },
+      fail: function (res) {
+        // 转发失败
+      }
+    }
+  }
   // 懒加载图片
   // countHeight(e) {
   //   if(isOdd){
@@ -234,11 +248,5 @@ let pageConfig = {
   //   }
   // }
 }
-// 合并公共配置
-pageConfig = {
-  ...pageConfig, ...pageAction({
-    url: '/pages/goods/detial/detial'
-  })
-};
 
 Page(pageConfig)

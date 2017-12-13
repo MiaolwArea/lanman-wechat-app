@@ -79,31 +79,39 @@ let pageConfig = {
   minusNum(e) {
     let index = e.target.dataset.index
       , max = e.target.dataset.max
+      , goodsId = e.target.dataset.goods_id
       , _this = this
       , num = --_this.data.goodsList[index].goods_num;
 
-    _this._checkNum(num, max);
-    _this._updateNum(index, num);
+    if (_this._checkNum(num, max)) {
+      _this._updateNum(index, num, goodsId);
+    }
   },
   // 加
   plusNum(e) {
     let index = e.target.dataset.index
       , max = e.target.dataset.max
+      , goodsId = e.target.dataset.goods_id
       , _this = this
       , num = ++_this.data.goodsList[index].goods_num;
 
-    _this._checkNum(num, max);
-    _this._updateNum(index, num);
+    if (_this._checkNum(num, max)) {
+      _this._updateNum(index, num, goodsId);
+    }
   },
   // 输入框金额
   inputNum(e) {
     let index = e.target.dataset.index
       , max = e.target.dataset.max
+      , goodsId = e.target.dataset.goods_id
       , _this = this
       , num = e.detail.value;
 
-    _this._checkNum(num, max);
-    _this._updateNum(index, num);
+    if (_this._checkNum(num, max)){
+      _this._updateNum(index, num, goodsId);
+    }else{
+      _this._updateNum(index, 1);
+    }
   },
   // 验证数量
   _checkNum(num, max){
@@ -113,7 +121,7 @@ let pageConfig = {
         confirmColor: '#000',
         showCancel: false
       })
-      return;
+      return false;
     }
     if (num < 1) {
       wx.showModal({
@@ -121,14 +129,22 @@ let pageConfig = {
         confirmColor: '#000',
         showCancel: false
       })
-      return;
+      return false;
     }
+    return true;
   },
-  _updateNum(index, num) {
+  _updateNum(index, num, goodsId) {
     let _this = this
-      , goodsList = _this.data.goodsList;
+      , goodsList = _this.data.goodsList
+      , idAryMap = _this.data.idAryMap;
 
     goodsList[index].goods_num = num;
+    if (idAryMap[goodsId]) {
+      _this.store['maxMoney'] = num * parseFloat(goodsList[index]['shop_price']);
+      _this.setData({
+        limitPrice: _this.store['maxMoney']
+      });
+    }
     _this.setData({
       goodsList: goodsList
     });
@@ -183,17 +199,19 @@ let pageConfig = {
   changeSelected(e){
     let _this = this
       , goodsId = e.currentTarget.dataset['goods_id']
+      , index = e.currentTarget.dataset['index']
       , shopPrice = e.currentTarget.dataset['shop_price']
       , idAryMap = _this.data.idAryMap;
-
+    
     idAryMap[goodsId] = !idAryMap[goodsId];
     if (idAryMap[goodsId]){
-      _this.store['maxMoney'] += shopPrice
+      _this.store['maxMoney'] += parseFloat(shopPrice) * _this.data.goodsList[index]['goods_num'] 
     }else{
-      _this.store['maxMoney'] -= shopPrice
+      _this.store['maxMoney'] -= parseFloat(shopPrice) * _this.data.goodsList[index]['goods_num']
     }
     _this.setData({
-      idAryMap: idAryMap
+      idAryMap: idAryMap,
+      limitPrice: _this.store['maxMoney']
     })
   },
   checkboxChange(){},
